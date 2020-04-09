@@ -1,42 +1,42 @@
 ---
 uid: webhooks/diagnostics/debugging
-title: ASP.NET Webhook 調試 |Microsoft Docs
+title: ASP.NET WebHooks 調試 |微軟文件
 author: rick-anderson
-description: 如何 debug ASP.NET Webhook。
+description: 如何調試ASP.NET WebHooks。
 ms.author: riande
 ms.date: 01/17/2012
 ms.assetid: 467da78b-3c35-4c51-8b08-77a32379e4a8
-ms.openlocfilehash: 517d282fc22703b5861b748aea51023fa0a12a26
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 2f1f8196478e7025a0467acb945d9ed36c8fd0ca
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78640865"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80675373"
 ---
-# <a name="aspnet-webhooks-debugging"></a>ASP.NET Webhook 的調試  
+# <a name="aspnet-webhooks-debugging"></a>ASP.NET WebHooks 除錯
 
-## <a name="debugging-in-azure"></a>在 Azure 中進行調試
+## <a name="debugging-in-azure"></a>在 Azure 中除錯
 
-若要在 Azure 中執行時，對您的 Web 應用程式進行檢查，請參閱教學課程[使用 Visual Studio 在 Azure App Service 中進行 web 應用程式疑難排解](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/#webserverlogs)。
+在 Azure 中執行時除錯 Web 應用程式,請參閱[使用 Visual Studio 在 Azure 應用服務中對 Web 應用進行故障排除教學](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-troubleshoot-visual-studio/#webserverlogs)。
 
-## <a name="debugging-with-source-and-symbols"></a>使用來源和符號進行調試
+## <a name="debugging-with-source-and-symbols"></a>使用來源與符號進行除錯
 
-除了您自己的程式碼之外，您還可以直接在 Microsoft ASP.NET Webhook 中進行偵錯工具，事實上就是所有 .NET。 無論您是在本機或遠端進行調試，都可以運作。 首先，前往 [ **Debug** ]，然後**選擇 [選項和設定**]，設定 Visual Studio 來尋找來源和符號。 設定如下所示的選項：
+除了調試自己的代碼外,還可以直接調試到 Microsoft ASP.NET WebHooks,實際上還可以調試到所有 .NET。 無論您在本地調試還是遠端調試,這都有效。 首先,通過去**調試**,然後選擇**和設置**,配置 Visual Studio 以查找源和符號。 設定以下的選項:
 
-![選項和設定](_static/SourceSymbols.png)
+![選項與設定](_static/SourceSymbols.png)
 
-然後，新增[symbolsource.org](http://symbolsource.org)的連結以下載來源和符號。 移至上方功能表的 [**符號**] 索引標籤，並將下列內容新增為符號位置：
+然後添加指向[symbolsource.org](http://symbolsource.org)的鏈接以下載源和符號。 跳到上面選單的 **「符號」** 選項卡,並將以下內容新增為符號位置:
 
 ```
 http://srv.symbolsource.org/pdb/Public
 ```
 
-此外，請確定快取目錄具有簡短名稱;否則檔案名可能會變得太長，而導致無法載入符號。 範例路徑為：
+此外,請確保緩存目錄具有短名稱;否則,檔名可能會太長,這將導致符號無法載入。 範例路徑是:
 
 ```
 C:\SymCache
 ```
 
-這些設定看起來應該像這樣：
+設定應如下所示:
 
 ![選項符號檔案位置範例](_static/SymSource.png)

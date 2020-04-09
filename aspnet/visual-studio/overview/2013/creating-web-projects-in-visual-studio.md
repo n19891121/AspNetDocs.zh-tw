@@ -1,424 +1,424 @@
 ---
 uid: visual-studio/overview/2013/creating-web-projects-in-visual-studio
-title: 在 Visual Studio 2013 中建立 ASP.NET Web 專案 |Microsoft Docs
+title: 在可視化工作室創建ASP.NET Web 專案 2013 |微軟文件
 author: tdykstra
-description: 本主題說明在 Visual Studio 2013 中使用 Update 3 建立 ASP.NET Web 專案的選項。這裡有一些 web 程式開發的新功能 c 。
+description: 本主題介紹在 Visual Studio 2013 中創建ASP.NET Web 專案的選項,其中介紹了 Web 開發中的一些新功能。
 ms.author: riande
 ms.date: 12/01/2014
 ms.assetid: 61941e64-0c0d-4996-9270-cb8ccfd0cabc
 msc.legacyurl: /visual-studio/overview/2013/creating-web-projects-in-visual-studio
 msc.type: authoredcontent
 ms.openlocfilehash: fbb4cd7afa2506879d47bce980bf0164aad40c2c
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78555220"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80676045"
 ---
 # <a name="creating-aspnet-web-projects-in-visual-studio-2013"></a>在 Visual Studio 2013 中建立 ASP.NET Web 專案
 
-由[Tom 作者: dykstra](https://github.com/tdykstra)
+湯姆[·戴克斯特拉](https://github.com/tdykstra)
 
-> 本主題說明使用 Update 3 在 Visual Studio 2013 中建立 ASP.NET Web 專案的選項
+> 本主題介紹使用 Update 3 在 Visual Studio 2013 中建立ASP.NET Web 專案的選項
 > 
-> 以下是一些 web 程式開發的新功能，相較于舊版的 Visual Studio：
+> 與早期版本的 Visual Studio 相比,以下是 Web 開發中的一些新功能:
 > 
-> - 簡單的 UI，用於建立可[支援多個 ASP.NET](#add)架構（Web FORM、MVC 和 web API）的專案。
-> - [ASP.NET Identity](#indauth)，這是一個新的 ASP.NET 成員資格系統，在所有 ASP.NET 架構中的運作方式都相同，並可與 IIS 以外的 web 主控軟體搭配運作。
-> - 使用[啟動](#bootstrap)程式來提供回應式設計和主題功能。
-> - Web Forms 的新功能，僅供 MVC 使用，例如[自動測試專案建立](#testproj)和[內部網路網站範本](#winauth)。
+> - 用於建立支援[多個ASP.NET架構](#add)(Web 窗體、MVC 和 Web API)的專案的簡單 UI。
+> - [ASP.NET標識](#indauth),一個新的ASP.NET成員系統,在所有ASP.NET框架中都工作相同,並且與IIS以外的Web託管軟體配合使用。
+> - 使用[Bootstrap](#bootstrap)提供回應式設計和準備功能。
+> - 以前只為 MVC 提供的 Web 窗體的新功能,例如[自動測試項目建立](#testproj)與 Intranet[網站樣本](#winauth)。
 > 
-> 如需如何為 Azure 雲端服務或 Azure 行動服務建立 Web 專案的相關資訊，請參閱[開始使用 azure 雲端服務和](https://azure.microsoft.com/documentation/articles/cloud-services-dotnet-get-started/)[使用 azure 行動服務 .Net 後端建立排行榜應用程式](https://azure.microsoft.com/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-leaderboard/)ASP.NET。
+> 有關如何為 Azure 雲端服務或 Azure 行動服務建立 Web 專案的資訊,請參閱[使用 Azure 雲端服務開始使用「ASP.NET」](https://azure.microsoft.com/documentation/articles/cloud-services-dotnet-get-started/)以及[使用 Azure 行動服務 .NET 後端建立排行榜應用](https://azure.microsoft.com/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-leaderboard/)。
 
 <a id="prerequisites"></a>
 ## <a name="prerequisites"></a>Prerequisites
 
-本文適用于已安裝[Update 3](https://go.microsoft.com/fwlink/?linkid=397827&amp;clcid=0x409)的[Visual Studio 2013](https://go.microsoft.com/fwlink/?LinkId=306566) 。
+本文適用於安裝了[更新 3](https://go.microsoft.com/fwlink/?linkid=397827&amp;clcid=0x409)的 Visual [Studio 2013。](https://go.microsoft.com/fwlink/?LinkId=306566)
 
 <a id="wap"></a>
-## <a name="web-application-projects-versus-web-site-projects"></a>Web 應用程式專案與網站專案的比較
+## <a name="web-application-projects-versus-web-site-projects"></a>Web 應用程式專案與網站專案
 
-ASP.NET 可讓您選擇兩種 Web 專案： *web 應用程式專案*和*網站專案*。 我們建議 web 應用程式專案進行新的開發，本文僅適用于 web 應用程式專案。 如需詳細資訊，請參閱 MSDN 網站上[Visual Studio 中的 Web 應用程式專案和網站專案](https://msdn.microsoft.com/library/dd547590(v=vs.120).aspx)。
+ASP.NET在兩種Web專案之間做出選擇 *:Web應用程式*專案和*網站專案*。 我們建議 Web 應用程式專案用於新開發,本文僅適用於 Web 應用程式專案。 有關詳細資訊,請參閱 MSDN 網站上的[Visual Studio 中的 Web 應用程式專案與網站專案](https://msdn.microsoft.com/library/dd547590(v=vs.120).aspx)。
 
 <a id="overview"></a>
-## <a name="overview-of-web-application-project-creation"></a>建立 web 應用程式專案的總覽
+## <a name="overview-of-web-application-project-creation"></a>Web 應用程式項目建立概述
 
-下列步驟示範如何建立 Web 專案：
+以下步驟展示如何建立 Web 專案:
 
-1. 在 [**起始**頁] 或 [檔案 **] 功能表中，按一下 [** **新增專案**]。
-2. 在 **新增專案** 對話方塊中，按一下左窗格中的  **web** ，然後在中間窗格中**ASP.NET web 應用程式**。
+1. 按下 **「開始」** 頁或 **「檔案**」 選單中的 **「新專案**」 。
+2. 在**新項目對話**框中,按下左方窗格中的**Web,** 並在中間窗格**中按下 ASP.NET Web 應用程式**。
 
-    ![[新增專案] 對話](creating-web-projects-in-visual-studio/_static/image1.png)
+    ![[新增專案] 對話方塊](creating-web-projects-in-visual-studio/_static/image1.png)
 
-    您可以選擇左窗格中的 [**雲端**]，來建立[azure 雲端服務](https://docs.microsoft.com/azure/cloud-services/cloud-services-how-to-create-deploy)、 [Azure 行動服務](https://msdn.microsoft.com/library/windows/apps/dn629482.aspx)或[azure WebJob](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-deploy-webjobs)。 本主題並未涵蓋這些範本。
-3. 如果您想要應用程式的健康情況和使用方式監視，請在右窗格中按一下 [**將 Application Insights 新增至專案**] 核取方塊。 如需詳細資訊，請參閱[監視 Web 應用程式中的效能](https://azure.microsoft.com/documentation/articles/app-insights-web-monitor-performance/)。
-4. 指定 [專案**名稱**]、[**位置**] 和其他選項，然後按一下 **[確定]** 。
+    可以選擇左邊窗格中的 **「雲**」來建立[Azure 雲端服務](https://docs.microsoft.com/azure/cloud-services/cloud-services-how-to-create-deploy)[、Azure 行動服務](https://msdn.microsoft.com/library/windows/apps/dn629482.aspx)或[Azure WebJob](https://azure.microsoft.com/documentation/articles/web-sites-dotnet-deploy-webjobs)。 本主題不包括這些範本。
+3. 在右邊窗格中,如果希望對應用程式進行運行狀況和使用方式監視,請按下 **「 將應用程式見解添加到專案**」複選框。 如需詳細資訊，請參閱[監視 Web 應用程式中的效能](https://azure.microsoft.com/documentation/articles/app-insights-web-monitor-performance/)。
+4. 指定項目**名稱**、**位置**和其他選項,然後按下 **「確定**」。
 
     [**新增 ASP.NET 專案**] 對話方塊隨即出現。
 
-    ![[新增專案] 對話](creating-web-projects-in-visual-studio/_static/image2.png)
-5. 按一下範本。
+    ![[新增專案] 對話方塊](creating-web-projects-in-visual-studio/_static/image2.png)
+5. 單擊範本。
 
     ![選取範本](creating-web-projects-in-visual-studio/_static/image3.png)
-6. 如果您想要新增範本中未包含之其他架構的支援，請按一下適當的核取方塊。 （在顯示的範例中，您可以將 MVC 和/或 Web API 新增至 Web Forms 專案）。
+6. 如果要添加對範本中未包括的其他框架的支援,請單擊相應的複選框。 (在所示示例中,您可以將 MVC 和/或 Web API 添加到 Web 窗體專案中。
 
-    ![新增架構](creating-web-projects-in-visual-studio/_static/image4.png)
-7. <a id="testproj"></a>如果您想要加入單元測試專案，請按一下 [**加入單元**測試]。
+    ![新增框架](creating-web-projects-in-visual-studio/_static/image4.png)
+7. <a id="testproj"></a>如果要添加單元測試專案,請按一下「**添加單元測試**」。
 
     ![新增單元測試](creating-web-projects-in-visual-studio/_static/image5.png)
-8. 如果您想要不同于範本預設提供的驗證方法，請按一下 [**變更驗證**]。
+8. 如果想要與範本預設提供的身份驗證方法不同的身份驗證方法,請單擊「**更改身份驗證**」。
 
-    ![[設定驗證] 按鈕](creating-web-projects-in-visual-studio/_static/image6.png)
+    ![設定驗證按鈕](creating-web-projects-in-visual-studio/_static/image6.png)
 
-    ![[設定驗證] 對話方塊](creating-web-projects-in-visual-studio/_static/image7.png)
+    ![設定驗證對話框](creating-web-projects-in-visual-studio/_static/image7.png)
 
 <a id="azurenewproj"></a>
-### <a name="create-a-web-app-or-virtual-machine-in-azure"></a>在 Azure 中建立 web 應用程式或虛擬機器
+### <a name="create-a-web-app-or-virtual-machine-in-azure"></a>在 Azure 建立 Web 應用或虛擬機器
 
-Visual Studio 包含的功能，可讓您輕鬆地使用 Azure 服務來裝載 web 應用程式。 例如，您可以從 Visual Studio IDE 執行下列擁有權限：
+Visual Studio 包含的功能,使使用 Azure 服務輕鬆託管 Web 應用程式。 例如,您可以在 Visual Studio IDE 執行以下所有操作:
 
-- 建立及管理 web apps 或虛擬機器，讓您的應用程式可透過網際網路使用。
-- 查看應用程式在雲端中執行時所建立的記錄。
-- 當應用程式在雲端中執行時，從遠端執行于「偵測模式」中。
-- 查看和管理其他 Azure 服務，例如 SQL 資料庫。
+- 創建和管理 Web 應用或虛擬機器,使應用程式在 Internet 上可用。
+- 查看應用程式在雲端中執行時創建的紀錄。
+- 應用程式在雲中運行時,在調試模式下遠端運行。
+- 查看和管理其他 Azure 服務,如 SQL 資料庫。
 
-您可以建立包含基本服務（例如免費 web 應用程式）的[Azure 帳戶](https://www.windowsazure.com/pricing/free-trial/)，如果您是 MSDN 訂閱者，您可以[啟用權益](https://azure.microsoft.com/pricing/member-offers/visual-studio-subscriptions/)，為您提供更多 Azure 服務的每月信用額度。 
+您可以創建包含基本服務(如免費 Web 應用)的[Azure 帳戶](https://www.windowsazure.com/pricing/free-trial/),如果您是 MSDN 訂閱者,則可以[啟動每月](https://azure.microsoft.com/pricing/member-offers/visual-studio-subscriptions/)為其他 Azure 服務提供積分的好處。 
 
-[**新增 ASP.NET 專案**] 對話方塊預設可讓您為新的 Web 專案建立 web 應用程式或虛擬機器。 如果您不想要建立新的 web 應用程式或虛擬機器，請清除 **[雲端中的主機**] 核取方塊。
+預設情況下,「**新建ASP.NET專案」** 對話框使您能夠為新 Web 專案建立 Web 應用或虛擬機器。 如果不想創建新的 Web 應用或虛擬機,請清除**雲端中的「主機**」複選框。
 
 ![建立遠端資源](creating-web-projects-in-visual-studio/_static/image8.png)
 
-核取方塊標題可能是**雲端中的主機**或**建立遠端資源**，而在任一情況下，效果都相同。 如果您將核取方塊保留為已選取，Visual Studio 預設會在 Azure App Service 中建立 web 應用程式。 如果您想要的話，可以使用下拉式方塊將其變更為**虛擬機器**。 如果您尚未登入 Azure，系統會提示您輸入 Azure 認證。 登入之後，對話方塊可讓您設定 Visual Studio 將為您的專案建立的資源。 下圖顯示 web 應用程式的對話方塊;如果您選擇建立虛擬機器，則會出現不同的選項。
+複選框標題可能是**雲中的主機**或**創建遠端資源**,在這兩種情況下效果都相同。 如果選中選取中該複選框,Visual Studio 預設情況下會在 Azure 應用服務中創建 Web 應用。 如果您願意,可以使用下拉框將此方塊更改為**虛擬機器**。 如果您尚未登錄到 Azure,系統將提示您輸入 Azure 認證。 登錄後,一個對話框允許您配置 Visual Studio 將為專案創建的資源。 下圖顯示了 Web 應用的對話方塊;如果選擇創建虛擬機,則會出現不同的選項。
 
-![設定 Azure App 設定](creating-web-projects-in-visual-studio/_static/image9.png)
+![設定 Azure 應用設定](creating-web-projects-in-visual-studio/_static/image9.png)
 
-如需如何使用此程式來建立 Azure 資源的詳細資訊，請參閱[開始使用 azure 和 ASP.NET](https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-dotnet)和[使用 Visual Studio 建立網站的虛擬機器](https://azure.microsoft.com/documentation/articles/virtual-machines-dotnet-create-visual-studio-powershell/)。
+有關如何使用此過程建立 Azure 資源的詳細資訊,請參閱使用 Azure[啟動和 ASP.NET](https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-dotnet)以及[使用 Visual Studio 為網站建立虛擬機器](https://azure.microsoft.com/documentation/articles/virtual-machines-dotnet-create-visual-studio-powershell/)。
 
-本文的其餘部分會提供有關可用範本和其選項的詳細資訊。 本文也介紹了「啟動程式」，也就是範本中所使用的版面配置和主題架構。
+本文的其餘部分提供了有關可用範本及其選項的詳細資訊。 本文還介紹了範本中使用的 Bootstrap、佈局和準備框架。
 
 <a id="vs2013"></a>
-## <a name="visual-studio-2013-web-project-templates"></a>Visual Studio 2013 Web 專案範本
+## <a name="visual-studio-2013-web-project-templates"></a>視覺化工作室 2013 Web 專案範本
 
-Visual Studio 會使用範本來建立 Web 專案。 專案範本可以在新專案中建立檔案和資料夾、安裝 NuGet 套件，以及提供基本運作中應用程式的範例程式碼。 範本會實行最新的網路標準，並示範如何使用 ASP.NET 技術的最佳作法，並讓您快速開始建立自己的應用程式。
+Visual Studio 使用範本創建 Web 專案。 專案範本可以在新項目中創建檔和資料夾,安裝 NuGet 包,並為基本工作應用程式提供範例代碼。 樣本實現最新的 Web 標準,旨在展示如何使用 ASP.NET 技術的最佳做法,並讓您開始創建自己的應用程式。
 
-Visual Studio 2013 針對以 .NET 4.5 或更新版本 .NET framework 為目標的專案，提供下列 Web 專案範本的選擇：
+Visual Studio 2013 為針對 .NET 4.5 或更高版本的 .NET 框架的專案提供以下 Web 專案樣本選項:
 
-- [空白範本](#empty)
-- [Web Forms 範本](#wf)
+- [空範本](#empty)
+- [Web 表單範本](#wf)
 - [MVC 範本](#mvc)
 - [Web API 範本](#webapi)
-- [單一頁面應用程式範本](#spa)
+- [單頁應用程式範本](#spa)
 - [Azure 行動服務範本](https://azure.microsoft.com/documentation/articles/mobile-services-dotnet-backend-windows-store-dotnet-leaderboard/)
-- [Visual Studio 2012 範本](#vs2012)
+- [視覺工作室 2012 範本](#vs2012)
 
-您也可以安裝提供[Facebook 範本](#facebook)的 Visual Studio 延伸模組。
+您還可以安裝提供[Facebook 範本](#facebook)的視覺工作室擴展。
 
-如需如何建立以 .NET 4 為目標之專案的相關資訊，請參閱本主題稍後的[Visual Studio 2012 範本](#vs2012)。
+有關如何建立面向 .NET 4 的項目的資訊,請參閱本主題後面的[Visual Studio 2012 範本](#vs2012)。
 
-如需如何建立行動用戶端 ASP.NET 應用程式的相關資訊，請參閱[ASP.NET 中](../../../mobile/overview.md)的行動支援。
+有關如何為行動客戶端建立ASP.NET應用程式的資訊,請參閱 ASP.NET[中的行動支援](../../../mobile/overview.md)。
 
 <a id="empty"></a>
-### <a name="empty-template"></a>空白範本
+### <a name="empty-template"></a>空範本
 
-空白範本提供 ASP.NET web 應用程式（例如專案檔（ *.csproj*或）的最小資料夾和檔案。*vbproj*）*和 web.config 檔案*。 您可以使用 [**新增資料夾] 和 [核心參考：** 標籤] 底下的核取方塊，來新增 web FORM、MVC 和/或 web API 的支援。
+"空"樣本為ASP.NET Web 應用(如專案檔 *(.csproj*或 )提供最少的資料夾和檔。*vbproj*) 和*Web.config*檔。 您可以使用「**新增資料夾」 下的複選框和核心引用**:標籤,添加對 Web 窗體、MVC 和/或 Web API 的支援。
 
-針對空白範本，沒有可用的驗證選項。 驗證功能會在範例應用程式中執行，而空白範本不會建立範例應用程式。
+對於空範本,沒有可用的身份驗證選項。 身份驗證功能在示例應用程式中實現,空範本不建立範例應用程式。
 
 <a id="wf"></a>
-### <a name="web-forms-template"></a>Web Forms 範本
+### <a name="web-forms-template"></a>Web 表單範本
 
-Web Forms 架構提供下列功能，可讓您快速建立豐富的 UI 和資料存取功能的網站：
+Web 表單結構框架提供以下功能,讓您能夠快速產生具有豐富 UI 和資料存取功能的網站:
 
-- Visual Studio 中的 WYSIWYG 設計工具。
-- 呈現 HTML 的伺服器控制項，您可以藉由設定屬性和樣式進行自訂。
-- 適用于資料存取和資料顯示的各種控制項。
-- 公開事件的事件模型，您可以使用程式設計程式，就像處理 WPF 之類的用戶端應用程式一樣。
-- 自動保留 HTTP 要求之間的狀態（資料）。
+- 視覺工作室的 WYSIWYG 設計師。
+- 呈現 HTML 的伺服器控制項,以及可以透過設定屬性和樣式進行自訂的伺服器控制項。
+- 用於數據訪問和數據顯示的豐富類型控制項。
+- 公開事件的事件模型,您可以像對用戶端應用程式(如 WPF)進行程式設計一樣進行程式設計。
+- 自動在 HTTP 請求之間保留狀態(數據)。
 
-一般而言，建立 Web Forms 應用程式所需的程式設計工作比使用 ASP.NET MVC 架構建立相同的應用程式來得少。 不過，Web form 不只是用來進行快速的應用程式開發。 有許多以 Web form 為基礎的複雜商業應用程式和架構。
+通常,與使用ASP.NET MVC 框架創建同一應用程式相比,創建Web窗體應用程式所需的程式設計工作量更少。 但是,Web 窗體並不僅僅用於快速應用程式開發。 有許多複雜的商業應用程式和框架建立在 Web 窗體之上。
 
-由於 Web form 頁面和頁面上的控制項會自動產生許多傳送至瀏覽器的標記，因此您不能對 ASP.NET MVC 所提供的 HTML 進行細微的控制。 設定頁面和控制項的宣告式模型可將您必須撰寫的程式碼數量降到最低，但會隱藏一些 HTML 和 HTTP 的行為。 例如，您不一定可以明確地指定控制項可能產生的標記。
+由於 Web 窗體頁和頁面上的控制器會自動生成發送到瀏覽器的大部分標記,因此您沒有 ASP.NET MVC 提供的 HTML 的細粒度控制。 用於配置頁面和控制的聲明性模型最大限度地減少了必須編寫的代碼量,但隱藏了 HTML 和 HTTP 的某些行為。 例如,並不總是能夠準確指定控制項可能生成哪些標記。
 
-Web form 架構本身並不能像 ASP.NET MVC，就像是以模式為基礎的開發實務，例如[測試導向的開發](http://en.wikipedia.org/wiki/Test-driven_development)、[關注點分離](http://en.wikipedia.org/wiki/Separation_of_concerns)、[控制反轉](http://en.wikipedia.org/wiki/Inversion_of_control)，以及相依性[插入](http://en.wikipedia.org/wiki/Dependency_injection)。 如果您想要以這種方式撰寫程式碼的分解，可以;它不像在 ASP.NET MVC 架構中一樣自動。 [ASP.NET Web FORM MVP](http://webformsmvp.com/)專案會示範一種方法，可協助區分顧慮和可測試性，同時維護 Web form 建立以提供的快速開發。 Microsoft SharePoint 是以 Web Forms MVP 為基礎。
+Web 表單框架不像 MVC ASP.NET 一樣容易適應基於模式的開發實作,例如[測試驅動開發](http://en.wikipedia.org/wiki/Test-driven_development)、[關注分離](http://en.wikipedia.org/wiki/Separation_of_concerns),[控制反向](http://en.wikipedia.org/wiki/Inversion_of_control)與[相依的 。](http://en.wikipedia.org/wiki/Dependency_injection) 如果要用這種方式編寫分解的代碼,可以;它只是不像ASP.NETMVC框架那樣自動。 [ASP.NET Web 窗體 MVP](http://webformsmvp.com/)專案展示了一種有助於區分關注點和可測試性的方法,同時保持 Web 窗體為交付而構建的快速開發。 微軟 SharePoint 建立在 Web 表單 MVP 之上。
 
-Web form 範本會建立範例 Web Forms 應用程式，使用[啟動](#bootstrap)程式來提供回應式設計和主題功能。 下圖顯示首頁。
+Web 表單表板建立範例 Web 窗體應用程式,該應用程式使用[Bootstrap](#bootstrap)提供回應式設計和主發功能。 下圖顯示了主頁。
 
-![Web Forms 範本應用程式首頁](creating-web-projects-in-visual-studio/_static/image10.png)
+![Web 表單範本應用程式主頁](creating-web-projects-in-visual-studio/_static/image10.png)
 
-如需 Web Forms 的詳細資訊，請參閱[ASP.NET Web forms](https://asp.net/web-forms)。 如需 Web form 範本為您提供之功能的相關資訊，請參閱[使用 Visual Studio 2013 建立基本的 Web forms 應用程式](https://blogs.msdn.com/b/webdev/archive/2013/12/19/building-a-basic-web-forms-application-using-visual-studio-2013.aspx)。
+有關 Web 表單的詳細資訊,請參閱[ASP.NET Web 窗體](https://asp.net/web-forms)。 有關 Web 表單樣本為您做什麼的資訊,請參閱使用[Visual Studio 2013 建構基本 Web 表單應用程式](https://blogs.msdn.com/b/webdev/archive/2013/12/19/building-a-basic-web-forms-application-using-visual-studio-2013.aspx)。
 
 <a id="mvc"></a>
 ### <a name="mvc-template"></a>MVC 範本
 
-ASP.NET MVC 的設計目的是要協助以模式為基礎的開發實務，例如[測試導向的開發](http://en.wikipedia.org/wiki/Test-driven_development)、[關注點分離](http://en.wikipedia.org/wiki/Separation_of_concerns)、[控制反轉](http://en.wikipedia.org/wiki/Inversion_of_control)，以及相依性[插入](http://en.wikipedia.org/wiki/Dependency_injection)。 架構鼓勵 web 應用程式的商務邏輯層與展示層分開。 藉由將應用程式分割成模型（M）、views （V）和控制器（C），ASP.NET MVC 可讓您更輕鬆地管理較大型應用程式的複雜性。
+ASP.NET MVC 旨在促進基於模式的開發實作,例如[測試驅動開發](http://en.wikipedia.org/wiki/Test-driven_development)、[關注分離](http://en.wikipedia.org/wiki/Separation_of_concerns)、[控制反轉](http://en.wikipedia.org/wiki/Inversion_of_control)與[相依法 。](http://en.wikipedia.org/wiki/Dependency_injection) 該框架鼓勵將 Web 應用程式的業務邏輯層與其表示層分開。 通過將應用程式劃分為模型 (M)、視圖 (V) 和控制器 (C),ASP.NET MVC 可以更輕鬆地管理較大應用程式中的複雜性。
 
-有了 ASP.NET MVC，您就能更直接使用 HTML 和 HTTP，而不是 Web Forms。 例如，Web Forms 可以自動保留 HTTP 要求之間的狀態，但是您必須在 MVC 中明確撰寫程式碼。 MVC 模型的優點是，它可讓您完全掌控應用程式正在執行的作業，以及它在 web 環境中的行為。 缺點是您必須撰寫更多程式碼。
+使用ASP.NET MVC,您更直接地使用 HTML 和 HTTP 而不是 Web 窗體。 例如,Web 窗體可以在 HTTP 請求之間自動保留狀態,但您必須在 MVC 中顯式編寫代碼。 MVC 模型的優點是,它使您能夠完全控制應用程式正在執行的操作以及它在 Web 環境中的表現。 缺點是您必須編寫更多的代碼。
 
-MVC 是設計成可延伸的，讓 power 開發人員能夠根據應用程式的需求自訂架構。 此外，ASP.NET MVC 原始程式碼會在 OSI 授權下提供。
+MVC 設計為可擴展,使電力開發人員能夠根據他們的應用程式需求自定義框架。 此外,ASP.NET MVC 原始程式碼在 OSI 許可證下可用。
 
-MVC 範本會建立一個使用[啟動](#bootstrap)程式的範例 MVC 5 應用程式，以提供回應式設計和主題功能。 下圖顯示首頁。
+MVC 模板創建一個範例 MVC 5 應用程式,該應用程式使用[Bootstrap](#bootstrap)提供回應式設計和主旋律功能。 下圖顯示了主頁。
 
 ![MVC 範例應用程式](creating-web-projects-in-visual-studio/_static/image11.png)
 
-如需 MVC 的詳細資訊，請參閱[ASP.NET mvc](https://asp.net/mvc)。 如需如何選取 MVC 4 範本的詳細資訊，請參閱本文稍後的[Visual Studio 2012 範本](#vs2012)。
+有關 MVC 的詳細資訊,請參閱[ASP.NET MVC](https://asp.net/mvc)。 有關如何選擇 MVC 4 樣本的資訊,請參閱本文後面的[Visual Studio 2012 樣本](#vs2012)。
 
 <a id="webapi"></a>
 ### <a name="web-api-template"></a>Web API 範本
 
-Web API 範本會根據 Web API 建立範例 Web 服務，包括以 MVC 為基礎的 API 說明頁面。
+Web API 樣本基於 Web API 建立範例 Web 服務,包括基於 MVC 的 API 幫助頁。
 
-ASP.NET Web API 是一個架構，可輕易建置 HTTP 服務並擴及廣大的用戶端範圍，包括瀏覽器和行動裝置。 ASP.NET Web API 是在 .NET Framework 上建立 RESTful 服務的理想平臺。
+ASP.NET Web API 是一個架構，可輕易建置 HTTP 服務並擴及廣大的用戶端範圍，包括瀏覽器和行動裝置。 ASP.NET Web API 是在 .NET 框架上構建 RESTful 服務的理想平臺。
 
-Web API 範本會建立範例 Web 服務。 下圖顯示範例說明頁面。
+Web API 範本建立範例 Web 服務。 下圖顯示了示例幫助頁。
 
-![Web API 說明頁面](creating-web-projects-in-visual-studio/_static/image12.png)
+![Web API 說明頁](creating-web-projects-in-visual-studio/_static/image12.png)
 
-![取得 API 的 Web API 說明頁面](creating-web-projects-in-visual-studio/_static/image13.png)
+![用於 GET API 的 Web API 說明頁](creating-web-projects-in-visual-studio/_static/image13.png)
 
-如需 Web API 的詳細資訊，請參閱[ASP.NET Web API](https://asp.net/web-api)。
+有關 Web API 的詳細資訊,請參閱[ASP.NET Web API](https://asp.net/web-api)。
 
 <a id="spa"></a>
 ### <a name="single-page-application-template"></a>單一網頁應用程式範本
 
-[單一頁面應用程式（SPA）] 範本會建立在用戶端上使用 JavaScript、HTML 5 和[KnockoutJS](http://knockoutjs.com/)的範例應用程式，並在伺服器上 ASP.NET Web API。
+單頁應用程式 (SPA) 樣本建立一個範例應用程式,該應用程式在用戶端上使用 JavaScript、HTML 5 和[挖空JS,](http://knockoutjs.com/)並在伺服器上 ASP.NET Web API。
 
-SPA 範本的唯一驗證選項是個別的[使用者帳戶](#indauth)。
+SPA 樣本的唯一身份驗證選項是[個人使用者帳戶](#indauth)。
 
-下圖顯示 SPA 範本所建立之範例應用程式的初始狀態。
+下圖顯示了 SPA 範本生成的範例應用程式的初始狀態。
 
 ![SPA 範例應用程式](creating-web-projects-in-visual-studio/_static/image14.png)
 
-如需如何使用 SPA 範本建立應用程式的詳細資訊，請參閱[WEB API-外部驗證服務](../../../web-api/overview/security/external-authentication-services.md)。
+有關如何使用 SPA 樣本建立應用程式的資訊,請參閱[Web API - 外部身份驗證服務](../../../web-api/overview/security/external-authentication-services.md)。
 
-如需 ASP.NET 單一頁面應用程式的詳細資訊，以及有關使用 KnockoutJS 以外 JavaScript 架構的其他 SPA 範本，請參閱下列資源：
+有關ASP.NET單頁應用程式以及使用 JAVAScript 框架(而不是挖空JS)的其他 SPA 樣本的詳細資訊,請參閱以下資源:
 
-- [ASP.NET 單一頁面應用程式](../../../single-page-application/index.md)。
-- [瞭解適用于 VS2013 RC 的 SPA 範本中的安全性功能](https://blogs.msdn.com/b/webdev/archive/2013/09/20/understanding-security-features-in-spa-template.aspx)
-- [單頁應用程式：使用 ASP.NET 建立現代化、回應式 Web Apps](https://msdn.microsoft.com/magazine/dn463786.aspx)
+- [ASP.NET單頁應用程式](../../../single-page-application/index.md)。
+- [瞭解 VS2013 RC SPA 樣本中的安全功能](https://blogs.msdn.com/b/webdev/archive/2013/09/20/understanding-security-features-in-spa-template.aspx)
+- [單頁應用程式:使用ASP.NET建構現代、回應迅速的 Web 應用程式](https://msdn.microsoft.com/magazine/dn463786.aspx)
 
 <a id="facebook"></a>
-### <a name="facebook-template"></a>Facebook 範本
+### <a name="facebook-template"></a>Facebook 樣本
 
-您可以安裝[提供 Facebook 範本的 Visual Studio 延伸模組](https://go.microsoft.com/fwlink/?LinkID=509965&amp;clcid=0x409)。 此範本會建立設計成在 Facebook 網站內執行的範例應用程式。 它是以 ASP.NET MVC 為基礎，並使用 Web API 來進行即時更新功能。
+您可以安裝一個[視覺工作室擴展,提供一個Facebook範本](https://go.microsoft.com/fwlink/?LinkID=509965&amp;clcid=0x409)。 此範本創建一個範例應用程式,該應用程式旨在在 Facebook 網站內運行。 它基於ASP.NET MVC,並使用Web API進行即時更新功能。
 
-Facebook 範本不提供任何驗證選項，因為 Facebook 應用程式會在 Facebook 網站中執行，並依賴 Facebook 的驗證。
+Facebook 範本沒有可用的身份驗證選項,因為 Facebook 應用程式在 Facebook 網站內運行,並且依賴於 Facebook 的身份驗證。
 
-如需 ASP.NET Facebook 應用程式的詳細資訊，請參閱[更新 MVC FACEBOOK API](https://blogs.msdn.com/b/webdev/archive/2014/06/10/updating-the-mvc-facebook-api.aspx)。
+有關ASP.NET Facebook 應用程式的詳細資訊,請參閱[更新 MVC Facebook API](https://blogs.msdn.com/b/webdev/archive/2014/06/10/updating-the-mvc-facebook-api.aspx)。
 
 <a id="vs2012"></a>
-### <a name="visual-studio-2012-templates"></a>Visual Studio 2012 範本
+### <a name="visual-studio-2012-templates"></a>視覺工作室 2012 範本
 
-[Visual Studio 2013 Web 專案建立] 對話方塊無法存取 Visual Studio 2012 中所提供的部分範本。 如果您想要使用其中一個範本，您可以按一下 [Visual Studio 新增專案] 對話方塊左窗格中的 [Visual Studio 2012] 節點。
+Visual Studio 2013 Web 專案建立對話方塊不提供對 Visual Studio 2012 中提供的某些範本的訪問。 如果要使用這些範本之一,可以單擊"可視化工作室新項目"對話框左側窗格中的 Visual Studio 2012 節點。
 
-![Visual Studio 2012 範本](creating-web-projects-in-visual-studio/_static/image15.png)
+![視覺化工作室 2012 範本](creating-web-projects-in-visual-studio/_static/image15.png)
 
-[ **Visual Studio 2012** ] 節點可讓您在 Visual Studio 2013 的預設範本清單中，選擇您無法存取的下列 web 範本：
+**Visual Studio 2012**節點允許您在 Visual Studio 2013 的預設樣本清單中選擇您無法存取的以下 Web 樣本:
 
 - ASP.NET MVC 4 Web 應用程式
 - ASP.NET 動態資料實體 Web 應用程式
-- ASP.NET AJAX 伺服器控制項
-- ASP.NET AJAX 伺服器控制項擴充項
-- ASP.NET 伺服器控制項
+- ASP.NET AJAX 伺服器控制
+- ASP.NET AJAX 伺服器控制擴充器
+- ASP.NET 伺服器控制
 
 <a id="bootstrap"></a>
-## <a name="bootstrap-in-the-visual-studio-2013-web-project-templates"></a>Visual Studio 2013 Web 專案範本中的啟動程式
+## <a name="bootstrap-in-the-visual-studio-2013-web-project-templates"></a>視覺化工作室 2013 Web 專案範本中的引導
 
-Visual Studio 2013 專案範本會使用[啟動](http://getbootstrap.com/)程式，這是 Twitter 所建立的版面配置和主題架構。 啟動程式會使用 CSS3 來提供回應式設計，這表示版面配置可以動態調整成不同的瀏覽器視窗大小。 例如，在寬瀏覽器視窗中，Web form 範本所建立的首頁看起來會像下圖：
+Visual Studio 2013 專案樣本使用[Bootstrap,](http://getbootstrap.com/)這是由 Twitter 創建的佈局和主框。 Bootstrap 使用 CSS3 提供回應式設計,這意味著佈局可以動態適應不同的瀏覽器視窗大小。 例如,在寬瀏覽器視窗中,Web 窗體範本建立的主頁如下所示:
 
-![Web Forms 範本應用程式首頁](creating-web-projects-in-visual-studio/_static/image16.png)
+![Web 表單範本應用程式主頁](creating-web-projects-in-visual-studio/_static/image16.png)
 
-讓視窗變窄，而水準排列的資料行則會移到垂直排列：
+將視窗變窄,水平排列的欄移到垂直排列中:
 
-![啟動程式垂直資料行相片順序](creating-web-projects-in-visual-studio/_static/image17.png)
+![開機垂直柱排列](creating-web-projects-in-visual-studio/_static/image17.png)
 
-縮小視窗的範圍，並將水準頂端功能表變成一個圖示，讓您按一下即可展開為垂直方向的功能表：
+稍微縮小視窗範圍,水平頂部選單將變為一個圖示,您可以按下該圖示以展開垂直方向的選單:
 
-![啟動載入功能表圖示](creating-web-projects-in-visual-studio/_static/image18.png)
+![開機選單圖示](creating-web-projects-in-visual-studio/_static/image18.png)
 
-![啟動程式垂直功能表](creating-web-projects-in-visual-studio/_static/image19.png)
+![開機垂直選單](creating-web-projects-in-visual-studio/_static/image19.png)
 
-您也可以使用啟動程式的主題功能，輕鬆地影響應用程式外觀和風格的變更。 例如，您可以執行下列步驟來變更主題。
+您還可以使用 Bootstrap 的「主」功能輕鬆影響應用程式的外觀和感覺的變化。 例如,您可以執行以下步驟來更改主題。
 
-1. 在瀏覽器中，移至 [ [http://Bootswatch.com](http://Bootswatch.com)]，選擇主題，然後按一下 [**下載**]。 （根據預設，這會下載啟動載入器 *。* 如果您想要檢查 css 程式碼，請取得*啟動程式 .css* ，而不是縮減版本）。
-2. 複製下載的 CSS 檔案的內容。
-3. 在 Visual Studio 中，于*Content*資料夾中建立名為*Bootstrap-theme*的新**樣式表單**檔案，並將下載的 css 程式碼貼入其中。
-4. 開啟 [*應用程式\_啟動/組合 .config* ]，並將*bootstrap-theme*變更為 [ *css* ]。
+1. 在瀏覽器中,轉到[http://Bootswatch.com](http://Bootswatch.com),選擇主題,然後單擊"**下載**"。 (默認情況下,此下載*引導.min.css;* 如果要檢查 CSS 代碼,請獲取*引導.css*而不是小版本。
+2. 複製下載的 CSS 檔的內容。
+3. 在 Visual Studio 中,在*內容*資料夾中創建名為*bootstrap-thethe.css*的新**樣式表**檔,並將下載的 CSS 代碼貼上到其中。
+4. 開啟*\_應用程式 開始/捆綁.設定*與變更*開機主機主題.css*.*bootstrap-theme.css*
 
-再次執行專案，應用程式會有新的外觀。 下圖顯示 Amelia 主題的效果：
+再次運行專案,應用程式具有新外觀。 下圖顯示了阿米莉亞主題的效果:
 
-![啟動程式 Amelia 主題](creating-web-projects-in-visual-studio/_static/image20.png)
+![靴子阿米莉亞主題](creating-web-projects-in-visual-studio/_static/image20.png)
 
-許多啟動程式主題都提供免費和 premium 版本。 啟動程式也提供各式各樣的 UI 元件，例如[下拉式](http://twitter.github.io/bootstrap/components.html#dropdowns)清單、[按鈕群組](http://twitter.github.io/bootstrap/components.html#buttonGroups)和[圖示](http://twitter.github.io/bootstrap/base-css.html#images)。 如需有關啟動程式的詳細資訊，請參閱[啟動程式網站](http://twitter.github.io/bootstrap/)。
+許多引導主題是可用的,無論是免費和高級版本。 Bootstrap 提供多種 UI 元件,如[下拉](http://twitter.github.io/bootstrap/components.html#dropdowns),[按鈕群組](http://twitter.github.io/bootstrap/components.html#buttonGroups)與[圖示](http://twitter.github.io/bootstrap/base-css.html#images)。 有關引導器的詳細資訊,請參閱[引導網站](http://twitter.github.io/bootstrap/)。
 
-如果您在 Visual Studio 中使用 Web Forms 設計工具，請注意，設計工具不支援 CSS3，因此它不會正確顯示啟動程式主題或回應式配置變更的所有效果。 不過，使用瀏覽器來觀看時，Web Forms 頁面會正確顯示。
+如果在 Visual Studio 中使用 Web 窗體設計器,請注意,設計器不支援 CSS3,因此無法準確顯示 Bootstrap 主題或回應式佈局更改的所有效果。 但是,使用瀏覽器查看時,Web 窗體頁面將正確顯示。
 
 <a id="add"></a>
-## <a name="adding-support-for-additional-frameworks"></a>新增其他架構的支援
+## <a name="adding-support-for-additional-frameworks"></a>新增對附加框架
 
-當您選取範本時，會自動選取範本所使用之架構的核取方塊。 例如，如果您選取 [ **web** form] 範本，則會選取 [ **web** form] 核取方塊，而且您無法將它清除。
+選擇範本時,將自動選擇範本所使用的框架的複選框。 例如,如果選擇 **「Web 窗體」** 樣本,則選中 **「Web 窗體」** 複選框,但無法清除該範本。
 
 ![選取範本](creating-web-projects-in-visual-studio/_static/image21.png)
 
-![新增架構](creating-web-projects-in-visual-studio/_static/image22.png)
+![新增框架](creating-web-projects-in-visual-studio/_static/image22.png)
 
-您可以選取不包含在範本中之架構的核取方塊，以便在建立專案時加入該架構的支援。 例如，若要在選取 MVC 範本時啟用 Web Forms *.aspx*頁面的使用，請選取 [ **web** form] 核取方塊。 或者，若要在使用 Web Forms 範本時啟用 MVC，請按一下 [ **mvc** ] 核取方塊。 加入架構會啟用設計階段和執行時間支援。 例如，如果您將 MVC 支援加入至 Web form 專案，您就能夠 scaffold 控制器和 views。
+可以為範本中未包含的框架選擇複選框,以便在創建專案時添加對該框架的支援。 例如,要在選擇 MVC 範本時啟用 Web 窗體 *.aspx*頁面的使用,請選擇 **「Web 窗體」** 複選框。 或者,要在使用 Web 窗體範本時啟用 MVC,請單擊**MVC**複選框。 添加框架可實現設計時和運行時支援。 例如,如果將 MVC 支援添加到 Web 窗體專案,則可以對控制器和視圖進行基架。
 
-如果您在專案中結合 Web form 和 MVC，並在 Web Forms 中啟用[易記 url](http://www.hanselman.com/blog/IntroducingASPNETFriendlyUrlsCleanerURLsEasierRoutingAndMobileViewsForASPNETWebForms.aspx) ，可能會有未預期的路由問題，其中一個 URL 有多個可能的目標。 先定義的路由才會優先。 例如，如果您有 `Home` 控制器和*default.aspx*頁面，如果您在*RouteConfig.cs*中呼叫 `MapRoute` 方法之前呼叫 `EnableFriendlyUrls` 方法，`http://contoso.com/home` url 就會移至*default.aspx* ，否則如果您在 `Home` 之前呼叫 `MapRoute`，相同的 url 將會移至 `EnableFriendlyUrls`控制器的預設 view。
+如果在專案中組合 Web 窗體和 MVC 並在 Web 窗體中啟用[友好 URL,](http://www.hanselman.com/blog/IntroducingASPNETFriendlyUrlsCleanerURLsEasierRoutingAndMobileViewsForASPNETWebForms.aspx)則可能存在意外的路由問題,其中一個 URL 具有多個可能的目標。 首先定義的路由將優先。 例如`Home`,如果您有控制器和*Home.aspx*頁,`http://contoso.com/home`則如果在`Home``MapRoute``EnableFriendlyUrls``EnableFriendlyUrls``MapRoute` *RouteConfig.cs*調用 該方法之前調用 該方法,則 URL 將轉到*Home.aspx,* 或者,如果之前調用,則相同的 URL 將轉到控制器的預設檢視。
 
-新增架構並不會新增任何範例應用程式功能。 例如，如果您在選取 MVC 範本時加入 Web form 支援，則不會建立*預設的 .aspx*首頁檔案。 只會加入支援架構所需的資料夾、檔案和參考。 基於這個理由，新增架構並不會變更驗證選項，這是由範本所建立之範例應用程式中的程式碼所執行。 例如，如果您選取 [空白] 範本，並加入 Web form 或 MVC 支援，則 [**設定驗證**] 按鈕仍會停用。
+添加框架不會添加任何範例應用程式功能。 例如,如果在選擇 MVC 樣本時添加 Web 窗體支援,則不會創建*Default.aspx*主頁檔。 僅添加支援框架所需的資料夾、檔案和引用。 因此,添加框架不會更改身份驗證選項,這些選項由範本創建的範例應用程式中的代碼實現。 例如,如果選擇「空範本」並添加 Web 窗體或 MVC 支援,則仍將禁用 **「設定身份驗證」** 按鈕。
 
-下列各節將簡短說明每個核取方塊的效果。
+以下各節簡要描述每個複選框的效果。
 
-### <a name="add-web-forms-support"></a>新增 Web Forms 支援
+### <a name="add-web-forms-support"></a>新增 Web 表單支援
 
-建立空的*應用程式\_資料*和*模型*資料夾和*global.asax*檔案。 這些都是由空白範本以外的所有範本所建立，因此選取 [Web form] 核取方塊對其他範本沒有任何差異。
+建立空*的應用\_資料和**模型*資料夾和*全域.asax*檔案。 這些範本已由空範本以外的所有範本創建,因此選擇"Web 窗體"複選框對其他範本沒有影響。
 
-Web form 範本預設會啟用易記 Url，但當您藉由選取 [Web 表單] 核取方塊，將 Web form 支援新增至其他範本時，不會自動啟用 [易記 Url]。
+預設情況下,Web 窗體範本啟用友好 URL,但當您透過選擇「Web 窗體」複選框將 Web 窗體支援添加到其他樣本時,不會自動啟用"友好 URL"。
 
 ### <a name="add-mvc-support"></a>新增 MVC 支援
 
-會安裝 MVC、Razor 和網頁 NuGet 套件、建立空的*應用程式\_資料*、*控制器*、*模型*和*Views*資料夾、使用*RouteConfig.cs*檔案建立*應用程式\_起始*資料夾，並建立*global.asax*檔案。
+安裝 MVC、Razor 和 WebPages NuGet 套件,建立空*的應用\_資料*,*控制器*,*模型*與*檢視*資料夾,使用*RouteConfig.cs*檔案建立*\_應用程式啟動*資料夾,並創建*Global.asax*檔。
 
 ### <a name="add-web-api-support"></a>新增 Web API 支援
 
-會安裝 WebApi 和 Newtonsoft NuGet 套件、\_資料、*控制器*和*模型*資料夾建立空的*應用程式*、使用*WebApiConfig.cs*檔案建立*應用程式\_開始*資料夾，並建立*global.asax*檔案。
+安裝 WebApi 和 Newtonsoft.Json NuGet 套件,建立空*的應用程式\_資料*,*控制器*和*模型*資料夾,建立包含*WebApiConfig.cs*檔案*\_的應用程式啟動*資料夾,並創建*Global.asax*檔案。
 
 <a id="auth"></a>
 ## <a name="authentication-methods"></a>驗證方法
 
-Visual Studio 2013 為 Web Forms、MVC 和 Web API 範本提供數個驗證選項：
+Visual Studio 2013 為 Web 窗體、MVC 和 Web API 樣本提供多個身份驗證選項:
 
-- [無驗證](#noauth)
-- [個別使用者帳戶](#indauth)（ASP.NET Identity，先前稱為 ASP.NET 成員資格）
-- [組織帳戶](#orgauth)（Windows Server Active Directory 或 Azure Active Directory）
-- [Windows 驗證](#winauth)（內部網路）
+- [沒有認證](#noauth)
+- [個人使用者帳戶](#indauth)(ASP.NET標識,以前稱為ASP.NET成員資格)
+- [組織帳號](#orgauth)(Windows 伺服器活動目錄或 Azure 活動目錄)
+- [視窗認證](#winauth)(內聯網)
 
-![[設定驗證] 對話方塊](creating-web-projects-in-visual-studio/_static/image23.png)
+![設定驗證對話框](creating-web-projects-in-visual-studio/_static/image23.png)
 
 <a id="noauth"></a>
 
 ### <a name="no-authentication"></a>不需要驗證
 
-如果您選取 [**無驗證**]，範例應用程式將不會包含任何用於登入的網頁、沒有指出誰已登入的 UI、成員資格資料庫的實體類別，以及成員資格資料庫的連接字串。
+如果選擇 **「無身份認證」 ,** 則範例將不包含用於登入的網頁、指示登入者使用的 UI、成員資格資料庫的實體類以及成員資格資料庫的連接字串。
 
 <a id="indauth"></a>
 ### <a name="individual-user-accounts"></a>個別使用者帳戶
 
-如果您選取**個別的使用者帳戶**，範例應用程式將設定為使用 ASP.NET Identity （之前稱為 ASP.NET 成員資格）進行使用者驗證。 ASP.NET Identity 可讓使用者註冊帳戶，方法是在網站上建立使用者名稱和密碼，或使用社交提供者（例如 Facebook、Google、Microsoft 帳戶或 Twitter）登入。 ASP.NET Identity 中使用者設定檔的預設資料存放區是一個 SQL Server 的 LocalDB 資料庫，您可以將它部署到生產網站 SQL Server 或 Azure SQL Database。
+如果選擇 **「個人使用者帳戶**」,則示例應用程式將配置為使用ASP.NET標識(以前稱為ASP.NET成員資格)進行使用者身份驗證。 ASP.NET身份允許使用者透過在網站上創建使用者名稱和密碼或與 Facebook、Google、微軟帳戶或 Twitter 等社交供應商登錄來註冊帳戶。 ASP.NET識別中使用者配置檔的預設資料儲存是 SQL Server LocalDB 資料庫,您可以將該資料庫部署到生產網站的 SQL Server 或 Azure SQL 資料庫。
 
-在 Visual Studio 2013 中，這些功能與 Visual Studio 2012 相同，但 ASP.NET 成員資格系統的基礎程式碼已重寫。 新程式碼基底的優點包括下列各項：
+在 Visual Studio 2013 中,這些功能與 Visual Studio 2012 中的功能相同,但 ASP.NET 成員資格系統的基礎代碼已被重寫。 新代碼庫的優點包括:
 
-- 新的成員資格系統是以[OWIN](http://owin.org/)為基礎，而不是 ASP.NET 表單驗證模組。 這表示不論您是在 IIS 中使用 Web form 或 MVC，或您是自我裝載 Web API 或 SignalR，都可以使用相同的驗證機制。
-- 新的成員資格資料庫是由 Entity Framework Code First 所管理，而且所有資料表都是以您可以修改的實體類別來表示。 這表示您可以輕鬆地自訂資料庫架構和設定檔相關的 web UI，以符合您自己的需求，而且您可以使用 Code First 移轉輕鬆地部署更新。
+- 新的成員資格系統基於[OWIN](http://owin.org/)而不是ASP.NET窗體身份驗證模組。 這意味著無論您是在 IIS 中使用 Web 窗體還是 MVC,還是自託管 Web API 或 SignalR,您都可以使用相同的身份驗證機制。
+- 新的成員資格資料庫由實體框架代碼優先管理,所有表都由可以修改的實體類表示。 這意味著您可以輕鬆地自定義資料庫架構和設定檔相關的 Web UI 以滿足您自己的需求,並且可以使用程式碼優先遷移輕鬆部署更新。
 
-新的成員資格系統會自動在新的範本中執行，而且可以在以 .NET 4.5 或更新版本為目標的任何專案中手動執行。
+新的成員資格系統在新範本中自動實現,可以在以 .NET 4.5 或更高版本為目標的任何專案中手動實現。
 
-如果您要建立主要針對外部客戶的網際網路網站，ASP.NET Identity 是不錯的選擇。 如果您的組織使用 Active Directory 或 Office 365，而您想要建立可讓員工和商務夥伴單一登入的專案，則 [**組織帳戶**] 選項可能是較佳的選擇。
+ASP.NET身份是一個不錯的選擇,如果你正在創建一個互聯網網站,主要是為外部客戶。 如果您的組織使用 Active Directory 或 Office 365,並且希望創建一個為員工和業務合作夥伴啟用單一登錄的專案,則 **「組織帳戶」** 選項可能是一個更好的選擇。
 
-如需有關 [個別使用者帳戶] 選項的詳細資訊，請參閱下列資源：
+有關「個人使用者帳戶」選項的詳細資訊,請參閱以下資源:
 
-- [www.asp.net/identity](../../../identity/index.md)。 ASP.NET 網站上有關 ASP.NET Identity 的檔。
-- [使用 Facebook 和 Google OAuth2 和 OpenID 登入來建立 ASP.NET MVC 5 應用程式](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md)。 同時顯示如何自訂使用者設定檔資料。
-- [Web API-外部驗證服務](../../../web-api/overview/security/external-authentication-services.md)
-- [在 Visual Studio 2013 中將外部登入新增至 ASP.NET 應用程式](https://blogs.msdn.com/b/webdev/archive/2013/06/27/adding-external-logins-to-your-asp-net-application-in-visual-studio-2013.aspx)
+- [www.asp.net/identity](../../../identity/index.md). 有關ASP.NET網站上ASP.NET標識的文檔。
+- [建立 ASP.NETMVC 5 應用程式與 Facebook 和 GoogleAuth2 和開放 ID 登錄](../../../mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on.md)。 還演示如何自定義使用者配置文件數據。
+- [Web API - 外部認證服務](../../../web-api/overview/security/external-authentication-services.md)
+- [在 Visual Studio 2013 中向 ASP.NET 應用程式新增外部登入](https://blogs.msdn.com/b/webdev/archive/2013/06/27/adding-external-logins-to-your-asp-net-application-in-visual-studio-2013.aspx)
 
 <a id="orgauth"></a>
 ### <a name="organizational-accounts"></a>組織帳戶
 
-如果您選取 [**組織帳戶**]，則會將範例應用程式設定為使用 Windows Identity FOUNDATION （WIF），根據 Azure Active Directory （Azure AD，其中包括 Office 365）或 Windows Server Active Directory 中的使用者帳戶進行驗證。 如需詳細資訊，請參閱本主題稍後的[組織帳戶驗證選項](#orgauthoptions)。
+如果選擇 **「組織帳戶**」,則示例應用程式將配置為使用 Windows 識別基礎 (WIF) 根據 Azure 活動目錄(Azure AD,包括 Office 365)或 Windows 伺服器活動目錄中的使用者帳戶進行身份驗證。 有關詳細資訊,請參閱本主題後面的[組織帳戶身份驗證選項](#orgauthoptions)。
 
 <a id="winauth"></a>
 ### <a name="windows-authentication"></a>Windows 驗證
 
-如果您選取 [ **Windows 驗證**]，範例應用程式將會設定為使用 WINDOWS 驗證 IIS 模組進行驗證。 應用程式會顯示登入 Windows 但不包含使用者註冊或登入 UI 的 Active directory 或本機電腦帳戶的網域和使用者識別碼。 此選項適用于內部網路網站。
+如果選擇**Windows 身份驗證**,則示例應用程式將配置為使用 Windows 身份驗證 IIS 模組進行身份驗證。 應用程式將顯示登入 Windows 但不包括使用者註冊或登入 UI 的 Active 目錄或本地電腦帳戶的網域和使用者 ID。 此選項適用於 Intranet 網站。
 
-或者，您也可以選擇 [[組織帳戶](#orgauthonprem)] 底下的 [內部部署] 選項，來建立使用 AD 驗證的內部網路網站。 內部部署選項會使用 Windows Identity Foundation （WIF），而不是 Windows 驗證模組。 需要一些額外的步驟才能設定內部部署選項，但 WIF 會啟用 Windows 驗證模組無法使用的功能。 例如，透過 WIF，您可以在 Active Directory 中設定應用程式存取，並查詢目錄資料。
+或者,您可以通過在[組織帳戶下選擇"本地"選項](#orgauthonprem)來創建使用 AD 身份驗證的 Intranet 網站。 「本地」選項使用 Windows 識別基礎 (WIF) 而不是 Windows 身份驗證模組。 需要執行一些其他步驟才能設置"本地"選項,但 WIF 啟用 Windows 身份驗證模組中不可用的功能。 例如,使用 WIF 可以在 Active Directory 和查詢目錄數據中設定應用程式訪問。
 
 <a id="orgauthoptions"></a>
-## <a name="organizational-account-authentication-options"></a>組織帳戶驗證選項
+## <a name="organizational-account-authentication-options"></a>組織帳號身份驗證選項
 
-[**設定驗證**] 對話方塊提供數個選項，可讓您 Azure Active Directory （Azure AD，包括 Office 365）或 Windows Server ACTIVE DIRECTORY （AD）帳戶驗證：
+**設定身份驗證對話**框為 Azure 活動目錄(Azure AD,包括 Office 365)或 Windows 伺服器活動目錄 (AD) 帳戶身份驗證提供了多個選項:
 
-- 使用目錄與 Azure AD 整合的[雲端單一組織](#orgauthsingle)（AZURE AD 或 AD）
-- [雲端-多重組織](#orgauthmulti)（AZURE AD 或 AD，使用與 Azure AD 的目錄整合）
-- 內部[部署](#orgauthonprem)（AD）
+- [雲 - 單個組織](#orgauthsingle)(使用與 Azure AD 的目錄整合的 Azure AD 或 AD)
+- [雲 - 多組織](#orgauthmulti)(使用目錄與 Azure AD 整合的 Azure AD 或 AD)
+- [內部(AD)](#orgauthonprem)
 
-如果您想要嘗試其中一個 Azure AD 選項，但還沒有帳戶，請[按一下這裡註冊 Azure AD 帳戶](https://go.microsoft.com/fwlink/?LinkId=309942)。
+如果要嘗試 Azure AD 選項之一,但尚未擁有帳戶,[請按下此處註冊 Azure AD 帳號](https://go.microsoft.com/fwlink/?LinkId=309942)。
 
 > [!NOTE]
-> 如果您選擇其中一個 Azure AD 選項，您的專案就需要資料庫，而且必須登入 Azure AD 租使用者的全域系統管理員帳戶。 輸入具有您 Azure AD 租使用者之系統管理許可權的組織帳戶名稱和密碼（例如 admin@contoso.onmicrosoft.com）。
+> 如果選擇 Azure AD 選項之一,則專案需要資料庫,並且必須登錄到 Azure AD 租戶的全域管理員帳戶。 輸入具有 Azure AD 租戶管理許可權的組織帳戶admin@contoso.onmicrosoft.com的名稱 和密碼。
 > 
-> **請勿在 [登入] 對話方塊中輸入 Microsoft 帳戶的認證（例如，contoso@hotmail.com）。**
+> **不要在登錄對話框中輸入 Microsoft 帳戶的認證(例如contoso@hotmail.com)。**
 
 <a id="orgauthsingle"></a>
-### <a name="cloud---single-organization-authentication"></a>雲端單一組織驗證
+### <a name="cloud---single-organization-authentication"></a>雲 - 單一組織認證
 
-![單一組織驗證](creating-web-projects-in-visual-studio/_static/image24.png)
+![單一組織識別](creating-web-projects-in-visual-studio/_static/image24.png)
 
-如果您想要針對一個 Azure AD[租](https://technet.microsoft.com/library/jj573650.aspx)使用者中定義的使用者帳戶啟用驗證，請選擇此選項。 例如，網站是 contoso.com，它會提供給位在 contoso.onmicrosoft.com 租使用者之 Contoso 公司的員工使用。 您將無法設定 Azure AD，讓其他租使用者的使用者存取應用程式。
+如果要為一個 Azure AD[租戶](https://technet.microsoft.com/library/jj573650.aspx)中定義的使用者帳戶啟用身份驗證,請選擇此選項。 例如,該網站contoso.com,它將提供給 Contoso 公司位於租戶contoso.onmicrosoft.com的員工。 您將無法將 Azure AD 設定為允許其他租戶的使用者存取應用程式。
 
-#### <a name="domain"></a>Domain
+#### <a name="domain"></a>網域
 
-輸入您要設定應用程式的 Azure AD 網域，例如： `contoso.onmicrosoft.com`。 如果您有[自訂網域](http://www.cloudidentity.com/blog/2013/04/14/adding-a-custom-domain-to-your-windows-azure-ad/)，例如 `contoso.com`，而不是 `contoso.onmicrosoft.com`，您可以在這裡輸入。
+輸入要在 中設定應用程式的 Azure AD`contoso.onmicrosoft.com`網域,例如: 如果您有[自定義域](http://www.cloudidentity.com/blog/2013/04/14/adding-a-custom-domain-to-your-windows-azure-ad/)`contoso.com`,`contoso.onmicrosoft.com`例如 , 可以在此處輸入該域。
 
 #### <a name="access-level"></a>存取層級
 
-如果應用程式需要使用圖形 API 來查詢或更新目錄資訊，請選擇 [**單一登入]、[讀取目錄資料**] 或 [**單一登入]、[讀取及寫入目錄資料**]。 否則，請選擇 [**單一登入**]。 如需詳細資訊，請參閱[應用程式存取層級](https://msdn.microsoft.com/library/windowsazure/b08d91fa-6a64-4deb-92f4-f5857add9ed8#BKMK_AccessLevels)和[使用圖形 API 來查詢 Azure AD](https://msdn.microsoft.com/library/windowsazure/dn151791.aspx)。
+如果應用程式需要使用圖形 API 查詢或更新目錄資訊,請選擇**單一登入、讀取目錄資料**或**單一登入、讀取及寫入目錄資料**。 否則,請選擇**單一登入**。 有關詳細資訊,請參閱[應用程式存取等級](https://msdn.microsoft.com/library/windowsazure/b08d91fa-6a64-4deb-92f4-f5857add9ed8#BKMK_AccessLevels)和使用圖形[API 查詢 Azure AD](https://msdn.microsoft.com/library/windowsazure/dn151791.aspx)。
 
-#### <a name="application-id-uri"></a>應用程式識別碼 URI
+#### <a name="application-id-uri"></a>應用程式識別碼
 
-根據預設，範本會藉由將專案名稱附加至 Azure AD 網域，為您建立應用程式識別碼 URI。 例如，如果專案名稱是 `Example` 且網域 `contoso.onmicrosoft.com`，應用程式識別碼 URI 就會變成 `https://contoso.onmicrosoft.com/Example`。 如果您想要手動指定應用程式識別碼 URI，請展開 [**其他選項**] 區段，然後在文字方塊中輸入 [應用程式識別碼 uri]。 應用程式識別碼 URI 的開頭必須是 `https://`。
+預設情況下,範本通過將專案名稱追加到 Azure AD 功能,為您創建應用程式 ID URI。 例如,如果專案名稱稱為`Example`,並且網`contoso.onmicrosoft.com`域為 ,則`https://contoso.onmicrosoft.com/Example`應用程式 ID URI 變為 。 如果要手動指定應用程式 ID URI,請展開 **「更多選項」** 部分,並在文字框中輸入應用程式 ID URI。 應用程式識別碼必須`https://`以開頭。
 
-根據預設，如果已在 Azure AD 中布建的應用程式具有與 Visual Studio 用於專案的應用程式識別碼 URI 相同，則專案將會連接到現有的應用程式，而不是提供新的應用程式。 如果您想要在此情況下布建新的應用程式，請清除 [**覆寫應用程式專案（如果已有相同的識別碼**）] 核取方塊。
+預設情況下,如果已在 Azure AD 中預配的應用程式具有與 Visual Studio 用於專案的應用程式 ID URI 相同的應用程式 ID URI,則專案將連接到現有應用程式,而不是預配新應用程式。 如果希望在這種情況下預配新應用程式,**請清除「覆蓋應用程式項目」(如果具有相同 ID 的應用程式條目已存在**)複選框。
 
-如果已清除 [**覆寫**] 核取方塊，且 Visual Studio 找到具有相同應用程式識別碼 URI 的現有應用程式，則會將數位附加至它要使用的 uri，藉以建立新的 uri。 例如，假設專案名稱是 `Example`、您將文字方塊保留空白、清除 [**覆寫**] 核取方塊，而且 Azure AD 的租使用者已經有 URI `https://contoso.onmicrosoft.com/Example`的應用程式。 在此情況下，新的應用程式會以應用程式識別碼 URI 布建，例如 `https://contoso.onmicrosoft.com/Example_20130619330903`。
+如果清除 **「覆蓋**」複選框,並且 Visual Studio 尋找具有相同應用程式 ID URI 的現有應用程式,則透過將數位追加到要使用的 URI 來創建新 URI。 例如,假設專案名稱為`Example`,您將文本框留空,清除**覆蓋**複選框,Azure AD 租戶`https://contoso.onmicrosoft.com/Example`已具有帶有 URI 的應用程式。 在這種情況下,將預配一個新應用程式,並設定應用程式 ID URI,如`https://contoso.onmicrosoft.com/Example_20130619330903`。
 
-#### <a name="provisioning-the-application-in-azure-ad"></a>在 Azure AD 中布建應用程式
+#### <a name="provisioning-the-application-in-azure-ad"></a>在 Azure AD 中預先應用程式
 
-為了在 Azure AD 中布建應用程式，或將專案連接到現有的應用程式，Visual Studio 需要該網域的全域管理員認證。 當您在 [**設定驗證**] 對話方塊中按一下 **[確定**] 時，系統會提示您輸入所指定網域的全域管理員使用者名稱和密碼。 之後，當您在 [**新增 ASP.NET 專案**] 對話方塊中按一下 [**建立專案**] 時，Visual Studio 會在 Azure AD 中布建應用程式。 請注意，在此程式中，Visual Studio 將用戶端秘密值內嵌在 web.config 檔案中，該檔案會在建立後的一年到期。
+為了在 Azure AD 中預配應用程式或將專案連接到現有應用程式,Visual Studio 需要域的全域管理員的認證。 在「**設定身份驗證**」對話框中按下 **「確定」** 時,系統會提示您輸入您指定的網域的全域管理員的使用者名稱和密碼。 稍後,當您按下 **「新建ASP.NET專案**」對話框中**創建專案**時,Visual Studio 在 Azure AD 中提供應用程式。 請注意,作為此過程的一部分,Visual Studio 會在 Web.config 檔中嵌入用戶端機密值,該檔在創建一年後過期。
 
-如需有關如何建立使用**雲端單一組織**驗證之應用程式的詳細資訊，請參閱下列資源：
+有關如何建立使用**雲 - 單一組織**認證的應用程式的資訊,請參閱以下資源:
 
-- [Azure 驗證](../2012/windows-azure-authentication.md)
+- [Azure 認證](../2012/windows-azure-authentication.md)
 - [使用 Azure AD 將登入新增至 Web 應用程式](https://msdn.microsoft.com/library/windowsazure/dn151790.aspx)
 - [使用 Azure Active Dirctory 開發 ASP.NET 應用程式](../../../identity/overview/getting-started/developing-aspnet-apps-with-windows-azure-active-directory.md)
-- [使用 Azure AD 和 Microsoft OWIN 元件保護 ASP.NET Web API](https://msdn.microsoft.com/magazine/dn463788.aspx)
+- [使用 Azure AD 和 Microsoft OWIN 元件ASP.NET Web API 安全](https://msdn.microsoft.com/magazine/dn463788.aspx)
 
-尚未更新 Visual Studio 2013 的教學課程;在 Visual Studio 2013 中，會自動引導您以手動方式執行的一些教學課程。
+Visual Studio 2013 的教程尚未更新;教程指導您手動執行的一些操作在 Visual Studio 2013 中是自動化的。
 
 <a id="orgauthmulti"></a>
-### <a name="cloud---multi-organization-authentication"></a>雲端-多重組織驗證
+### <a name="cloud---multi-organization-authentication"></a>雲 - 多組織認證
 
-![多組織驗證](creating-web-projects-in-visual-studio/_static/image25.png)
+![多個組織身份驗證](creating-web-projects-in-visual-studio/_static/image25.png)
 
-如果您想要針對多[個 Azure AD 租使用者中定義](https://technet.microsoft.com/library/jj573650.aspx)的使用者帳戶啟用驗證，請選擇此選項。 例如，網站是 contoso.com，它會提供給位於 contoso.onmicrosoft.com 租使用者之 Contoso 公司的員工，以及位於 fabrikam.onmicrosoft.com 租使用者中之 Fabrikam 公司的員工。
+如果要為多個 Azure AD[租戶](https://technet.microsoft.com/library/jj573650.aspx)中定義的使用者帳戶啟用身份驗證,請選擇此選項。 例如,該網站contoso.com,它將提供給 contoso 公司位於contoso.onmicrosoft.com租戶的員工以及法布裡卡姆公司fabrikam.onmicrosoft.com租戶的員工。
 
-您輸入的設定和應用程式布建步驟類似于[單一組織驗證](#orgauthsingle)。
+輸入的設定與應用程式預先定義的步驟來顯示[單一個組織認證](#orgauthsingle)。
 
-如需有關如何建立使用**雲端多組織**驗證之應用程式的詳細資訊，請參閱下列資源：
+有關如何創建使用**雲 - 多組織**認證的應用程式的資訊,請參閱以下資源:
 
-- [簡單的 Web 應用程式與 Azure Active Directory ASP.NET &amp; Visual Studio](https://blogs.msdn.com/b/active_directory_team_blog/archive/2013/06/26/improved-windows-azure-active-directory-integration-with-asp-net-amp-visual-studio.aspx)在 Active Directory 小組的 blog 上進行整合。
-- [使用 Azure AD 教學課程來開發多租使用者 Web 應用程式](https://msdn.microsoft.com/library/windowsazure/dn151789.aspx)。 本教學課程尚未針對 Visual Studio 2013 進行更新;本教學課程引導您手動執行的部分內容，在 Visual Studio 2013 中是自動化的。
-- 您必須[先註冊自己的多個組織 ASP.NET 應用程式，才能登入](http://www.cloudidentity.com/blog/2013/10/26/you-have-to-sign-up-with-your-own-multiple-organizations-asp-net-app-before-you-can-sign-in/)。 Vittorio Bertocci 的 Blog，說明如何解決使用者在建立使用多組織驗證的專案時所遇到的常見問題。
+- [輕鬆 Web 應用程式與&amp;Azure 活動 目錄整合,ASP.NET活動目錄團隊部落格上的視覺化工作室](https://blogs.msdn.com/b/active_directory_team_blog/archive/2013/06/26/improved-windows-azure-active-directory-integration-with-asp-net-amp-visual-studio.aspx)。
+- [使用 Azure AD 教學開發多租戶 Web 應用程式](https://msdn.microsoft.com/library/windowsazure/dn151789.aspx)。 本教程尚未更新為 Visual Studio 2013;本教學指導您手動執行的一些操作在 Visual Studio 2013 中是自動化的。
+- [您必須在應用程式ASP.NET使用自己的多個組織註冊,然後才能登錄](http://www.cloudidentity.com/blog/2013/10/26/you-have-to-sign-up-with-your-own-multiple-organizations-asp-net-app-before-you-can-sign-in/)。 Vittorio Bertocci 的部落格,解釋如何解決人們在創建使用多組織身份驗證的專案時遇到的常見問題。
 
 <a id="orgauthonprem"></a>
-### <a name="on-premises-organizational-authentication"></a>內部部署組織驗證
+### <a name="on-premises-organizational-authentication"></a>本地組織身份驗證
 
-![內部部署組織驗證](creating-web-projects-in-visual-studio/_static/image26.png)
+![本地組織身份驗證](creating-web-projects-in-visual-studio/_static/image26.png)
 
-如果您想要針對 Windows Server Active Directory （AD）中定義的使用者帳戶啟用驗證，而且不想使用 Azure AD，請選擇此選項。 您可以使用此選項來建立內部網路網站或網際網路網站。 若為網際網路網站，請使用 Active Directory 同盟服務（ADFS）來提供 AD 的存取權。 如需詳細資訊，請參閱在[Visual Studio 2013 中搭配使用內部部署組織驗證選項（ADFS）與 ASP.NET](http://www.cloudidentity.com/blog/2014/02/12/use-the-on-premises-organizational-authentication-option-adfs-with-asp-net-in-visual-studio-2013/)。
+如果要為 Windows 伺服器活動目錄 (AD) 中定義的使用者帳戶啟用身份驗證,並且不想使用 Azure AD,請選擇此選項。 您可以使用此選項創建 Intranet 網站或 Internet 網站。 對於 Internet 網站,請使用活動目錄聯合服務 (ADFS) 提供對 AD 的訪問。 有關詳細資訊,請參閱在[Visual Studio 2013 中使用具有ASP.NET的本地組織身份驗證選項 (ADFS)。](http://www.cloudidentity.com/blog/2014/02/12/use-the-on-premises-organizational-authentication-option-adfs-with-asp-net-in-visual-studio-2013/)
 
-針對內部網路網站，您可以選擇 [ [Windows 驗證](#winauth)]，而不是此選項。 對於 Windows 驗證選項，您不需要提供元資料檔案 URL。 不過，Windows 驗證無法讓您控制 Active Directory 中的應用程式存取，或查詢目錄資料。
+對於 Intranet 網站,作為替代方法,您可以選擇[Windows 身份驗證](#winauth)而不是此選項。 對於 Windows 身份驗證選項,您不必提供中繼資料文件 URL。 但是,Windows 身份驗證無法控制活動目錄中的應用程序訪問或查詢目錄數據。
 
-#### <a name="on-premises-authority"></a>內部部署授權單位
+#### <a name="on-premises-authority"></a>內部管理局
 
-輸入指向元資料檔案的 URL。 元資料檔案包含授權單位的座標。 應用程式將使用這些座標來驅動 web 登入流程。
+輸入指向元資料文件的 URL。 元數據文件包含許可權的座標。 應用程式將使用這些座標來驅動 Web 登錄流。
 
-#### <a name="application-id-uri"></a>應用程式識別碼 URI
+#### <a name="application-id-uri"></a>應用程式識別碼
 
-提供一個可供 AD 用來識別此應用程式的唯一 URI，或保留空白以讓 Visual Studio 建立一個。
+提供 AD 可用於識別此應用程式的唯一 URI,或留空以讓 Visual Studio 創建一個。
 
 <a id="nextsteps"></a>
 ## <a name="next-steps"></a>後續步驟
 
-本檔提供了一些基本說明，可協助您在 Visual Studio 2013 中建立新的 ASP.NET Web 專案。 如需使用進行 網頁程式開發 Visual Studio 的詳細資訊，請參閱[https://www.asp.net/visual-studio/](../../index.md)。
+本文件為在 Visual Studio 2013 中創建新 ASP.NET Web 專案提供了一些基本説明。 有關將 Visual Studio 用於 Web[https://www.asp.net/visual-studio/](../../index.md)開發的詳細資訊 ,請參閱。

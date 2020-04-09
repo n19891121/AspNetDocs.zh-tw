@@ -1,20 +1,20 @@
 ---
 uid: webhooks/receiving/index
-title: ASP.NET Webhook-接收和處理 |Microsoft Docs
+title: ASP.NET網络鉤子 - 接收和處理 |微軟文件
 author: rick-anderson
-description: 有關在 ASP.NET 中接收和處理 Webhook 的文章
+description: 有關接收及處理ASP.NET中的 WebHook 的文章
 ms.author: riande
 ms.date: 10/14/2016
 ms.assetid: b22046f9-c7a1-4d46-a80c-c7d2e35aad3b
-ms.openlocfilehash: 9d8d8c162d76da4fbb6b429985107c01c1adec26
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 90a55909b48aed5b6808cf9f3e95172a2b07c902
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78637008"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80675180"
 ---
-# <a name="aspnet-webhooks---receiving-and-processing"></a>ASP.NET Webhook-接收和處理
+# <a name="aspnet-webhooks---receiving-and-processing"></a>ASP.NET WebHook - 接收和處理
 
-* [WebHook 接收者](receivers.md)
-* [處理 Webhook](handlers.md)
-* [接收者相關性](dependencies.md)
+* [網路鉤接收器](receivers.md)
+* [處理 WebHook](handlers.md)
+* [接收器相依項](dependencies.md)

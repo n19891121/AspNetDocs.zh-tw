@@ -1,120 +1,120 @@
 ---
 uid: web-api/overview/security/authentication-and-authorization-in-aspnet-web-api
-title: ASP.NET Web API 中的驗證和授權 |Microsoft Docs
+title: ASP.NET Web API 中的身份驗證和授權 |微軟文件
 author: MikeWasson
-description: 提供 ASP.NET Web API 中驗證和授權的一般總覽。
+description: 提供了ASP.NET Web API 中的身份驗證和授權的概述。
 ms.author: riande
 ms.date: 11/27/2012
 ms.assetid: 6dfb51ea-9f4d-4e70-916c-8ef8344a88d6
 msc.legacyurl: /web-api/overview/security/authentication-and-authorization-in-aspnet-web-api
 msc.type: authoredcontent
 ms.openlocfilehash: 368d2b9456d12b2bb4063a23333e5c8837faa3b8
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78598641"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "80676255"
 ---
 # <a name="authentication-and-authorization-in-aspnet-web-api"></a>ASP.NET Web API 中的驗證和授權
 
-由[Mike Wasson](https://github.com/MikeWasson)
+由[邁克·瓦森](https://github.com/MikeWasson)
 
-您已建立 Web API，但現在您想要控制其存取權。 在這一系列的文章中，我們將探討一些從未經授權的使用者保護 Web API 的選項。 本系列將涵蓋驗證和授權。
+您已經創建了 Web API,但現在要控制對它的訪問。 在本系列文章中,我們將介紹一些保護 Web API 免受未經授權的使用者訪問的選項。 本系列將涵蓋身份驗證和授權。
 
-- *驗證*會知道使用者的身分識別。 例如，Alice 以其使用者名稱和密碼登入，而伺服器使用密碼來驗證 Alice。
-- *授權*會決定是否允許使用者執行動作。 例如，Alice 具有取得資源的許可權，但無法建立資源。
+- *身份驗證*是知道使用者的身份。 例如,Alice 使用使用者名稱和密碼登錄,伺服器使用密碼對 Alice 進行身份驗證。
+- *授權*是決定是否允許使用者執行操作。 例如,Alice 有權獲取資源,但不能創建資源。
 
-本系列的第一篇文章提供 ASP.NET Web API 中驗證和授權的一般總覽。 其他主題描述 Web API 的常見驗證案例。
+本系列的第一篇文章概述了ASP.NET Web API 中的身份驗證和授權。 其他主題描述 Web API 的常見身份驗證方案。
 
 > [!NOTE]
-> 感謝審查此系列並提供寶貴意見的人： Rick Anderson、Levi Broderick、Barry Dorrans、Tom 作者: dykstra、Hongmei Ge、David Matson、Daniel Roth、Tim Teebken。
+> 感謝那些回顧這個系列並提供寶貴反饋的人:里克·安德森、利維·布羅德里克、巴里·多蘭斯、湯姆·戴克斯特拉、葛紅梅、大衛·馬特森、丹尼爾·羅斯、蒂姆·蒂肯。
 
 ## <a name="authentication"></a>驗證
 
-Web API 會假設在主機中進行驗證。 若為 web 裝載，則主機是 IIS，它會使用 HTTP 模組進行驗證。 您可以將專案設定為使用 IIS 或 ASP.NET 內建的任何驗證模組，或是撰寫您自己的 HTTP 模組來執行自訂驗證。
+Web API 假定身份驗證發生在主機中。 對於 Web 託管,主機是 IIS,它使用 HTTP 模組進行身份驗證。 您可以將專案配置為使用 IIS 或 ASP.NET 內置的任何身份驗證模組,或者編寫自己的 HTTP 模組以執行自定義身份驗證。
 
-當主機驗證使用者時，它會建立一個*主體*，這是[IPrincipal](https://msdn.microsoft.com/library/System.Security.Principal.IPrincipal.aspx)物件，代表執行程式碼的安全性內容。 主機會藉由設定**thread.currentprincipal**，將主體附加到目前的執行緒。 主體包含關聯的身分**識別**物件，其中包含使用者的相關資訊。 如果使用者經過驗證， **IsAuthenticated**屬性會傳回**true**。 若為匿名要求， **IsAuthenticated**會傳回**false**。 如需主體的詳細資訊，請參閱以[角色為基礎的安全性](https://msdn.microsoft.com/library/shz8h065.aspx)。
+當主機對使用者進行身份驗證時,它會創建一個*主體*,它是一個[IThe 物件](https://msdn.microsoft.com/library/System.Security.Principal.IPrincipal.aspx),表示代碼運行的安全上下文。 主機通過設置**Thread.Currentthe 將**主體附加到當前線程。 主體包含一個關聯的**標識**物件,該物件包含有關使用者的資訊。 如果使用者已使用身份認證,**識別.Is 認證**屬性會傳回**true**。 對匿名要求 **,已身份驗證****傳回 false**。 有關主體的詳細資訊,請參閱[基於角色的安全性](https://msdn.microsoft.com/library/shz8h065.aspx)。
 
-### <a name="http-message-handlers-for-authentication"></a>用於驗證的 HTTP 訊息處理常式
+### <a name="http-message-handlers-for-authentication"></a>驗證的 HTTP 訊息處理程式
 
-您可以將驗證邏輯放入[HTTP 訊息處理常式](../advanced/http-message-handlers.md)中，而不是使用主機進行驗證。 在這種情況下，訊息處理常式會檢查 HTTP 要求並設定主體。
+您可以將身份驗證邏輯放入[HTTP 消息處理程式](../advanced/http-message-handlers.md)中,而不是使用主機進行身份驗證。 在這種情況下,消息處理程序檢查 HTTP 請求並設置主體。
 
-何時應該使用訊息處理常式進行驗證？ 以下是一些取捨：
+何時應該使用消息處理程序進行身份驗證? 以下是一些權衡:
 
-- HTTP 模組會查看所有經過 ASP.NET 管線的要求。 訊息處理常式只會看到路由至 Web API 的要求。
-- 您可以設定每個路由訊息處理常式，讓您將驗證配置套用至特定的路由。
-- HTTP 模組是 IIS 特有的。 訊息處理常式與主機無關，因此可與 web 裝載和自我裝載搭配使用。
-- HTTP 模組會參與 IIS 記錄、審核等等。
-- HTTP 模組會在管線中稍早執行。 如果您在訊息處理常式中處理驗證，則在處理常式執行之前，不會設定主體。 此外，當回應離開訊息處理常式時，主體會還原回前一個主體。
+- HTTP 模組看到通過ASP.NET管道的所有請求。 消息處理程式只看到路由到 Web API 的請求。
+- 您可以設置每個路由的消息處理程式,這允許您將身份驗證方案應用於特定路由。
+- HTTP 模組特定於 IIS。 消息處理程式與主機無關,因此可以同時用於 Web 託管和自託管。
+- HTTP 模組參與 IIS 日誌記錄、審核等。
+- HTTP 模組在管道中運行較早。 如果在消息處理程序中處理身份驗證,則在處理程式運行之前不會設置主體。 此外,當回應離開消息處理程式時,主體將還原到上一個主體。
 
-一般來說，如果您不需要支援自我裝載，HTTP 模組就是較好的選擇。 如果您需要支援自我裝載，請考慮使用訊息處理常式。
+通常,如果您不需要支援自託管,HTTP 模組是一個更好的選擇。 如果需要支援自託管,請考慮消息處理程式。
 
-### <a name="setting-the-principal"></a>設定主體
+### <a name="setting-the-principal"></a>設置主體
 
-如果您的應用程式執行任何自訂驗證邏輯，您必須在兩個地方設定主體：
+如果應用程式執行任何自定義身份驗證邏輯,則必須在以下兩個位置設置主體:
 
-- **Thread.currentprincipal**。 這個屬性是在 .NET 中設定執行緒主體的標準方式。
-- **HttpCoNtext。使用者**。 這個屬性是 ASP.NET 特有的。
+- **執行緒.電流主體**。 此屬性是在 .NET 中設置線程主體的標準方法。
+- **HTTPContext.當前.使用者**。 此屬性特定於ASP.NET。
 
-下列程式碼顯示如何設定主體：
+以下代碼展示如何設定主體:
 
 [!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample1.cs)]
 
-若為 web 裝載，您必須在兩個地方設定主體;否則，安全性內容可能會變得不一致。 不過，如果是自我裝載， **HttpCoNtext**就是 null。 為了確保您的程式碼與主機無關，因此請先檢查是否有 null，再指派給**HttpCoNtext**，如下所示。
+對於 Web 託管,必須在兩個位置設置主體;否則,安全上下文可能會變得不一致。 但是,對於自託管 **,HTTPContext.current**為 null。 因此,為了確保代碼與主機無關,請在分配給**HTTPContext.Current**之前檢查空。
 
 ## <a name="authorization"></a>授權
 
-稍後會在管線中進行授權，接近控制器。 這可讓您在授與資源的存取權時，做出更細微的選擇。
+授權在管道中稍後發生,更接近控制器。 這樣,在授予對資源的許可權時,可以做出更精細的選擇。
 
-- *授權篩選準則*會在控制器動作之前執行。 如果要求未獲授權，篩選準則會傳回錯誤回應，且不會叫用動作。
-- 在控制器動作中，您可以從**ApiController 的使用者**屬性取得目前的主體。 例如，您可能會根據使用者名稱篩選資源清單，只傳回屬於該使用者的資源。
+- *授權篩選器在*控制器操作之前運行。 如果請求未獲授權,篩選器將返回錯誤回應,並且不會調用該操作。
+- 在控制器操作中,可以從**ApiController.User**屬性獲取當前主體。 例如,您可以根據使用者名篩選資源清單,僅返回屬於該使用者的資源。
 
 ![](authentication-and-authorization-in-aspnet-web-api/_static/image1.png)
 
 <a id="auth3"></a>
-### <a name="using-the-authorize-attribute"></a>使用 [授權] 屬性
+### <a name="using-the-authorize-attribute"></a>使用授權設定屬性
 
-Web API 提供內建的授權篩選準則[AuthorizeAttribute](https://msdn.microsoft.com/library/system.web.http.authorizeattribute.aspx)。 此篩選準則會檢查使用者是否經過驗證。 如果不是，則會傳回 HTTP 狀態碼401（未經授權），而不會叫用動作。
+Web API 提供一個內建的授權篩選器,[授權屬性](https://msdn.microsoft.com/library/system.web.http.authorizeattribute.aspx)。 此篩選器檢查使用者是否經過身份驗證。 如果沒有,它將返回 HTTP 狀態代碼 401(未授權),而不調用該操作。
 
-您可以在控制器層級或個別動作層級，全域套用篩選準則。
+您可以全域、控制器等級或單一次操作等級應用篩選器。
 
-**全域**：若要限制每個 Web API 控制器的存取，請將**AuthorizeAttribute**篩選器新增至全域篩選清單：
+**全域**:要限制每個 Web API 控制器的存取,將**授權屬性**篩選器加入到全域篩選器清單中:
 
 [!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample2.cs)]
 
-**控制器**：若要限制特定控制器的存取，請將篩選器新增為控制器的屬性：
+**控制器**:要限制特定控制器的存取,將篩選器作為屬性新增到控制器:
 
 [!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample3.cs)]
 
-**動作**：若要限制特定動作的存取權，請將屬性新增至動作方法：
+**操作**:要限制特定操作的存取,將屬性加入操作方法:
 
 [!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample4.cs)]
 
-或者，您可以使用 `[AllowAnonymous]` 屬性來限制控制器，然後允許匿名存取特定的動作。 在下列範例中，`Post` 方法是受限制的，但 `Get` 方法允許匿名存取。
+或者,您可以限制控制器,然後允許使用`[AllowAnonymous]`屬性 匿名訪問特定操作。 在下面的範例中,`Post`該方法受到限制`Get`, 但該方法允許匿名訪問。
 
 [!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample5.cs)]
 
-在先前的範例中，篩選準則可讓任何已驗證的使用者存取受限制的方法。只會保留匿名使用者。您也可以限制特定使用者或特定角色使用者的存取權：
+在前面的示例中,篩選器允許任何經過身份驗證的使用者訪問受限制的方法;只有匿名使用者被擋在外。您還可以限制對特定使用者或特定角色的使用者的訪問:
 
 [!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample6.cs)]
 
 > [!NOTE]
-> Web API 控制器的**AuthorizeAttribute**篩選器位於**system.web. Http**命名空間中。 **System.web**命名空間中的 MVC 控制器有類似的篩選，這與 web API 控制器不相容。
+> Web API 控制器的授權**屬性**篩選器位於**System.Web.http**命名空間中。 **系統.Web.Mvc**命名空間中有 MVC 控制器的類似篩選器,該篩選器與 Web API 控制器不相容。
 
-### <a name="custom-authorization-filters"></a>自訂授權篩選
+### <a name="custom-authorization-filters"></a>自訂授權篩選器
 
-若要撰寫自訂授權篩選，請從下列其中一種類型衍生：
+要編寫自訂授權篩選器,請派生自以下類型之一:
 
-- **AuthorizeAttribute**。 擴充此類別，以根據目前的使用者和使用者的角色來執行授權邏輯。
-- **AuthorizationFilterAttribute**。 擴充這個類別，以執行不一定是根據目前使用者或角色的同步授權邏輯。
-- **IAuthorizationFilter**。 執行此介面來執行非同步授權邏輯;例如，如果您的授權邏輯會進行非同步 i/o 或網路呼叫。 （如果您的授權邏輯是 CPU 界限，則從**AuthorizationFilterAttribute**衍生會比較簡單，因為您不需要撰寫非同步方法）。
+- **授權屬性**. 擴展此類以基於當前使用者和使用者的角色執行授權邏輯。
+- **授權篩選器屬性**. 擴展此類以執行不一定基於當前使用者或角色的同步授權邏輯。
+- **I 授權篩選器**。 實現此介面以執行非同步授權邏輯;例如,如果授權邏輯進行非同步 I/O 或網路調用。 (如果授權邏輯是 CPU 綁定的,則從**授權篩選器屬性**派生會更簡單,因為則不需要編寫非同步方法。
 
-下圖顯示**AuthorizeAttribute**類別的類別階層。
+下圖顯示了**授權屬性**類的類層次結構。
 
 ![](authentication-and-authorization-in-aspnet-web-api/_static/image2.png)
 
-### <a name="authorization-inside-a-controller-action"></a>控制器動作內的授權
+### <a name="authorization-inside-a-controller-action"></a>控制器操作的授權
 
-在某些情況下，您可能會允許要求繼續進行，但根據主體變更行為。 例如，您傳回的資訊可能會根據使用者的角色而變更。 在控制器方法中，您可以從**ApiController**屬性取得目前的主體。
+在某些情況下,您可以允許請求繼續,但基於主體更改行為。 例如,返回的資訊可能會根據使用者的角色而變化。 在控制器方法中,可以從**ApiController.User**屬性獲取當前主體。
 
 [!code-csharp[Main](authentication-and-authorization-in-aspnet-web-api/samples/sample7.cs)]
