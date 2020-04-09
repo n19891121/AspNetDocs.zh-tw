@@ -6,12 +6,12 @@ author: Rick-Anderson
 ms.author: riande
 title: ASP.NET 文件
 ms.date: 08/24/2018
-description: 了解如何開發 ASP.NET 與 ASP.NET Web 應用程式。 取得文件、程式碼範例、教學課程等。
+description: 了解如何開發 ASP.NET 與 ASP.NET Web 應用程式。 取得文件、程式碼範例、教學課程等資訊。
 ms.openlocfilehash: 6309704444d60d42d49c3a8f1683045dc503e761
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
+ms.lasthandoff: 04/06/2020
 ms.locfileid: "78616421"
 ---
 <!-- markdownlint-disable MD033 -->
@@ -20,10 +20,10 @@ ms.locfileid: "78616421"
         <h1>ASP.NET 文件</h1>
         <ul class="pivots">
             <li>
-                <a href="#core">ASP.NET Core</a>
+                <a href="#core">ASP.NET核心</a>
                 <ul id="core">
                     <li>
-                        <a href="#core_overview">概觀</a>
+                        <a href="#core_overview">概述</a>
                         <ul id="core_overview" class="cardsC">
                             <li>
                                 <div class="container intro">
@@ -80,7 +80,7 @@ ms.locfileid: "78616421"
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>應用程式開發介面參考</h3>
+                                                    <h3>API 參考</h3>
                                                     <p>探索 ASP.NET Core 類別庫。</p>
                                                 </div>
                                             </div>
@@ -153,7 +153,7 @@ ms.locfileid: "78616421"
                         </ul>
                     </li>
                     <li>
-                        <a href="#core_tutorials">教學課程</a>
+                        <a href="#core_tutorials">教程</a>
                         <ul id="core_tutorials" class="cardsZ">
                             <li>
                                 <div class="container intro">
@@ -290,7 +290,7 @@ ms.locfileid: "78616421"
                 <a href="#aspnet">ASP.NET</a>
                 <ul id="aspnet">
                     <li>
-                        <a href="#aspnet_overview">概觀</a>
+                        <a href="#aspnet_overview">概述</a>
                         <ul id="aspnet_overview" class="cardsC">
                             <li>
                                 <div class="container intro">
@@ -439,7 +439,7 @@ ms.locfileid: "78616421"
                         </ul>
                     </li>
                     <li>
-                        <a href="#aspnet_framework">架構</a>
+                        <a href="#aspnet_framework">框架</a>
                         <ul id="aspnet_framework" class="cardsC">
                             <li>
                                 <div class="container intro">
@@ -533,7 +533,7 @@ ms.locfileid: "78616421"
                                                     </div>
                                                 </div>
                                                 <div class="cardText">
-                                                    <h3>WebHook</h3>
+                                                    <h3>Webhook</h3>
                                                     <p>使用提供簡單 pub/sub 模型的輕量型 HTTP 模式，將 Web API 和 SaaS 服務連接在一起。</p>
                                                 </div>
                                             </div>
@@ -568,7 +568,7 @@ ms.locfileid: "78616421"
                         </ul>
                     </li>
                     <li>
-                        <a href="#aspnet_tutorials">教學課程</a>
+                        <a href="#aspnet_tutorials">教程</a>
                         <ul id="aspnet_tutorials" class="cardsZ">
                             <li>
                                 <div class="container intro">
