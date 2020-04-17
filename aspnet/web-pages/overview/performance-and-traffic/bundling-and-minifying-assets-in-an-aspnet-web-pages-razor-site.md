@@ -1,25 +1,25 @@
 ---
 uid: web-pages/overview/performance-and-traffic/bundling-and-minifying-assets-in-an-aspnet-web-pages-razor-site
-title: 在 ASP.NET Web Pages （Razor）網站中包裝和縮小資產 |Microsoft Docs
-author: microsoft
-description: 配套和縮制是讓您的網站更快速的方式。 配套可讓您結合多個 JavaScript （.js）檔案或多個級聯樣式表（。
+title: 捆綁和將資產捆綁在ASP.NET網頁(Razor)網站 |微軟文件
+author: rick-anderson
+description: 捆綁和小化是使您的網站更快的方法。 捆綁允許您組合多個 JavaScript (.js ) 檔案或多個階層式表 (...
 ms.author: riande
 ms.date: 06/21/2012
 ms.assetid: 8906f1e9-4b66-4a03-8e8a-9e9debf8ed91
 msc.legacyurl: /web-pages/overview/performance-and-traffic/bundling-and-minifying-assets-in-an-aspnet-web-pages-razor-site
 msc.type: authoredcontent
-ms.openlocfilehash: 5e42111ad71ec65581e56c73822e23ecd5fcbd58
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 2a877c1e1a06ea2357f96b37ec4ae72f9f9c9ff3
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78635706"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81539908"
 ---
-# <a name="bundling-and-minifying-assets-in-an-aspnet-web-pages-razor-site"></a><span data-ttu-id="2af32-104">在 ASP.NET Web Pages (Razor) 網站中統合及縮小資產</span><span class="sxs-lookup"><span data-stu-id="2af32-104">Bundling and Minifying Assets in an ASP.NET Web Pages (Razor) Site</span></span>
+# <a name="bundling-and-minifying-assets-in-an-aspnet-web-pages-razor-site"></a><span data-ttu-id="39d38-104">在 ASP.NET Web Pages (Razor) 網站中統合及縮小資產</span><span class="sxs-lookup"><span data-stu-id="39d38-104">Bundling and Minifying Assets in an ASP.NET Web Pages (Razor) Site</span></span>
 
-<span data-ttu-id="2af32-105">由[Microsoft](https://github.com/microsoft)</span><span class="sxs-lookup"><span data-stu-id="2af32-105">by [Microsoft](https://github.com/microsoft)</span></span>
+<span data-ttu-id="39d38-105">由[微軟](https://github.com/microsoft)</span><span class="sxs-lookup"><span data-stu-id="39d38-105">by [Microsoft](https://github.com/microsoft)</span></span>
 
-> <span data-ttu-id="2af32-106">配套和縮制是讓您的網站更快速的方式。</span><span class="sxs-lookup"><span data-stu-id="2af32-106">Bundling and minification are ways to make your site faster.</span></span> <span data-ttu-id="2af32-107">「配套」可讓您結合多個 JavaScript （ *.js*）檔案或多個級聯樣式表（ *.css*）檔案，讓它們可以當做一個單位下載，而不是一次。</span><span class="sxs-lookup"><span data-stu-id="2af32-107">Bundling lets you combine multiple JavaScript (*.js*) files or multiple cascading style sheet (*.css*) files so that they can be downloaded as a unit, rather than one at a time.</span></span> <span data-ttu-id="2af32-108">縮制 squeezes 空白字元並執行其他類型的壓縮，讓下載的檔案變得越小。</span><span class="sxs-lookup"><span data-stu-id="2af32-108">Minification squeezes out whitespace and performs other types of compression to make the downloaded files as small a possible.</span></span>
+> <span data-ttu-id="39d38-106">捆綁和小化是使您的網站更快的方法。</span><span class="sxs-lookup"><span data-stu-id="39d38-106">Bundling and minification are ways to make your site faster.</span></span> <span data-ttu-id="39d38-107">捆綁允許您組合多個 JavaScript *(.js*) 檔案或多個級聯樣式表 *(.css)* 檔案,以便它們可以作為一個單元下載,而不是一次下載一個。</span><span class="sxs-lookup"><span data-stu-id="39d38-107">Bundling lets you combine multiple JavaScript (*.js*) files or multiple cascading style sheet (*.css*) files so that they can be downloaded as a unit, rather than one at a time.</span></span> <span data-ttu-id="39d38-108">最小化擠壓出空白,並執行其他類型的壓縮,使下載的檔案盡可能小。</span><span class="sxs-lookup"><span data-stu-id="39d38-108">Minification squeezes out whitespace and performs other types of compression to make the downloaded files as small a possible.</span></span>
 > 
 > > [!NOTE]
-> > <span data-ttu-id="2af32-109">ASP.NET Web Pages 2 的 RC 版本不支援配套和縮制，因為包含必要元素的套件尚未在 Microsoft WebMatrix 中提供。</span><span class="sxs-lookup"><span data-stu-id="2af32-109">The RC release of ASP.NET Web Pages 2 does not support bundling and minification because the package that contains the required elements is not yet available in Microsoft WebMatrix.</span></span> <span data-ttu-id="2af32-110">很抱歉造成您的不便。</span><span class="sxs-lookup"><span data-stu-id="2af32-110">We apologize for this inconvenience.</span></span> <span data-ttu-id="2af32-111">套件預期會在 ASP.NET Web Pages 2 和 WebMatrix 2 的最終版本中提供。</span><span class="sxs-lookup"><span data-stu-id="2af32-111">The package is expected to be available in the final release of ASP.NET Web Pages 2 and WebMatrix 2.</span></span>
+> > <span data-ttu-id="39d38-109">ASP.NET網頁 2 的 RC 版本不支援捆綁和小化,因為包含所需元素的包在 Microsoft WebMatrix 中尚不可用。</span><span class="sxs-lookup"><span data-stu-id="39d38-109">The RC release of ASP.NET Web Pages 2 does not support bundling and minification because the package that contains the required elements is not yet available in Microsoft WebMatrix.</span></span> <span data-ttu-id="39d38-110">很抱歉造成您的不便。</span><span class="sxs-lookup"><span data-stu-id="39d38-110">We apologize for this inconvenience.</span></span> <span data-ttu-id="39d38-111">該軟體包預計將在ASP.NET網頁2和WebMatrix 2的最終版本中提供。</span><span class="sxs-lookup"><span data-stu-id="39d38-111">The package is expected to be available in the final release of ASP.NET Web Pages 2 and WebMatrix 2.</span></span>
