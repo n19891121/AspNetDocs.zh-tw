@@ -1,154 +1,154 @@
 ---
 uid: mvc/overview/older-versions-1/nerddinner/use-ajax-to-deliver-dynamic-updates
-title: 使用 AJAX 傳遞動態更新 |Microsoft Docs
-author: microsoft
-description: 步驟10會使用以 Ajax 為基礎的方法（在晚餐詳細資料內整合），將登入使用者的支援回復為出席晚餐的相關資訊 。
+title: 使用 AJAX 提供動態更新 |微軟文件
+author: rick-anderson
+description: 步驟 10 支援登錄使用者 RSVP,他們有興趣參加晚宴,使用基於 Ajax 的方法集成在晚餐詳細資訊中...
 ms.author: riande
 ms.date: 07/27/2010
 ms.assetid: 18700815-8e6c-4489-91af-7ea9dab6529e
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/use-ajax-to-deliver-dynamic-updates
 msc.type: authoredcontent
-ms.openlocfilehash: 3edc02fec546609505b5e085440fa684abe7acd0
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 13680b91edc665852fd4af56e4fc79551e6de15e
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78600846"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81541243"
 ---
 # <a name="use-ajax-to-deliver-dynamic-updates"></a>使用 AJAX 傳送動態更新
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
 [下載 PDF](http://aspnetmvcbook.s3.amazonaws.com/aspnetmvc-nerdinner_v1.pdf)
 
-> 這是免費「 [NerdDinner」應用程式教學](introducing-the-nerddinner-tutorial.md)課程的步驟10，逐步解說如何使用 ASP.NET MVC 1 建立一個小型但完整的 web 應用程式。
+> 這是一個免費的[「NerdDinner」應用程式教程](introducing-the-nerddinner-tutorial.md)的第10步,該教學示範如何使用ASP.NETmVC 1構建小型但完整的Web應用程式。
 > 
-> 步驟10會使用在晚餐詳細資料頁面中整合的以 Ajax 為基礎的方法，來支援已登入的使用者，讓他們有興趣參加晚餐。
+> 步驟 10 使用在晚餐詳細資訊頁中集成的基於 Ajax 的方法,實現對登錄使用者的支援,以便 RSVP 讓他們對參加晚宴感興趣。
 > 
-> 如果您使用 ASP.NET MVC 3，建議您遵循[使用 mvc 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md)或[mvc 音樂存放](../../older-versions/mvc-music-store/mvc-music-store-part-1.md)教學課程的消費者入門。
+> 如果您使用的是ASP.NET MVC 3,我們建議您按照[MVC 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md)或[MVC 音樂商店](../../older-versions/mvc-music-store/mvc-music-store-part-1.md)教程進行操作。
 
-## <a name="nerddinner-step-10-ajax-enabling-rsvps-accepts"></a>NerdDinner 步驟10： AJAX 啟用 RSVPs 接受
+## <a name="nerddinner-step-10-ajax-enabling-rsvps-accepts"></a>神經晚餐步驟 10: AJAX 啟用 RSV 接受
 
-現在讓我們開始支援已登入的使用者，以在參與晚餐時將其感興趣。 我們會使用在晚餐詳細資料頁面中整合的 AJAX 型方法來啟用此程式。
+現在,讓我們對登錄用戶實施支援,以便 RSVP 對參加晚宴感興趣。 我們將使用在晚餐詳細資訊頁中集成的基於 AJAX 的方法啟用此功能。
 
-### <a name="indicating-whether-the-user-is-rsvpd"></a>指出使用者是否為 RSVP
+### <a name="indicating-whether-the-user-is-rsvpd"></a>指示使用者是否為 RSVP'd
 
-使用者可以造訪 */Dinners/Details/[id*] URL，以查看特定晚餐的詳細資料：
+使用者可以造訪 */Dinners/詳細資訊/[id]* 網址 以查看有關特定晚餐的詳細資訊:
 
 ![](use-ajax-to-deliver-dynamic-updates/_static/image1.png)
 
-Details （）動作方法會實作為，如下所示：
+詳細資訊()操作方法的實現方式是這樣的:
 
 [!code-csharp[Main](use-ajax-to-deliver-dynamic-updates/samples/sample1.cs)]
 
-執行 RSVP 支援的第一個步驟是將「IsUserRegistered （使用者名稱）」 helper 方法新增至晚餐物件（在我們先前建立的 Dinner.cs 部分類別中）。 此 helper 方法會傳回 true 或 false，取決於使用者目前是否為晚餐的 RSVP：
+實現 RSVP 支援的第一步是向我們的 Dinner 物件(在之前構建的 Dinner.cs 部分類中)添加「IsUser 註冊(使用者名)」幫助器方法。 此說明程式方法傳回 true 或 false,具體取決於使用者當前是晚餐的 RSVP d:
 
 [!code-csharp[Main](use-ajax-to-deliver-dynamic-updates/samples/sample2.cs)]
 
-然後，我們可以將下列程式碼加入至 Details view 範本，以顯示適當的訊息，指出是否已針對事件註冊使用者：
+然後,我們可以向 Details.aspx 檢視範本添加以下代碼,以顯示指示使用者是否已註冊的事件的適當消息:
 
 [!code-html[Main](use-ajax-to-deliver-dynamic-updates/samples/sample3.html)]
 
-現在當使用者造訪晚餐時，他們會看到下列訊息：
+現在,當使用者訪問他們註冊的晚餐時,他們會看到此消息:
 
 ![](use-ajax-to-deliver-dynamic-updates/_static/image2.png)
 
-而當他們造訪晚餐時，他們就會看到下列訊息：
+當他們訪問晚餐時,他們沒有註冊,他們會看到以下消息:
 
 ![](use-ajax-to-deliver-dynamic-updates/_static/image3.png)
 
-### <a name="implementing-the-register-action-method"></a>執行 Register 動作方法
+### <a name="implementing-the-register-action-method"></a>實現寄存器操作方法
 
-現在讓我們新增必要的功能，讓使用者可以從 [詳細資料] 頁面取得晚餐。
+現在,讓我們添加必要的功能,使用戶能夠從詳細資訊頁面到 RSVP 共進晚餐。
 
-若要執行這項操作，我們將建立新的 "RSVPController" 類別，方法是以滑鼠右鍵按一下 \Controllers 目錄，然後選擇 [新增-&gt;控制器] 功能表命令。
+為了實現這一點,我們將通過右鍵單擊 \控制器目錄並選擇"添加控制&gt;器 "功能表命令創建新的"RSVPController"類。
 
-我們會在新的 RSVPController 類別內執行「註冊」動作方法，以取得晚餐的識別碼做為引數、抓取適當的晚餐物件、檢查登入的使用者目前是否在已註冊它的使用者清單中，以及請勿為他們新增 RSVP 物件：
+我們將在新的 RSVPController 類中實現「註冊」操作方法,該方法以 Dinner 的 ID 作為參數,檢索相應的 Dinner 物件,檢查登錄使用者當前是否位於已註冊的使用者清單中,如果沒有為其添加 RSVP 物件:
 
 [!code-csharp[Main](use-ajax-to-deliver-dynamic-updates/samples/sample4.cs)]
 
-請注意，我們如何傳回簡單字串做為動作方法的輸出。 我們可以將此訊息內嵌在視圖範本中，但因為它很小，所以我們只會在控制器基類上使用 Content （） helper 方法，並傳回上述的字串訊息。
+請注意,我們如何返回一個簡單的字串作為操作方法的輸出。 我們本可以將此消息嵌入到視圖範本中,但由於它非常小,我們只需在控制器基類上使用 Content() 幫助器方法,並返回如下所示的字串消息。
 
-### <a name="calling-the-rsvpforevent-action-method-using-ajax"></a>使用 AJAX 呼叫 RSVPForEvent 動作方法
+### <a name="calling-the-rsvpforevent-action-method-using-ajax"></a>使用 AJAX 呼叫 RSVPForEvent 操作方法
 
-我們將使用 AJAX，從我們的詳細資料檢視叫用 Register 動作方法。 這麼做非常簡單。 首先，我們要新增兩個腳本程式庫參考：
+我們將使用 AJAX 從「詳細資訊」檢視中調用註冊操作方法。 實現這一點非常簡單。 首先,我們將添加兩個腳本庫引用:
 
 [!code-html[Main](use-ajax-to-deliver-dynamic-updates/samples/sample5.html)]
 
-第一個程式庫參考核心 ASP.NET AJAX 用戶端腳本程式庫。 此檔案大約24k 大小（已壓縮），並包含核心用戶端 AJAX 功能。 第二個程式庫包含公用程式函式，這些函式會與 ASP.NET MVC 的內建 AJAX helper 方法整合（我們很快就會用到）。
+第一個庫引用 ASP.NET AJAX 用戶端文本庫的核心。 此檔的大小約為 24k(壓縮),包含核心用戶端 AJAX 功能。 第二個庫包含與ASP.NET MVC 的內建 AJAX 幫助器方法集成的實用程式函數(我們稍後會使用)。
 
-然後，我們可以更新稍早新增的視圖範本程式碼，讓您不會輸出「您未註冊此事件」訊息，我們會改為轉譯連結，以在推播的情況下執行可在我們的 RSVP 控制器上叫用 RSVPForEvent 動作方法的 AJAX 呼叫並 RSVPs 使用者：
+然後,我們可以更新我們之前添加的檢視範本代碼,以便我們不是提供"您未註冊此事件"消息,而是呈現一個連結,當推送時執行 AJAX 調用時,該連結會調用我們的 RSVPForEvent 操作方法,並在使用者中調用 RSVP:
 
 [!code-aspx[Main](use-ajax-to-deliver-dynamic-updates/samples/sample6.aspx)]
 
-上述使用的 Ajax （） helper 方法是內建的 ASP.NET MVC，類似于 Html.actionlink （） helper 方法，不同之處在于，它不會執行標準導覽，而是在按一下連結時，對動作方法進行 AJAX 呼叫。 在上述情況中，我們會在 "RSVP" 控制器上呼叫 "Register" 動作方法，並將 DinnerID 當做 "id" 參數傳遞給它。 我們所傳遞的最後一個 AjaxOptions 參數指出我們想要從動作方法傳回的內容，並更新頁面上的 HTML &lt;div&gt; 元素，其識別碼為 "rsvpmsg"。
+上面使用的Ajax.ActionLink() 幫助器方法內置於mVCASP.NET,與 Html.ActionLink() 説明器方法類似,只不過,在單擊連結時,它不是執行標準導航,而是對操作方法發出 AJAX 調用。 上面我們調用"RSVP"控制器上的"註冊"操作方法,並將 DinnerID 作為"id"參數傳遞給它。 我們傳遞的最終 AjaxOptions 參數表示,我們希望獲取從操作方法返回的內容,並更新 ID 為"rsvpmsg"&lt;的頁面&gt;上的 HTML div 元素。
 
-現在，當使用者流覽至尚未註冊的晚餐時，他們會看到其 RSVP 的連結：
+現在,當用戶流覽到尚未註冊的晚餐時,他們會看到指向 RSVP 的連結:
 
 ![](use-ajax-to-deliver-dynamic-updates/_static/image4.png)
 
-如果他們按一下「此事件的 RSVP」連結，他們會對 RSVP 控制器上的 Register 動作方法進行 AJAX 呼叫，當它完成時，就會看到如下所示的更新訊息：
+如果他們按下「此事件的 RSVP」連結,他們將對 RSVP 控制器上的註冊操作方法進行 AJAX 調用,並且當它完成後,他們將看到如下更新的消息:
 
 ![](use-ajax-to-deliver-dynamic-updates/_static/image5.png)
 
-進行此 AJAX 呼叫時，所需的網路頻寬和流量非常輕量。 當使用者按一下「此事件的 RSVP」連結時，會對 */Dinners/Register/1* URL 提出小型的 HTTP POST 網路要求，如下圖所示：
+進行此 AJAX 調用時所涉及的網路頻寬和流量非常輕量。 當使用者按下「此事件的 RSVP」連結時,將針對線上路上如下所示的 */Dinners/Register/1* URL 發出小型 HTTP POST 網路請求:
 
 [!code-console[Main](use-ajax-to-deliver-dynamic-updates/samples/sample7.cmd)]
 
-而來自我們的 Register 動作方法的回應只是：
+我們的註冊操作方法的回應很簡單:
 
 [!code-console[Main](use-ajax-to-deliver-dynamic-updates/samples/sample8.cmd)]
 
-這個輕量呼叫很快，而且即使在慢速網路也能正常執行。
+此輕量級呼叫速度很快,即使在速度較慢的網路上也能正常工作。
 
 ### <a name="adding-a-jquery-animation"></a>新增 jQuery 動畫
 
-我們所實行的 AJAX 功能既順暢又快速。 不過，有時可能會發生這種情況，因為使用者可能不會注意到 RSVP 連結已被新文字取代。 為了讓結果變得更明顯，我們可以加入簡單的動畫，將注意力吸引更新訊息。
+我們實現的AJAX功能工作良好,速度快。 但是,有時發生得如此之快,以至於使用者可能沒有注意到 RSVP 連結已被新文本替換。 為了使結果更加明顯一點,我們可以添加一個簡單的動畫來吸引對更新消息的注意。
 
-預設 ASP.NET MVC 專案範本包含 jQuery – Microsoft 也支援的絕佳（且非常熱門）開放原始碼 JavaScript 程式庫。 jQuery 提供許多功能，包括美觀的 HTML DOM 選擇和效果程式庫。
+預設ASP.NET MVC 專案範本包括 jQuery - 一個出色的(非常受歡迎的)開源 JavaScript 庫,也受 Microsoft 支援。 jQuery 提供了許多功能,包括不錯的 HTML DOM 選擇和效果庫。
 
-若要使用 jQuery，我們會先新增腳本參考。 因為我們會在網站內的各種地方使用 jQuery，所以我們會在網站中新增腳本參考。主版分頁檔案，讓所有頁面都可以使用它。
+要使用 jQuery,我們將首先向其添加腳本引用。 由於我們將在網站內的各種位置使用 jQuery,因此我們將在 Site.master 頁面檔中添加文本引用,以便所有頁面都可以使用它。
 
 [!code-html[Main](use-ajax-to-deliver-dynamic-updates/samples/sample9.html)]
 
-*秘訣：請確定您已安裝適用于 VS 2008 SP1 的 JavaScript intellisense，針對 JavaScript 檔案啟用更豐富的 intellisense 支援（包括 jQuery）。您可以從下列下載： http://tinyurl.com/vs2008javascripthotfix*
+*提示:請確保您已為 VS 2008 SP1 安裝了 JavaScript 智慧感知修補程式,從而能夠對 JavaScript 檔(包括 jQuery)提供更豐富的對講義支援。您可以透過以下位置下載:http://tinyurl.com/vs2008javascripthotfix*
 
-使用 JQuery 撰寫的程式碼通常會使用全域 "$ （）" JavaScript 方法，以使用 CSS 選取器來抓取一或多個 HTML 元素。 例如， *$ （"#rsvpmsg"）* 會選取識別碼為 rsvpmsg 的任何 HTML 元素，而 *$ （". elements"）* 會選取所有具有 "elements" CSS 類別名稱的專案。 您也可以使用選取器查詢（例如： *$ （"input [@type= 單選] [@checked]"）* ，撰寫更多先進的查詢，例如「傳回所有已核取的選項按鈕」。
+使用 JQuery 編寫的代碼通常使用全域"$()"JavaScript 方法,該方法使用 CSS 選擇器檢索一個或多個 HTML 元素。 例如 *,$("#rsvpmsg")* 選擇任何具有 rsvpmsg ID 的 HTML 元素,而 *$(".某事")* 將選擇具有「某物」CSS 類名稱的所有元素。 您還可以使用選擇器查詢編寫更高級的查詢,如"返回所有已檢查的單選按鈕",例如 *:$("輸入="@type收音機**)"。@checked *
 
-選取專案之後，您可以在其上呼叫方法來採取動作，例如隱藏它們： *$ （"#rsvpmsg"）。 hide （）;*
+選擇元素后,可以調用方法對它們執行操作,例如隱藏它們 *:$("#rsvpmsg")。"隱藏";*
 
-在我們的 RSVP 案例中，我們將定義名為 "AnimateRSVPMessage" 的簡單 JavaScript 函式，以選取 "rsvpmsg" &lt;div&gt; 並以動畫呈現其文字內容的大小。 下列程式碼會啟動小型文字，然後讓它在400毫秒的時間範圍內增加：
+對於我們的 RSVP 方案,我們將定義一個名為"AnimateRSVPMessage"的簡單 JavaScript 函數,該函數選擇"rsvpmsg"div&lt;&gt;並為其文本內容的大小設置動畫。 下面的代碼將文字啟動較小,然後使其在 400 毫秒的時間內增加:
 
 [!code-html[Main](use-ajax-to-deliver-dynamic-updates/samples/sample10.html)]
 
-接著，我們就可以在 AJAX 呼叫成功完成後呼叫這個 JavaScript 函式，方法是將其名稱傳遞至我們的 Ajax （） helper 方法（透過 AjaxOptions "OnSuccess" 事件屬性）：
+然後,我們可以透過將其名稱傳遞給我們的Ajax.ActionLink() 幫助器方法(透過AjaxOptions"OnSuccess"事件屬性)來連接此 JavaScript 函數,以在 AJAX 調用成功完成後呼叫它:
 
 [!code-aspx[Main](use-ajax-to-deliver-dynamic-updates/samples/sample11.aspx)]
 
-現在，當您按一下「此事件的 RSVP」連結，而我們的 AJAX 呼叫成功完成時，送回的內容訊息會以動畫顯示並成長大：
+現在,當單擊「此事件的 RSVP」連結並成功完成我們的 AJAX 呼叫時,發回的內容消息將設置動畫並變大:
 
 ![](use-ajax-to-deliver-dynamic-updates/_static/image6.png)
 
-除了提供 "OnSuccess" 事件之外，AjaxOptions 物件也會公開您可以處理的 OnBegin、OnFailure 和 OnComplete 事件（以及各種其他屬性和實用的選項）。
+除了提供"On成功"事件外,AjaxOptions 物件還公開了您可以處理的 OnBegin、OnOn 失敗和 OnComplete 事件(以及各種其他屬性和有用的選項)。
 
-### <a name="cleanup---refactor-out-a-rsvp-partial-view"></a>清除-重構 RSVP 部分視圖
+### <a name="cleanup---refactor-out-a-rsvp-partial-view"></a>清除 - 重構 RSVP 部份檢視
 
-我們的 details （詳細資料檢視）範本開始變得很長，這會讓您更難瞭解。 為了協助改善程式碼的可讀性，讓我們藉由建立部分視圖– RSVPStatus，封裝詳細資料頁面的所有 RSVP 視圖程式碼來完成。
+我們的詳細信息視圖範本開始變得有點長,加班會使它很難理解。 為了説明提高代碼的可讀性,讓我們通過創建一個部分檢視 ( RSVPStatus.ascx) 來完成,該視圖封裝了我們詳細資訊頁的所有 RSVP 視圖代碼。
 
-若要這麼做，請以滑鼠右鍵按一下 [\Views\Dinners] 資料夾，然後選擇 [新增-&gt;View] 功能表命令。 我們會將晚餐物件做為其強型別 ViewModel。 然後，我們可以從詳細資料 .aspx 視圖將 RSVP 內容複寫/貼上到其中。
+我們可以通過右鍵按下 [Views_Dinners] 資料夾,然後選擇"&gt;添加- 視圖"功能表命令來執行此操作。 我們將它採用晚餐物件作為其強類型視圖模型。 然後,我們可以複製/粘貼從我們的細節.aspx 視圖的 RSVP 內容到它。
 
-完成之後，讓我們另外建立另一個部分視圖– EditAndDeleteLinks，用來封裝我們的編輯和刪除連結視圖程式碼。 我們也會將晚餐物件當做其強型別 ViewModel，並將 Edit 和 Delete 邏輯從我們的詳細資料 .aspx 視圖複製/貼上。
+完成此操作後,我們還要創建另一個部分檢視 - EditAndDeleteLinks.ascx - 封裝我們的"編輯"和"刪除"鏈接檢視代碼。 我們還將它將一個 Dinner 物件作為其強類型視圖模型,並將"編輯"和"刪除"邏輯從"詳細資訊.aspx"視圖中複製/粘貼到該物件中。
 
-然後，我們的詳細資料檢視範本就可以在底部加入兩個 RenderPartial （）方法呼叫：
+然後,我們的詳細資訊檢視範本可以只包括底部的兩個 Html.Render 部分() 方法調用:
 
 [!code-aspx[Main](use-ajax-to-deliver-dynamic-updates/samples/sample12.aspx)]
 
-這可讓程式碼更簡潔地進行讀取和維護。
+這使得代碼的讀取和維護更簡潔。
 
 ### <a name="next-step"></a>後續步驟
 
-現在讓我們來看看如何進一步使用 AJAX，並在應用程式中加入互動式對應支援。
+現在,讓我們來看看如何進一步使用AJAX,並將互動式映射支援添加到我們的應用程式。
 
 > [!div class="step-by-step"]
-> [上一頁](secure-applications-using-authentication-and-authorization.md)
-> [下一頁](use-ajax-to-implement-mapping-scenarios.md)
+> [前一個](secure-applications-using-authentication-and-authorization.md)
+> [下一個](use-ajax-to-implement-mapping-scenarios.md)

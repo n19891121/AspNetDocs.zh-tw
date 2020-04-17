@@ -1,19 +1,19 @@
 ---
 uid: mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs
 title: 建立自訂 HTML 說明器 (C#) |微軟文件
-author: microsoft
+author: rick-anderson
 description: 本教學的目標是示範如何建立自訂 HTML 幫助器,您可以在 MVC 檢視中使用。 透過使用 HTML 說明程式...
 ms.author: riande
 ms.date: 10/07/2008
 ms.assetid: e454c67d-a86e-4119-a858-eb04bbec2dff
 msc.legacyurl: /mvc/overview/older-versions-1/views/creating-custom-html-helpers-cs
 msc.type: authoredcontent
-ms.openlocfilehash: 7a2e5a5b42aa5bf267a42fef2fcad7022001ce6f
-ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
+ms.openlocfilehash: 82e4118fd404051b891489b62d531169e83f450d
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/06/2020
-ms.locfileid: "80675334"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542556"
 ---
 # <a name="creating-custom-html-helpers-c"></a>建立自訂的 HTML 協助程式 (C#)
 

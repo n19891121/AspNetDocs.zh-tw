@@ -1,79 +1,79 @@
 ---
 uid: web-forms/overview/ajax-control-toolkit/getting-started/get-started-with-the-ajax-control-toolkit-cs
-title: 開始使用 AJAX 控制項工具組（C#） |Microsoft Docs
-author: microsoft
-description: 瞭解開始使用 AJAX 控制項工具組所需的一切知識。
+title: 開始使用 AJAX 控制工具套件 (C#) |微軟文件
+author: rick-anderson
+description: 了解開始使用 AJAX 控制工具套件所需的所有知識。
 ms.author: riande
 ms.date: 05/12/2009
 ms.assetid: 16dc5c11-65be-4eae-a818-9fad7f8259c6
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started/get-started-with-the-ajax-control-toolkit-cs
 msc.type: authoredcontent
-ms.openlocfilehash: 7478b090ec52778572d70065983de6be8bdb4e6b
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: b5954019ec3312f06f38012e4d3f9b1f71573f76
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78621601"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543583"
 ---
 # <a name="get-started-with-the-ajax-control-toolkit-c"></a>開始使用 AJAX Control Toolkit (C#)
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-> 瞭解開始使用 AJAX 控制項工具組所需的一切知識。
+> 了解開始使用 AJAX 控制工具套件所需的所有知識。
 
-AJAX Control 工具組包含30個以上的免費控制項，可供您在 ASP.NET 應用程式中使用。 在本教學課程中，您將瞭解如何下載 AJAX 控制項工具組，並將工具組控制項新增至您的 Visual Studio/Visual Web Developer Express 工具箱。
+AJAX 控制工具組包含 30 多個免費控制項,可用於ASP.NET應用程式中。 在本教學中,您將瞭解如何下載 AJAX 控制件工具組,並將工具套件控制項添加到可視化工作室/視覺化 Web 開發人員快速工具箱。
 
-## <a name="downloading-the-ajax-control-toolkit"></a>下載 AJAX 控制項工具組
+## <a name="downloading-the-ajax-control-toolkit"></a>下載 AJAX 控制工具套件
 
-[AJAX 控制項工具](http://devexpress.com/act)組是由 ASP.NET 社區成員和 ASP.NET 團隊所開發的開放原始碼專案。 
+[AJAX 控制工具套件](http://devexpress.com/act)是由ASP.NET社區成員和ASP.NET團隊開發的開源專案。 
 
-[![下載 AJAX 控制項工具組](get-started-with-the-ajax-control-toolkit-cs/_static/image1.jpg)](get-started-with-the-ajax-control-toolkit-cs/_static/image1.png)
+[![下載 AJAX 控制工具套件](get-started-with-the-ajax-control-toolkit-cs/_static/image1.jpg)](get-started-with-the-ajax-control-toolkit-cs/_static/image1.png)
 
-**圖 01**：下載 AJAX 控制項工具組（[按一下以觀看完整大小的影像](get-started-with-the-ajax-control-toolkit-cs/_static/image2.png)）
+**圖 01**: 下載 AJAX 控制工具套件([按下以檢視全尺寸影像](get-started-with-the-ajax-control-toolkit-cs/_static/image2.png))
 
-下載檔案之後，您必須解除封鎖檔案。 在檔案上按一下滑鼠右鍵，選取 [屬性]，然後按一下 [**解除封鎖**] 按鈕（請參閱 [圖 2]）。
+下載檔后,需要取消阻止該檔。 右鍵按一下檔案,選擇「屬性」,然後按下 **「取消阻止」** 按鈕(參見圖 2)。
 
-[![解除封鎖 AJAX 控制項工具組 ZIP 檔案](get-started-with-the-ajax-control-toolkit-cs/_static/image2.jpg)](get-started-with-the-ajax-control-toolkit-cs/_static/image3.png)
+[![取消封鎖 AJAX 控制工具套件 ZIP 檔案](get-started-with-the-ajax-control-toolkit-cs/_static/image2.jpg)](get-started-with-the-ajax-control-toolkit-cs/_static/image3.png)
 
-**圖 02**：解除封鎖 AJAX 控制項工具組 ZIP 檔案（[按一下以查看完整大小的影像](get-started-with-the-ajax-control-toolkit-cs/_static/image4.png)）
+**圖 02**: 取消封鎖 AJAX 控制工具套件 ZIP 檔案([按下以檢視全尺寸影像](get-started-with-the-ajax-control-toolkit-cs/_static/image4.png))
 
-解除封鎖檔案之後，您可以解壓縮檔案：以滑鼠右鍵按一下檔案，然後選取 [**全部解壓縮**] 功能表選項。 現在，我們已準備好將工具組新增至 Visual Studio/Visual Web Developer 工具箱。
+取消阻止檔案後,可以解壓縮檔:右鍵單擊該檔並選擇 **「全部提取」** 選單選項。 現在,我們準備將工具組添加到可視化工作室/可視化 Web 開發人員工具箱。
 
-## <a name="adding-the-ajax-control-toolkit-to-the-toolbox"></a>將 AJAX 控制項工具組加入至工具箱
+## <a name="adding-the-ajax-control-toolkit-to-the-toolbox"></a>將 AJAX 控制工具套件加入工具箱
 
-使用 AJAX 控制項工具組最簡單的方式，就是將工具組新增至您的 Visual Studio/Visual Web Developer 工具箱（請參閱 [圖 3]）。 如此一來，當您想要使用工具組控制項時，可以直接將它拖曳到頁面上。
+使用 AJAX 控制工具套件的最簡單方法是將工具組添加到可視化工作室/可視化 Web 開發人員工具箱(參見圖 3)。 這樣,您只需在要使用工具組控制程式時將其拖到頁面上即可。
 
-[![AJAX 控制項工具組會出現在工具箱中](get-started-with-the-ajax-control-toolkit-cs/_static/image3.jpg)](get-started-with-the-ajax-control-toolkit-cs/_static/image5.png)
+[![AJAX 控制工具套件顯示在工具箱中](get-started-with-the-ajax-control-toolkit-cs/_static/image3.jpg)](get-started-with-the-ajax-control-toolkit-cs/_static/image5.png)
 
-**圖 03**： AJAX 控制項工具組出現在工具箱中（[按一下以觀看完整大小的影像](get-started-with-the-ajax-control-toolkit-cs/_static/image6.png)）
+**圖 03**: AJAX 控制工具套件顯示在工具箱中([按下以檢視全尺寸影像](get-started-with-the-ajax-control-toolkit-cs/_static/image6.png))
 
-首先，您必須將 [AJAX 控制項工具組] 索引標籤新增至 [工具箱]。 請遵循下列步驟。
+首先,您需要向工具箱添加 AJAX 控制工具套件選項卡。 請遵循下列步驟。
 
-1. 選取功能表選項 [檔案]、[新增網站]，以建立新的 ASP.NET 網站。 按兩下 [方案總管] 視窗中的 default.aspx，在編輯器中開啟檔案。
-2. 在 [一般] 索引標籤底下的 [工具箱] 上按一下滑鼠右鍵，然後選取 [**新增]** 功能表選項（見 [圖 4]）。
-3. 輸入名為 [AJAX 控制項工具組] 的新索引標籤。
+1. 通過選擇功能表選項「檔,新網站」,創建新ASP.NET網站。 按兩下解決方案資源管理器視窗中的 Default.aspx 以在編輯器中打開該檔。
+2. 右鍵按下「常規選項卡」下方的工具框,然後選擇功能表選項 **「添加選項卡**」(參見圖 4)。
+3. 輸入名為 AJAX 控制工具套件的新選項卡。
 
-[![新增索引標籤](get-started-with-the-ajax-control-toolkit-cs/_static/image4.jpg)](get-started-with-the-ajax-control-toolkit-cs/_static/image7.png)
+[![新增選項卡](get-started-with-the-ajax-control-toolkit-cs/_static/image4.jpg)](get-started-with-the-ajax-control-toolkit-cs/_static/image7.png)
 
-**圖 04**：加入新的索引標籤（[按一下以觀看完整大小的影像](get-started-with-the-ajax-control-toolkit-cs/_static/image8.png)）
+**圖 04**:新增新選項卡([按下以檢視全尺寸影像](get-started-with-the-ajax-control-toolkit-cs/_static/image8.png))
 
-接下來，您需要將 AJAX 控制項工具組控制項新增至新的索引標籤。請依照下列步驟執行：
+接下來,您需要將 AJAX 控制項工具套件控制項加入新選項卡中。按照以下步驟操作:
 
-- 以滑鼠右鍵按一下 [AJAX Control 工具組] 索引標籤下方，然後選取功能表選項 **[選擇專案] （請參閱 [圖 5]）** 。
-- 流覽至您解壓縮 AJAX 控制項工具組的位置，然後選取 [AjaxControlToolkit] 元件。
+- 右鍵單擊 AJAX 控制工具組選項卡下方,然後選擇功能表選項 **「選擇專案」(參見圖 5)。**
+- 瀏覽到解壓縮 AJAX 控制工具套件的位置,然後選擇 AjaxControlToolkit.dll 程式集。
 
-[![選擇要加入 [工具箱] 的專案](get-started-with-the-ajax-control-toolkit-cs/_static/image5.jpg)](get-started-with-the-ajax-control-toolkit-cs/_static/image9.png)
+[![選擇要新增到工具箱的項目](get-started-with-the-ajax-control-toolkit-cs/_static/image5.jpg)](get-started-with-the-ajax-control-toolkit-cs/_static/image9.png)
 
-**圖 05**：選擇要加入 [工具箱] 的專案（[按一下以查看完整大小的影像](get-started-with-the-ajax-control-toolkit-cs/_static/image10.png)）
+**圖 05**: 選擇要加入工具箱的項目([按下以檢視全尺寸影像](get-started-with-the-ajax-control-toolkit-cs/_static/image10.png))
 
-完成這些步驟之後，所有的工具組控制項都會出現在 [工具箱] 中。
+完成這些步驟后,所有工具組控制者都將顯示在工具箱中。
 
-## <a name="upgrading-to-a-new-version-of-the-toolkit"></a>升級至新版本的工具組
+## <a name="upgrading-to-a-new-version-of-the-toolkit"></a>升級到新版本的工具組
 
-如果您使用較舊版本的工具組，但現在需要移至更新版本，建議您執行下列步驟：
+如果您使用的是舊版本的工具組,現在需要移動到更高版本,下面是建議的步驟:
 
-- 二進位檔-從網站 Bin 資料夾中刪除舊版本的 AjaxControlToolkit 元件。
-- 工具箱專案-刪除 [AJAX 控制項工具組] 索引標籤，然後遵循上述步驟，以使用新版本的 AjaxControlToolkit 重新建立索引標籤。
+- 二進位 - 從您的網站 Bin 資料夾中刪除 AjaxControlToolkit.dll 程式集的舊版本。
+- 工具箱專案 - 刪除 AJAX 控制工具組選項卡,然後按照上述步驟重新建立具有新版本 AjaxControlToolkit.dll 程式集的選項卡。
 
 > [!div class="step-by-step"]
-> [下一個](using-ajax-control-toolkit-controls-and-control-extenders-cs.md)
+> [下一步](using-ajax-control-toolkit-controls-and-control-extenders-cs.md)

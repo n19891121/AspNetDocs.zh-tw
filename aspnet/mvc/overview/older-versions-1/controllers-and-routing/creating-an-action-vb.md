@@ -1,64 +1,64 @@
 ---
 uid: mvc/overview/older-versions-1/controllers-and-routing/creating-an-action-vb
-title: 建立動作（VB） |Microsoft Docs
-author: microsoft
-description: 瞭解如何將新動作新增至 ASP.NET MVC 控制器。 瞭解方法的需求是動作。
+title: 建立操作 (VB) :微軟文件
+author: rick-anderson
+description: 瞭解如何向ASP.NET MVC 控制器添加新操作。 瞭解方法為操作的要求。
 ms.author: riande
 ms.date: 03/02/2009
 ms.assetid: c8d93e11-ef78-4a30-afbc-f30419000a60
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/creating-an-action-vb
 msc.type: authoredcontent
-ms.openlocfilehash: b1b53bea899deecef203551b23c087944e3990ab
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: dd651155bdb931cb8358d369b3c0c2c98abb86b2
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78582002"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542244"
 ---
 # <a name="creating-an-action-vb"></a>建立動作 (VB)
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-> 瞭解如何將新動作新增至 ASP.NET MVC 控制器。 瞭解方法的需求是動作。
+> 瞭解如何向ASP.NET MVC 控制器添加新操作。 瞭解方法為操作的要求。
 
-本教學課程的目的是要說明如何建立新的控制器動作。 您會瞭解動作方法的需求。 您也將瞭解如何防止方法公開為動作。
+本教學的目的是解釋如何創建新的控制器操作。 瞭解操作方法的要求。 您還學習如何防止方法作為操作公開。
 
-## <a name="adding-an-action-to-a-controller"></a>將動作新增至控制器
+## <a name="adding-an-action-to-a-controller"></a>新增控制器
 
-您可以藉由將新的方法加入至控制器，將新的動作新增至控制器。 例如，[清單 1] 中的控制器包含名為 Index （）的動作，以及名為 SayHello （）的動作。 這兩種方法都會公開為動作。
+通過將新方法添加到控制器,向控制器添加新操作。 例如,清單 1 中的控制器包含名為 Index() 的操作和名為 SayHello() 的操作。 這兩種方法都公開為操作。
 
-**清單 1-Controllers\HomeController.vb**
+**清單1 - 控制器\主控制器.vb**
 
 [!code-vb[Main](creating-an-action-vb/samples/sample1.vb)]
 
-若要以動作的形式公開至 universe，方法必須符合特定需求：
+為了作為一種行動暴露在宇宙中,一種方法必須滿足某些要求:
 
-- 此方法必須是公用的。
-- 方法不可以是靜態方法。
-- 方法不可以是擴充方法。
-- 方法不可以是函數、getter 或 setter。
-- 方法不能有開放式泛型型別。
-- 方法不是控制器基類的方法。
-- 方法不能包含**ref**或**out**參數。
+- 該方法必須為公共。
+- 該方法不能是靜態方法。
+- 該方法不能是擴充方法。
+- 該方法不能是構造函數、getter 或 setter。
+- 該方法不能具有打開的泛型類型。
+- 該方法不是控制器基類的方法。
+- 該方法不能包含**ref**或**out**參數。
 
-請注意，控制器動作的傳回型別沒有任何限制。 控制器動作可以傳回字串、DateTime、Random 類別的實例，或 void。 ASP.NET MVC 架構會將不是動作結果的任何傳回型別轉換成字串，並將字串轉譯為瀏覽器。
+請注意,對控制器操作的返回類型沒有限制。 控制器操作可以返回字串、DateTime、Random 類的實例或 void。 ASP.NET MVC 框架將任何不是操作結果的傳回類型轉換為字串,並將字串呈現給瀏覽器。
 
-當您將任何不違反這些需求的方法新增至控制器時，該方法會公開為控制器動作。 請注意這裡。 連線到網際網路的任何人都可以叫用控制器動作。 例如，請不要建立 DeleteMyWebsite （）控制器動作。
+將不違反這些要求的任何方法添加到控制器時,該方法將作為控制器操作公開。 這裡要小心。 連接到 Internet 的任何人都可以調用控制器操作。 例如,不要創建"刪除My網站"控制器操作。
 
-## <a name="preventing-a-public-method-from-being-invoked"></a>防止叫用公用方法
+## <a name="preventing-a-public-method-from-being-invoked"></a>防止呼叫公共方法
 
-如果您需要在控制器類別中建立公用方法，而且不想要將方法公開為控制器動作，則可以使用 &lt;請以 nonaction&gt; 屬性來避免叫用方法。 例如，[清單 2] 中的控制器包含名為 CompanySecrets （）的公用方法，它會以 &lt;請以 nonaction&gt; 屬性裝飾。
+如果需要在控制器類中創建公共方法,並且不希望將該方法公開為控制器操作,則可以使用&lt;NonAction&gt;屬性阻止調用該方法。 例如,清單 2 中的控制器包含一個名為「公司機密()」的公共方法,該&lt;方法使用&gt;非操作 屬性進行修飾。
 
-**清單 2-Controllers\WorkController.vb**
+**清單2 - 控制器\工作控制器.vb**
 
 [!code-vb[Main](creating-an-action-vb/samples/sample2.vb)]
 
-如果您嘗試藉由在瀏覽器的網址列中輸入/Work/CompanySecrets 來叫用 CompanySecrets （）控制器動作，則會收到 [圖 1] 中的錯誤訊息。
+如果您嘗試透過在瀏覽器的位址列中鍵入 /Work/公司機密來呼叫公司機密() 控制器操作,則會收到圖 1 中的錯誤訊息。
 
-[![叫用請以 nonaction 方法](creating-an-action-vb/_static/image1.jpg)](creating-an-action-vb/_static/image1.png)
+[![呼叫非操作方法](creating-an-action-vb/_static/image1.jpg)](creating-an-action-vb/_static/image1.png)
 
-**圖 01**：叫用請以 nonaction 方法（[按一下以查看完整大小的影像](creating-an-action-vb/_static/image2.png)）
+**圖 01**:呼叫非操作方法([按下以檢視全尺寸影像](creating-an-action-vb/_static/image2.png))
 
 > [!div class="step-by-step"]
-> [上一頁](creating-a-controller-vb.md)
-> [下一頁](aspnet-mvc-controllers-overview-cs.md)
+> [前一個](creating-a-controller-vb.md)
+> [下一個](aspnet-mvc-controllers-overview-cs.md)

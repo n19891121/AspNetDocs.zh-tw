@@ -1,188 +1,188 @@
 ---
 uid: mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-vb
-title: 使用 LINQ to SQL 建立模型類別（VB） |Microsoft Docs
-author: microsoft
-description: 本教學課程的目的是要說明為 ASP.NET MVC 應用程式建立模型類別的其中一個方法。 在本教學課程中，您將瞭解如何建立模型 c 。
+title: 使用 LINQ 創建模型類到 SQL (VB) |微軟文件
+author: rick-anderson
+description: 本教學的目的是解釋為mVC應用程式創建模型類的方法ASP.NET。 在本教學中,您將瞭解如何建構模型 c...
 ms.author: riande
 ms.date: 10/07/2008
 ms.assetid: a4a25a75-d71f-4509-98b4-df72e748985a
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-vb
 msc.type: authoredcontent
-ms.openlocfilehash: 88a5f1037d93ef3bdc95bf60b6005ebb254ab440
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 1a6133227eedc8934af7bf872532ca667b97d0f8
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78581267"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542699"
 ---
 # <a name="creating-model-classes-with-linq-to-sql-vb"></a>使用 LINQ to SQL 建立模型類別 (VB)
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
 [下載 PDF](https://download.microsoft.com/download/1/1/f/11f721aa-d749-4ed7-bb89-a681b68894e6/ASPNET_MVC_Tutorial_10_VB.pdf)
 
-> 本教學課程的目的是要說明為 ASP.NET MVC 應用程式建立模型類別的其中一個方法。 在本教學課程中，您將瞭解如何建立模型類別，並利用 Microsoft LINQ to SQL 來執行資料庫存取。
+> 本教學的目的是解釋為mVC應用程式創建模型類的方法ASP.NET。 在本教學中,您將瞭解如何利用 Microsoft LINQ 到 SQL 構建模型類並執行資料庫訪問。
 
-本教學課程的目的是要說明為 ASP.NET MVC 應用程式建立模型類別的其中一個方法。 在本教學課程中，您將瞭解如何建立模型類別，並利用 Microsoft LINQ to SQL 來執行資料庫存取。
+本教學的目的是解釋為mVC應用程式創建模型類的方法ASP.NET。 在本教學中,您將瞭解如何利用 Microsoft LINQ 到 SQL 構建模型類並執行資料庫訪問。
 
-在本教學課程中，我們會建立基本的電影資料庫應用程式。 我們一開始會以最快、最簡單的方式建立電影資料庫應用程式。 我們會直接從控制器動作執行所有資料存取。
+在本教程中,我們將構建一個基本的 Movie 資料庫應用程式。 我們從以最快、最簡單的方式創建 Movie 資料庫應用程式開始。 我們直接從控制器操作執行所有數據訪問。
 
-接下來，您將瞭解如何使用存放庫模式。 使用存放庫模式需要執行更多工作。 不過，採用此模式的優點是，它可讓您建立可調整的應用程式，並可輕鬆地進行測試。
+接下來,您將瞭解如何使用儲存庫模式。 使用存儲庫模式需要多一點工作。 但是,採用此模式的優點是,它使您能夠構建能夠適應更改且易於測試的應用程式。
 
-## <a name="what-is-a-model-class"></a>什麼是模型類別？
+## <a name="what-is-a-model-class"></a>什麼是模型類?
 
-MVC 模型包含不包含在 MVC 視圖或 MVC 控制器中的所有應用程式邏輯。 特別是，MVC 模型包含您所有的應用程式商務和資料存取邏輯。
+MVC 模型包含 MVC 檢視或 MVC 控制器中未包含的所有應用程式邏輯。 特別是,MVC 模型包含所有應用程式業務和數據訪問邏輯。
 
-您可以使用各種不同的技術來執行資料存取邏輯。 例如，您可以使用 Microsoft Entity Framework、NHibernate、Subsonic 或 ADO.NET 類別來建立資料存取類別。
+您可以使用各種不同的技術來實現數據存取邏輯。 例如,您可以使用 Microsoft 實體框架、NHibernate、亞音速或 ADO.NET 類構建數據存取類。
 
-在本教學課程中，我使用 LINQ to SQL 來查詢和更新資料庫。 LINQ to SQL 提供與 Microsoft SQL Server 資料庫互動非常簡單的方法。 不過，請務必瞭解，ASP.NET MVC 架構不會以任何方式系結至 LINQ to SQL。 ASP.NET MVC 與任何資料存取技術相容。
+在本教學中,我使用 LINQ 到 SQL 來查詢和更新資料庫。 LINQ 到 SQL 為您提供了一種非常簡單的與 Microsoft SQL Server 資料庫互動的方法。 但是,請務必瞭解,ASP.NET MVC 框架不以任何方式與 LINQ 綁定到 SQL。 ASP.NET MVC 與任何數據訪問技術相容。
 
-## <a name="create-a-movie-database"></a>建立電影資料庫
+## <a name="create-a-movie-database"></a>建立影片資料庫
 
-在本教學課程中，為了說明如何建立模型類別，我們建立了一個簡單的電影資料庫應用程式。 第一個步驟是建立新的資料庫。 在 [方案總管] 視窗中，以滑鼠右鍵按一下應用程式\_[Data] 資料夾，然後選取 [**新增]、[新增專案**] 功能表選項。 選取 [SQL Server 資料庫] 範本，將它命名為 MoviesDB，然後按一下 [**新增**] 按鈕（請參閱 [圖 1]）。
+在本教程中,為了說明如何構建模型類,我們構建了一個簡單的 Movie 資料庫應用程式。 第一步是創建新資料庫。 右鍵單擊解決方案資源管理器\_視窗中的應用數據資料夾,然後選擇功能表選項 **「添加,新專案**」。。 選擇 SQL Server 資料庫範本,給它取名為 MoviesDB.mdf,然後單擊 **「添加**」按鈕(參見圖 1)。
 
-[![加入新的 SQL Server 資料庫](creating-model-classes-with-linq-to-sql-vb/_static/image2.png)](creating-model-classes-with-linq-to-sql-vb/_static/image1.png)
+[![新增 SQL 伺服器資料庫](creating-model-classes-with-linq-to-sql-vb/_static/image2.png)](creating-model-classes-with-linq-to-sql-vb/_static/image1.png)
 
-**圖 01**：加入新的 SQL Server 資料庫（[按一下以觀看完整大小的影像](creating-model-classes-with-linq-to-sql-vb/_static/image3.png)）
+**圖 01**: 新增新的 SQL Server 資料庫 ([按下以檢視全尺寸影像](creating-model-classes-with-linq-to-sql-vb/_static/image3.png))
 
-建立新的資料庫之後，您可以按兩下應用程式\_Data 資料夾中的 MoviesDB，開啟資料庫。 按兩下 [MoviesDB] 檔案會開啟 [伺服器總管] 視窗（請參閱 [圖 2]）。
+創建新資料庫后,可以通過按兩\_下應用 數據資料夾中的 MoviesDB.mdf 檔案來打開資料庫。 按兩下 MoviesDB.mdf 檔將打開伺服器資源管理器視窗(參見圖 2)。
 
-|   | 使用 Visual Web Developer 時，[伺服器總管] 視窗稱為 [資料庫總管] 視窗。 |
+|   | 使用視覺化 Web 開發人員時,伺服器資源管理器視窗稱為資料庫資源管理器視窗。 |
 |---|----------------------------------------------------------------------------------------------------|
 |   |                                                                                                    |
 
-[使用 [伺服器總管] 視窗 ![](creating-model-classes-with-linq-to-sql-vb/_static/image5.png)](creating-model-classes-with-linq-to-sql-vb/_static/image4.png)
+[![使用伺服器資源管理員視窗](creating-model-classes-with-linq-to-sql-vb/_static/image5.png)](creating-model-classes-with-linq-to-sql-vb/_static/image4.png)
 
-**圖 02**：使用 [伺服器總管] 視窗（[按一下以查看完整大小的影像](creating-model-classes-with-linq-to-sql-vb/_static/image6.png)）
+**圖 02**: 使用伺服器資源管理員視窗 ([按下以檢視全尺寸影像](creating-model-classes-with-linq-to-sql-vb/_static/image6.png))
 
-我們需要在代表電影的資料庫中新增一個資料表。 以滑鼠右鍵按一下 [資料表] 資料夾，然後選取 [**加入新的資料表**] 功能表選項。 選取此功能表選項會開啟 資料表設計工具（請參閱 圖 3）。
+我們需要向資料庫中添加一個表示我們電影的表。 右鍵按下「表」資料夾並選擇功能表選項 **「新增新表**」。。 選擇此功能表選項將打開表設計器(參見圖 3)。
 
-[使用 [伺服器總管] 視窗 ![](creating-model-classes-with-linq-to-sql-vb/_static/image8.png)](creating-model-classes-with-linq-to-sql-vb/_static/image7.png)
+[![使用伺服器資源管理員視窗](creating-model-classes-with-linq-to-sql-vb/_static/image8.png)](creating-model-classes-with-linq-to-sql-vb/_static/image7.png)
 
-**圖 03**：資料表設計工具（[按一下以觀看完整大小的影像](creating-model-classes-with-linq-to-sql-vb/_static/image9.png)）
+**圖 03**: 表格設計器 ([按下以檢視全尺寸影像](creating-model-classes-with-linq-to-sql-vb/_static/image9.png))
 
-我們需要將下列資料行加入至資料庫資料表：
+我們需要將以下列新增到資料庫表中:
 
 | **資料行名稱** | **資料類型** | **允許 Null** |
 | --- | --- | --- |
-| ID | Int | False |
-| 標題 | NVarchar （200） | False |
-| 導演 | Nvarchar （50） | False |
+| Id | Int | False |
+| Title | 恩瓦爾查爾 (200) | False |
+| 導演 | 恩瓦爾查爾 (50) | False |
 
-您必須對 [識別碼] 資料行執行兩項特殊動作。 首先，您必須選取 資料表設計工具中的資料行，然後按一下索引鍵的圖示，將 識別碼 資料行標示為 主鍵 資料行。 LINQ to SQL 在對資料庫執行插入或更新時，會要求您指定主鍵資料行。
+您需要對 Id 列執行兩項特殊操作。 首先,您需要通過選擇表設計器中的列並按一下鍵的圖示,將 Id 列標記為主鍵列。 LINQ 到 SQL 要求您在針對資料庫執行插入或更新時指定主鍵列。
 
-接下來，您必須將 Id 資料行標記為識別欄位，方法是將值為 [是]**標識**屬性（請參閱 [圖 3]）。 識別欄位是當您將新的資料列加入資料表時，會自動指派新數位的資料行。
+接下來,您需要通過將值"是"分配給 **"是標識"** 屬性來將 Id 列標記為標識列(參見圖 3)。 標識列是一列,每當向表添加新數據行時,將自動分配新編號。
 
-在您進行這些變更之後，請使用名稱 tblMovie 來儲存資料表。 您可以按一下 [儲存] 按鈕來儲存資料表。
+進行這些更改后,將表與名稱 tblMovie 保存。 您可以通過按下「儲存」按鈕儲存表。
 
-## <a name="create-linq-to-sql-classes"></a>建立 LINQ to SQL 類別
+## <a name="create-linq-to-sql-classes"></a>建立 LINQ 到 SQL 類別
 
-我們的 MVC 模型將包含代表 tblMovie 資料庫資料表的 LINQ to SQL 類別。 建立這些 LINQ to SQL 類別的最簡單方式是以滑鼠右鍵按一下 [模型] 資料夾、選取 [**加入]、[新增專案**]、選取 [LINQ to SQL 類別] 範本、提供名稱為 [Movie] 的類別，然後按一下 [**新增**] 按鈕（請參閱 [圖 4]）。
+我們的 MVC 模型將包含表示 tblMovie 資料庫表的 LINQ 到 SQL 類。 創建這些 LINQ 到 SQL 類的最簡單方法是右鍵按一下「模型」資料夾,選擇 **「新增、新建專案**」,選擇 LINQ 到 SQL 類範本,為類指定名稱 Movie.dbml,然後單擊 **「添加**」按鈕(參見圖 4)。
 
-[建立 LINQ to SQL 類別的 ![](creating-model-classes-with-linq-to-sql-vb/_static/image11.png)](creating-model-classes-with-linq-to-sql-vb/_static/image10.png)
+[![將 LINQ 建立 SQL 類別](creating-model-classes-with-linq-to-sql-vb/_static/image11.png)](creating-model-classes-with-linq-to-sql-vb/_static/image10.png)
 
-**圖 04**：建立 LINQ to SQL 類別（[按一下以查看完整大小的影像](creating-model-classes-with-linq-to-sql-vb/_static/image12.png)）
+**圖 04**: 建立 LINQ 到 SQL 類別 ([按下以檢視全尺寸影像](creating-model-classes-with-linq-to-sql-vb/_static/image12.png))
 
-建立電影 LINQ to SQL 類別之後，就會立即出現物件關聯式設計工具。 您可以將資料庫資料表從 [伺服器總管] 視窗拖曳至 [物件關聯式設計工具]，以建立代表特定資料庫資料表的 LINQ to SQL 類別。 我們需要將 tblMovie 資料庫資料表新增至物件關聯式設計工具（請參閱 [圖 4]）。
+在創建到 SQL 類的影片 LINQ 後,將立即出現對象關係設計器。 您可以將資料庫表從伺服器資源管理器視窗拖動到對象關係設計器上,以創建 LINQ 到表示特定資料庫表的 SQL 類。 我們需要將 tblMovie 資料庫表添加到對象關係設計器上(參見圖 4)。
 
-[使用物件關聯式設計工具 ![](creating-model-classes-with-linq-to-sql-vb/_static/image14.png)](creating-model-classes-with-linq-to-sql-vb/_static/image13.png)
+[![使用物件關係設計器](creating-model-classes-with-linq-to-sql-vb/_static/image14.png)](creating-model-classes-with-linq-to-sql-vb/_static/image13.png)
 
-**圖 05**：使用物件關聯式設計工具（[按一下以觀看完整大小的影像](creating-model-classes-with-linq-to-sql-vb/_static/image15.png)）
+**圖 05**:使用物件關係設計器 ([按下以檢視全尺寸影像](creating-model-classes-with-linq-to-sql-vb/_static/image15.png))
 
-根據預設，物件關聯式設計工具會建立與您拖曳至設計工具的資料庫資料表具有相同名稱的類別。 不過，我們不想要呼叫我們的類別 tblMovie。 因此，請在設計工具中按一下類別的名稱，並將類別的名稱變更為 Movie。
+默認情況下,對象關係設計器創建與拖動到設計器的資料庫表名稱完全相同的類。 但是,我們不想調用我們的類 tblMovie。 因此,單擊設計器中的類的名稱並將類的名稱更改為"Movie"。
 
-最後，請記得按一下 [**儲存**] 按鈕（軟碟的圖片）來儲存 LINQ to SQL 類別。 否則，物件關聯式設計工具不會產生 LINQ to SQL 類別。
+最後,請記住單擊 **「儲存**」按鈕(軟盤的圖片)以將 LINQ 保存到 SQL 類。 否則,對象關係設計器不會生成 LINQ 到 SQL 類。
 
-## <a name="using-linq-to-sql-in-a-controller-action"></a>在控制器動作中使用 LINQ to SQL
+## <a name="using-linq-to-sql-in-a-controller-action"></a>在控制器操作中使用 LINQ 到 SQL
 
-既然我們已經有了 LINQ to SQL 類別，就可以使用這些類別來抓取資料庫中的資料。 在本節中，您將瞭解如何直接在控制器動作內使用 LINQ to SQL 類別。 我們會在 MVC 視圖中顯示來自 tblMovies 資料庫資料表的電影清單。
+現在,我們有了 LINQ 到 SQL 類,我們可以使用這些類從資料庫中檢索數據。 在本節中,您將學習如何直接在控制器操作中使用 LINQ 到 SQL 類。 我們將在 MVC 檢視中顯示 tblMovies 資料庫表中的影片清單。
 
-首先，我們需要修改 HomeController 類別。 您可以在應用程式的 [控制器] 資料夾中找到這個類別。 修改類別，使其看起來像 [清單 1] 中的類別。
+首先,我們需要修改 HomeController 類。 此類可以在應用程式的"控制器"資料夾中找到。 修改類,使其看起來像清單 1 中的類。
 
-**清單1– `Controllers\HomeController.vb`**
+**清單1 |`Controllers\HomeController.vb`**
 
 [!code-vb[Main](creating-model-classes-with-linq-to-sql-vb/samples/sample1.vb)]
 
-[清單 1] 中的 Index （）動作會使用 LINQ to SQL DataCoNtext 類別（MovieDataCoNtext）來代表 MoviesDB 資料庫。 MoveDataCoNtext 類別是由 Visual Studio 物件關聯式設計工具所產生。
+清單 1 中的 Index() 操作使用 LINQ 到 SQL 數據上下文類(MovieDataContext)來表示 MovieDB 資料庫。 MoveDataContext 類由可視化工作室對象關係設計器生成。
 
-會針對 DataCoNtext 執行 LINQ 查詢，以從 tblMovies 資料庫資料表中取出所有電影。 電影清單會指派給名為「電影」的本機變數。 最後，電影清單會透過 view data 傳遞至 view。
+對 DataContext 執行 LINQ 查詢,以便從 tblMovies 資料庫表中檢索所有影片。 影片清單分配給名為影片的本地變數。 最後,影片清單通過檢視數據傳遞到視圖。
 
-為了顯示電影，我們接下來需要修改索引視圖。 您可以在 Views\Home\ 資料夾中找到索引視圖。 更新 [索引] 視圖，使其看起來像 [清單 2] 中的 [視圖]。
+為了顯示影片,我們接下來需要修改索引視圖。 您可以在「檢視」資料夾中找到「索引」檢視。 更新索引檢視,使其看起來像清單 2 中的檢視。
 
-**清單2– `Views\Home\Index.aspx`**
+**清單2 |`Views\Home\Index.aspx`**
 
 [!code-aspx[Main](creating-model-classes-with-linq-to-sql-vb/samples/sample2.aspx)]
 
-請注意，修改過的索引視圖會在視圖頂端包含 &lt;% @ import namespace%&gt; 指示詞。 這個指示詞會匯入 MvcApplication1 命名空間。 我們需要這個命名空間，才能在視圖中使用模型類別（尤其是 Movie 類別）。
+請注意,修改後的索引檢視在檢視頂部&lt;包含 %#&gt;匯入 命名空間 % 指令。 此指令導入 MvcApplication1 命名空間。 我們需要這個命名空間,以便與視圖中的模型類(尤其是 Movie 類)配合使用。
 
-[清單 2] 中的視圖包含 For Each 迴圈，可逐一查看 ViewData 所代表的所有專案。 每個電影都會顯示 [標題] 屬性的值。
+清單 2 中的檢視包含一個 For Each 迴圈,該迴圈迴圈循環通過 ViewData.Model 屬性表示的所有項。 為每個影片顯示"標題"屬性的值。
 
-請注意，ViewData 屬性的值會轉換成 IEnumerable。 這是為了在 ViewData 的內容中進行迴圈的必要動作。 這裡的另一個選項是建立強型別視圖。 當您建立強型別視圖時，會將 ViewData 屬性轉型為視圖的程式碼後置類別中的特定型別。
+請注意,ViewData.Model 屬性的值將轉換為 IE500。 這是必要的,以迴圈流覽ViewData.Model的內容。 此處的另一個選項是創建強類型視圖。 創建強類型視圖時,將ViewData.Model 屬性轉換為視圖的代碼後面類中的特定類型。
 
-如果您在修改 HomeController 類別和索引視圖之後執行應用程式，則會看到空白頁面。 因為 tblMovies 資料庫資料表中沒有電影記錄，所以您會看到空白頁面。
+如果在修改 HomeController 類和索引檢視後運行應用程式,則您將獲得一個空白頁。 您將獲得空白頁,因為 tblMovies 資料庫表中沒有影片記錄。
 
-若要將記錄新增至 tblMovies 資料庫資料表，請以滑鼠右鍵按一下 [伺服器總管] 視窗中的 [tblMovies] 資料庫資料表（Visual Web Developer 中的 [資料庫總管] 視窗），然後選取 [**顯示資料表資料**] 功能表選項。 您可以使用顯示的方格來插入電影記錄（請參閱 [圖 5]）。
+為了將記錄添加到 tblMovies 資料庫表,請右鍵單擊伺服器資源管理器視窗中的 tblMovies 資料庫表(可視化 Web 開發人員中的資料庫資源管理器視窗),然後選擇功能表選項 **「顯示表數據**」。。 您可以使用顯示的網格插入影片記錄(參見圖 5)。
 
-[插入電影 ![](creating-model-classes-with-linq-to-sql-vb/_static/image17.png)](creating-model-classes-with-linq-to-sql-vb/_static/image16.png)
+[![插入影片](creating-model-classes-with-linq-to-sql-vb/_static/image17.png)](creating-model-classes-with-linq-to-sql-vb/_static/image16.png)
 
-**圖 06**：插入電影（[按一下以觀看完整大小的影像](creating-model-classes-with-linq-to-sql-vb/_static/image18.png)）
+**圖 06**: 插入影片([按下以檢視全尺寸影像](creating-model-classes-with-linq-to-sql-vb/_static/image18.png))
 
-在您將一些資料庫記錄新增至 tblMovies 資料表，並執行該應用程式之後，您會在 [圖 7] 中看到該頁面。 所有電影資料庫記錄都會顯示在項目符號清單中。
+將一些資料庫記錄添加到 tblMovies 表並運行應用程式後,您將看到圖 7 中的頁面。 所有影片資料庫記錄都顯示在項目符號清單中。
 
-[![使用索引視圖顯示電影](creating-model-classes-with-linq-to-sql-vb/_static/image20.png)](creating-model-classes-with-linq-to-sql-vb/_static/image19.png)
+[![使用「索引」檢視顯示影片](creating-model-classes-with-linq-to-sql-vb/_static/image20.png)](creating-model-classes-with-linq-to-sql-vb/_static/image19.png)
 
-**圖 07**：使用索引視圖顯示電影（[按一下以觀看完整大小的影像](creating-model-classes-with-linq-to-sql-vb/_static/image21.png)）
+**圖 07**: 顯示有索引檢視的影片([按下以檢視全尺寸影像](creating-model-classes-with-linq-to-sql-vb/_static/image21.png))
 
-## <a name="using-the-repository-pattern"></a>使用存放庫模式
+## <a name="using-the-repository-pattern"></a>使用儲存式庫模式
 
-在上一節中，我們直接使用控制器動作內的 LINQ to SQL 類別。 我們直接從 Index （）控制器動作使用了 MovieDataCoNtext 類別。 在簡單應用程式的情況下，這麼做不會有任何問題。 不過，當您需要建立更複雜的應用程式時，直接使用控制器類別中的 LINQ to SQL 會造成問題。
+在上一節中,我們直接在控制器操作中使用 LINQ 到 SQL 類。 我們直接從索引() 控制器操作中使用 MovieDataContext 類。 在簡單的應用程序的情況下,這樣做沒有錯。 但是,在控制器類中直接使用 LINQ 到 SQL 會在需要構建更複雜的應用程式時出現問題。
 
-在控制器類別內使用 LINQ to SQL，會使未來難以切換資料存取技術。 例如，您可能會決定從使用 Microsoft LINQ to SQL 切換為使用 Microsoft Entity Framework 作為您的資料存取技術。 在這種情況下，您必須重寫應用程式中存取資料庫的每個控制器。
+使用 LINQ 到控制器類中的 SQL 使將來很難切換數據存取技術。 例如,您可能決定從使用 Microsoft LINQ 切換到 SQL,轉而使用 Microsoft 實體框架作為數據存取技術。 在這種情況下,您需要重寫訪問應用程式內資料庫的每個控制器。
 
-在控制器類別內使用 LINQ to SQL 也很容易為您的應用程式建立單元測試。 一般來說，在執行單元測試時，您不會想要與資料庫互動。 您想要使用單元測試來測試您的應用程式邏輯，而不是您的資料庫伺服器。
+在控制器類中使用 LINQ 到 SQL 也會使應用程式生成單元測試變得困難。 通常,在執行單元測試時,您不希望與資料庫進行交互。 您希望使用單元測試來測試應用程式邏輯,而不是資料庫伺服器。
 
-若要建立可更適應未來變更並可更輕鬆測試的 MVC 應用程式，您應該考慮使用存放庫模式。 當您使用儲存機制模式時，會建立個別的儲存機制類別，其中包含您所有的資料庫存取邏輯。
+為了構建一個更適應未來更改且更易於測試的 MVC 應用程式,應考慮使用儲存庫模式。 使用存儲庫模式時,將創建一個單獨的存儲庫類,其中包含所有資料庫訪問邏輯。
 
-當您建立存放庫類別時，您會建立介面來代表存放庫類別所使用的所有方法。 在您的控制器中，您會針對介面（而不是存放庫）撰寫程式碼。 如此一來，您就可以在未來使用不同的資料存取技術來執行存放庫。
+創建存儲庫類時,將創建一個表示存儲庫類使用的所有方法的介面。 在控制器中,您可以根據介面而不是儲存庫編寫代碼。 這樣,將來可以使用不同的數據存取技術實現存儲庫。
 
-[清單 3] 中的介面名為 IMovieRepository，它代表名為 .Listall （）的單一方法。
+清單3中的介面名為 IMovieRepository,它表示名為 ListAll() 的單個方法。
 
-**清單3– `Models\IMovieRepository.vb`**
+**清單3 |`Models\IMovieRepository.vb`**
 
 [!code-vb[Main](creating-model-classes-with-linq-to-sql-vb/samples/sample3.vb)]
 
-[清單 4] 中的存放庫類別會執行 IMovieRepository 介面。 請注意，它包含名為 .Listall （）的方法，它會對應至 IMovieRepository 介面所需的方法。
+清單4中的存儲庫類實現了IMovie存儲庫介面。 請注意,它包含一個名為 ListAll() 的方法,對應於 IMovieRepository 介面所需的方法。
 
-**清單4– `Models\MovieRepository.vb`**
+**清單4 |`Models\MovieRepository.vb`**
 
 [!code-vb[Main](creating-model-classes-with-linq-to-sql-vb/samples/sample4.vb)]
 
-最後，[清單 5] 中的 Moviescontroller.cs 類別會使用存放庫模式。 它不再直接使用 LINQ to SQL 類別。
+最後,清單 5 中的電影控制器類使用儲存庫模式。 它不再直接使用 LINQ 到 SQL 類。
 
-**清單5– `Controllers\MoviesController.vb`**
+**清單5 |`Controllers\MoviesController.vb`**
 
 [!code-vb[Main](creating-model-classes-with-linq-to-sql-vb/samples/sample5.vb)]
 
-請注意，[清單 5] 中的 Moviescontroller.cs 類別有兩個函式。 當您的應用程式正在執行時，會呼叫第一個函式，也就是無參數的函數。 此函式會建立 MovieRepository 類別的實例，並將它傳遞給第二個處理常式。
+請注意,清單 5 中的 MoviesController 類有兩個構造函數。 當應用程式運行時,將調用第一個構造函數,即無參數構造函數。 此構造函數創建 MovieRepository 類的實例並將其傳遞給第二個構造函數。
 
-第二個函式具有單一參數： IMovieRepository 參數。 此函式只會將參數的值指派給名為 \_存放庫的類別層級欄位。
+第二個構造函數具有單個參數:IMovie存儲庫參數。 此建構函數只需將參數的值分配給名為\_存儲庫的類級欄位。
 
-Moviescontroller.cs 類別是利用稱為相依性插入模式的軟體設計模式。 特別是，它會使用稱為「函式相依性插入」的專案。 若要深入瞭解此模式，您可以閱讀下列文章：聖馬丁 Fowler。
+MoviesController 類正在利用稱為依賴項注入模式的軟體設計模式。 特別是,它使用名為構造函數依賴項注入的內容。 使用閱讀馬丁福勒的以下文章,您可以閱讀有關此模式的更多內容:
 
 [http://martinfowler.com/articles/injection.html](http://martinfowler.com/articles/injection.html)
 
-請注意，Moviescontroller.cs 類別中的所有程式碼（除了第一個函式以外）都會與 IMovieRepository 介面互動，而不是實際的 MovieRepository 類別。 程式碼會與抽象介面互動，而不是介面的具體執行。
+請注意,MovieController 類中的所有代碼(第一個構造函數除外)與 IMovieRepository 介面而不是實際的 MovieRepository 類進行交互。 代碼與抽象介面而不是介面的具體實現進行交互。
 
-如果您想要修改應用程式所使用的資料存取技術，則只要使用替代資料庫存取技術的類別，就可以執行 IMovieRepository 介面。 例如，您可以建立 EntityFrameworkMovieRepository 類別或 SubSonicMovieRepository 類別。 因為控制器類別是根據介面進行設計，所以您可以將 IMovieRepository 的新執行傳遞至控制器類別，而類別會繼續工作。
+如果要修改應用程式使用的數據訪問技術,只需使用使用替代資料庫訪問技術的類實現 IMovieRepository 介面即可。 例如,您可以創建實體框架電影存儲庫類或子聲波電影存儲庫類。 由於控制器類是針對介面程式設計的,因此可以將IMovieRepository的新實現傳遞給控制器類,並且該類將繼續工作。
 
-此外，如果您想要測試 Moviescontroller.cs 類別，則可以將假的電影存放庫類別傳遞至 Moviescontroller.cs。 您可以使用不實際存取資料庫的類別來執行 IMovieRepository 類別，但包含 IMovieRepository 介面的所有必要方法。 如此一來，您就可以對 Moviescontroller.cs 類別進行單元測試，而不需要實際存取實際的資料庫。
+此外,如果要測試 MovieController 類,則可以將假影片儲存庫類傳遞給電影控制器。 可以使用一個類實現 IMovieRepository 類,該類實際上不訪問資料庫,但包含 IMovieRepository 介面的所有必需方法。 這樣,您可以單元測試 MoviesController 類,而無需實際訪問實際資料庫。
 
 ## <a name="summary"></a>總結
 
-本教學課程的目的是要示範如何利用 Microsoft LINQ to SQL，來建立 MVC 模型類別。 我們檢查了兩種在 ASP.NET MVC 應用程式中顯示資料庫資料的策略。 首先，我們建立了 LINQ to SQL 類別，並直接在控制器動作中使用類別。 使用控制器內的 LINQ to SQL 類別，可讓您快速且輕鬆地在 MVC 應用程式中顯示資料庫資料。
+本教學的目的是展示如何利用 Microsoft LINQ 到 SQL 來創建 MVC 模型類。 我們研究了在mVC應用程式中顯示資料庫數據的兩種策略ASP.NET。 首先,我們創建了 LINQ 到 SQL 類,並直接在控制器操作中使用這些類。 使用 LINQ 到控制器中的 SQL 類使您能夠在 MVC 應用程式中快速輕鬆地顯示資料庫數據。
 
-接下來，我們探索了稍微比較棘手，但更良性的是顯示資料庫資料的路徑。 我們利用了存放庫模式，並將所有的資料庫存取邏輯放在個別的儲存機制類別中。 在我們的控制器中，我們會針對介面（而不是實體類別）撰寫所有程式碼。 儲存機制模式的優點是，它可讓我們在未來輕鬆地變更資料庫存取技術，讓我們能夠輕鬆地測試控制器類別。
+接下來,我們探索了一條稍微困難但絕對更良性的顯示資料庫數據的途徑。 我們利用了存儲庫模式,將所有資料庫存取邏輯放在一個單獨的儲存庫類中。 在我們的控制器中,我們針對介面而不是具體類編寫了所有代碼。 存儲庫模式的優點是,它使我們能夠在未來輕鬆更改資料庫訪問技術,並使我們能夠輕鬆測試我們的控制器類。
 
 > [!div class="step-by-step"]
-> [上一頁](creating-model-classes-with-the-entity-framework-vb.md)
-> [下一頁](displaying-a-table-of-database-data-vb.md)
+> [前一個](creating-model-classes-with-the-entity-framework-vb.md)
+> [下一個](displaying-a-table-of-database-data-vb.md)

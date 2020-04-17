@@ -1,92 +1,92 @@
 ---
 uid: mvc/overview/older-versions-1/security/authenticating-users-with-windows-authentication-cs
-title: 使用 Windows 驗證驗證使用者（C#） |Microsoft Docs
-author: microsoft
-description: 瞭解如何在 MVC 應用程式的內容中使用 Windows 驗證。 您將瞭解如何在應用程式的 web co 中啟用 Windows 驗證 。
+title: 使用 Windows 身份驗證 (C#) 對使用者進行身份驗證 |微軟文件
+author: rick-anderson
+description: 瞭解如何在 MVC 應用程式的上下文中使用 Windows 身份驗證。 您將瞭解如何在應用程式的 Web 身份驗證中開啟 Windows 身份認證...
 ms.author: riande
 ms.date: 01/27/2009
 ms.assetid: 418bb07e-f369-4119-b4b0-08f890f7abb2
 msc.legacyurl: /mvc/overview/older-versions-1/security/authenticating-users-with-windows-authentication-cs
 msc.type: authoredcontent
-ms.openlocfilehash: bb3909bff2791c15a8737fc12cac69f79b55733f
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: fb6ba3d52d7c70d61c6aa16b4ada67cc6bdd4f96
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78624121"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81540736"
 ---
 # <a name="authenticating-users-with-windows-authentication-c"></a>使用 Windows 驗證驗證使用者 (C#)
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-> 瞭解如何在 MVC 應用程式的內容中使用 Windows 驗證。 您將瞭解如何在應用程式的 web 設定檔中啟用 Windows 驗證，以及如何使用 IIS 設定驗證。 最後，您將瞭解如何使用 [授權] 屬性來限制對特定 Windows 使用者或群組的控制器動作存取。
+> 瞭解如何在 MVC 應用程式的上下文中使用 Windows 身份驗證。 您將瞭解如何在應用程式的 Web 設定檔中啟用 Windows 身份驗證,以及如何使用 IIS 設定身份驗證。 最後,您將瞭解如何使用 [授權] 屬性將控制器操作的存取限制為特定的 Windows 使用者或組。
 
-本教學課程的目的是要說明如何利用內建在 Internet Information Services 中的安全性功能，來保護 MVC 應用程式中的 views。 您將瞭解如何允許只有特定 Windows 使用者或特定 Windows 群組成員的使用者，才可以叫用控制器動作。
+本教學的目的是說明如何利用 Internet 資訊服務中內置的安全功能來密碼保護 MVC 應用程式中的視圖。 您將瞭解如何僅允許特定 Windows 使用者或屬於特定 Windows 組的成員的使用者呼叫控制器操作。
 
-當您要建立內部公司網站（內部網路網站），而且想要讓使用者能夠在存取網站時使用其標準 Windows 使用者名稱和密碼時，使用 Windows 驗證就很有意義。 如果您要建立向外面向網站（網際網路網站），請考慮改用表單驗證。
+當您構建內部公司網站(Intranet 網站)並希望使用者在瀏覽網站時能夠使用其標準 Windows 使用者名和密碼時,使用 Windows 身份驗證是有意義的。 如果您正在構建面向外的網站(Internet 網站),請考慮改用表單身份驗證。
 
-#### <a name="enabling-windows-authentication"></a>啟用 Windows 驗證
+#### <a name="enabling-windows-authentication"></a>開啟 Windows 認證
 
-當您建立新的 ASP.NET MVC 應用程式時，預設不會啟用 Windows 驗證。 表單驗證是針對 MVC 應用程式啟用的預設驗證類型。 您必須藉由修改 MVC 應用程式的 web 設定（web.config）檔案來啟用 Windows 驗證。 尋找 &lt;authentication&gt; 區段，並將它修改為使用 Windows，而不是像這樣的表單驗證：
+創建新ASP.NET MVC 應用程式時,預設情況下不會啟用Windows身份驗證。 表單身份驗證是為 MVC 應用程式啟用的預設身份驗證類型。 必須透過修改 MVC 應用程式的 Web 設定 (Web.config) 檔來啟用 Windows 身份驗證。 尋找&lt;認證&gt;管理系統並進行修改以使用 Windows 而不是窗體身份驗證,如下所示:
 
 [!code-xml[Main](authenticating-users-with-windows-authentication-cs/samples/sample1.xml)]
 
-當您啟用 Windows 驗證時，您的網頁伺服器會負責驗證使用者。 一般來說，您在建立和部署 ASP.NET MVC 應用程式時，會使用兩種不同類型的 web 伺服器。
+啟用 Windows 身份驗證後,Web 伺服器將負責對使用者進行身份驗證。 通常,在創建和部署ASP.NET MVC 應用程式時,可以使用兩種不同類型的 Web 伺服器。
 
-首先，在開發 MVC 應用程式時，您會使用 Visual Studio 隨附的 ASP.NET 開發 Web 服務器。 根據預設，ASP.NET 開發 Web 服務器會執行目前 Windows 帳戶（您用來登入 Windows 的任何帳戶）內容中的所有頁面。
+首先,在開發 MVC 應用程式時,您可以使用 Visual Studio 附帶的 ASP.NET 開發 Web 伺服器。 默認情況下,ASP.NET開發 Web 伺服器在當前 Windows 帳戶(用於登錄到 Windows 的任何帳戶)的上下文中執行所有頁面。
 
-ASP.NET 開發網頁伺服器也支援 NTLM 驗證。 以滑鼠右鍵按一下 [方案總管] 視窗中的專案名稱，然後選取 [屬性]，即可啟用 NTLM 驗證。 接下來，選取 [Web] 索引標籤並勾選 [NTLM] 核取方塊（請參閱 [圖 1]）。
+ASP.NET開發 Web 伺服器還支援 NTLM 身份驗證。 您可以透過在解決方案資源管理器視窗中右鍵單擊專案名稱並選擇「屬性」來啟用 NTLM 身份驗證。 接下來,選擇 Web 選項卡並選中 NTLM 複選框(參見圖 1)。
 
-**圖1–為 ASP.NET 開發 Web 服務器啟用 NTLM 驗證**
+**圖 1 = 為 ASP.NET 開發 Web 伺服器啟用 NTLM 身份驗證**
 
 ![clip_image002](authenticating-users-with-windows-authentication-cs/_static/image1.jpg)
 
-對於生產 web 應用程式，您可以使用 IIS 做為 web 伺服器。 IIS 支援數種類型的驗證，包括：
+對於生產 Web 應用程式,使用 IIS 作為 Web 伺服器。 IIS 支援多種類型的身份驗證,包括:
 
-- 基本驗證–定義為 HTTP 1.0 通訊協定的一部分。 以純文字（Base64 編碼）傳送網際網路上的使用者名稱和密碼。 -摘要式驗證–透過網際網路傳送密碼雜湊，而不是密碼本身。 -整合式 Windows （NTLM）驗證–使用 Windows 在內部網路環境中使用的最佳驗證類型。 -憑證驗證–使用用戶端憑證來啟用驗證。 憑證會對應至 Windows 使用者帳戶。
+- 基本身份驗證 – 定義為 HTTP1.0 協定的一部分。 在 Internet 上以明文(Base64 編碼)發送使用者名稱和密碼。 - 摘要身份驗證 – 通過互聯網發送密碼的哈希值,而不是密碼本身。 - 整合的 Windows (NTLM) 身份驗證 – 使用視窗在 Intranet 環境中使用的最佳身份驗證類型。 - 憑證身份驗證 – 使用用戶端證書啟用身份驗證。 證書映射到 Windows 使用者帳戶。
 
 > [!NOTE] 
 > 
-> 如需這些不同驗證類型的詳細總覽，請參閱[https://msdn.microsoft.com/library/aa292114(VS.71).aspx](https://msdn.microsoft.com/library/aa292114(VS.71).aspx)。
+> 有關這些不同類型的身份驗證的更詳細概述,請參閱[https://msdn.microsoft.com/library/aa292114(VS.71).aspx](https://msdn.microsoft.com/library/aa292114(VS.71).aspx)。
 
-您可以使用 Internet Information Services 管理員來啟用特定類型的驗證。 請注意，所有類型的驗證在每個作業系統的情況下都不適用。 此外，如果您將 IIS 7.0 與 Windows Vista 搭配使用，您必須先啟用不同類型的 Windows 驗證，才會出現在 Internet Information Services 管理員中。 開啟 [**控制台]、[程式]、[程式和功能]、[開啟或關閉 Windows 功能**]，然後展開 [Internet Information Services] 節點（請參閱 [圖 2]）。
+您可以使用 Internet 資訊服務管理器啟用特定類型的身份驗證。 請注意,對於每個操作系統,所有類型的身份驗證都不可用。 此外,如果您將 IIS 7.0 與 Windows Vista 一起使用,則需要在 Internet 資訊服務管理器中顯示不同類型的 Windows 身份驗證之前啟用這些身份驗證。 打開**控制面板、程式、程式和功能,打開或關閉 Windows 功能**,並展開 Internet 資訊服務節點(參見圖 2)。
 
-**[圖 2]-啟用 Windows IIS 功能**
+**圖 2 = 啟用 Windows IIS 功能**
 
 ![clip_image004](authenticating-users-with-windows-authentication-cs/_static/image2.jpg)
 
-使用 Internet Information Services，您可以啟用或停用不同類型的驗證。 例如，[圖 3] 說明如何停用匿名驗證，並在使用 IIS 7.0 時啟用整合式 Windows （NTLM）驗證。
+使用 Internet 資訊服務,您可以啟用或禁用不同類型的身份驗證。 例如,圖 3 演示了在使用 IIS 7.0 時禁用匿名身份驗證和啟用集成 Windows (NTLM) 身份驗證。
 
-**[圖 3]-啟用整合式 Windows 驗證**
+**圖 3 = 啟用整合 Windows 認證**
 
 ![clip_image006](authenticating-users-with-windows-authentication-cs/_static/image3.jpg)
 
 #### <a name="authorizing-windows-users-and-groups"></a>授權 Windows 使用者和群組
 
-啟用 Windows 驗證之後，您可以使用 [授權] 屬性來控制控制器或控制器動作的存取權。 這個屬性可以套用至整個 MVC 控制器或特定的控制器動作。
+啟用 Windows 身份驗證後,可以使用 [授權] 屬性來控制對控制器或控制器操作的訪問。 此屬性可以應用於整個 MVC 控制器或特定控制器操作。
 
-例如，[清單 1] 中的 Home 控制器會公開名為 Index （）、CompanySecrets （）和 StephenSecrets （）的三個動作。 任何人都可以叫用 Index （）動作。 不過，只有 Windows 本機管理員群組的成員可以叫用 CompanySecrets （）動作。 最後，只有名為 Stephen （位於 Redmond 網域）的 Windows 網域使用者，才能夠叫用 StephenSecrets （）動作。
+例如,清單 1 中的主頁控制器公開了名為 Index()、公司機密()和 StephenSecrets() 的三個操作。 任何人都可以調用 Index() 操作。 但是,只有 Windows 本地經理組的成員才能調用公司機密()操作。 最後,只有名為 Stephen 的 Windows 功能變數使用者(在雷德蒙德域中)才能調用 StephenSecrets() 操作。
 
-**清單1– Controllers\HomeController.cs**
+**清單1 = 控制器\主控制器.cs**
 
 [!code-csharp[Main](authenticating-users-with-windows-authentication-cs/samples/sample2.cs)]
 
 > [!NOTE] 
 > 
-> 由於 Windows 使用者帳戶控制（UAC），在使用 Windows Vista 或 Windows Server 2008 時，本機系統管理員群組的行為會與其他群組不同。 除非您修改電腦的 UAC 設定，否則 [授權] 屬性將不會正確辨識本機 Administrators 群組的成員。
+> 由於 Windows 使用者帳戶控制 (UAC),使用 Windows Vista 或 Windows 伺服器 2008 時,本地管理員組的行為將不同於其他組。 除非修改電腦的 UAC 設定,否則 [授權] 屬性將無法正確識別本地管理員組的成員。
 
-當您嘗試叫用控制器動作而不是正確的許可權時，會發生什麼事，視啟用的驗證類型而定。 根據預設，使用 ASP.NET 程式開發伺服器時，您只會看到空白頁面。 此頁面提供**401 未授權**的 HTTP 回應狀態。
+當您嘗試調用控制器操作而不具有正確的許可權時,具體會發生什麼情況取決於啟用的身份驗證類型。 默認情況下,當使用ASP.NET開發伺服器時,只需獲得一個空白頁。 該頁面提供**401 未授權**HTTP 回應狀態。
 
-另一方面，如果您使用的 IIS 已停用匿名驗證，且已啟用基本驗證，則每次要求受保護的頁面時，都會持續取得登入對話方塊提示（請參閱 [圖 4]）。
+另一方面,如果您使用的 IIS 禁用了匿名身份驗證並啟用了基本身份驗證,則每次請求受保護頁面時,您都會不斷收到登錄對話方塊提示(參見圖 4)。
 
-**[圖 4]-基本驗證登入對話方塊**
+**圖 4 = 基本身份驗證登入對話框**
 
 ![clip_image008](authenticating-users-with-windows-authentication-cs/_static/image4.jpg)
 
 #### <a name="summary"></a>總結
 
-本教學課程會說明如何在 ASP.NET MVC 應用程式的內容中使用 Windows 驗證。 您已瞭解如何在應用程式的 web 設定檔中啟用 Windows 驗證，以及如何使用 IIS 設定驗證。 最後，您已瞭解如何使用 [授權] 屬性來限制對特定 Windows 使用者或群組的控制器動作存取。
+本教程介紹了如何在ASP.NET MVC 應用程式的上下文中使用Windows身份驗證。 您學習了如何在應用程式的 Web 設定檔中啟用 Windows 身份驗證,以及如何使用 IIS 設定身份驗證。 最後,您學習了如何使用 [授權] 屬性將控制器操作的存取限制為特定的 Windows 使用者或組。
 
 > [!div class="step-by-step"]
-> [上一頁](authenticating-users-with-forms-authentication-cs.md)
-> [下一頁](preventing-javascript-injection-attacks-cs.md)
+> [前一個](authenticating-users-with-forms-authentication-cs.md)
+> [下一個](preventing-javascript-injection-attacks-cs.md)

@@ -1,28 +1,28 @@
 ---
 uid: web-pages/index
-title: ASP.NET Web Pages |Microsoft Docs
+title: ASP.NET網頁 |微軟文件
 author: rick-anderson
-description: 下載 WebMatrix & 瞭解如何以輕量的方式快速建立網頁，以結合伺服器程式碼與 HTML。
+description: 下載 WebMatrix &了解如何以轻量级方式快速构建网页,以將伺服器代碼與 HTML 相結合。
 ms.author: riande
 ms.date: 05/18/2012
 ms.assetid: 5418ba96-ff49-4a43-9cbb-09dea4949d23
 msc.legacyurl: /web-pages
 msc.type: categoryindex
-ms.openlocfilehash: 56bf82e22b3562893ef842a90d42aa7b6ff5858f
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: d767325a376e5daa0ea4236f67c88e6b97ae71a7
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78640949"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543518"
 ---
 # <a name="aspnet-web-pages"></a>ASP.NET Web Pages
 
 > [!NOTE] 
-> 不再建議使用 WebMatrix 做為 ASP.NET Web Pages 的整合式開發環境。 使用[Visual Studio](xref:aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio)或[Visual Studio Code](https://code.visualstudio.com/)。
+> 不再建議將 WebMatrix 作為 ASP.NET 網頁的整合式開發環境。 使用[視覺工作室](xref:web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio)或[視覺工作室代碼](https://code.visualstudio.com/)。
 
 - [指引](overview/index.md)
 
-    - [使用者入門](overview/getting-started/index.md)
+    - [快速入門](overview/getting-started/index.md)
 
         - [在 Visual Studio 中撰寫 ASP.NET Web Pages 程式](overview/getting-started/program-asp-net-web-pages-in-visual-studio.md)
         - [ASP.NET Web 程式設計 Razor 語法簡介](overview/getting-started/introducing-razor-syntax-c.md)
@@ -32,7 +32,7 @@ ms.locfileid: "78640949"
         - [將社交網路新增至您的網站](overview/getting-started/13-adding-social-networking-to-your-web-site.md)
         - [ASP.NET Web Pages 簡介](overview/getting-started/introducing-aspnet-web-pages-2/index.md)
 
-            - [使用者入門](overview/getting-started/introducing-aspnet-web-pages-2/getting-started.md)
+            - [快速入門](overview/getting-started/introducing-aspnet-web-pages-2/getting-started.md)
             - [程式設計基礎](overview/getting-started/introducing-aspnet-web-pages-2/intro-to-web-pages-programming.md)
             - [顯示資料](overview/getting-started/introducing-aspnet-web-pages-2/displaying-data.md)
             - [HTML 表單基本概念](overview/getting-started/introducing-aspnet-web-pages-2/form-basics.md)
@@ -41,7 +41,7 @@ ms.locfileid: "78640949"
             - [刪除資料庫資料](overview/getting-started/introducing-aspnet-web-pages-2/deleting-data.md)
             - [建立一致的版面配置](overview/getting-started/introducing-aspnet-web-pages-2/layouts.md)
             - [使用 WebMatrix 發佈網站](overview/getting-started/introducing-aspnet-web-pages-2/publishing.md)
-    - [路由傳送](overview/routing/index.md)
+    - [路由](overview/routing/index.md)
 
         - [在 ASP.NET Web Pages 網站中建立可讀取的 URL](overview/routing/creating-readable-urls-in-aspnet-web-pages-sites.md)
     - [UI、版面配置和佈景主題](overview/ui-layouts-and-themes/index.md)
@@ -56,19 +56,19 @@ ms.locfileid: "78640949"
         - [安裝協助程式](overview/ui-layouts-and-themes/installing-helpers.md)
         - [Twitter 協助程式與 ASP.NET Web Pages](overview/ui-layouts-and-themes/twitter-helper.md)
         - [在 ASP.NET Web Pages 網站中顯示地圖](overview/ui-layouts-and-themes/displaying-maps-in-an-aspnet-web-pages-site.md)
-    - [行動裝置](overview/mobile/index.md)
+    - [行動電話](overview/mobile/index.md)
 
         - [為行動裝置轉譯 ASP.NET Web Pages 網站](overview/mobile/rendering-aspnet-web-pages-sites-for-mobile-devices.md)
     - [使用資料](overview/data/index.md)
 
         - [使用資料](overview/data/5-working-with-data.md)
         - [以圖表顯示資料](overview/data/7-displaying-data-in-a-chart.md)
-        - [使用檔案](overview/data/working-with-files.md)
-    - [測試和偵錯](overview/testing-and-debugging/index.md)
+        - [處理檔案](overview/data/working-with-files.md)
+    - [測試並除錯](overview/testing-and-debugging/index.md)
 
         - [偵錯簡介](overview/testing-and-debugging/introduction-to-debugging.md)
         - [ASP.NET Web Pages (Razor) 疑難排解指南](overview/testing-and-debugging/aspnet-web-pages-razor-troubleshooting-guide.md)
-    - [Security](overview/security/index.md)
+    - [安全性](overview/security/index.md)
 
         - [新增安全性及成員資格](overview/security/16-adding-security-and-membership.md)
         - [在 ASP.NET Web Pages 網站中啟用外部網站的登入](overview/security/enabling-login-from-external-sites-in-an-aspnet-web-pages-site.md)
@@ -81,7 +81,7 @@ ms.locfileid: "78640949"
     - [API 參考](overview/api-reference/index.md)
 
         - [ASP.NET API 快速參考](overview/api-reference/asp-net-web-pages-api-reference.md)
-    - [發行](overview/releases/index.md)
+    - [版次](overview/releases/index.md)
 
         - [ASP.NET Web Pages 3.2 的新功能](overview/releases/whats-new-in-aspnet-web-pages-32.md)
         - [ASP.NET Web Pages 3.1 的新功能](overview/releases/whats-new-aspnet-web-pages-31.md)
@@ -102,26 +102,26 @@ ms.locfileid: "78640949"
         - [在 WebMatrix 中建立編輯資料頁面](videos/introduction/create-an-edit-data-page-in-webmatrix.md)
         - [在 WebMatrix 中建立刪除資料頁面](videos/introduction/create-a-delete-data-page-in-webmatrix.md)
         - [使用 WebMatrix 將網站發佈至網際網路](videos/introduction/publish-a-website-to-the-internet-using-webmatrix.md)
-    - [ASP.NET Razor Pages](videos/aspnet-razor-pages/index.md)
+    - [ASP.NET剃刀頁面](videos/aspnet-razor-pages/index.md)
 
         - [開始使用 WebMatrix 及 ASP.NET 網頁](videos/aspnet-razor-pages/getting-started-with-webmatrix-and-aspnet-web-pages.md)
         - [ASP.NET Web 程式設計 Razor 語法簡介](videos/aspnet-razor-pages/introduction-to-aspnet-web-programming-using-the-razor-syntax.md)
-        - [建立一致的外觀 (第 1 節)](videos/aspnet-razor-pages/creating-a-consistent-look-part-1.md)
+        - [建立一致的外觀 (第 1 部分)](videos/aspnet-razor-pages/creating-a-consistent-look-part-1.md)
         - [建立一致的外觀 (第 2 節)](videos/aspnet-razor-pages/creating-a-consistent-look-part-2.md)
         - [使用表單 (第 1 節)](videos/aspnet-razor-pages/working-with-forms-part-1.md)
-        - [使用表單 (第 2 節)](videos/aspnet-razor-pages/working-with-forms-part-2.md)
+        - [使用表單 (第 2 部分)](videos/aspnet-razor-pages/working-with-forms-part-2.md)
         - [使用資料 (第 1 節)](videos/aspnet-razor-pages/working-with-data-part-1.md)
-        - [使用資料 (第 2 節)](videos/aspnet-razor-pages/working-with-data-part-2.md)
+        - [使用資料 (第 2 部分)](videos/aspnet-razor-pages/working-with-data-part-2.md)
         - [以網格顯示資料](videos/aspnet-razor-pages/displaying-data-in-a-grid.md)
-        - [以圖表顯示資料 (第 1 節)](videos/aspnet-razor-pages/displaying-data-in-a-chart-part-1.md)
-        - [以圖表顯示資料 (第 2 節)](videos/aspnet-razor-pages/displaying-data-in-a-chart-part-2.md)
-        - [使用檔案](videos/aspnet-razor-pages/working-with-files.md)
+        - [以圖表顯示資料 (第 1 部分)](videos/aspnet-razor-pages/displaying-data-in-a-chart-part-1.md)
+        - [以圖表顯示資料 (第 2 部分)](videos/aspnet-razor-pages/displaying-data-in-a-chart-part-2.md)
+        - [處理檔案](videos/aspnet-razor-pages/working-with-files.md)
         - [使用影像](videos/aspnet-razor-pages/working-with-images.md)
         - [使用影片](videos/aspnet-razor-pages/working-with-video.md)
         - [將電子郵件新增到您的網站](videos/aspnet-razor-pages/adding-email-to-your-web-site.md)
         - [將搜尋新增到您的網站](videos/aspnet-razor-pages/adding-search-to-your-web-site.md)
         - [將社交網路新增至您的網站](videos/aspnet-razor-pages/adding-social-networking-to-your-website.md)
-- [Pluralsight 提供的 WebMatrix 和網頁訓練影片](pluralsight.md)
+- [Pluralsight 提供的 WebMatrix 與網頁訓練影片](pluralsight.md)
 - [WebMatrix 讀我檔案](readme/index.md)
 
     - [WebMatrix 讀我檔案](readme/overview.md)

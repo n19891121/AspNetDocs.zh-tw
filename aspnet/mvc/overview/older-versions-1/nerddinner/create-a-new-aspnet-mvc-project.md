@@ -1,137 +1,137 @@
 ---
 uid: mvc/overview/older-versions-1/nerddinner/create-a-new-aspnet-mvc-project
-title: 建立新的 ASP.NET MVC 專案 |Microsoft Docs
-author: microsoft
-description: 步驟1顯示如何將基本 NerdDinner 應用程式結構放在原處。
+title: 建立新ASP.NET MVC 專案 |微軟文件
+author: rick-anderson
+description: 步驟 1 演示如何將基本的 NerdDinner 應用程式結構放在原位。
 ms.author: riande
 ms.date: 07/27/2010
 ms.assetid: 7e0e9928-8fdc-4b74-9882-55fac0976628
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/create-a-new-aspnet-mvc-project
 msc.type: authoredcontent
-ms.openlocfilehash: 189ddc187fc83db14106b2da199ba12a70a32b45
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 240c8a04cec3c07f434182775d1c519aab029761
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78580931"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81541477"
 ---
 # <a name="create-a-new-aspnet-mvc-project"></a>建立新的 ASP.NET MVC 專案
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
 [下載 PDF](http://aspnetmvcbook.s3.amazonaws.com/aspnetmvc-nerdinner_v1.pdf)
 
-> 這是免費「 [NerdDinner」應用程式教學](introducing-the-nerddinner-tutorial.md)課程的步驟1，逐步解說如何使用 ASP.NET MVC 1 建立一個小型但完整的 web 應用程式。
+> 這是一個免費的[「NerdDinner」應用程式教程](introducing-the-nerddinner-tutorial.md)的第 1 步,該教學示範如何使用 ASP.NET MVC 1 構建小型但完整的 Web 應用程式。
 > 
-> 步驟1顯示如何將基本 NerdDinner 應用程式結構放在原處。
+> 步驟 1 演示如何將基本的 NerdDinner 應用程式結構放在原位。
 > 
-> 如果您使用 ASP.NET MVC 3，建議您遵循[使用 mvc 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md)或[mvc 音樂存放](../../older-versions/mvc-music-store/mvc-music-store-part-1.md)教學課程的消費者入門。
+> 如果您使用的是ASP.NET MVC 3,我們建議您按照[MVC 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md)或[MVC 音樂商店](../../older-versions/mvc-music-store/mvc-music-store-part-1.md)教程進行操作。
 
-## <a name="nerddinner-step-1-file-gtnew-project"></a>NerdDinner 步驟1：檔案&gt;新專案
+## <a name="nerddinner-step-1-file-gtnew-project"></a>神經晚餐步驟 1:&gt;檔案 - 新項目
 
-我們會在 Visual Studio 2008 或免費的 Visual Web Developer 2008 Express 中選取檔案 **&gt;[新增專案**] 功能表項目，以開始我們的 NerdDinner 應用程式。
+我們將透過在 Visual Studio 2008 或免費的可視化 Web 開發人員 2008 Express 中選擇 **「檔-&gt;新專案**」功能表項來開始我們的NerdDinner應用程式。
 
-這會顯示 [新增專案] 對話方塊。 若要建立新的 ASP.NET MVC 應用程式，我們會選取對話方塊左側的 [Web] 節點，然後選擇右側的 [ASP.NET MVC Web 應用程式] 專案範本：
+這將彈出"新專案"對話框。 要建立新ASP.NET MVC 應用程式,我們將選擇對話框左側的「Web」節點,然後在右側選擇「ASP.NET MVC Web 應用程式」專案範本:
 
 ![](create-a-new-aspnet-mvc-project/_static/image1.png)
 
-*重要事項：請確定您已下載並安裝 ASP.NET MVC，否則它不會顯示在 [新增專案] 對話方塊中。如果您尚未安裝[Microsoft Web Platform Installer](https://www.microsoft.com/web/downloads/platform.aspx) ，您可以使用 V2 （ASP.NET MVC 可在「Web 平臺-&gt;架構和執行時間」一節中取得）。*
+*重要提示:請確保已下載並安裝 ASP.NET MVC - 否則它不會顯示在「新項目」對話框中。如果您尚未安裝[Microsoft Web 平臺安裝程式](https://www.microsoft.com/web/downloads/platform.aspx)的 V2(ASP.NET MVC 在"Web 平臺-&gt;框架和運行時"部分中可用)。*
 
-我們會將新專案命名為 "NerdDinner"，然後按一下 [確定] 按鈕加以建立。
+我們將命名要創建「NerdDinner」的新項目,然後單擊「確定」按鈕創建它。
 
-當我們按下 [Visual Studio 確定] 時，會出現一個額外的對話方塊，提示我們選擇性地為新的應用程式建立單元測試專案。 這個單元測試專案可讓我們建立自動化的測試，以驗證應用程式的功能和行為（我們將在本教學課程稍後討論的內容）。
+當我們按下「OK」Visual Studio 時,將彈出一個附加對話框,提示我們為新應用程式選擇創建單元測試專案。 此單元測試專案使我們能夠創建自動測試,以驗證應用程式的功能和行為(本教程稍後將介紹如何操作)。
 
 ![](create-a-new-aspnet-mvc-project/_static/image2.png)
 
-上述對話方塊中的 [測試架構] 下拉式清單會填入電腦上安裝的所有可用 ASP.NET MVC 單元測試專案範本。 您可以下載 NUnit、MBUnit 和 XUnit 的版本。 此外，也支援內建的 Visual Studio 單元測試架構。
+上面對話方塊中的「測試框架」下拉清單填充了所有可用的ASP.NET MVC 單元測試專案範本安裝在電腦上。 可以為 NUnit、MBUnit 和 XUnit 下載版本。 還支援內置的可視化工作室單元測試框架。
 
-*注意： Visual Studio 單元測試架構僅適用于 Visual Studio 2008 Professional 和更新版本。如果您使用 VS 2008 Standard Edition 或 Visual Web Developer 2008 Express，您將需要下載並安裝 ASP.NET MVC 的 NUnit、MBUnit 或 XUnit 擴充功能，才能顯示此對話方塊。如果未安裝任何測試架構，則不會顯示對話方塊。*
+*注意:可視化工作室單元測試框架僅適用於 Visual Studio 2008 專業版和更高版本。如果您使用的是 VS 2008 標準版或可視化 Web 開發人員 2008 Express,則需要下載並安裝 nUnit、MBUnit 或 XUnit 擴展,以便 ASP.NET MVC 才能顯示此對話方塊。如果沒有安裝任何測試框架,將不會顯示該對話方塊。*
 
-我們會針對我們所建立的測試專案使用預設的「NerdDinner」名稱，並使用「Visual Studio 單元測試」架構選項。 當我們按一下 [確定] 按鈕時 Visual Studio 會為我們建立一個解決方案，其中包含兩個專案，一個用於我們的 web 應用程式，一個用於我們的單元測試：
+我們將為我們創建的測試專案使用預設的「NerdDinner.Test」名稱,並使用「視覺化工作室單元測試」框架選項。 當我們點擊「ok」按鈕 Visual Studio 將為我們建立一個解決方案,其中包含兩個專案 - 一個用於我們的 Web 應用程式,一個用於我們的單元測試:
 
 ![](create-a-new-aspnet-mvc-project/_static/image3.png)
 
 ### <a name="examining-the-nerddinner-directory-structure"></a>檢查 NerdDinner 目錄結構
 
-當您使用 Visual Studio 建立新的 ASP.NET MVC 應用程式時，它會自動將一些檔案和目錄新增至專案：
+當您使用 Visual Studio 建立新 ASP.NET MVC 應用程式時,它會自動向專案新增許多檔案和目錄:
 
 ![](create-a-new-aspnet-mvc-project/_static/image4.png)
 
-ASP.NET MVC 專案預設會有六個最上層目錄：
+預設的項目上ASP.NET MVC 專案有六個頂級目錄:
 
 | **目錄** | **目的** |
 | --- | --- |
-| **/Controllers** | 放置處理 URL 要求的控制器類別的位置 |
-| **/Models** | 在其中放置代表和運算元據的類別 |
-| **/Views** | 放置負責轉譯輸出的 UI 範本檔案的位置 |
-| **/Scripts** | 放置 JavaScript 程式庫檔案和腳本的位置（.js） |
-| **/Content** | 放置 CSS 和影像檔案的位置，以及其他非動態/非 JavaScript 內容 |
-| **/App\_資料** | 儲存您想要讀取/寫入的資料檔案的位置。 |
+| **/控制器** | 放置處理網址 要求的控制器類別的位置 |
+| **/型號** | 放置並操作資料的類別的位置 |
+| **/檢視** | 設定設定輸出的 UI 樣本檔案的位置 |
+| **/文稿** | 放置 JavaScript 函式庫檔案與文稿的位置 (.js) |
+| **/內容** | 放置 CSS 與影像檔以及其他非動態/非 JavaScript 內容的位置 |
+| **/應用程式\_資料** | 儲存要讀取/寫入的資料檔的位置。 |
 
-ASP.NET MVC 不需要此結構。 事實上，處理大型應用程式的開發人員通常會在多個專案之間分割應用程式，使其更容易管理（例如：資料模型類別通常會從 web 應用程式移至不同的類別庫專案）。 不過，預設的專案結構的確提供了一個不錯的預設目錄慣例，可讓我們用來將應用程式的顧慮保持乾淨。
+ASP.NET MVC 不需要此結構。 事實上,處理大型應用程式的開發人員通常會跨多個專案對應用程式進行分區,使其更易於管理(例如:資料模型類通常位於與 Web 應用程式不同的類庫專案中)。 但是,默認專案結構確實提供了一個不錯的默認目錄約定,我們可以用它來保持應用程序問題清潔。
 
-當我們展開/Controllers 目錄時，我們會發現 Visual Studio 新增了兩個控制器類別– HomeController 和 AccountController –預設為專案：
+當我們展開 /控制器目錄時,我們會發現 Visual Studio 預設為專案添加了兩個控制器類 - 主控制器和帳戶控制器:
 
 ![](create-a-new-aspnet-mvc-project/_static/image5.png)
 
-當我們展開/Views 目錄時，我們會發現三個子目錄（/Home、/Account 和/Shared），而且它們內的數個範本檔案也會依預設新增至專案：
+當我們展開 /Views 目錄時,我們會發現三個子目錄 - /Home,//帳戶和 /共用 - 以及其中的幾個範本檔也添加到專案中,默認情況下:
 
 ![](create-a-new-aspnet-mvc-project/_static/image6.png)
 
-當我們展開/Content 和/Scripts 目錄時，我們會發現一個網站 .css 檔案，該檔案用來為網站上的所有 HTML 樣式，以及可在應用程式內啟用 ASP.NET AJAX 和 jQuery 支援的 JavaScript 程式庫：
+當我們展開 /內容和 /script 檔:
 
 ![](create-a-new-aspnet-mvc-project/_static/image7.png)
 
-當我們展開 [NerdDinner] 專案時，我們會發現兩個類別，其中包含控制器類別的單元測試：
+當我們擴展NerdDinner.測試專案時,我們將找到兩個類,其中包含控制器類的單元測試:
 
 ![](create-a-new-aspnet-mvc-project/_static/image8.png)
 
-Visual Studio 新增的這些預設檔案，會為我們提供一個基本結構，讓應用程式得以完成，其中包含首頁、[關於] 頁面、帳戶登入/登出/註冊頁面，以及未處理的錯誤頁面（所有的有線和作用中）。
+Visual Studio 添加的這些預設檔為我們提供了工作應用程式的基本結構 - 完整的主頁,關於頁面,帳戶登錄/註銷/註冊頁,和未處理的錯誤頁面(所有有線和開箱即用)。
 
-### <a name="running-the-nerddinner-application"></a>執行 NerdDinner 應用程式
+### <a name="running-the-nerddinner-application"></a>執行內德晚餐應用程式
 
-我們可以藉由選擇 [ **debug-&gt;] [開始調試**程式] 或 [ **Debug-&gt;啟動但不調試**] 功能表項目來執行專案：
+我們可以通過選擇**除錯&gt;- 啟動除錯**或**除錯 -&gt;不除錯選單項目**執行專案:
 
 ![](create-a-new-aspnet-mvc-project/_static/image9.png)
 
-這會啟動 Visual Studio 隨附的內建 ASP.NET Web 服務器，並執行我們的應用程式：
+這會啟動 Visual Studio 附帶的內建ASP.NET Web 伺服器,並執行我們的應用程式:
 
 ![](create-a-new-aspnet-mvc-project/_static/image10.png)
 
-以下是新專案（URL： "/"）執行時的首頁：
+以下是我們新專案的主頁(URL:"/")運行時:
 
 ![](create-a-new-aspnet-mvc-project/_static/image11.png)
 
-按一下 [關於] 索引標籤會顯示 [關於] 頁面（URL： "/Home/About"）：
+按下「關於」選項卡將顯示一個有關頁面(URL:"/主頁/關於"):
 
 ![](create-a-new-aspnet-mvc-project/_static/image12.png)
 
-按一下右上角的 [登入] 連結，會將我們帶到登入頁面（URL： "/Account/LogOn"）
+按下右上角的「登錄」連結將我們帶到登錄頁面(URL:"/帳戶/登錄")
 
 ![](create-a-new-aspnet-mvc-project/_static/image13.png)
 
-如果沒有登入帳戶，我們可以按一下 [註冊] 連結（URL： "/Account/Register"）來建立一個：
+如果我們沒有登錄帳戶,我們可以單擊註冊連結(URL:"/帳戶/註冊")創建一個:
 
 ![](create-a-new-aspnet-mvc-project/_static/image14.png)
 
-當我們建立新專案時，預設會新增執行上述 [首頁]、[關於] 和 [登出/註冊] 功能的程式碼。 我們將使用它做為應用程式的起點。
+在創建新專案時,默認情況下添加了實現上述主頁、關於和註銷/寄存器功能的代碼。 我們將使用它作為應用程式的起點。
 
-### <a name="testing-the-nerddinner-application"></a>測試 NerdDinner 應用程式
+### <a name="testing-the-nerddinner-application"></a>測試內德晚餐應用程式
 
-如果我們使用 Professional Edition 或更高版本的 Visual Studio 2008，我們可以在 Visual Studio 中使用內建的單元測試 IDE 支援來測試專案：
+如果我們使用 Visual Studio 2008 的專業版或更高版本,我們可以在 Visual Studio 中使用內置單元測試 IDE 支援來測試專案:
 
 ![](create-a-new-aspnet-mvc-project/_static/image15.png)
 
-選擇上述其中一個選項，將會在 IDE 中開啟 [測試結果] 窗格，並在涵蓋內建功能的新專案中所包含的27個單元測試上提供「通過/失敗」狀態：
+選擇上述選項之一將在 IDE 中開啟「測試結果」窗格,並在新專案中包含的 27 個單元測試中提供通過/失敗狀態,這些測試涵蓋內置功能:
 
 ![](create-a-new-aspnet-mvc-project/_static/image16.png)
 
-稍後在本教學課程中，我們將詳細討論自動化測試，並加入涵蓋我們所實行之應用程式功能的其他單元測試。
+在本教程的後面部分,我們將介紹有關自動測試的更多資訊,並添加其他單元測試,這些測試涵蓋了我們實現的應用程式功能。
 
 ### <a name="next-step"></a>後續步驟
 
-我們現在已具備基本的應用程式結構。 現在讓我們[建立資料庫來儲存我們的應用程式資料](create-a-database.md)。
+現在,我們已經有了一個基本的應用程序結構。 現在,讓我們[建立資料庫來儲存我們的應用程式資料](create-a-database.md)。
 
 > [!div class="step-by-step"]
-> [上一頁](introducing-the-nerddinner-tutorial.md)
-> [下一頁](create-a-database.md)
+> [前一個](introducing-the-nerddinner-tutorial.md)
+> [下一個](create-a-database.md)

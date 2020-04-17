@@ -1,302 +1,302 @@
 ---
 uid: mvc/overview/older-versions-1/nerddinner/use-controllers-and-views-to-implement-a-listingdetails-ui
-title: 使用控制器和 Views 來執行清單/詳細資料 UI |Microsoft Docs
-author: microsoft
-description: 步驟4顯示如何將控制器新增至應用程式，利用我們的模型為使用者提供資料清單/詳細導覽體驗 。
+title: 使用控制器和檢視實現清單/詳細資訊 UI |微軟文件
+author: rick-anderson
+description: 步驟 4 展示如何向應用程式添加控制器,該應用程式利用我們的模型為使用者提供數據清單/詳細資訊導航體驗...
 ms.author: riande
 ms.date: 07/27/2010
 ms.assetid: 64116e56-1c9a-4f07-8097-bb36cbb6e57f
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/use-controllers-and-views-to-implement-a-listingdetails-ui
 msc.type: authoredcontent
-ms.openlocfilehash: 74319fe5ea4c79b50140834349e2fdf86420cfbb
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 49c7dc977477a4edbfcfc68b166ae7ea3fa22f2a
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78600741"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81541308"
 ---
 # <a name="use-controllers-and-views-to-implement-a-listingdetails-ui"></a>使用控制器和檢視來實作清單/詳細資料 UI
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
 [下載 PDF](http://aspnetmvcbook.s3.amazonaws.com/aspnetmvc-nerdinner_v1.pdf)
 
-> 這是免費「 [NerdDinner」應用程式教學](introducing-the-nerddinner-tutorial.md)課程的步驟4，逐步解說如何使用 ASP.NET MVC 1 建立一個小型但完整的 web 應用程式。
+> 這是一個免費的[「NerdDinner」應用程式教程](introducing-the-nerddinner-tutorial.md)的第4步,它介紹了如何使用 ASP.NETmVC 1構建小型但完整的Web應用程式。
 > 
-> 步驟4顯示如何將控制器新增至應用程式，以利用我們的模型在我們的 NerdDinner 網站上為使用者提供 dinners 的資料列/詳細導覽體驗。
+> 步驟 4 演示如何向應用程式添加控制器,該應用程式利用我們的模型為使用者提供在 NerdDinner 網站上晚餐的數據列表/詳細資訊導航體驗。
 > 
-> 如果您使用 ASP.NET MVC 3，建議您遵循[使用 mvc 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md)或[mvc 音樂存放](../../older-versions/mvc-music-store/mvc-music-store-part-1.md)教學課程的消費者入門。
+> 如果您使用的是ASP.NET MVC 3,我們建議您按照[MVC 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md)或[MVC 音樂商店](../../older-versions/mvc-music-store/mvc-music-store-part-1.md)教程進行操作。
 
-## <a name="nerddinner-step-4-controllers-and-views"></a>NerdDinner 步驟4：控制器和 Views
+## <a name="nerddinner-step-4-controllers-and-views"></a>神經晚餐步驟 4:控制器和檢視
 
-使用傳統的 web 架構（傳統 ASP、PHP、ASP.NET Web form 等等）時，連入 Url 通常會對應到磁片上的檔案。 例如： "/Products.aspx" 或 "/Products.php" 等 URL 的要求可能會由 "Products" 或 "Products. php" 檔案處理。
+對於傳統的 Web 框架(經典 ASP、PHP、ASP.NET Web 窗體等),傳入 URL 通常映射到磁碟上的檔。 例如:諸如"/Products.aspx"或"/Products.php"這樣的 URL 請求可能由"Products.aspx"或"Products.php"檔處理。
 
-以 Web 為基礎的 MVC 架構會以稍有不同的方式將 Url 對應至伺服器程式碼。 與其將傳入 Url 對應至檔案，它們會改為將 Url 對應至類別上的方法。 這些類別稱為「控制器」，負責處理傳入 HTTP 要求、處理使用者輸入、抓取和儲存資料，以及判斷要傳回給用戶端的回應（顯示 HTML、下載檔案、重新導向至不同的URL 等）。
+基於 Web 的 MVC 框架以略有不同的方式將 URL 映射到伺服器代碼。 它們不是將傳入 URL 映射到檔,而是將 URL 映射到類上的方法。 這些類稱為"控制器",它們負責處理傳入的 HTTP 請求、處理使用者輸入、檢索和保存數據以及確定要發送回用戶端的回應(顯示 HTML、下載檔、重定向到其他 URL 等)。
 
-既然我們已為 NerdDinner 應用程式建立基本模型，下一步就是將控制器新增至應用程式，利用它來為使用者提供 Dinners 在我們網站上的資料列/詳細導覽體驗。
+現在,我們已經為我們的NerdDinner應用程式建立了基本模型,我們的下一步將是向應用程式添加一個控制器,利用它為使用者提供我們網站上的 Dinner 的數據列表/詳細資訊導航體驗。
 
-### <a name="adding-a-dinnerscontroller-controller"></a>新增 DinnersController 控制器
+### <a name="adding-a-dinnerscontroller-controller"></a>新增晚餐控制器控制器
 
-首先，以滑鼠右鍵按一下 Web 專案中的 [控制器] 資料夾，然後選取 [**新增&gt;控制器**] 功能表命令（您也可以輸入 Ctrl-M、ctrl-c 來執行此命令）：
+我們將從右鍵單擊 Web 專案中的「控制器」資料夾開始,然後選擇 **「新增-&gt;控制器」** 選單命令(您也可以通過鍵入 Ctrl-M、Ctrl-C 來執行此指令):
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image1.png)
 
-這會顯示 [新增控制器] 對話方塊：
+這會彈出「新增控制器」對話框:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image2.png)
 
-我們會將新的控制器命名為 "DinnersController"，然後按一下 [新增] 按鈕。 Visual Studio 接著會在 \Controllers 目錄下新增 DinnersController.cs 檔案：
+我們將命名新的控制器「DinnersController」,然後單擊「添加」按鈕。 然後,Visual Studio 將在我們的 @控制器目錄下添加DinnersController.cs檔:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image3.png)
 
-它也會在程式碼編輯器中開啟新的 DinnersController 類別。
+它還將在代碼編輯器中打開新的 DinnersController 類。
 
-### <a name="adding-index-and-details-action-methods-to-the-dinnerscontroller-class"></a>將 Index （）和 Details （）動作方法加入至 DinnersController 類別
+### <a name="adding-index-and-details-action-methods-to-the-dinnerscontroller-class"></a>新增一個晚餐控制器類別
 
-我們想要讓訪客使用我們的應用程式流覽即將推出的 dinners 清單，並允許他們按一下清單中的任何晚餐，以查看其相關特定的詳細資料。 我們將從我們的應用程式發佈下列 Url 來完成這項操作：
+我們希望讓使用我們的應用程式的訪問者流覽即將舉辦的晚宴清單,並允許他們點擊清單中的任何晚餐以查看有關此晚餐的具體細節。 我們將透過發佈應用程式的以下網址執行此操作:
 
 | **URL** | **目的** |
 | --- | --- |
-| */Dinners/* | 顯示即將推出的 dinners HTML 清單 |
-| */Dinners/Details/[識別碼]* | 顯示在 URL 中內嵌的「識別碼」參數所指示之特定晚餐的詳細資料–這會符合資料庫中晚餐的 DinnerID。 例如：/Dinners/Details/2 會顯示 HTML 頁面，其中包含其 DinnerID 值為2之晚餐的詳細資料。 |
+| */晚餐/* | 顯示即將來臨的晚宴的 HTML 清單 |
+| */晚餐/詳情/[id]* | 顯示網址 中嵌入的「id」參數指示的特定晚餐的詳細資訊, 這將與資料庫中的晚餐 ID 匹配。 例如:/Dinners/詳細資訊/2 將顯示一個 HTML 頁面,其中詳細介紹了晚餐 ID 值為 2 的晚餐。 |
 
-我們會將兩個公用的「動作方法」新增至我們的 DinnersController 類別，以發佈這些 Url 的初始執行，如下所示：
+我們將通過向 DinnersController 類中添加兩種公共「操作方法」來發佈這些 URL 的初始實現,如下所示:
 
 [!code-csharp[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample1.cs)]
 
-接著，我們會執行 NerdDinner 應用程式，並使用我們的瀏覽器來叫用它們。 在 *"/Dinners/"* URL 中輸入會導致我們的*Index （）* 方法執行，並傳回下列回應：
+然後,我們將運行NerdDinner應用程式,並使用我們的瀏覽器來調用它們。 鍵入 *「/Dinners/」URL*將導致我們的*Index()* 方法執行,並且它將發送回以下回應:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image4.png)
 
-輸入 *"/Dinners/Details/2"* URL 會導致我們的*Details （）* 方法執行，並傳回下列回應：
+鍵入 *"/晚餐/詳細資訊/2"URL*將導致運行*我們的詳細資訊()* 方法,併發送回以下回應:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image5.png)
 
-您可能會想： ASP.NET MVC 如何知道如何建立 DinnersController 類別並叫用這些方法？ 若要瞭解這一點，讓我們快速查看路由的運作方式。
+您可能想知道 - ASP.NET MVC 如何知道創建我們的 DinnersController 類並調用這些方法? 為了理解這一點,讓我們快速瞭解路由的工作原理。
 
-### <a name="understanding-aspnet-mvc-routing"></a>瞭解 ASP.NET MVC 路由
+### <a name="understanding-aspnet-mvc-routing"></a>瞭解ASP.NET MVC 路由
 
-ASP.NET MVC 包含強大的 URL 路由引擎，可提供很大的彈性來控制 Url 對應至控制器類別的方式。 它可讓我們完全自訂 ASP.NET MVC 如何選擇要建立的控制器類別、要在其上叫用的方法，以及設定變數可以從 URL/Querystring 自動剖析並當做參數引數傳遞至方法的不同方式。 它提供彈性來完全優化 SEO 的網站（搜尋引擎優化），並從應用程式發佈所需的任何 URL 結構。
+ASP.NET MVC 包含強大的 URL 路由引擎,在控制 URL 如何映射到控制器類方面提供了很大的靈活性。 它允許我們完全自定義ASP.NET MVC 如何選擇要建立的控制器類、調用哪種方法,以及配置不同的方式,以便變數可以從 URL/Querystring 自動解析並傳遞給方法作為參數參數。 它提供了靈活性,完全優化了SEO網站(搜尋引擎優化),以及發佈任何我們想要從應用程式。
 
-根據預設，新的 ASP.NET MVC 專案會隨附一組預先設定的 URL 路由規則已註冊。 這可讓我們輕鬆地開始使用應用程式，而不需要明確地設定任何專案。 您可以在專案的 [應用程式] 類別中找到預設的路由規則註冊，我們可以按兩下專案根目錄中的 "global.asax" 檔案來開啟它：
+默認情況下,新的ASP.NET MVC 專案附帶一組已註冊的 URL 路由規則。 這使我們能夠輕鬆啟動應用程式,而無需顯式配置任何內容。 預設路由規則註冊可以在專案的「應用程式」類別中找到, 我們可以透過按兩下專案根目錄中的「Global.asax」檔案來開啟:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image6.png)
 
-預設 ASP.NET MVC 路由規則會在此類別的 "RegisterRoutes" 方法中註冊：
+預設ASP.NET MVC 路由規則在此類的「註冊路由」方法中註冊:
 
 [!code-csharp[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample2.cs)]
 
-「路由」。上述的 Maproute.html （） "方法呼叫會註冊預設路由規則，其會使用 URL 格式將傳入 Url 對應至控制器類別："/{controller}/{action}/{id} "–其中" controller "是要具現化的控制器類別名稱，" action "是要在其上叫用之公用方法的名稱，而" id "是內嵌在 URL 內的選擇性參數，可當做引數傳遞給方法。 傳遞至 "Maproute.html （）" 方法呼叫的第三個參數是一組預設值，如果它們不存在於 URL 中（控制器 = "Home"，Action = "Index"，Id = ""），就會在控制器/動作/識別碼的值中使用。
+"路線。上面的 MapRoute()方法調用註冊了一個預設路由規則,該規則使用 URL 格式將傳入 URL 映射到控制器類:"//{控制器}/{{{操作}/{id}" - 其中"控制器"是要實例化的控制器類的名稱,"操作"是要調用它的公共方法的名稱,"id"是嵌入在 URL 中的可選參數,可以作為參數傳遞給該方法。 傳遞給"MapRoute()"方法調用的第三個參數是一組預設值,用於在 URL 中不存在的控制器/操作/id 值(控制器 = "Home",操作 ="索引",Id=")。
 
-以下表格示範如何使用預設的 "<em>/{controllers}/{action}/{id}"</em>路由規則來對應各種 url：
+下面是一個表,演示如何使用預設的<em>"//控制器\/{操作}/{id}"</em>路由規則映射各種 URL:
 
-| **URL** | **控制器類別** | **動作方法** | **傳遞的參數** |
+| **URL** | **控制器類** | **動作方法** | **傳遞的參數** |
 | --- | --- | --- | --- |
-| */Dinners/Details/2* | DinnersController | 詳細資料（識別碼） | 識別碼 = 2 |
-| */Dinners/Edit/5* | DinnersController | 編輯（id） | 識別碼 = 5 |
-| */Dinners/Create* | DinnersController | Create() | N/A |
-| */Dinners* | DinnersController | Index （） | N/A |
-| */Home* | HomeController | Index （） | N/A |
-| */* | HomeController | Index （） | N/A |
+| */晚餐/細節/2* | 晚餐控制器 | 詳細資訊(ID) | id=2 |
+| */晚餐/編輯/5* | 晚餐控制器 | 編輯(ID) | id=5 |
+| */晚餐/創建* | 晚餐控制器 | Create() | N/A |
+| */晚餐* | 晚餐控制器 | 索引() | N/A |
+| */首頁* | 家用控制器 | 索引() | N/A |
+| */* | 家用控制器 | 索引() | N/A |
 
-最後三個數據列會顯示使用的預設值（控制器 = Home，Action = Index，Id = ""）。 因為 "Index" 方法已註冊為預設動作名稱（如果未指定），所以 "/Dinners" 和 "/Home" Url 會使 Index （）動作方法在其控制器類別上叫用。 因為 "Home" 控制器已註冊為預設控制器（如果未指定），所以 "/" URL 會導致建立 HomeController，並在其上叫用 Index （）動作方法。
+最後三行顯示正在使用的預設值(控制器 = 主頁、操作 + 索引、ID ="")。 由於「Index」方法註冊為預設操作名稱(如果未指定),因此「/Dinners」和「/home」URL 會導致在其控制器類上調用 Index() 操作方法。 由於"Home"控制器在未指定時註冊為預設控制器,因此"/" URL會導致創建 HomeController,並調用其上的索引() 操作方法。
 
-如果您不喜歡這些預設的 URL 路由規則，好消息是可以輕鬆地進行變更，只要在上面的 RegisterRoutes 方法中編輯它們即可。 不過，針對我們的 NerdDinner 應用程式，我們不會變更任何預設的 URL 路由規則，而是改為直接使用它們。
+如果您不喜歡這些預設 URL 路由規則,好消息是它們很容易更改 - 只需在上面的註冊路由方法中編輯它們即可。 但是,對於我們的NerdDinner應用程式,我們不會更改任何預設URL路由規則,而只是將它們作為本操作使用。
 
-### <a name="using-the-dinnerrepository-from-our-dinnerscontroller"></a>從我們的 DinnersController 使用 DinnerRepository
+### <a name="using-the-dinnerrepository-from-our-dinnerscontroller"></a>使用我們的晚餐控制器的晚餐儲存庫
 
-現在讓我們將 DinnersController 的 Index （）和 Details （）動作方法的目前執行，取代為使用我們模型的程式。
+現在,讓我們用使用我們的模型的實現替換當前對 DinnersController Index() 和詳細資訊()操作方法的實現。
 
-我們將使用稍早建立的 DinnerRepository 類別來執行此行為。 首先，我們會新增一個參考 "NerdDinner" 命名空間的 "using" 語句，然後在 DinnerController 類別上宣告 DinnerRepository 的實例作為欄位。
+我們將使用之前構建的 DinnerRepository 類來實現該行為。 我們將首先添加一個"使用"語句,該語句引用"NerdDinner.Model"命名空間,然後聲明我們的 DinnerRepository 的實例作為 DinnerController 類上的字段。
 
-我們將在本章稍後介紹「相依性插入」的概念，並顯示另一種方式，讓我們的控制器取得對 DinnerRepository 的參考，以進行更好的單元測試，但現在我們只會建立 DinnerRepository 的實例。內嵌，如下所示。
+在本章的後面部分,我們將介紹"依賴注入"的概念,並展示我們的控制器獲取對 DinnerRepository 的引用的另一種方法,該存儲庫可實現更好的單元測試 -但現在,我們將創建一個類似於下面的 DinnerRepository 內聯實例。
 
 [!code-csharp[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample3.cs)]
 
-現在，我們已準備好使用我們抓取的資料模型物件來產生 HTML 回應。
+現在,我們準備使用檢索到的數據模型物件生成 HTML 回應。
 
-### <a name="using-views-with-our-controller"></a>搭配我們的控制器使用 Views
+### <a name="using-views-with-our-controller"></a>將檢視與我們的控制器一起使用
 
-雖然您可以在動作方法中撰寫程式碼來組合 HTML，然後使用*Response （）* helper 方法將它傳回給用戶端，但該方法會變得相當難以處理。 更好的方法是讓我們只在 DinnersController 動作方法內執行應用程式和資料邏輯，然後將呈現 HTML 回應所需的資料傳遞至個別的「view」範本，以負責輸出 HTML 標記法其中的。 如我們稍後所見，「view」範本是一個文字檔，通常包含 HTML 標籤和內嵌呈現程式碼的組合。
+雖然可以在我們的操作方法中編寫代碼來組裝 HTML,然後使用*Response.Write()* 説明器方法將其發送回用戶端,但這種方法很快就會變得相當笨拙。 更好的方法是,我們只能在 DinnersController 操作方法中執行應用程式和數據邏輯,然後將呈現 HTML 回應所需的數據傳遞給負責提供其 HTML 表示的單獨"視圖"範本。 正如我們在一瞬間看到的,"視圖"範本是一個文字檔,通常包含 HTML 標記和嵌入呈現代碼的組合。
 
-將我們的控制器邏輯與我們的視圖轉譯分開，可提供數個大優勢。 特別是，這有助於在應用程式代碼和 UI 格式設定/轉譯程式碼之間，強制執行明確的「關注點分離」。 這可讓您更輕鬆地對應用程式邏輯進行單元測試，而不受 UI 轉譯邏輯的隔離。 這可讓您更輕鬆地修改 UI 轉譯範本，而不需要變更應用程式程式碼。 而且它可以讓開發人員和設計人員更輕鬆地在專案上共同作業。
+將控制器邏輯與視圖渲染分離帶來了幾個大好處。 特別是,它有助於在應用程式代碼和UI格式/呈現代碼之間強制實施明確的"關注點分離"。 這使得與 UI 呈現邏輯隔離的單元測試應用程式邏輯變得更加容易。 它便於以後修改 UI 呈現範本,而無需更改應用程式代碼。 而且,它可以使開發人員和設計人員更輕鬆地在專案上協作。
 
-我們可以更新 DinnersController 類別，以指出我們想要使用視圖範本來傳回 HTML UI 回應，方法是變更兩個動作方法的方法簽章，使其傳回型別為 "void"，而改用 "ActionResult" 的傳回型別。 然後，我們可以在控制器基類上呼叫*View （）* helper 方法，傳回 "ViewResult" 物件，如下所示：
+我們可以更新 DinnersController 類,以指示我們希望使用視圖範本發送回 HTML UI 回應,方法是將兩種操作方法的方法簽名從返回類型的"void"改為"ActionResult"。" 然後,我們可以調用控制器基類上的*View()* 幫助器方法返回如下所示的「ViewResult」物件:
 
 [!code-csharp[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample4.cs)]
 
-我們在上面使用的*View （）* helper 方法的簽章如下所示：
+我們在上面使用的*View()* 説明器方法的簽名如下所示:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image7.png)
 
-*View （）* helper 方法的第一個參數是我們想要用來呈現 HTML 回應的視圖範本檔案名。 第二個參數是模型物件，其中包含視圖範本所需的資料，以便呈現 HTML 回應。
+*View()* 説明程式方法的第一個參數是我們要用於呈現 HTML 回應的檢視範本檔的名稱。 第二個參數是一個模型物件,其中包含檢視範本為呈現 HTML 回應所需的數據。
 
-在我們的 Index （）動作方法中，我們會呼叫*View （）* helper 方法，並指出我們想要使用「索引」視圖範本來呈現 DINNERS 的 HTML 清單。 我們會傳遞一個晚餐物件序列給此視圖範本，以產生下列清單：
+在我們的 Index() 操作方法中,我們調用*View()* 説明器方法,並指示我們希望使用"Index"視圖範本呈現晚餐的 HTML 清單。 我們正在傳遞檢視範本一系列 Dinner 物件,以便從以下角度生成清單:
 
 [!code-csharp[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample5.cs)]
 
-在我們的 Details （）動作方法中，我們嘗試使用 URL 中提供的識別碼來抓取晚餐物件。 如果找到有效的晚餐，我們會呼叫*View （）* 協助程式方法，表示我們想要使用「詳細資料」視圖範本來呈現抓取的晚餐物件。 如果要求的晚餐無效，我們會轉譯一個有用的錯誤訊息，指出晚餐不是使用 "NotFound" view 範本（和只接受範本名稱的*view （）* helper 方法的多載版本）：
+在我們的「詳細資訊」操作方法中,我們嘗試使用 URL 中提供的 ID 檢索 Dinner 物件。 如果找到有效的"晚餐",我們調用*View()* 説明器方法,指示我們要使用"詳細資訊"視圖範本來呈現檢索到的 Dinner 物件。 如果請求無效的晚餐,我們會呈現一條有用的錯誤消息,指示使用"NotFound"視圖範本(以及僅採用範本名稱的*View()* 幫助器方法的重載版本不存在 Dinner:
 
 [!code-csharp[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample6.cs)]
 
-現在讓我們來執行「NotFound」、「Details」和「Index」視圖範本。
+現在,讓我們實現"未找到"、"詳細資訊"和"索引"視圖範本。
 
-### <a name="implementing-the-notfound-view-template"></a>執行 "NotFound" View 範本
+### <a name="implementing-the-notfound-view-template"></a>實作「未找到」檢視範本
 
-我們一開始會先執行「NotFound」視圖範本，這會顯示一個易記的錯誤訊息，指出找不到所要求的晚餐。
+我們將首先實現"NotFound"視圖範本 -它顯示一條友好的錯誤消息,指示找不到請求的晚餐。
 
-我們會建立新的 view 範本，方法是將文字游標放在控制器動作方法中，然後以滑鼠右鍵按一下並選擇 [新增視圖] 功能表命令（我們也可以輸入 Ctrl-M、Ctrl-c 來執行此命令）：
+我們將通過在控制器操作方法中定位文本游標來創建新的檢視範本,然後右鍵按一下並選擇「新增檢視」選單命令(我們還可以通過鍵入 Ctrl-M、Ctrl-V 來執行此命令):
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image8.png)
 
-這會顯示 [新增視圖] 對話方塊，如下所示。 根據預設，對話方塊會預先填入要建立的視圖名稱，以符合在啟動對話時游標所在的動作方法名稱（在此案例中為「詳細資料」）。 因為我們想要先執行「NotFound」範本，所以我們將覆寫此視圖名稱，並將它設定為「NotFound」：
+這將彈出一個"添加視圖"對話框,如下所示。 預設情況下,對話方塊將預填充創建檢視的名稱,以匹配啟動對話框時光標所採用的操作方法的名稱(在本例中為"詳細資訊")。 由於我們想要首先實現「未找到」範本,我們將重寫此檢視名稱並將其設置為「未找到」:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image9.png)
 
-當我們按一下 [新增] 按鈕時，Visual Studio 會在 "\Views\Dinners" 目錄中為我們建立新的 "NotFound" 視圖範本（如果目錄不存在，也會建立）：
+按下「添加」按鈕時,Visual Studio 將在「_Views_Dinners」目錄中為我們創建新的「NotFound.aspx」檢視範本(如果目錄不存在,它還會創建該範本):
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image10.png)
 
-它也會在程式碼編輯器中開啟新的「NotFound .aspx」視圖範本：
+它還將在代碼編輯器中打開我們新的「NotFound.aspx」檢視範本:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image11.png)
 
-根據預設，視圖範本有兩個「內容區域」，我們可以在其中新增內容和程式碼。 第一個可讓我們自訂送回之 HTML 網頁的「標題」。 第二個可讓我們自訂送回之 HTML 網頁的「主要內容」。
+默認情況下,查看範本有兩個"內容區域",我們可以在其中添加內容和代碼。 第一個允許我們自定義發回的 HTML 頁面的"標題" 第二個允許我們自定義發回的 HTML 頁面的「主要內容」。
 
-若要執行我們的「NotFound」視圖範本，我們將新增一些基本內容：
+要實現我們的「未找到」檢視範本,我們將添加一些基本內容:
 
 [!code-aspx[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample7.aspx)]
 
-然後，我們可以在瀏覽器內試用它。 若要這麼做，讓我們要求 *"/Dinners/Details/9999"* URL。 這會參考目前不存在於資料庫中的晚餐，並會導致我們的 DinnersController （）動作方法呈現我們的 "NotFound" 視圖範本：
+然後,我們可以在瀏覽器中試用。 為此,讓我們請求 *"/晚餐/詳細資訊/9999"URL。* 這將引用資料庫中當前不存在的晚餐,並導致我們的 DinnersController.詳細資訊() 操作方法呈現我們的「未找到」檢視範本:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image12.png)
 
-您在上面的螢幕擷取畫面中會注意到的一件事，就是我們的「基本觀點」範本繼承了一堆圍繞螢幕上主要內容的 HTML。 這是因為我們的視圖範本使用「主版頁面」範本，可讓我們在網站上的所有視圖中套用一致的版面配置。 我們將在本教學課程稍後的部分討論主版頁面的工作方式。
+在上面的螢幕截圖中,您會注意到一件事,那就是我們的基本檢視範本繼承了一堆環繞螢幕上主要內容的 HTML。 這是因為我們的檢視範本使用「母版頁」樣本,使我們能夠在網站上的所有視圖上應用一致的佈局。 我們將在本教程的後續部分討論母版頁如何工作。
 
-### <a name="implementing-the-details-view-template"></a>執行「詳細資料」視圖範本
+### <a name="implementing-the-details-view-template"></a>實作「詳細資訊」檢視範本
 
-現在，讓我們來執行「詳細資料」視圖範本，這會針對單一晚餐模型產生 HTML。
+現在,讓我們實現「詳細資訊」檢視範本, 它將為單個晚餐模型生成 HTML。
 
-若要這麼做，請將文字游標放在詳細資料動作方法中，然後以滑鼠右鍵按一下並選擇 [加入視圖] 功能表命令（或按下 Ctrl-M、Ctrl + V）：
+我們將通過將文字游標定位到「詳細資訊」操作方法中,然後右鍵單擊並選擇「添加檢視」選單命令(或按 Ctrl-M,Ctrl-V) 來執行此操作:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image13.png)
 
-這會顯示 [新增視圖] 對話方塊。 我們會保留預設的視圖名稱（「詳細資料」）。 我們也會選取對話方塊中的 [建立強型別視圖] 核取方塊，然後選取（使用 combobox 下拉式清單）我們從控制器傳遞至視圖的模型類型名稱。 在此視圖中，我們會傳遞晚餐物件（此類型的完整名稱為： "NerdDinner"）：
+這將彈出「添加檢視」對話框。 我們將保留預設檢視名稱("詳細資訊")。 我們還在對話框中選擇"創建強類型視圖"複選框,並選擇(使用組合框下拉下)我們從控制器傳遞到視圖的模型類型的名稱。 對於此檢視,我們傳遞一個 Dinner 物件(此類型的完全限定名稱為:「NerdDinner.Model.Dinner」):
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image14.png)
 
-不同于先前的範本，我們選擇建立「空的視圖」，這次我們會選擇使用「詳細資料」範本自動「scaffold」此視圖。 我們可以藉由變更上述對話方塊中的 [視圖內容] 下拉式功能表來指出這一點。
+與之前選擇創建"空視圖"的範本不同,這次我們將選擇使用"詳細資訊"範本自動"基架"視圖。 我們可以通過更改上面對話方塊中的「查看內容」 下拉清單來指示這一點。
 
-「架構」會根據我們要傳遞給它的晚餐物件，產生詳細資料檢視範本的初始執行。 這可讓我們快速地開始使用我們的視圖範本。
+"Scaffold"將根據我們傳遞給它的 Dinner 物件生成我們詳細資訊視圖範本的初始實現。 這為我們提供了一種快速開始視圖範本實現的簡單方法。
 
-當我們按一下 [新增] 按鈕時，Visual Studio 會在 "\Views\Dinners" 目錄中為我們建立新的 "default.aspx" view 範本檔案：
+當我們按下「添加」按鈕時,Visual Studio 將在「@Views_Dinners」目錄中為我們創建新的「詳細資訊.aspx」檢視範本檔:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image15.png)
 
-它也會在程式碼編輯器中開啟新的「詳細資料 .aspx」視圖範本。 它將包含以晚餐模型為基礎之詳細資料檢視的初始 scaffold 執行。 此樣板引擎會使用 .NET 反映來查看傳遞給它的類別所公開的公用屬性，並根據它找到的每個類型來新增適當的內容：
+它還將在代碼編輯器中打開我們新的"Details.aspx"視圖範本。 它將包含基於 Dinner 模型的詳細資訊視圖的初始基架實現。 基架引擎使用 .NET 反射來查看通過該資料庫的類上公開的公共屬性,並將根據找到的每個類型添加適當的內容:
 
 [!code-aspx[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample8.aspx)]
 
-我們可以要求 *"/Dinners/Details/1"* URL，以查看此「詳細資料」 scaffold 在瀏覽器中的執行外觀。 使用此 URL 時，將會顯示我們在第一次建立資料庫時，手動新增至資料庫的其中一個 dinners：
+我們可以請求 *"/晚餐/詳細資訊/1"URL*以查看瀏覽器中此"詳細資訊"基架實現的外觀。 使用此網址會顯示我們首次建立資料庫時手動到資料庫的晚餐之一:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image16.png)
 
-這會讓我們快速啟動並執行，並為我們提供詳細資料 .aspx 視圖的初始程式。 然後我們可以調整它，以自訂 UI 以符合我們的滿意度。
+這讓我們快速啟動和運行,並為我們提供了詳細資訊.aspx 視圖的初始實現。 然後,我們可以去調整它,以自定義 UI,以讓我們滿意。
 
-當我們更仔細查看 default.aspx 範本時，我們會發現它包含靜態 HTML 和內嵌的轉譯程式碼。 &lt;%%&gt; 程式碼區塊會在視圖範本呈現時執行程式碼，而 &lt;% =%&gt; 程式碼區塊執行其中包含的程式碼，然後將結果轉譯為範本的輸出資料流程。
+當我們更仔細地查看 Details.aspx 範本時,我們會發現它包含靜態 HTML 以及嵌入式呈現代碼。 &lt;%&gt;程式碼塊在檢視樣本呈現時執行代碼&lt;,%=&gt;% 程式碼塊執行其中包含的代碼,然後將結果呈現給範本的輸出流。
 
-我們可以在我們的觀點中撰寫程式碼，以存取使用強型別「模型」屬性從我們的控制器傳遞的「晚餐」模型物件。 Visual Studio 在編輯器中存取此 "Model" 屬性時，會提供完整的程式碼 intellisense：
+我們可以在View中編寫代碼,該代碼訪問使用強類型"Model"屬性從控制器傳遞的"Dinner"模型物件。 Visual Studio 在編輯器中存取此「模型」屬性時,為我們提供了完整的代碼無意義:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image17.png)
 
-讓我們進行一些調整，讓最終詳細資料檢視範本的來源看起來如下：
+讓我們做一些調整,以便我們最終的詳細資訊視圖範本的源如下所示:
 
 [!code-aspx[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample9.aspx)]
 
-當我們再次存取 *"/Dinners/Details/1"* URL 時，它現在會呈現如下：
+當我們再次訪問 *「/晚餐/細節/1」URL*時,它現在將呈現如下:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image18.png)
 
-### <a name="implementing-the-index-view-template"></a>執行「索引」視圖範本
+### <a name="implementing-the-index-view-template"></a>實現「索引」檢視範本
 
-現在讓我們來執行「Index」 view 範本，這會產生即將推出的 Dinners 清單。 為此，我們會將文字游標放在索引動作方法內，然後以滑鼠右鍵按一下並選擇 [加入視圖] 功能表命令（或按 Ctrl-M、Ctrl + V）。
+現在,讓我們實現"索引"視圖範本 - 這將生成即將推出的晚餐的清單。 為此,我們將將文本游標定位在 Index 操作方法中,然後右鍵單擊並選擇「添加檢視」功能表命令(或按 Ctrl-M、Ctrl-V)。
 
-在 [加入視圖] 對話方塊中，我們會保留名為 "Index" 的視圖範本，然後選取 [建立強型別的視圖] 核取方塊。 這次我們會選擇自動產生「清單」視圖範本，並選取「NerdDinner」作為模型類型傳遞至「視圖」（因為我們指出我們要建立「清單」 scaffold 會使 [加入視圖] 對話方塊假設我們是將一系列的晚餐物件從我們的控制器傳遞至視圖）：
+在"添加視圖"對話框中,我們將保留名為"索引"的視圖範本,並選擇"創建強類型視圖"複選框。 這一次,我們將選擇自動生成「列表」檢視範範本,並選擇「NerdDinner.Model.Dinner」作為傳遞給檢視的模型類型(由於我們已指示我們正在創建「列表」基架將導致添加視圖對話框假定我們將一系列 Dinner 物件從控制器傳遞到視圖):
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image19.png)
 
-當我們按一下 [新增] 按鈕時，Visual Studio 會在 "\Views\Dinners" 目錄中為我們建立新的 "Index .aspx" view 範本檔案。 它會「scaffold」它在其中的初始執行，它會提供一個 HTML 資料表，列出我們傳遞給視圖的 Dinners。
+當我們按下「添加」按鈕時,Visual Studio 將在「@Views_Dinners」目錄中為我們創建新的「Index.aspx」檢視範本檔。 它將「支架」在其中的初始實現,提供我們傳遞給檢視的 Dinner 的 HTML 表清單。
 
-當我們執行應用程式並存取 *"/Dinners/"* URL 時，它會轉譯我們的 Dinners 清單，如下所示：
+當我們運行應用程式並訪問 *「/Dinners/」URL*時,它將呈現我們的晚餐清單,如下所示:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image20.png)
 
-上述資料表解決方案提供我們晚餐資料的類似方格版面配置，這不是我們想要取用者面向晚餐的清單。 我們可以更新 default.aspx view 範本並加以修改，以列出較少的資料行，並使用 &lt;的 ul&gt; 元素來轉譯它們，而不是使用下列程式碼來呈現資料表：
+上面的表格解決方案為我們提供了一個網格般的佈局,我們的晚餐數據 – 這不是我們想要為我們的消費者面對晚餐上市。 我們可以更新 Index.aspx 檢視範本並對其進行修改以列出較少的資料列,&lt;並&gt;使用 ul 元素呈現它們,而不是使用以下代碼呈現表:
 
 [!code-aspx[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample10.aspx)]
 
-我們使用上述 foreach 語句內的 "var" 關鍵字，因為我們會在我們的模型中迴圈處理每個晚餐。 不熟悉C# 3.0 的人可能會認為使用「var」表示晚餐物件是晚期繫結。 相反地，編譯器會針對強型別 "Model" 屬性（其型別為 "IEnumerable&lt;晚餐&gt;"）使用類型推斷，並將當地的「晚餐」變數編譯為晚餐類型，這表示我們會在程式碼區塊內取得完整的 intellisense 和編譯時間檢查：
+當我們迴圈展示模型中的每個晚餐時,我們使用上述"var"關鍵字。 不熟悉 C# 3.0 的人可能會認為使用"var"意味著晚餐對像是後期綁定的。 相反,這意味著編譯器使用針對強類型"模型"屬性的類型推理(類型為&lt;&gt;"IE500Dinner"),並將本地"Dinner"變數編譯為 Dinner 類型 - 這意味著我們在代碼塊中獲取完全的無意義和編譯時間檢查:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image21.png)
 
-當我們在瀏覽器中按下 */Dinners* URL 的重新整理時，我們的更新視圖現在如下所示：
+當我們在瀏覽器中的 */Dinners* URL 上刷新時,我們更新的視圖現在如下所示:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image22.png)
 
-這看起來更好，但尚未完成。 最後一個步驟是讓使用者按一下清單中的個別 Dinners，並查看其相關詳細資料。 我們會藉由呈現連結至 DinnersController 上 Details 動作方法的 HTML 超連結元素，來執行這項操作。
+看起來更好,但還沒有完全存在。 我們的最後一步是使最終使用者能夠點擊清單中的單個晚餐並查看有關它們的詳細資訊。 我們將透過呈現連結到晚餐控制器上「詳細資訊」操作方法的 HTML 超連結元素來實現此內容。
 
-我們可以透過兩種方式的其中一種，在索引視圖內產生這些超連結。 第一個是手動建立 HTML &lt;如下所示的&gt; 元素，我們會在 &lt;HTML 專案中內嵌 &lt;%%&gt; 區塊：&gt;
+我們可以在 Index 檢視中以兩種方式之一生成這些超連結。 第一種是手動建立&lt;&gt;HTML 元素,如下所示,&lt;&gt;其中&gt;我們在&lt;HTML 元素內嵌入 % 區塊:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image23.png)
 
-我們可以使用的替代方法，是利用 ASP.NET MVC 中的內建 "Html.actionlink （）" helper 方法，以程式設計方式建立 HTML &lt;&gt; 元素，該專案會連結至控制器上的另一個動作方法：
+我們可以使用的替代方法是利用 MVC 中 ASP.NET 內建的「Html.ActionLink())」幫助器方法,該方法支援以程式設計方式&lt;建立&gt;HTML 元素, 該 元素連結到控制器上的另一個操作方法:
 
 [!code-aspx[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample11.aspx)]
 
-Html 的第一個參數。 Html.actionlink （） helper 方法是要顯示的連結文字（在此案例中為晚餐的標題），第二個參數是我們想要產生連結的控制器動作名稱（在此案例中為 Details 方法），而第三個參數是要傳送至動作的一組參數（實作為具有屬性名稱/值的匿名型別）。 在此情況下，我們會指定我們想要連結的晚餐的「識別碼」參數，而且因為 ASP.NET MVC 中的預設 URL 路由規則是 "{Controller}/{Action}/{id}"，所以 .Html （） helper 方法會產生下列輸出：
+Html.ActionLink() 説明器方法的第一個參數是要顯示的連結文本(在本例中為 Dinner 的標題),第二個參數是我們想要將連結生成的控制器操作名稱(在本例中為詳細資訊方法),第三個參數是一組要發送到操作的參數(作為具有屬性名稱/值的匿名類型實現)。 在這種情況下,我們指定我們要連結到的晚餐的「id」參數,並且由於 ASP.NET MVC 中的預設 URL 路由規則為 Html.ActionLink() 幫助器方法的"{控制器}/{操作}/{id}",因此 Html.ActionLink() 説明程式方法將生成以下輸出:
 
 [!code-html[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample12.html)]
 
-針對我們的 Index .aspx view，我們將使用 Html.actionlink （） helper 方法方法，並將清單中的每個晚餐連結至適當的詳細資料 URL：
+對於我們的 Index.aspx 檢視,我們將使用 Html.ActionLink() 說明器方法方法,並將每個晚餐都包含到相應詳細資訊 URL 的連結中:
 
 [!code-aspx[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample13.aspx)]
 
-現在當我們達到 */Dinners* URL 時，我們的晚餐清單如下所示：
+現在,當我們點擊 */Dinners* URL 時,我們的晚餐清單如下所示:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image24.png)
 
-當我們按一下清單中的任何 Dinners 時，我們會流覽以查看其詳細資料：
+當我們按一下清單中的任何晚餐時,我們將導航以查看有關它的詳細資訊:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image25.png)
 
-### <a name="convention-based-naming-and-the-views-directory-structure"></a>以慣例為基礎的命名和 \Views 目錄結構
+### <a name="convention-based-naming-and-the-views-directory-structure"></a>基於慣例的命名與 _Views目錄結構
 
-在解析視圖範本時，預設會 ASP.NET MVC 應用程式使用以慣例為基礎的目錄命名結構。 這可讓開發人員在參考控制器類別內的視圖時，避免必須完整限定位置路徑。 根據預設，ASP.NET MVC 會在應用程式底下的 * \Views\[ControllerName]\* 目錄中尋找視圖範本檔案。
+默認情況下ASP.NET MVC 應用程式在解決檢視範本時使用基於約定的目錄命名結構。 這允許開發人員在從 Controller 類中引用檢視時避免對位置路徑進行完全限定。 默認情況下ASP.NET MVC 將在應用程式下方的\[[視圖\*控制器名稱] 目錄中尋找檢視範本檔。
 
-例如，我們一直在處理 DinnersController 類別，它會明確參考三個視圖範本：「索引」、「詳細資料」和「NotFound」。 ASP.NET MVC 預設會在應用程式根目錄底下的 *\Views\Dinners*目錄中尋找這些 views：
+例如,我們一直在研究 DinnersController 類,該類顯式引用三個視圖範本:「索引」、「詳細資訊」和」未找到」。 預設情況下,ASP.NET MVC 將在應用程式根目錄下的 *[Views_Dinners]* 目錄中尋找這些檢視:
 
 ![](use-controllers-and-views-to-implement-a-listingdetails-ui/_static/image26.png)
 
-請注意，專案中目前有三個控制器類別（DinnersController、HomeController 和 AccountController –在建立專案時，預設會新增最後兩個），而且有三個子目錄（每個目錄各有一個）控制器），在 \Views 目錄中。
+請注意,專案中當前存在三個控制器類(DinnersController、HomeController 和 AccountController - 在創建專案時預設添加了後兩個控制器類),並且_Views 目錄中有三個子目錄(每個控制器一個)。
 
-從 Home 和 Accounts 控制器參考的視圖，會自動從個別的 *\Views\Home*和 *\Views\Account*目錄解析其視圖範本。 *\Views\Shared*子目錄提供了一種方式，可以儲存跨應用程式內多個控制器重複使用的視圖範本。 當 ASP.NET MVC 嘗試解析視圖範本時，它會先在 *\Views\[Controller]* 特定目錄內進行檢查，如果找不到 view 範本，它會在 *\Views\Shared*目錄中尋找。
+從「主頁」和「帳戶」控制器引用的檢視將自動解析其檢視範本,這些範本來自相應的 *[視圖]主頁*和 *[視圖]帳戶*目錄。 *[Views]共用*子目錄提供了一種存儲在應用程式中多個控制器中重複使用的視圖範本的方法。 當 ASP.NET MVC 嘗試解析檢視範本時,它將首先在 *[視圖\[控制器]* 特定目錄中進行檢查,如果無法找到視圖範本,它將在 *[Views_Shared]* 目錄中查找。
 
-在命名個別的視圖範本時，建議的指引是讓視圖範本共用與造成它呈現的動作方法相同的名稱。 例如，上面的「索引」動作方法會使用「索引」視圖來轉譯視圖結果，而「詳細資料」動作方法會使用「詳細資料」視圖來呈現其結果。 這可讓您輕鬆地快速查看與每個動作相關聯的範本。
+在命名單個視圖範本時,建議的指導是讓視圖範本共用與導致其呈現的操作方法相同的名稱。 例如,上面的"Index"操作方法是使用"索引"視圖來呈現視圖結果,而"詳細資訊"操作方法使用"詳細資訊"視圖來呈現其結果。 這樣,就可以輕鬆快速查看與每個操作關聯的範本。
 
-當視圖範本的名稱與在控制器上叫用的動作方法相同時，開發人員不需要明確指定視圖範本名稱。 我們可以改為只將模型物件傳遞給 "View （）" 協助程式方法（不指定視圖名稱），而 ASP.NET MVC 會自動推斷要使用磁片上的 *\Views\[ControllerName]\[ActionName]* View 範本來呈現它。
+當檢視範本與在控制器上調用的操作方法具有相同的名稱時,開發人員不需要顯式指定視圖範本名稱。 相反,我們可以將模型物件傳遞給"View()"幫助器方法(不指定視圖名稱),並且ASP.NET MVC 將自動推斷我們希望在磁碟上使用 *[視圖\[\[控制器名稱] 操作名稱]* 視圖範本來呈現它。
 
-這可讓我們稍微清理我們的控制器程式碼，並避免在我們的程式碼中重複此名稱兩次：
+這使我們能夠稍微清理一下控制器代碼,並避免在代碼中重複兩次名稱:
 
 [!code-csharp[Main](use-controllers-and-views-to-implement-a-listingdetails-ui/samples/sample14.cs)]
 
-上述程式碼就是為網站實現絕佳晚餐清單/詳細資料體驗所需的一切。
+上述代碼是實現一個不錯的晚餐清單/細節體驗的網站所需要的一切。
 
 #### <a name="next-step"></a>後續步驟
 
-我們現在已建立好的晚餐流覽體驗。
+我們現在有一個不錯的晚餐瀏覽體驗建立。
 
-現在讓我們啟用 CRUD （建立、讀取、更新、刪除）資料表單編輯支援。
+現在,讓我們啟用 CRUD(創建、讀取、更新、刪除)數據表單編輯支援。
 
 > [!div class="step-by-step"]
-> [上一頁](build-a-model-with-business-rule-validations.md)
-> [下一頁](provide-crud-create-read-update-delete-data-form-entry-support.md)
+> [前一個](build-a-model-with-business-rule-validations.md)
+> [下一個](provide-crud-create-read-update-delete-data-form-entry-support.md)

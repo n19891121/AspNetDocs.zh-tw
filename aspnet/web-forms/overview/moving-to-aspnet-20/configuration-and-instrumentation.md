@@ -1,433 +1,433 @@
 ---
 uid: web-forms/overview/moving-to-aspnet-20/configuration-and-instrumentation
-title: 設定和檢測 |Microsoft Docs
-author: microsoft
-description: ASP.NET 2.0 中的設定和檢測有重大變更。 新的 ASP.NET 設定 API 允許將設定變更為 pr 。
+title: 設定與偵測微軟文件
+author: rick-anderson
+description: ASP.NET 2.0 中的配置和檢測發生了重大變化。 新的ASP.NET配置 API 允許進行配置更改。
 ms.author: riande
 ms.date: 02/20/2005
 ms.assetid: 21ebbaee-7ed8-45ae-b6c1-c27c88342e48
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/configuration-and-instrumentation
 msc.type: authoredcontent
-ms.openlocfilehash: cd5bedce5459e8cf8e72df8de69ebd82f2d97789
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 30ea2ffd3d055c5373a33615bc19a8f68fb568ab
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78626025"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543050"
 ---
 # <a name="configuration-and-instrumentation"></a>設定與檢測
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-> ASP.NET 2.0 中的設定和檢測有重大變更。 新的 ASP.NET 設定 API 可讓您以程式設計方式變更設定。 此外，有許多新的設定會允許新的設定和檢測。
+> ASP.NET 2.0 中的配置和檢測發生了重大變化。 新的ASP.NET配置 API 允許以程式設計方式進行配置更改。 此外,存在許多新的配置設置允許新的配置和檢測。
 
-ASP.NET 2.0 中的設定和檢測有重大變更。 新的 ASP.NET 設定 API 可讓您以程式設計方式變更設定。 此外，有許多新的設定會允許新的設定和檢測。
+ASP.NET 2.0 中的配置和檢測發生了重大變化。 新的ASP.NET配置 API 允許以程式設計方式進行配置更改。 此外,存在許多新的配置設置允許新的配置和檢測。
 
-在此課程模組中，我們將討論 ASP.NET 與讀取和寫入 ASP.NET 設定檔相關的設定 API，而且我們也會介紹 ASP.NET 檢測。 我們也會討論 ASP.NET 追蹤中提供的新功能。
+在本模組中,我們將討論配置 API ASP.NET,因為它與讀取和寫入ASP.NET配置檔有關,我們還將討論ASP.NET檢測。 我們還將介紹ASP.NET跟蹤中提供的新功能。
 
 ## <a name="aspnet-configuration-api"></a>ASP.NET 設定 API
 
-ASP.NET 設定 API 可讓您使用單一程式設計介面來開發、部署和管理應用程式設定資料。 您可以使用設定 API，以程式設計方式開發和修改完整的 ASP.NET 設定，而不需要直接在設定檔中編輯 XML。 此外，您還可以在主控台應用程式和腳本中使用設定 API，在 Web 管理工具和 Microsoft Management Console （MMC）嵌入式管理單元中進行開發。
+ASP.NET配置 API 允許您使用單個程式設計介面開發、部署和管理應用程式配置數據。 您可以使用設定 API 以程式設計方式開發和修改完整的 ASP.NET 配置,而無需直接編輯設定檔中的 XML。 此外,您可以在開發的應用程式和腳本、基於 Web 的管理工具以及 Microsoft 管理主控台 (MMC) 管理單元中使用配置 API。
 
-下列兩個設定管理工具會使用設定 API，並隨附于 .NET Framework 版本2.0：
+以下兩個設定管理工具使用設定 API,並包含在 .NET 框架版本 2.0 中:
 
-- ASP.NET MMC 嵌入式管理單元，它會使用設定 API 來簡化管理工作，從設定階層的所有層級提供本機設定資料的整合式觀點。
-- 網站管理工具，可讓您管理本機和遠端應用程式（包括裝載的網站）的配置設定。
+- mMC ASP.NET,它使用配置 API 簡化管理任務,提供來自配置層次結構所有級別的本地配置數據的整合檢視。
+- 網站管理工具,允許您管理本地和遠端應用程式的設定設置,包括託管站點。
 
-ASP.NET 設定 API 包含一組 ASP.NET 管理物件，可讓您用來以程式設計的方式來設定網站和應用程式。 管理物件會實作為 .NET Framework Class Library。 設定 API 程式設計模型可在編譯時期強制執行資料類型，以確保程式碼的一致性和可靠性。 為了讓您更輕鬆地管理應用程式設定，設定 API 可讓您將從設定階層中所有點合併的資料視為單一集合，而不是以不同的個別集合形式來查看資料。設定檔。 此外，設定 API 可讓您操作整個應用程式設定，而不需要直接編輯設定檔中的 XML。 最後，API 會藉由支援系統管理工具（例如網站管理工具）來簡化設定工作。 設定 API 可支援在電腦上建立設定檔，並在多部電腦上執行設定腳本，以簡化部署。
+ASP.NET配置 API 包含一組ASP.NET管理物件,可用於以程式設計方式配置網站和應用程式。 管理物件作為 .NET 框架類庫實現。 配置 API 程式設計模型透過編譯時強制實施資料類型,有助於確保代碼的一致性和可靠性。 為了更輕鬆地管理應用程式配置,配置 API 允許您將從配置層次結構中的所有點合併的數據視為單個集合,而不是將數據視為來自不同配置檔的單獨集合。 此外,設定 API 讓您能夠操作整個應用程式設定,而無需直接編輯設定檔中的 XML。 最後,API 透過支援管理工具(如網站管理工具)來簡化配置任務。 配置 API 透過支援在電腦上創建設定檔並在多台電腦上運行配置腳本來簡化部署。
 
 > [!NOTE]
-> 設定 API 不支援建立 IIS 應用程式。
+> 配置 API 不支援創建 IIS 應用程式。
 
-## <a name="working-with-local-and-remote-configuration-settings"></a>使用本機和遠端設定
+## <a name="working-with-local-and-remote-configuration-settings"></a>使用本地端與遠端設定設定
 
-Configuration 物件代表套用至特定實體實體（如電腦）或邏輯實體（例如應用程式或網站）之設定的合併視圖。 指定的邏輯實體可以存在於本機電腦或遠端伺服器上。 當指定的實體沒有任何設定檔存在時，設定物件會代表 Machine.config 檔案所定義的預設設定。
+配置物件表示應用於特定實體實體(如電腦)或邏輯實體(如應用程式或網站)的配置設置的合併視圖。 指定的邏輯實體可以存在於本地電腦或遠端伺服器上。 當指定實體不存在設定檔時,配置物件表示由計算機.config 檔定義的預設設定設定。
 
-您可以使用下列類別中的其中一個 open Configuration 方法來取得設定物件：
+使用以下類別的一個開啟的設定方法,可以取得設定物件:
 
-1. 如果您的實體是用戶端應用程式，則為 ConfigurationManager 類別。
-2. 如果您的實體是 Web 應用程式，則為 WebConfigurationManager 類別。
+1. 配置管理員(如果您的實體是用戶端應用程式)。
+2. Web 設定管理員類別(如果您的實體是 Web 應用程式)。
 
-這些方法會傳回設定物件，而後者會提供必要的方法和屬性來處理基礎的設定檔。 您可以存取這些檔案以進行讀取或寫入。
+這些方法將返回一個配置物件,該物件反過來提供了處理基礎配置檔所需的方法和屬性。 您可以造訪這些檔案進行讀取或寫入。
 
 ### <a name="reading"></a>讀取
 
-您可以使用 GetSection 或 GetSectionGroup 方法來讀取設定資訊。 讀取的使用者或處理常式必須具有階層中所有設定檔的讀取權限。
+您可以使用 GetSection 或 GetSectionGroup 方法讀取配置資訊。 讀取的使用者或進程必須對層次結構中的所有配置檔具有讀取許可權。
 
 > [!NOTE]
-> 如果您使用採用 path 參數的靜態 GetSection 方法，path 參數必須參考程式碼執行所在的應用程式。 否則，會忽略參數，並傳回目前正在執行之應用程式的設定資訊。
+> 如果使用採用路徑參數的靜態 GetSection 方法,則路徑參數必須引用運行代碼的應用程式。 否則,將忽略該參數,並返回當前正在運行的應用程式的配置資訊。
 
 ### <a name="writing"></a>撰寫
 
-您可以使用其中一個 Save 方法來寫入設定資訊。 寫入的使用者或處理常式必須具有目前設定階層層級之設定檔案和目錄的寫入權限，以及階層中所有設定檔的讀取權限。
+您可以使用 Save 方法之一來寫入設定資訊。 寫入的使用者或進程必須具有當前配置層次結構級別的配置檔和目錄的寫入許可權,以及層次結構中所有配置檔的讀取許可權。
 
-若要產生代表所指定實體之繼承設定的設定檔，請使用下列其中一個儲存配置方法：
+要產生表示指定實體繼承的設定設定的設定檔,請使用以下儲存配置方法之一:
 
-1. 用來建立新設定檔案的 Save 方法。
-2. 在另一個位置產生新設定檔案的 SaveAs 方法。
+1. 建立新設定檔的儲存方法。
+2. 保存 As 方法用於在另一個位置生成新的設定檔。
 
-## <a name="configuration-classes-and-namespaces"></a>設定類別和命名空間
+## <a name="configuration-classes-and-namespaces"></a>設定類別與命名空間
 
-許多設定類別和方法彼此類似。 下表描述最常使用的設定類別和命名空間。
+許多配置類和方法彼此相似。 下表描述了最常用的配置類和命名空間。
 
 | **設定類別或命名空間** | **說明** |
 | --- | --- |
-| [System. Configuration](https://msdn.microsoft.com/library/system.configuration.aspx)命名空間 | 包含所有 .NET Framework 應用程式的主要設定類別。 區段處理常式類別是用來從方法（例如 GetSection 和 GetSectionGroup）取得區段的設定資料。 這兩種方法不是靜態的。 |
-| Configuration 類別 | 代表電腦、應用程式、Web 目錄或其他資源的一組設定資料。 此類別包含有用的方法（例如 GetSection 和 GetSectionGroup），可用來更新設定，以及取得區段和區段群組的參考。 這個類別是用來做為取得設計階段設定資料之方法的傳回型別，例如 WebConfigurationManager 和 ConfigurationManager 類別的方法。 |
-| System.web. Configuration 命名空間 | 包含 ASP.NET 設定區段的區段處理常式類別，定義于[ASP.NET Configuration Settings](https://msdn.microsoft.com/library/b5ysx397.aspx)。 區段處理常式類別是用來從方法（例如 GetSection 和 GetSectionGroup）取得區段的設定資料。 |
-| System.web. WebConfigurationManager 類別 | 提供實用的方法來取得執行時間和設計階段設定的參考。 這些方法會使用 System.object 做為傳回型別。 您可以交替使用這個類別的靜態 GetSection 方法，或 ConfigurationManager 類別的非靜態 GetSection 方法。 針對 Web 應用程式設定，建議使用 WebConfigurationManager 類別，而不是 ConfigurationManager 類別。 |
-| [提供者](https://msdn.microsoft.com/library/system.configuration.provider.aspx)命名空間 | 提供自訂和擴充設定提供者的方法。 這是設定系統中所有提供者類別的基本類別。 |
-| [System.web. Management](https://msdn.microsoft.com/library/system.web.management.aspx)命名空間 | 包含用來管理及監視 Web 應用程式健全狀況的類別和介面。 嚴格來說，此命名空間不會被視為設定 API 的一部分。 例如，追蹤和事件引發是由這個命名空間中的類別來完成。 |
-| [System.web](https://msdn.microsoft.com/library/system.management.instrumentation.aspx)命名空間 | 提供應用程式檢測所需的類別，透過 Windows Management Instrumentation （WMI）向潛在取用者公開其管理資訊和事件。 ASP.NET 健全狀況監視會使用 WMI 來傳遞事件。 嚴格來說，此命名空間不會被視為設定 API 的一部分。 |
+| [系統.設定](https://msdn.microsoft.com/library/system.configuration.aspx)命名空間 | 包含所有 .NET 框架應用程式的主配置類。 節處理程式類用於從 GetSection 和 GetSectionGroup 等方法獲取節的配置數據。 這兩種方法是非靜態的。 |
+| 系統.設定.設定類別 | 表示電腦、應用程式、Web 目錄或其他資源的一組配置數據。 此類包含用於更新配置設定和獲取對節和節組的引用的有用方法,如 GetSection 和 GetSectionGroup。 此類用作獲取設計時設定資料的方法的傳回類型,例如 Web 配置管理員和設定管理器 類的方法。 |
+| 系統.Web.設定命名空間 | 包含ASP.NET[配置設定](https://msdn.microsoft.com/library/b5ysx397.aspx)中定義的ASP.NET配置部分的節處理程式類。 節處理程式類用於從 GetSection 和 GetSectionGroup 等方法獲取節的配置數據。 |
+| 系統.Web.設定.Web配置管理員類別 | 提供了獲取對運行時和設計時配置設置引用的有用方法。 這些方法使用 System.配置.配置類作為返回類型。 您可以使用此類的靜態 GetSection 方法或系統的非靜態 GetSection 方法。 對於 Web 應用程式設定,建議使用 System.Web.配置.Web 配置管理器 類而不是系統.配置.配置管理器類。 |
+| [系統.設定.提供者](https://msdn.microsoft.com/library/system.configuration.provider.aspx)命名空間 | 提供了一種自定義和擴展配置提供程式的方法。 這是配置系統中所有提供程式類的基類。 |
+| [系統.Web.管理](https://msdn.microsoft.com/library/system.web.management.aspx)命名空間 | 包含用於管理和監視 Web 應用程式運行狀況的類和介面。 嚴格地說,此命名空間不被視為配置 API 的一部分。 例如,跟蹤和事件觸發由此命名空間中的類完成。 |
+| [系統管理.偵測](https://msdn.microsoft.com/library/system.management.instrumentation.aspx)命名空間 | 提供應用程式檢測所需的類,以便通過 Windows 管理檢測 (WMI) 向潛在使用者公開其管理資訊和事件。 ASP.NET運行狀況監視使用 WMI 傳遞事件。 嚴格地說,此命名空間不被視為配置 API 的一部分。 |
 
-## <a name="reading-from-aspnet-configuration-files"></a>從 ASP.NET 設定檔讀取
+## <a name="reading-from-aspnet-configuration-files"></a>從ASP.NET設定檔讀取
 
-WebConfigurationManager 類別是用來從 ASP.NET 設定檔讀取的核心類別。 基本上，有三個步驟可讀取 ASP.NET 設定檔：
+WebManagerManager 類是從ASP.NET配置檔讀取的核心類。 讀取ASP.NET設定檔基本上有三個步驟:
 
-1. 使用 OpenWebConfiguration 方法取得設定物件。
-2. 取得設定檔中所需區段的參考。
-3. 從設定檔讀取所需的資訊。
+1. 使用 OpenWeb 設定方法獲取配置物件。
+2. 獲取對設定檔中所需部分的引用。
+3. 從配置檔中讀取所需的資訊。
 
-Configuration 物件代表不代表特定的設定檔。 相反地，它代表電腦、應用程式或網站設定的合併視圖。 下列程式碼範例會具現化設定物件，代表名為*ProductInfo*的 Web 應用程式的設定。
+配置物件表示不表示特定的配置檔。 相反,它表示計算機、應用程式或網站的配置的合併視圖。 以下代碼示例實例化表示名為*ProductInfo*的 Web 應用程式的配置的配置物件。
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample1.cs)]
 
 > [!NOTE]
-> 請注意，如果/ProductInfo 路徑不存在，則上述程式碼會傳回 machine.config 檔案中指定的預設設定。
+> 請注意,如果 /ProductInfo 路徑不存在,上述代碼將返回計算機中指定的默認配置。
 
-擁有設定物件之後，您就可以使用 GetSection 或 GetSectionGroup 方法來深入探索設定。 下列範例會取得上述 ProductInfo 應用程式之模擬設定的參考：
+獲得配置物件後,可以使用 GetSection 或 GetSectionGroup 方法深入瞭解配置設置。 以下範例取得對上述 ProductInfo 應用程式的模擬設定的參考:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample2.cs)]
 
-## <a name="writing-to-aspnet-configuration-files"></a>寫入 ASP.NET 設定檔案
+## <a name="writing-to-aspnet-configuration-files"></a>寫入ASP.NET設定檔
 
-如同從設定檔讀取，WebConfigurationManager 類別是寫入 Asp.NET 設定檔的核心。 寫入 ASP.NET 設定檔的步驟也有三個。
+與從設定檔讀取一樣,WebManagerManager 類是寫入Asp.NET配置檔的核心。 還有三個步驟要寫入ASP.NET配置檔。
 
-1. 使用 OpenWebConfiguration 方法取得設定物件。
-2. 取得設定檔中所需區段的參考。
-3. 使用 Save 或 SaveAs 方法，從設定檔案寫入所需的資訊。
+1. 使用 OpenWeb 設定方法獲取配置物件。
+2. 獲取對設定檔中所需部分的引用。
+3. 使用"儲存"或"儲存"方法從配置檔中寫入所需的資訊。
 
-下列程式碼會將 &lt;編譯&gt; 元素的**debug**屬性變更為 false：
+以下代碼將編譯&lt;&gt;元素的**除錯**屬性變更為 false:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample3.cs)]
 
-執行此程式碼時，會針對*webApp*應用程式的 web.config 檔案，將 &lt;編譯&gt; 元素的**debug**屬性設為 false。
+執行此代碼時&lt;,webApp&gt;應用程式的*Web.config*檔編譯元素的**調試**屬性將設置為 false。
 
-## <a name="systemwebmanagement-namespace"></a>System.web. Management 命名空間
+## <a name="systemwebmanagement-namespace"></a>系統.Web.管理命名空間
 
-System.web 命名空間提供類別和介面，可用來管理和監視 ASP.NET 應用程式的健全狀況。
+System.Web.管理命名空間提供用於管理和監視ASP.NET應用程式的運行狀況的類和介面。
 
-藉由定義將事件與提供者產生關聯的規則，即可完成記錄。 此規則會定義傳送給提供者的事件種類。 下列基底事件可供您記錄：
+日誌記錄是通過定義將事件與提供程式關聯的規則來完成的。 規則定義發送到提供程式的事件類型。 以下基本事件可供您紀錄:
 
-| **WebBaseEvent** | 所有事件的基底事件類別。 包含所有事件（例如事件程式碼、事件詳細資料、引發事件的日期和時間、序號、事件訊息和事件詳細資料）所需的屬性。 |
+| **WebBase 事件** | 所有事件的基礎事件類。 包含所有事件(如事件代碼、事件詳細資訊代碼、引發事件的日期和時間、序列號、事件消息和事件詳細資訊)所需的屬性。 |
 | --- | --- |
-| **WebManagementEvent** | 管理事件的基底事件類別，例如應用程式存留期、要求、錯誤和 audit 事件。 |
-| **WebHeartbeatEvent** | 應用程式定期產生的事件，用來捕捉有用的執行時間狀態資訊。 |
-| **WebAuditEvent** | 安全性 audit 事件的基類，用來標示條件，例如授權失敗、解密失敗*等等。* |
-| **WebRequestEvent** | 所有資訊要求事件的基類。 |
-| **WebBaseErrorEvent** | 所有表示錯誤狀況之事件的基類。 |
+| **網路管理事件** | 管理事件的基本事件類,如應用程式存留期、請求、錯誤和審核事件。 |
+| **網路偵測事件** | 應用程式以固定間隔生成的事件,用於捕獲有用的運行時狀態資訊。 |
+| **網路審計事件** | 安全審核事件的基類,用於標記授權失敗、解密失敗*等條件。* |
+| **Web請求事件** | 所有資訊請求事件的基類。 |
+| **WebBase 錯誤事件** | 指示錯誤條件的所有事件的基類。 |
 
-可用的提供者類型可讓您將事件輸出傳送至事件檢視器、SQL Server、Windows Management Instrumentation （WMI）和電子郵件。 預先設定的提供者和事件對應會減少取得記錄事件輸出所需的工作量。
+可用的提供程式類型允許您將事件輸出發送到事件查看器、SQL 伺服器、Windows 管理檢測 (WMI) 和電子郵件。 預先配置的提供程式和事件映射減少了記錄事件輸出所需的工作量。
 
-ASP.NET 2.0 會使用現成的事件記錄提供者，根據啟動和停止的應用程式域記錄事件，以及記錄任何未處理的例外狀況。 這有助於涵蓋一些基本案例。 例如，假設您的應用程式擲回例外狀況，但使用者不會儲存錯誤，而且您無法重現此問題。 使用預設的事件記錄檔規則，您可以收集例外狀況和堆疊資訊，以深入瞭解發生的錯誤類型。 如果您的應用程式遺失會話狀態，則會套用另一個範例。 在這種情況下，您可以查看事件記錄檔，以判斷應用程式域是否正在回收，以及為什麼應用程式域是在第一個位置停止的。
+ASP.NET 2.0 使用事件日誌提供程式開箱即用,基於應用程式域啟動和停止來記錄事件,以及記錄任何未處理的異常。 這有助於介紹一些基本方案。 例如,假設您的應用程式引發異常,但使用者不保存錯誤,並且無法重現它。 使用預設事件日誌規則,您將能夠收集異常和堆疊資訊,以便更好地瞭解發生了哪種錯誤。 如果應用程式正在失去會話狀態,則應用另一個示例。 在這種情況下,您可以在事件日誌中查看以確定應用程式域是否正在回收,以及應用程式域最初停止的原因。
 
-此外，健全狀況監視系統也是可擴充的。 例如，您可以定義自訂的 Web 事件、在應用程式內引發它們，然後定義規則以將事件資訊傳送給提供者（例如您的電子郵件）。 這可讓您輕鬆地將檢測與健全狀況監視提供者結合。 另舉一個例子，您可以在每次處理訂單時引發事件，並設定一個規則，將每個事件傳送至 SQL Server 資料庫。 當使用者無法在資料列中登入多次時，您也可以引發事件，並設定事件以使用以電子郵件為基礎的提供者。
+此外,健康監測系統是可擴展的。 例如,可以定義自訂 Web 事件,在應用程式中觸發這些事件,然後定義一條規則,將事件資訊發送到提供者(如電子郵件)。 這允許您輕鬆地將檢測與運行狀況監視提供程式綁定。 作為另一個範例,您可以在每次處理訂單時觸發事件,並設置將每個事件發送到 SQL Server 資料庫的規則。 當用戶連續多次無法登錄時,還可以觸發事件,並將事件設置為使用基於電子郵件的提供程式。
 
-預設提供者和事件的設定會儲存在全域 Web.config 檔案中。 全域 web.config 檔案會將儲存在 machine.config 檔案中的所有網頁型設定儲存在 ASP.NET 1x 中。 全域 web.config 檔案位於下列目錄：
+預設提供程式和事件的配置存儲在全域 Web.config 檔中。 全域 Web.config 檔案將儲存在 Machine.config 檔中的所有基於 Web 的設定儲存在 ASP.NET 1x 中。 全域 Web.config 檔案位於以下目錄中:
 
 `%windir%\Microsoft.Net\Framework\v2.0.*\config\Web.config`
 
-全域 Web.config 檔案的 &lt;healthMonitoring&gt; 區段會提供預設的設定。 您可以藉由在應用程式的 web.config 檔案中，執行 &lt;healthMonitoring&gt; 區段來覆寫這些設定或設定您自己的設定。
+全域&lt;Web.config 檔的運行狀況&gt;監視 部分提供預設配置設定。 您可以通過在 Web.config 檔中&lt;為應用程式實現&gt;執行狀況監視 部分來覆蓋這些設定或設定您自己的設定。
 
-全域 Web.config 檔案的 &lt;healthMonitoring&gt; 區段包含下列專案：
+全域&lt;Web.config 檔的執行狀況&gt;監視 部份包含以下項目:
 
-| **提供者** | 包含為事件檢視器、WMI 和 SQL Server 設定的提供者。 |
+| **供應商** | 包含為事件查看器、WMI 和 SQL 伺服器設置的提供程式。 |
 | --- | --- |
-| **Healthmonitoring 之 eventmappings** | 包含各種 WebBase 類別的對應。 如果您產生自己的事件類別，可以擴充此清單。 產生您自己的事件類別，可讓您更精確地處理您傳送資訊的提供者。 例如，您可以設定要傳送至 SQL Server 的未處理例外狀況，同時將您自己的自訂事件傳送至電子郵件。 |
-| **條** | 將 Healthmonitoring 之 eventmappings 連結至提供者。 |
-| **緩衝** | 與 SQL Server 和電子郵件提供者搭配使用，以決定將事件排清至提供者的頻率。 |
+| **事件對應** | 包含各種 WebBase 類的映射。 如果生成自己的事件類,則可以擴展此清單。 生成自己的事件類可比向其發送資訊的提供程式提供更精細的粒度。 例如,您可以將未處理的異常配置為發送到 SQL Server,同時將您自己的自訂事件發送到電子郵件。 |
+| **規則** | 將事件映射連結到提供程式。 |
+| **緩衝** | 與 SQL Server 和電子郵件提供程式一起使用,以確定將事件刷新到提供程式的頻率。 |
 
-以下是來自全域 Web.config 檔案的程式碼範例。
+下面是來自全域 Web.config 檔中的代碼範例。
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample4.xml)]
 
-## <a name="how-to-store-events-to-event-viewer"></a>如何將事件儲存至事件檢視器
+## <a name="how-to-store-events-to-event-viewer"></a>如何將事件儲存到事件檢視器
 
-如先前所述，在全域 Web.config 檔案中，會為您設定在事件檢視器中記錄事件的提供者。 根據預設，系統會記錄以**WebBaseErrorEvent**和**WebFailureAuditEvent**為基礎的所有事件。 您可以新增其他規則，以將其他資訊記錄到事件記錄檔。 例如，如果您想要記錄所有事件（也就是以**WebBaseEvent**為*基礎的每*個事件），您可以將下列規則新增至 web.config 檔案：
+如前所述,在全域 Web.config 檔中為您配置了用於在事件檢視器中記錄事件提供程式。 預設情況下,記錄基於**WebBaseErrorEvent**和**Web 失敗稽核事件的所有事件**。 您可以添加其他規則以將其他資訊記錄到事件日誌。 例如,如果要記錄所有事件(*即*基於**WebBaseEvent**的每個事件),可以向 Web.config 檔新增以下規則:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample5.xml)]
 
-此規則會將 [**所有事件**] 事件對應連結至事件記錄檔提供者。 EventMapping 和提供者都包含在全域 Web.config 檔案中。
+此規則會將 **「所有事件事件**」映射連結到事件日誌提供者。 事件映射和提供者都包含在全域 Web.config 檔中。
 
-## <a name="how-to-store-events-to-sql-server"></a>如何將事件儲存至 SQL Server
+## <a name="how-to-store-events-to-sql-server"></a>如何儲存的事件儲存到 SQL 伺服器
 
-這個方法會使用**aspnetdb.mdf**資料庫，這是由 Aspnet\_regsql 所產生。 預設的提供者會使用 LocalSqlServer 連接字串，其使用應用程式中以檔案為基礎的資料庫\_data 資料夾或 SQL Server 的本機 SQLExpress 實例。 LocalSqlServer 連接字串和 SqlProvider 都是在全域 web.config 檔案中設定。
+此方法使用**ASPNETDB**資料庫,該資料庫由\_Aspnet regsql.exe 工具生成。 預設提供程式使用 LocalSqlServer 連接字串,該字串使用應用\_資料資料夾中的基於檔案的資料庫或 SQL Server 的本地 SQLExpress 實例。 本地SqlServer連接字串和 SqlProvider 都在全域 Web.config 檔中配置。
 
-全域 Web.config 檔案中的 LocalSqlServer 連接字串看起來像這樣：
+全域 Web.config 檔中的 LocalSqlServer 連接字串如下所示:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample6.xml)]
 
-如果您想要使用另一個 SQL Server 實例，您必須使用 Aspnet\_regsql，此工具可在%windir%\Microsoft.Net\Framework\v2.0. 中找到。\* 資料夾。 使用 Aspnet\_regsql 工具，在 SQL Server 實例上產生自訂**aspnetdb.mdf**資料庫，然後將連接字串新增至您的應用程式佈建檔，然後使用新的連接字串新增提供者。 建立**aspnetdb.mdf**資料庫之後，您必須設定規則，將 eventMapping 連結到 sqlProvider。
+如果要使用另一個 SQL Server 實體,則需要使用\_Aspnet regsql.exe 工具,該工具可在 %windir%_Microsoft.Net_Framework_v2.0 中找到。\*資料夾。 使用 Aspnet\_regsql.exe 工具在 SQL Server 實體上生成自訂**ASPNETDB**資料庫,然後將連接字串添加到應用程式設定檔,然後使用新的連接字串添加提供者。 創建**ASPNETDB**資料庫後,需要設定規則以將事件映射連結到 sqlProvider。
 
-無論您是使用預設 SqlProvider 或設定自己的提供者，都必須新增連結提供者與事件對應的規則。 下列規則會將您先前建立的新提供者連結至 [**所有事件**] 事件對應。 此規則會記錄以**WebBaseEvent**為基礎的所有事件，並將它們傳送至將使用 MYASPNETDB 連接字串的 MySqlWebEventProvider。 下列程式碼會新增規則，以將提供者與事件對應連結：
+無論是使用預設 SqlProvider 還是配置自己的提供程式,都需要添加一條規則,將提供程式與事件映射連結。 以下規則將上面創建的新提供程式連結到 **「所有事件」** 事件映射。 此規則將基於**WebBaseEvent**記錄所有事件,並將它們發送到將使用 MYASPNETDB 連接字串的 MySqlWebEvent 提供程式。 以下代碼新增了一條規則,用於將提供程式與事件映射連結:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample7.xml)]
 
-如果您只想要將錯誤傳送至 SQL Server，您可以新增下列規則：
+如果只想向 SQL Server 傳送錯誤,可以新增以下規則:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample8.xml)]
 
-## <a name="how-to-forward-events-to-wmi"></a>如何將事件轉送至 WMI
+## <a name="how-to-forward-events-to-wmi"></a>如何將事件轉寄到 WMI
 
-您也可以將事件轉送至 WMI。 預設會在全域 Web.config 檔案中為您設定 WMI 提供者。
+您還可以將事件轉發到 WMI。 預設情況下,WMI 提供程式在全域 Web.config 檔中為您配置。
 
-下列程式碼範例會新增規則，以將事件轉送至 WMI：
+以下代碼範例新增一條規則以將事件轉寄到 WMI:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample9.xml)]
 
-您必須新增規則，以將 eventMapping 與提供者產生關聯，以及使用 WMI 接聽程式應用程式來接聽事件。 下列程式碼範例會新增規則，以將 WMI 提供者連結至 [**所有事件**] 事件對應：
+您需要添加一個規則來將事件映射關聯到提供者,以及一個 WMI 偵聽器應用程式來偵聽事件。 以下代碼範例新增一條規則,將 WMI 提供程式連結到 **「所有事件」** 事件映射:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample10.xml)]
 
-## <a name="how-to-forward-events-to-email"></a>如何將事件轉寄至電子郵件
+## <a name="how-to-forward-events-to-email"></a>如何將事件轉寄到電子郵件
 
-您也可以將事件轉寄至電子郵件。 請留意您對應到電子郵件提供者的事件規則，因為您可能會不小心傳送許多可能較適合 SQL Server 或事件記錄檔的資訊。 有兩個電子郵件提供者;SimpleMailWebEventProvider 和 TemplatedMailWebEventProvider。 每個都具有相同的設定屬性，但「範本」和「detailedTemplateErrors」屬性除外，這兩者都只能在 TemplatedMailWebEventProvider 上使用。
+您還可以將事件轉發給電子郵件。 請注意您映射到電子郵件供應商的事件規則,因為您可能會無意中向自己發送大量可能更適合 SQL Server 或事件日誌的資訊。 有兩個電子郵件供應商;簡單郵件Web事件供應商和範本郵件Web事件供應商。 每個屬性具有相同的配置屬性,但「範本」和「詳細範本錯誤」屬性除外,這兩個屬性僅在範本IdmailWebEvent提供程式上可用。
 
 > [!NOTE]
-> 這兩個電子郵件提供者都不會為您設定。 您必須將它們新增至您的 web.config 檔案。
+> 這些電子郵件提供程式均未為您配置。 您需要將它們添加到 Web.config 檔中。
 
-這兩個電子郵件提供者的主要差異在於，SimpleMailWebEventProvider 會在無法修改的一般範本中傳送電子郵件。 範例 Web.config 檔案會使用下列規則，將此電子郵件提供者新增至已設定的提供者清單：
+這兩個電子郵件供應商之間的主要區別是 SimpleMailWebEventProvider 在無法修改的通用範本中發送電子郵件。 範例 Web.config 檔案使用以下規則將此電子郵件提供者新增到已設定提供者清單中:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample11.xml)]
 
-也會新增下列規則，以將電子郵件提供者系結至 [**所有事件**] 事件對應：
+還會新增以下規則以將電子郵件提供程式綁定到 **「所有事件」** 事件映射:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample12.xml)]
 
 ## <a name="aspnet-20-tracing"></a>ASP.NET 2.0 追蹤
 
-ASP.NET 2.0 中的追蹤有三個主要增強功能。
+在 2.0 ASP.NET中,跟蹤有三個主要增強功能。
 
-1. 整合式追蹤功能
-2. 以程式設計方式存取追蹤訊息
-3. 改良的應用層級追蹤
+1. 整合追蹤功能
+2. 追蹤訊息的程式設計存取
+3. 改進應用程式級追蹤
 
-## <a name="integrated-tracing-functionality"></a>整合式追蹤功能
+## <a name="integrated-tracing-functionality"></a>整合追蹤功能
 
-您現在可以將由 ASP.NET 追蹤發出的訊息路由傳送至 ASP.NET 追蹤輸出，並將這些訊息路由傳送至診斷。 您也可以將 ASP.NET 檢測事件轉送到 System.webserver。 這項功能是由 &lt;trace&gt; 元素的新**writetodiagnosticstrace 還**屬性所提供。 當此布林值為 true 時，ASP.NET 追蹤訊息會轉送到系統診斷追蹤基礎結構，供任何已註冊顯示追蹤訊息的接聽程式使用。
+現在,您可以將 System.Diagnostics.Trace 類發出的消息路由到ASP.NET跟蹤輸出,並將ASP.NET跟蹤發送的消息路由到 System.診斷.Trace。 您還可以將ASP.NET檢測事件轉發到 System.診斷.Trace。 此功能由&lt;追蹤&gt;元素的新**writeTo診斷追蹤**屬性提供。 當此布爾值為 true 時,ASP.NET跟蹤消息將轉發到 System.診斷跟蹤基礎結構,供註冊以顯示 Trace 消息的任何偵聽器使用。
 
-## <a name="programmatic-access-to-trace-messages"></a>以程式設計方式存取追蹤訊息
+## <a name="programmatic-access-to-trace-messages"></a>追蹤訊息的程式設計存取
 
-ASP.NET 2.0 允許透過**TraceCoNtextRecord**類別和**TraceRecords**集合以程式設計方式存取所有追蹤訊息。 存取追蹤訊息最有效率的方式是註冊**TraceCoNtextEventHandler**委派（也是 ASP.NET 2.0 中的新功能），以處理新的**tracecoNtext.tracefinished**事件。 然後您可以視需要對追蹤訊息進行迴圈。
+ASP.NET 2.0 允許透過**TraceContextRecord**類和**追蹤記錄**集合對所有追蹤訊息進行程式設計存取。 訪問跟蹤消息的最有效方法是註冊**TraceContextEventHandler**委託(ASP.NET 2.0 中也是新的)來處理新的**跟蹤完成**事件。 然後,您可以根據需要循環訪問跟蹤消息。
 
-下列程式碼範例將說明這種情況：
+以下代碼範例說明瞭這一點:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample13.cs)]
 
-在上述範例中，我會在 TraceRecords 集合中執行迴圈，然後將每個訊息寫入回應資料流程。
+在上面的示例中,我循環流覽跟蹤記錄集合,然後將每條消息寫入回應流。
 
-## <a name="improved-application-level-tracing"></a>改良的應用層級追蹤
+## <a name="improved-application-level-tracing"></a>改進應用程式級追蹤
 
-透過引進 &lt;trace&gt; 元素的新**mostRecent**屬性，即可改善應用層級的追蹤。 這個屬性會指定是否要顯示最新的應用層級追蹤輸出，以及是否捨棄 requestLimit 所指示之限制以外的較舊追蹤資料。 若為 false，則會顯示要求的追蹤資料，直到達到 requestLimit 屬性為止。
+通過引入&lt;&gt;追蹤 元素的新**最新**屬性,應用程式級跟蹤得到了改進。 此屬性指定是否顯示最新的應用程式級跟蹤輸出,是否丟棄超出請求Limit 指示限制的較舊跟蹤數據。 如果為 false,則在達到請求 Limit 屬性之前,將顯示請求的追蹤數據。
 
 ## <a name="aspnet-command-line-tools"></a>ASP.NET 命令列工具
 
-有數個命令列工具可協助設定 ASP.NET。 ASP.NET 開發人員應該熟悉 aspnet\_的 regiis 工具。 ASP.NET 2.0 提供其他三個命令列工具來協助設定。
+有幾個命令列工具可以説明配置ASP.NET。 ASP.NET開發人員應該熟悉 aspnet\_regiis.exe 工具。 ASP.NET 2.0 提供了另外三個命令列工具,以説明配置。
 
-下列是可用的命令列工具：
+以下命令列工具可用:
 
 | **工具** | **使用** |
 | --- | --- |
-| **aspnet\_regiis .exe** | 允許以 IIS 註冊 ASP.NET。 此工具有兩個版本，隨附于 ASP.NET 2.0，一個用於32位系統（在架構資料夾中），另一個用於64位系統（在 Framework64 資料夾中）。64位版本將不會安裝在32位作業系統上。 |
-| **aspnet\_regsql .exe** | ASP.NET SQL Server 註冊工具是用來建立 Microsoft SQL Server 資料庫，供 ASP.NET 中的 SQL Server 提供者使用，或是從現有的資料庫新增或移除選項。 Aspnet\_regsql 檔案位於 Web 服務器的 [drive：] \WINDOWS\Microsoft.NET\Framework\versionNumber 資料夾中。 |
-| **aspnet\_regbrowsers .exe** | ASP.NET 瀏覽器註冊工具會剖析所有全系統瀏覽器定義，並將其編譯成元件，並將元件安裝到全域組件快取中。 此工具會使用瀏覽器定義檔案（。瀏覽器檔案 .NET Framework）。 此工具可在%SystemRoot%\Microsoft.NET\Framework\version\ 目錄中找到。 |
-| **aspnet\_編譯器 .exe** | ASP.NET 編譯工具可讓您就地編譯 ASP.NET Web 應用程式，或將其部署至目標位置（例如實際伺服器）。 就地編譯有助於應用程式效能，因為終端使用者在編譯應用程式時，對應用程式的第一個要求不會有延遲。 |
+| **阿斯普內\_雷吉斯.exe** | 允許在IIS註冊ASP.NET。 此工具有兩個版本附帶 ASP.NET 2.0,一個用於 32 位元系統(在 Framework 資料夾中),另一個用於 64 位元系統(在 Framework64 資料夾中)。64 位元版本將不會安裝在 32 位元作業系統上。 |
+| **阿斯普內\_雷格斯** | ASP.NET SQL Server 註冊工具用於建立 Microsoft SQL Server 資料庫,供 ASP.NET中的 SQL Server 提供者使用,或從現有資料庫中添加或刪除選項。 Aspnet\_regsql.exe 檔案位於 Web 伺服器上的 [驅動器:]WINDOWS_Microsoft.NET_Framework_versionNumber 資料夾中。 |
+| **阿斯普內\_註冊瀏覽器.exe** | ASP.NET瀏覽器註冊工具將所有系統範圍的瀏覽器定義解析和編譯到程式集中,並將程式集安裝到全域程式集緩存中。 該工具使用瀏覽器定義檔 (。BROWSER 檔案)來自 .NET 框架瀏覽器子目錄。 該工具可以在 %SystemRoot%\Microsoft.NET_Framework_version_目錄中找到。 |
+| **阿斯普內\_編譯器.exe** | ASP.NET編譯工具使您能夠編譯ASP.NET Web 應用程式,無論是就位還是部署到目標位置(如生產伺服器)。 就地編譯有助於應用程式性能,因為最終使用者在編譯應用程式時不會遇到對應用程式的第一個請求的延遲。 |
 
-因為 aspnet\_regiis 工具不是 ASP.NET 2.0 的新手，所以我們不會在這裡討論。
+由於 aspnet\_regiis.exe 工具對於 ASP.NET 2.0 並不新鮮,因此我們不會在此處討論它。
 
-## <a name="aspnet-sql-server-registration-tool---aspnet_regsqlexe"></a>ASP.NET SQL Server 註冊工具-aspnet\_regsql .exe
+## <a name="aspnet-sql-server-registration-tool---aspnet_regsqlexe"></a>ASP.NET SQL 伺服器註冊\_工具 - aspnet regsql.exe
 
-您可以使用 ASP.NET SQL Server 註冊工具來設定數種類型的選項。 您可以指定 SQL 連接，指定哪些 ASP.NET 應用程式服務會使用 SQL Server 來管理資訊、指出用於 SQL 快取相依性的資料庫或資料表，以及新增或移除使用 SQL Server 來儲存程式和會話狀態的支援。
+您可以使用ASP.NET SQL 伺服器註冊工具設置多種類型的選項。 可以指定 SQL 連接,指定哪些 ASP.NET 應用程式服務使用 SQL Server 來管理資訊,指示哪個資料庫或表用於 SQL 快取依賴項,以及添加或刪除對使用 SQL Server 儲存過程和工作階段狀態的支援。
 
-有數個 ASP.NET 應用程式服務依賴提供者來管理從資料來源儲存和抓取資料。 每個提供者都是資料來源特有的。 ASP.NET 包含下列 ASP.NET 功能的 SQL Server 提供者：
+多個ASP.NET應用程式服務依賴於提供程式來管理從資料源存儲和檢索數據。 每個提供程式都特定於數據源。 ASP.NET包括用於以下ASP.NET功能的 SQL Server 提供者:
 
-- 成員資格（ [SqlMembershipProvider](https://msdn.microsoft.com/library/system.web.security.sqlmembershipprovider.aspx)類別）。
-- 角色管理（ [SqlRoleProvider](https://msdn.microsoft.com/library/system.web.security.sqlroleprovider.aspx)類別）。
-- Profile （ [SqlProfileProvider](https://msdn.microsoft.com/library/system.web.profile.sqlprofileprovider.aspx)類別）。
-- Web 組件個人化（ [SqlPersonalizationProvider](https://msdn.microsoft.com/library/system.web.ui.webcontrols.webparts.sqlpersonalizationprovider.aspx)類別）。
-- Web 事件（ [SqlWebEventProvider](https://msdn.microsoft.com/library/system.web.management.sqlwebeventprovider.aspx)類別）。
+- 成員資格[(Sqlsasprovider](https://msdn.microsoft.com/library/system.web.security.sqlmembershipprovider.aspx)類)。
+- 角色管理[(SqlRole Provider](https://msdn.microsoft.com/library/system.web.security.sqlroleprovider.aspx)類)。
+- 設定檔[(SqlProfile Provider](https://msdn.microsoft.com/library/system.web.profile.sqlprofileprovider.aspx)類)。
+- Web 部件個人化[(Sql 個人化提供程式](https://msdn.microsoft.com/library/system.web.ui.webcontrols.webparts.sqlpersonalizationprovider.aspx)類)。
+- Web 事件[(SqlWebEvent 提供程式](https://msdn.microsoft.com/library/system.web.management.sqlwebeventprovider.aspx)類)。
 
-當您安裝 ASP.NET 時，伺服器的 machine.config 檔案會包含設定元素，這些專案會針對依賴提供者的每個 ASP.NET 功能指定 SQL Server 提供者。 根據預設，這些提供者會設定為連接到 SQL Server Express 2005 的本機使用者實例。 如果您變更了提供者所使用的預設連接字串，則在您可以使用電腦設定中設定的任何 ASP.NET 功能之前，您必須使用 Aspnet\_regsql，為您選擇的功能安裝 SQL Server 資料庫和資料庫元素。 如果您使用 SQL 註冊工具指定的資料庫不存在（如果命令列上未指定，則 aspnetdb.mdf 會是預設的資料庫），則目前的使用者必須擁有在 SQL Server 中建立資料庫的許可權，以及建立架構 e資料庫內的 lements。
+安裝ASP.NET時,伺服器的Machine.config檔包括配置元素,這些元素為依賴於提供程式的每個ASP.NET功能指定SQL Server提供程式。 默認情況下,這些提供程式配置為連接到 SQL Server Express 2005 的本地使用者實例。 如果更改提供者使用的預設連接字串,則在使用電腦配置中配置的任何ASP.NET功能之前,必須使用 Aspnet\_regsql.exe 安裝 SQL Server 資料庫和所選功能的資料庫元素。 如果使用 SQL 註冊工具指定的資料庫不存在(如果在命令列上未指定資料庫,則 aspnetdb 將是預設資料庫),則當前使用者必須有權在 SQL Server 中創建資料庫以及在資料庫中創建架構元素。
 
 ### <a name="sql-cache-dependency"></a>SQL 快取相依性
 
-ASP.NET 輸出快取的一項先進功能是 SQL 快取相依性。 SQL 快取相依性支援兩種不同的作業模式：一個使用資料表輪詢的 ASP.NET 執行，另一個使用 SQL Server 2005 的查詢通知功能的第二種模式。 SQL 註冊工具可以用來設定作業的資料表輪詢模式。
+ASP.NET輸出緩存的高級功能是 SQL 快取依賴項。 SQL 緩存依賴項支援兩種不同的操作模式:一種是使用表輪詢ASP.NET實現,另一種模式使用 SQL Server 2005 的查詢通知功能。 SQL 註冊工具可用於配置表輪詢操作模式。
 
 ### <a name="session-state"></a>工作階段狀態
 
-根據預設，會話狀態值和資訊會儲存在 ASP.NET 程式的記憶體中。 或者，您也可以將會話資料儲存在 SQL Server 資料庫中，以供多部 Web 服務器共用。 如果您針對具有 SQL 註冊工具的會話狀態所指定的資料庫不存在，則目前的使用者必須擁有在 SQL Server 中建立資料庫的許可權，以及在資料庫內建立架構元素的許可權。 如果資料庫存在，則目前的使用者必須擁有在現有資料庫中建立架構元素的許可權。
+默認情況下,會話狀態值和資訊存儲在ASP.NET進程中的記憶體中。 或者,您可以將會話數據存儲在 SQL Server 資料庫中,其中會話數據可以由多個 Web 伺服器共用。 如果使用 SQL 註冊工具為工作階段狀態指定的資料庫不存在,則當前使用者必須有權在 SQL Server 中創建資料庫以及在資料庫中創建架構元素。 如果資料庫確實存在,則當前用戶必須有權在現有資料庫中創建架構元素。
 
-若要在 SQL Server 上安裝會話狀態資料庫，請執行 Aspnet\_regsql 工具，並使用命令提供下列資訊：
+在 SQL Server 上安裝工作階段狀態資料庫\_,請執行 Aspnet regsql.exe 工具,並隨命令提供以下資訊:
 
-- 使用 **-S**選項的 SQL Server 實例的名稱。
-- 具有在執行 SQL Server 的電腦上建立資料庫之許可權的帳戶登入認證。 使用 **-E**選項來使用目前登入的使用者，或使用 **-U**選項來指定使用者識別碼以及 **-P**選項來指定密碼。
-- **-Ssadd**命令列選項，用以新增會話狀態資料庫。
+- 使用 **-S**選項的 SQL Server 實體名稱。
+- 具有在運行 SQL Server 的電腦上創建資料庫的許可權的帳戶的登錄認證。 使用 **-E**選項使用目前登入的使用者,或使用 **-U**選項指定使用者 ID 以及 **-P**選項來指定密碼。
+- **-ssadd**命令行選項用於添加會話狀態資料庫。
 
-根據預設，您無法使用 Aspnet\_regsql，在執行 SQL Server 2005 Express Edition 的電腦上安裝會話狀態資料庫。
+預設情況下,不能使用 Aspnet\_regsql.exe 工具在運行 SQL Server 2005 Express 版的電腦上安裝作業階段狀態資料庫。
 
-### <a name="the-aspnet-browser-registration-tool---aspnet_regbrowsersexe"></a>ASP.NET 瀏覽器註冊工具-aspnet\_regbrowsers
+### <a name="the-aspnet-browser-registration-tool---aspnet_regbrowsersexe"></a>ASP.NET瀏覽器註冊工具 -\_阿斯網 註冊瀏覽器.exe
 
-在 ASP.NET 版本1.1 中，Machine.config 檔案包含一個稱為 &lt;browserCaps&gt;的區段。 本章節包含一系列的 XML 專案，這些專案會根據正則運算式定義各種瀏覽器的設定。 針對 ASP.NET 版本2.0，這是新的。瀏覽器檔案使用 XML 專案定義特定瀏覽器的參數。 您可以藉由加入新的，在新的瀏覽器上加入資訊。瀏覽器檔案至位於系統上%SystemRoot%\Microsoft.NET\Framework\version\CONFIG\Browsers 的資料夾。
+在ASP.NET版本 1.1 中,Machine.config&lt;檔&gt;包含一個稱為瀏覽器Cap 的部分。 本節包含一系列 XML 條目,這些條目根據正則表達式定義了各種瀏覽器的配置。 對於ASP.NET版本 2.0,一個新的 。BROWSER 檔案使用 XML 項目定義特定瀏覽器的參數。 通過添加新 的瀏覽器,可以添加新 瀏覽器上的資訊。BROWSER 檔案到位於系統上 %SystemRoot%_Microsoft.NET_Framework_conFIG_瀏覽器的資料夾。
 
-因為應用程式在每次需要瀏覽器資訊時都不會讀取 .config 檔案，所以您可以建立新的。瀏覽器檔案並執行 Aspnet\_regbrowsers，將必要的變更新增至元件。 如此一來，伺服器就可以立即存取新的瀏覽器資訊，因此您不需要關閉任何應用程式來收取資訊。 應用程式可以透過目前 HttpRequest 的 Browser 屬性來存取瀏覽器功能。
+因為應用程式每次需要瀏覽器資訊時都未讀取 .config 檔案,因此您可以建立新的 。BROWSER 檔和執行 Aspnet\_註冊瀏覽器.exe 以向程式集添加所需的更改。 這允許伺服器立即存取新的瀏覽器資訊,因此您不必關閉任何應用程式來獲取資訊。 應用程式可以通過當前 HttpRequest 的瀏覽器屬性訪問瀏覽器功能。
 
-執行 aspnet\_regbrowser 時，可以使用下列選項：
+執行 aspnet\_regbrowser.exe 時,以下選項可用:
 
 | **選項** | **說明** |
 | --- | --- |
-| **-?** | 在命令視窗中顯示 Aspnet\_regbbrowsers 的解說文字。 |
-| **-i** | 建立執行時間瀏覽器功能元件，並將它安裝在全域組件快取中。 |
-| **-u** | 從全域組件快取卸載執行時間瀏覽器功能元件。 |
+| **-?** | 在命令視窗中顯示\_Aspnet regb 瀏覽器.exe 幫助文字。 |
+| **-i** | 建立運行時瀏覽器功能程式集並將其安裝到全域程式集緩存中。 |
+| **-u** | 從全域程式集緩存卸載運行時瀏覽器功能程式集。 |
 
-## <a name="the-aspnet-compilation-tool---aspnet_compilerexe"></a>ASP.NET 編譯工具-aspnet\_編譯器 .exe
+## <a name="the-aspnet-compilation-tool---aspnet_compilerexe"></a>ASP.NET編譯工具 -\_阿斯普 內編譯器.exe
 
-ASP.NET 編譯工具可以用兩種一般方式來使用：適用于部署的就地編譯和編譯，其中指定了目標輸出目錄。
+ASP.NET編譯工具可通過兩種常規方式使用:用於就地編譯和編譯以進行部署,其中指定了目標輸出目錄。
 
-### <a name="compiling-an-application-in-place"></a>[就地編譯應用程式](https://msdn.microsoft.com/library/ms229863.aspx)
+### <a name="compiling-an-application-in-place"></a>[編譯就地的應用程式](https://msdn.microsoft.com/library/ms229863.aspx)
 
-ASP.NET 編譯工具可以就地編譯應用程式，也就是說，它會模擬對應用程式提出多個要求的行為，因而導致一般編譯。 預先編譯網站的使用者不會因為第一次要求而編譯頁面而遇到延遲。
+ASP.NET編譯工具可以就地編譯應用程式,即模仿對應用程式發出多個請求的行為,從而導致定期編譯。 預編譯網站的使用者不會因為在第一次請求時編譯頁面而遇到延遲。
 
-當您就地預先編譯網站時，適用下列專案：
+在就位預編譯網站時,應用以下項:
 
-- 網站會保留其檔案和目錄結構。
-- 您必須擁有伺服器上網站所使用之所有程式設計語言的編譯器。
-- 如果任何檔案編譯失敗，整個網站就無法編譯。
+- 該網站保留其文件和目錄結構。
+- 您必須具有伺服器上站點使用的所有程式設計語言的編譯器。
+- 如果任何檔編譯失敗,則整個網站將失敗編譯。
 
-您也可以在將應用程式新增至新的來源檔案後，就地重新編譯。 此工具只會編譯新的或已變更的檔案，除非您包含 **-c**選項。
+在向應用程式添加新源檔後,還可以重新編譯應用程式。 該工具僅編譯新的或更改的檔案,除非您包含 **-c**選項。
 
 > [!NOTE]
-> 編譯包含嵌套應用程式的應用程式時，不會編譯該嵌套應用程式。 必須個別編譯此嵌套應用程式。
+> 包含嵌套應用程式的應用程式的編譯不會編譯嵌套應用程式。 嵌套應用程序必須單獨編譯。
 
-### <a name="compiling-an-application-for-deployment"></a>[編譯應用程式以進行部署](https://msdn.microsoft.com/library/ms229863.aspx)
+### <a name="compiling-an-application-for-deployment"></a>[編譯應用程式進行部署](https://msdn.microsoft.com/library/ms229863.aspx)
 
-您可以藉由指定 targetDir 參數，編譯用於部署的應用程式（編譯至目標位置）。 TargetDir 可以是 Web 應用程式的最終位置，也可以進一步部署已編譯的應用程式。 使用 **-u**選項會編譯應用程式，讓您可以對編譯過的應用程式中的某些檔案進行變更，而不需要重新編譯。 Aspnet\_cmd.exe 會區分靜態和動態檔案類型，而且在建立產生的應用程式時，會以不同的方式處理它們。
+通過指定目標Dir參數,編譯用於部署的應用程式(編譯到目標位置)。 目標 Dir 可以是 Web 應用程式的最終位置,也可以進一步部署編譯的應用程式。 使用 **-u**選項編譯應用程式的方式,您可以更改編譯應用程式中的某些檔,而無需重新編譯它。 Aspnet\_編譯器.exe 區分靜態和動態文件類型,並在創建生成的應用程式時以不同的方式處理它們。
 
-- 靜態檔案類型是沒有相關聯編譯器或組建提供者的檔案，例如名為的檔案具有副檔名，例如 .css、.gif、.htm、.html、.jpg、.js 等等。 這些檔案只會複製到目標位置，並保留它們在目錄結構中的相對位置。
-- 動態檔案類型是具有相關聯編譯器或組建提供者的檔案，包括具有 ASP.NET 特定副檔名的檔案，例如 global.asax、.ascx、ashx、.aspx、browser、.master 等等。 ASP.NET 編譯工具會從這些檔案產生元件。 如果省略 **-u**選項，此工具也會建立副檔名為的檔案。已進行編譯，將原始來源檔案對應至其元件。 為了確保保留應用程式來源的目錄結構，此工具會在目標應用程式的對應位置中產生預留位置檔案。
+- 靜態檔類型是那些沒有關聯的編譯器或生成提供程式的檔,例如其命名具有擴展名的檔,如 .css、.gif、.htm、.html、.jpg、.js 等。 這些檔只是複製到目標位置,並保留其在目錄結構中的相對位置。
+- 動態檔類型是具有關聯編譯器或生成提供程式的檔,包括具有ASP.NET特定檔名擴展名的檔,如 .asax、.ascx、.ashx、.aspx、.browser、.master 等。 ASP.NET編譯工具從這些檔生成程式集。 如果省略 **-u**選項,該工具還會創建檔案名擴展名的檔。將原始源檔映射到其程式集的 COMPILE。 為了確保保留應用程式源的目錄結構,該工具會在目標應用程式中的相應位置生成占位符檔。
 
-您必須使用 **-u**選項來表示已編譯之應用程式的內容可以修改。 否則，會忽略後續的修改或造成執行階段錯誤。
+您必須使用 **-u**選項來指示可以修改已編譯應用程式的內容。 否則,後續修改將被忽略或導致運行時錯誤。
 
-下表描述當包含 **-u**選項時，ASP.NET 編譯工具如何處理不同的檔案類型。
+下表描述了在包含 **-u**選項時,ASP.NET編譯工具如何處理不同的檔案類型。
 
-| **檔案類型** | **編譯器動作** |
+| **檔案類型** | **編譯器操作** |
 | --- | --- |
-| .ascx、.aspx、.master | 這些檔案會分割成標記和原始程式碼，其中包含程式碼後置檔案，以及 &lt;script runat = "server"&gt; 元素中的任何程式碼。 原始程式碼會編譯成元件，其名稱是衍生自雜湊演算法，而元件則放在 Bin 目錄中。 任何內嵌程式碼（也就是包含在 **&lt;%** 和 **%&gt;** 方括弧之間的程式碼）都會包含在標記中，而且不會進行編譯。 系統會建立與來源檔案相同名稱的新檔案，以包含標記並放在對應的輸出目錄中。 |
-| . ashx，.asmx | 這些檔案不會進行編譯，而且會依其方式移至輸出目錄，而不會進行編譯。 如果您想要編譯器代碼，請將程式碼放入原始程式碼檔案的應用程式\_Code 目錄中。 |
-| .cs、.vb、. form1.jsl、.cpp （不包含先前所列檔案類型的程式碼後置檔案） | 這些檔案會進行編譯，並以資源的形式包含在參考它們的元件中。 來源檔案不會複製到輸出目錄。 如果未參考程式碼檔案，則不會進行編譯。 |
-| 自訂檔案類型 | 這些檔案不會經過編譯。 這些檔案會複製到對應的輸出目錄。 |
-| 應用程式\_代碼子目錄中的原始程式碼檔 | 這些檔案會編譯成元件並放在 Bin 目錄中。 |
-| 應用程式\_GlobalResources 子目錄中的 .resx 和資源檔 | 這些檔案會編譯成元件並放在 Bin 目錄中。 在主要輸出目錄底下不會建立任何應用程式\_GlobalResources 子目錄，且來原始目錄中的 .resx 或 .resources 檔案不會複製到輸出目錄。 |
-| 應用程式\_LocalResources 子目錄中的 .resx 和資源檔 | 這些檔案不會進行編譯，並且會複製到對應的輸出目錄。 |
-| 應用程式中的 .skin 檔案\_主題子目錄 | 不會編譯該檔案和靜態主題檔案，並將其複製到對應的輸出目錄。 |
-| 。 browser 的 web.config 靜態檔案類型元件已存在於 Bin 目錄中 | 這些檔案會依原樣複製到輸出目錄。 |
+| .ascx, .aspx, .master | 這些檔被拆分為標記和原始程式碼,其中包括代碼背後的檔和包含在腳本 runat_「server」&lt;&gt;元素中的任何代碼。 原始程式碼被編譯成程式集,名稱派生自哈希演演演算法,並且程式集放置在 Bin 目錄中。 任何內聯代碼,即包含在 括**&lt;** 弧**%** 和 括弧之間的代碼,都包含在標記中,並且未編譯。 建立與源檔同名的新檔以包含標記並放置在相應的輸出目錄中。 |
+| .ashx, .asmx | 這些檔不會編譯,並且會移動到輸出目錄,以現在和未編譯。 如果希望編譯處理程式代碼,請將代碼放入\_App Code 目錄中的原始程式碼檔中。 |
+| .cs, .vb, .jsl, .cpp (不包括前面列出的檔案類型的代碼後檔案) | 這些檔被編譯並作為引用它們的程式集中的資源包含在其中。 源檔不會複製到輸出目錄。 如果未引用代碼檔,則不編譯它。 |
+| 自訂檔案類型 | 這些檔未編譯。 這些檔將複製到相應的輸出目錄。 |
+| 套\_用程式碼子目錄中的原始碼檔案 | 這些檔被編譯成程式集並放置在 Bin 目錄中。 |
+| .resx 和 .資源\_檔案在 套用全域資源子目錄 | 這些檔被編譯成程式集並放置在 Bin 目錄中。 在主\_輸出目錄下不建立應用全域資源子目錄,並且源目錄中的 .resx 或 .resource 檔不會複製到輸出目錄。 |
+| .resx 和 .資源\_檔案在套用資源子目錄 | 這些檔不會編譯,並複製到相應的輸出目錄。 |
+| 套\_用 主題子目錄中 .skin 檔案 | .skin 檔和靜態主題檔不會編譯,並複製到相應的輸出目錄。 |
+| .browser Web.config 靜態檔案類型 程式集已存在於 Bin 目錄中 | 這些檔將像一樣複製到輸出目錄。 |
 
-下表描述當省略 **-u**選項時，ASP.NET 編譯工具如何處理不同的檔案類型。
+下表描述了在省略 **-u**選項時,ASP.NET編譯工具如何處理不同的文件類型。
 
-| **檔案類型** | **編譯器動作** |
+| **檔案類型** | **編譯器操作** |
 | --- | --- |
-| .aspx、.asmx、ashx、.master | 這些檔案會分割成標記和原始程式碼，其中包含程式碼後置檔案，以及 &lt;script runat = "server"&gt; 元素中的任何程式碼。 原始程式碼會編譯成元件，其名稱是從雜湊演算法衍生而來。 產生的元件會放在 Bin 目錄中。 任何內嵌程式碼（也就是包含在 **&lt;%** 和 **%&gt;** 方括弧之間的程式碼）都會包含在標記中，而且不會進行編譯。 編譯器會建立新的檔案，以包含名稱與來源檔案相同的標記。 這些產生的檔案會放在 Bin 目錄中。 編譯器也會建立與原始檔同名但副檔名為的檔案。已編譯，其中包含對應資訊。 該.編譯的檔案會放在輸出目錄中，並對應至來源檔案的原始位置。 |
-| .ascx | 這些檔案會分割成標記和原始碼。 原始程式碼會編譯成元件並放在 Bin 目錄中，其名稱衍生自雜湊演算法。 不會產生任何標記檔案。 |
-| .cs、.vb、. form1.jsl、.cpp （不包含先前所列檔案類型的程式碼後置檔案） | 從 .ascx、. ashx 或 .aspx 檔案所產生的元件所參考的原始程式碼會編譯成元件並放在 Bin 目錄中。 不會複製任何來源檔案。 |
-| 自訂檔案類型 | 這些檔案會進行編譯，就像動態檔案一樣。 根據它們所根據的檔案類型，編譯器可以將對應檔放在輸出目錄中。 |
-| 應用程式中的檔案\_代碼子目錄 | 這個子目錄中的原始程式碼檔會編譯成元件並放在 Bin 目錄中。 |
-| 應用程式中的檔案\_GlobalResources 子目錄 | 這些檔案會編譯成元件並放在 Bin 目錄中。 主要輸出目錄底下不會建立任何應用程式\_GlobalResources 子目錄。 如果設定檔指定 appliesTo = "All"，.resx 和 .resources 檔案就會複製到輸出目錄。 如果[BuildProvider](https://msdn.microsoft.com/library/system.web.configuration.buildprovider.aspx)參考它們，則不會複製它們。 |
-| 應用程式\_LocalResources 子目錄中的 .resx 和資源檔 | 這些檔案會編譯成具有唯一名稱並放在 Bin 目錄中的元件。 不會將 .resx 或. 資源檔案複製到輸出目錄。 |
-| 應用程式中的 .skin 檔案\_主題子目錄 | 主題會編譯成元件並放在 Bin 目錄中。 系統會為 .skin 檔案建立 Stub 檔案，並將其放在對應的輸出目錄中。 靜態檔案（例如 .css）會複製到輸出目錄。 |
-| 。 browser 的 web.config 靜態檔案類型元件已存在於 Bin 目錄中 | 這些檔案會依原樣複製到輸出目錄。 |
+| .aspx, .asmx, .ashx, .master | 這些檔被拆分為標記和原始程式碼,其中包括代碼背後的檔和包含在腳本 runat_「server」&lt;&gt;元素中的任何代碼。 原始程式碼被編譯成程式集,名稱派生自哈希演演演算法。 生成的程式集放置在 Bin 目錄中。 任何內聯代碼,即包含在 括**&lt;** 弧**%** 和 括弧之間的代碼,都包含在標記中,並且未編譯。 編譯器創建新檔以包含與源檔同名的標記。 這些生成的檔放置在 Bin 目錄中。 編譯器還創建與源檔同名但具有擴展名的檔。包含映射資訊的 COMPILED。 .COMPILED 檔案放置在與源檔的原始位置對應的輸出目錄中。 |
+| .ascx | 這些檔被拆分為標記和原始碼。 原始程式碼被編譯成程式集並放置在 Bin 目錄中,名稱派生自哈希演演演算法。 不生成標記檔。 |
+| .cs, .vb, .jsl, .cpp (不包括前面列出的檔案類型的代碼後檔案) | 由 .ascx、.ashx 或 .aspx 檔生成的程式集引用的原始碼被編譯到程式集中並放置在 Bin 目錄中。 不會複製任何源檔。 |
+| 自訂檔案類型 | 這些檔像動態檔一樣編譯。 根據它們所基於的文件類型,編譯器可以將映射檔放置在輸出目錄中。 |
+| 套\_用程式碼子目錄中檔案 | 此子目錄中的原始碼檔被編譯到程式集中並放置在 Bin 目錄中。 |
+| 套\_用全域資源子目錄中的檔案 | 這些檔被編譯成程式集並放置在 Bin 目錄中。 在主\_輸出目錄下不創建應用全域資源子目錄。 如果設定檔指定應用於"全部",則 .resx 和 .resources 檔將複製到輸出目錄。 如果[生成提供程式](https://msdn.microsoft.com/library/system.web.configuration.buildprovider.aspx)引用它們,則不複製它們。 |
+| .resx 和 .資源\_檔案在套用資源子目錄 | 這些檔被編譯到具有唯一名稱的程式集中,並放置在 Bin 目錄中。 沒有 .resx 或 .resource 檔案複製到輸出目錄。 |
+| 套\_用 主題子目錄中 .skin 檔案 | 主題被編譯到程式集中並放置在 Bin 目錄中。 為 .skin 檔案創建存根檔,並放置在相應的輸出目錄中。 靜態檔(如 .css)將複製到輸出目錄。 |
+| .browser Web.config 靜態檔案類型 程式集已存在於 Bin 目錄中 | 這些檔將照樣複製到輸出目錄。 |
 
-### <a name="fixed-assembly-names"></a>[固定的元件名稱](https://msdn.microsoft.com/library/ms229863.aspx##)
+### <a name="fixed-assembly-names"></a>[固定程式集名稱](https://msdn.microsoft.com/library/ms229863.aspx##)
 
-在某些情況下，例如使用 MSI Windows Installer 部署 Web 應用程式，需要使用一致的檔案名和內容，以及一致的目錄結構，以識別更新的元件或配置設定。 在這些情況下，您可以使用 **-fixednames**選項，指定 ASP.NET 編譯工具應針對每個原始程式檔編譯元件，而不是使用將多個頁面編譯成元件的。 這可能會導致大量的元件，因此如果您擔心擴充性，您應該謹慎使用此選項。
+某些方案(如使用 MSI Windows 安裝程式部署 Web 應用程式)需要使用一致的檔名和內容,以及一致的目錄結構來識別更新的程式集或配置設置。 在這些情況下,可以使用 **-固定名稱**選項指定ASP.NET編譯工具應為每個源檔編譯程式集,而不是使用將多個頁面編譯到程式集中的位置。 這可能導致大量程式集,因此,如果您擔心可伸縮性,則應謹慎使用此選項。
 
-### <a name="strong-name-compilation"></a>[強式名稱編譯](https://msdn.microsoft.com/library/ms229863.aspx##)
+### <a name="strong-name-compilation"></a>[強名稱編譯](https://msdn.microsoft.com/library/ms229863.aspx##)
 
-提供 **-aptca**、 **-delaysign**、 **-keycontainer**和 **-Keyfile**選項，讓您可以使用 Aspnet\_cmd.exe 來建立強式名稱的元件，而不需分別使用[強式名稱工具（sn.exe）](https://msdn.microsoft.com/library/k5b5tt23.aspx) 。 這些選項分別對應至**AllowPartiallyTrustedCallersAttribute**、 **AssemblyDelaySignAttribute**、 **AssemblyKeyNameAttribute**和**AssemblyKeyFileAttribute**。
+\_提供 -aptca、-delaysign、-**鍵容器**和 **-鍵檔案**選項,以便您可以使用 Aspnet 編譯器.exe 創建強命名程式集,而無需單獨使用[強名稱工具 (Sn.exe)。](https://msdn.microsoft.com/library/k5b5tt23.aspx) **-aptca** **-delaysign** 這些選項以**允許部份信任的呼叫者屬性**、**程式集延遲屬性**、**程式集 KeyName 屬性**與**程式集金鑰檔案屬性**。
 
-這些屬性的討論不在此課程的範圍內。
+討論這些屬性超出了本課程的範圍。
 
 ## <a name="labs"></a>實驗室
 
-下列實驗室都是以先前的實驗室為基礎。 您將需要依序執行。
+以下每個實驗室都基於以前的實驗室。 你需要按順序做它們。
 
-## <a name="lab-1-using-the-configuration-api"></a>實驗室1：使用設定 API
+## <a name="lab-1-using-the-configuration-api"></a>實驗 1:使用設定 API
 
-1. 建立名為*mod9lab*的新網站。
-2. 將新的 Web 設定檔新增至網站。
-3. 將下列內容新增至 web.config 檔案：
+1. 創建一個名為*mod9lab*的新網站。
+2. 向網站添加新的 Web 配置檔。
+3. 將以下內容加入到 Web.config 檔案:
 
 [!code-xml[Main](configuration-and-instrumentation/samples/sample14.xml)]
 
-這可確保您擁有儲存 web.config 檔案變更的許可權。
+這將確保您具有保存對 Web.config 檔更改的許可權。
 
-1. 將新的標籤控制項加入至 default.aspx，並將識別碼變更為**lblDebugStatus**。
-2. 將新的按鈕控制項加入 default.aspx。
-3. 將按鈕控制項的 ID 變更為**btnToggleDebug** ，並將文字變更為**切換偵錯工具狀態**。
-4. 開啟 default.aspx 的程式碼後置檔案的程式碼片段，並為**system.web. Configuration**新增**using**語句，如下所示：
+1. 將新的 Label 控制項添加到 Default.aspx 並將 ID 更改為**lblDebugStatus。**
+2. 將新的按鈕控制項添加到 Default.aspx。
+3. 將按鈕控制項的 ID 變更為**btnToggleDebug**與「文字」來**切換除錯狀態**。
+4. 開啟 Default.aspx 的代碼背後檔的代碼檢視,並為**System.Web.設定**添加**using**語句,如下所示:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample15.cs)]
 
-1. 將兩個私用變數新增至類別，並將頁面\_Init 方法，如下所示：
+1. 新增兩個私有變數和一個\_Page Init 方法,如下所示:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample16.cs)]
 
-1. 將下列程式碼新增至頁面\_載入：
+1. 將以下代碼加入頁面\_載入:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample17.cs)]
 
-1. 儲存並流覽 default.aspx。 請注意，標籤控制項會顯示目前的「偵錯工具」狀態。
-2. 按兩下設計工具中的 [Button] 控制項，然後將下列程式碼加入按鈕控制項的 Click 事件中：
+1. 保存和流覽預設值.aspx。 請注意,"標籤"控制器顯示當前調試狀態。
+2. 按兩下設計器中的「按鈕」控制項,並將以下代碼加入到 Button 控制項的 Click 事件:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample18.cs)]
 
-1. 儲存並流覽 default.aspx，然後按一下按鈕。
-2. 在每個按鈕按一下後開啟 web.config 檔案，並觀察 &lt;編譯&gt; 區段中的**debug**屬性。
+1. 保存並瀏覽預設.aspx,然後單擊該按鈕。
+2. 按下每個按鈕後打開 Web.config 檔**debug**,&lt;並觀察&gt;編譯 部分中的調試屬性。
 
-## <a name="lab-2-logging-application-restarts"></a>實驗室2：記錄應用程式重新開機
+## <a name="lab-2-logging-application-restarts"></a>實驗 2:記錄應用程式重新啟動
 
-在此實驗室中，您將建立可讓您在事件檢視器中切換應用程式關閉、重新開機和重新編譯記錄的程式碼。
+在本實驗中,您將建立代碼,以允許您在事件查看器中切換應用程式關閉、啟動和重新編譯的日誌記錄。
 
-1. 將 DropDownList 新增至 default.aspx，並將識別碼變更為 ddlLogAppEvents。
-2. 將 DropDownList 的**AutoPostBack**屬性設定為**true**。
-3. 將三個專案新增至 DropDownList 的 Items 集合。 將第一個專案的**文字***選取值*，並將值設為-1。 將第二個專案的**文字**和**值**設**為 True** ，並將第三個專案的**文字**和**值**設**為 False**。
-4. 將新的標籤加入 default.aspx。 將識別碼變更為**lblLogAppEvents**。
-5. 開啟 default.aspx 的程式碼後置視圖，並為 HealthMonitoringSection 類型的變數加入新的宣告，如下所示：
+1. 將下拉清單添加到預設.aspx,並將 ID 更改為 ddlLogApp 事件。
+2. 將下拉清單的**自動 PostBack**屬性設定為**true**。
+3. 將三個專案添加到下拉清單的「專案」集合中。 使第一個項目**的文本***選擇值*和值 -1。 將**文字與****值**為**true,** 並使第三個的**文字**與**值****為 false**。
+4. 將新標籤添加到預設.aspx。 將 ID 變更為**lblLogApp 事件**。
+5. 打開 default.aspx 的代碼後面檢視,並為類型為 Health 監視節的變數添加新聲明,如下所示:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample19.cs)]
 
-1. 將下列程式碼新增至頁面\_Init 中的現有程式碼：
+1. 將以下代碼加入到頁\_Init 中的現有代碼:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample20.cs)]
 
-1. 按兩下 DropDownList，並將下列程式碼新增至 SelectedIndexChanged 事件：
+1. 按兩下下拉清單,並將以下代碼添加到「選定索引更改」事件:
 
 [!code-csharp[Main](configuration-and-instrumentation/samples/sample21.cs)]
 
-1. 流覽 default.aspx。
-2. 將下拉式清單設定為**False**。
-3. 清除事件檢視器中的應用程式記錄檔。
-4. 按一下此按鈕，即可變更應用程式的 Debug 屬性。
-5. 重新整理事件檢視器中的應用程式記錄檔。 
+1. 瀏覽預設值.aspx。
+2. 將下拉設定為**False**。
+3. 清除事件檢視器中的應用程式日誌。
+4. 按一下這個按鈕可更改應用程式的除錯屬性。
+5. 刷新事件檢視器中的應用程式日誌。 
 
-    1. 是否已記錄任何事件？
-    2. 為何或為什麼不這麼做？
-6. 將下拉式清單設定為 [ **True]。**
-7. 按一下按鈕以切換應用程式的 Debug 屬性。
-8. 重新整理應用程式登入事件檢視器。 
+    1. 是否有任何事件被記錄?
+    2. 為什麼或為什麼不?
+6. 將下拉清單設置為 **「True」。**
+7. 按這裏按鈕可切換應用程式的除錯屬性。
+8. 刷新應用程式登錄事件檢視器。 
 
-    1. 是否已記錄任何事件？
-    2. 應用程式關閉的原因為何？
-9. 試驗開啟和關閉記錄，並查看對 web.config 檔案所做的變更。
+    1. 是否有任何事件被記錄?
+    2. 應用關閉的原因是什麼?
+9. 嘗試打開和關閉日誌記錄,並查看對 Web.config 檔所做的更改。
 
 ## <a name="more-information"></a>其他相關資訊：
 
-ASP.NET 2.0 的提供者模型可讓您建立自己的提供者，不僅適用于應用程式檢測，還有其他許多用途，例如成員資格、設定檔等。如需撰寫自訂提供者以將應用程式事件記錄到文字檔的詳細資訊，請造訪[此連結](https://msdn.microsoft.com/library/default.asp?url=/library/dnaspp/html/ASPNETProvMod_Prt6.asp)。
+ASP.NET 2.0 的提供程式模型允許您不僅為應用程式檢測創建自己的提供程式,還可用於許多其他用途,如成員資格、配置檔等。有關編寫自訂提供應用程式將應用程式事件記錄到文字檔的詳細資訊,請造[訪 此連結](https://msdn.microsoft.com/library/default.asp?url=/library/dnaspp/html/ASPNETProvMod_Prt6.asp)。

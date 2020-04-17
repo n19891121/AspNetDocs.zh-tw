@@ -1,27 +1,27 @@
 ---
 uid: web-forms/videos/sql-2005/enabling-full-text-search-in-your-text-data
-title: 在您的文字資料中啟用全文檢索搜尋 |Microsoft Docs
-author: microsoft
-description: 全文檢索搜尋可讓您將大量的文字（甚至是 Microsoft Word 檔或其他檔案格式）儲存到您的資料庫，並執行複雜的 qu 。
+title: 在文字資料中啟用全文搜尋 |微軟文件
+author: rick-anderson
+description: 全文搜尋允許您將大部分文字(甚至 Microsoft Word 檔或其他檔案格式)儲存到資料庫中,並執行複雜的 qu...
 ms.author: riande
 ms.date: 11/14/2006
 ms.assetid: f42dba2b-7efd-4f1e-8bed-f3816edcf44a
 msc.legacyurl: /web-forms/videos/sql-2005/enabling-full-text-search-in-your-text-data
 msc.type: video
-ms.openlocfilehash: e4e96810cd1dabb0cf2ab1d49ca1f6a3b019a45f
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 7dbcad93101868de0fdaa0d0b25c74b8092dd128
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78523279"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543297"
 ---
 # <a name="enabling-full-text-search-in-your-text-data"></a>在文字資料中啟用全文檢索搜尋
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-全文檢索搜尋可讓您將大量的文字（甚至是 Microsoft Word 檔或其他檔案格式）儲存到資料庫中，並根據此文字資料執行複雜的查詢，同時預期會有絕佳的效能。 這一課將示範如何設定全文檢索搜尋，特別注意在 SQL Server Express 內設定的細節。 然後，我們會移至建立全文檢索索引、設定索引擴展設定，以及執行查詢來示範 CONTAINS 述詞的功能及其許多變化。
+全文搜索允許您將大部分文本(甚至 Microsoft Word 文檔或其他檔格式)保存到資料庫中,並基於此文字數據執行複雜的查詢,同時期望獲得出色的性能。 本課演示如何設置全文搜索,特別注意在 SQL Server Express 中設置它的細微差別。 然後,我們轉到創建全文索引、配置索引填充設置以及執行顯示 CONTAINS 謂詞及其許多變體的強大功能的查詢。
 
-[&#9654;觀看影片（38分鐘）](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/enabling-full-text-search-in-your-text-data)
+[&#9654;观看视频(38 分鐘)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/enabling-full-text-search-in-your-text-data)
 
 > [!div class="step-by-step"]
-> [上一篇](creating-and-using-stored-procedures.md)
+> [上一步](creating-and-using-stored-procedures.md)

@@ -1,212 +1,212 @@
 ---
 uid: mvc/overview/older-versions-1/models-data/creating-model-classes-with-the-entity-framework-vb
-title: 使用 Entity Framework 建立模型類別（VB） |Microsoft Docs
-author: microsoft
-description: 在本教學課程中，您將瞭解如何搭配 Microsoft Entity Framework 使用 ASP.NET MVC。 您會瞭解如何使用 Entity Wizard 來建立 ADO.NET Entity Da 。
+title: 使用實體框架 (VB) 建立模型類別 ( / )微軟文件
+author: rick-anderson
+description: 在本教學中,您將瞭解如何將ASP.NETMVC與Microsoft實體框架一起使用。 您將瞭解如何使用實體精靈建立ADO.NET實體 Da...
 ms.author: riande
 ms.date: 01/27/2009
 ms.assetid: ff8322c9-12f3-4e24-aba6-a38046b9bb0d
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/creating-model-classes-with-the-entity-framework-vb
 msc.type: authoredcontent
-ms.openlocfilehash: f6c896c6f5f6d898ac6f99d5998fb29cb73bcb10
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: cdba91969a6ed9c02965999bbc48d5c5cdea140d
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78543327"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542647"
 ---
 # <a name="creating-model-classes-with-the-entity-framework-vb"></a>使用 Entity Framework 建立模型類別 (VB)
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-> 在本教學課程中，您將瞭解如何搭配 Microsoft Entity Framework 使用 ASP.NET MVC。 您將瞭解如何使用 Entity Wizard 來建立 ADO.NET 實體資料模型。 在本教學課程中，我們會建立一個 web 應用程式，說明如何使用 Entity Framework 來選取、插入、更新和刪除資料庫資料。
+> 在本教學中,您將瞭解如何將ASP.NETMVC與Microsoft實體框架一起使用。 您將瞭解如何使用實體嚮導創建ADO.NET實體資料模型。 在本教學中,我們將建構一個 Web 應用程式,說明如何使用實體框架選擇、插入、更新和刪除資料庫資料。
 
-本教學課程的目的是要說明如何在建立 ASP.NET MVC 應用程式時，使用 Microsoft Entity Framework 來建立資料存取類別。 本教學課程假設您先前不知道 Microsoft Entity Framework。 在本教學課程結束時，您將瞭解如何使用 Entity Framework 來選取、插入、更新和刪除資料庫記錄。
+本教學的目的是說明如何在建構ASP.NET MVC 應用程式時使用Microsoft實體架構創建資料存取類。 本教程假定之前對 Microsoft 實體框架沒有瞭解。 在本教學結束時,您將瞭解如何使用實體框架來選擇、插入、更新和刪除資料庫記錄。
 
-Microsoft Entity Framework 是物件關聯式對應（O/RM）工具，可讓您自動從資料庫產生資料存取層。 此 Entity Framework 可讓您以手動方式建立資料存取類別，以避免乏味的工作。
+Microsoft 實體框架是一個對象關係映射 (O/RM) 工具,使您能夠從資料庫自動生成數據存取層。 實體框架使您能夠避免手動構建數據訪問類的繁瑣工作。
 
 > [!NOTE] 
 > 
-> ASP.NET MVC 與 Microsoft Entity Framework 之間沒有任何必要的連接。 您可以搭配 ASP.NET MVC 使用的 Entity Framework 有數個替代方案。 例如，您可以使用其他 O/RM 工具（例如 Microsoft LINQ to SQL、NHibernate 或 SubSonic）來建立 MVC 模型類別。
+> ASP.NET MVC 和 Microsoft 實體框架之間沒有基本聯繫。 實體框架有幾個替代方法可用於mVCASP.NET。 例如,您可以使用其他 O/RM 工具(如 Microsoft LINQ 到 SQL、NHibernate 或 SubSonic)構建 MVC 模型類。
 
-為了說明如何搭配使用 Microsoft Entity Framework 與 ASP.NET MVC，我們將建立一個簡單的範例應用程式。 我們將建立電影資料庫應用程式，讓您可以顯示和編輯電影資料庫記錄。
+為了說明如何使用微軟實體框架進行ASP.NET MVC,我們將構建一個簡單的示例應用程式。 我們將創建一個影片資料庫應用程式,使您能夠顯示和編輯影片資料庫記錄。
 
-本教學課程假設您有 Visual Studio 2008 或 Visual Web Developer 2008 （含 Service Pack 1）。 您需要 Service Pack 1，才能使用 Entity Framework。 您可以從下列位址下載 Visual Studio 2008 Service Pack 1 或 Visual Web Developer （含 Service Pack 1）：
+本教程假定您擁有 Visual Studio 2008 或帶 Service Pack 1 的可視化 Web 開發人員 2008。 您需要服務包 1 才能使用實體框架。 您可以透過以下位址下載 Visual Studio 2008 服務套件 1 或帶服務套件 1 的視覺化 Web 開發人員:
 
 > [https://www.asp.net/downloads/](https://www.asp.net/downloads)
 
-## <a name="creating-the-movie-sample-database"></a>建立電影範例資料庫
+## <a name="creating-the-movie-sample-database"></a>建立影片範例資料庫
 
-電影資料庫應用程式會使用名為電影的資料庫資料表，其中包含下列資料行：
+影片資料庫應用程式使用名為「Movie」的資料庫表,其中包含以下列:
 
-| 資料行名稱 | 資料類型 | 允許 Null 嗎？ | 是否為主要金鑰？ |
+| 資料行名稱 | 資料類型 | 允許 Nulls? | 是主鍵嗎? |
 | --- | --- | --- | --- |
-| ID | int | False | True |
-| 標題 | NVarchar （100） | False | False |
-| 導演 | NVarchar （100） | False | False |
+| Id | int | False | True |
+| Title | 恩瓦爾查爾 (100) | False | False |
+| 導演 | 恩瓦爾查爾 (100) | False | False |
 
-您可以遵循下列步驟，將此資料表新增至 ASP.NET MVC 專案：
+您可以按照以下步驟將此表加入ASP.NET MVC 專案中:
 
-1. 在 [方案總管] 視窗中，以滑鼠右鍵按一下應用程式\_[Data] 資料夾，然後選取 [**新增]、[新增專案**] 功能表選項。
-2. 從 [**加入新專案**] 對話方塊中，選取 [ **SQL Server 資料庫**]，將資料庫命名為 MoviesDB，然後按一下 [**加入**] 按鈕。
-3. 按兩下 [MoviesDB] 檔案以開啟 [伺服器總管/資料庫總管] 視窗。
-4. 展開 [MoviesDB] 資料庫連接，以滑鼠右鍵按一下 [資料表] 資料夾，然後選取 [**加入新的資料表**] 功能表選項。
-5. 在 資料表設計工具中，新增 識別碼、標題 和 導演 資料行。
-6. 按一下 [**儲存**] 按鈕（其具有軟碟圖示）以儲存新的資料表，並將其名稱設為電影。
+1. 右鍵按一下「\_解決方案資源管理器」視窗中的應用數據資料夾,然後選擇選單選項 **「添加,新建專案」。。**
+2. 在 **「新增新項目」** 對話方塊中,選擇**SQL Server 資料庫**,為資料庫指定名稱 MoviesDB.mdf,然後按下「**添加**」按鈕。
+3. 按兩下 MoviesDB.mdf 檔以打開伺服器資源管理器/資料庫資源管理器視窗。
+4. 展開 MoviesDB.mdf 資料庫連接,右鍵單擊「表」資料夾,然後選擇功能表選項 **「添加新錶**」。
+5. 在表設計器中,添加 Id、標題和控制器列。
+6. 按下 **「儲存**」按鈕(它有軟盤的圖示)以儲存新錶的名稱「電影」。。
 
-建立電影資料庫資料表之後，您應該在資料表中加入一些範例資料。 以滑鼠右鍵按一下 [電影] 資料表，然後選取 [**顯示資料表資料**] 功能表選項。 您可以在出現的方格中輸入假電影資料。
+創建"影片"資料庫表後,應向該表添加一些範例資料。 右鍵按一下「影片」表併選擇功能表選項 **「顯示表數據**」。 您可以將假影片數據輸入顯示的網格中。
 
-## <a name="creating-the-adonet-entity-data-model"></a>建立 ADO.NET 實體資料模型
+## <a name="creating-the-adonet-entity-data-model"></a>建立ADO.NET實體資料模型
 
-若要使用 Entity Framework，您需要建立實體資料模型。 您可以利用 Visual Studio*實體資料模型 Wizard* ，自動從資料庫產生實體資料模型。
+為了使用實體框架,您需要創建實體數據模型。 您可以使用視覺化工作室*實體資料模型精靈*從資料庫自動生成實體資料模型。
 
-請依照下列步驟：
+請遵循下列步驟：
 
-1. 以滑鼠右鍵按一下 [方案總管] 視窗中的 [模型] 資料夾，然後選取 [**加入]、[新增專案**] 功能表選項。
-2. 在 [**加入新專案**] 對話方塊中，選取 [資料] 類別（請參閱 [圖 1]）。
-3. 選取 [ **ADO.NET 實體資料模型**] 範本，將實體資料模型名稱指定為 MoviesDBModel，然後按一下 [**新增**] 按鈕。 按一下 [**新增**] 按鈕即可啟動 [資料模型嚮導]。
-4. 在 [**選擇模型內容**] 步驟中，選擇 [**從資料庫產生**] 選項，然後按 [**下一步]** 按鈕（請參閱 [圖 2]）。
-5. 在 [**選擇您的資料連線**] 步驟中，選取 [MoviesDB] 資料庫連接，並輸入實體連接設定名稱 MoviesDBEntities，然後按 [**下一步]** 按鈕（請參閱 [圖 3]）。
-6. 在 [**選擇您的資料庫物件**] 步驟中，選取 [電影資料庫] 資料表，然後按一下 [**完成]** 按鈕（請參閱 [圖 4]）。
+1. 右鍵按一下「解決方案資源管理器」視窗中的「模型」資料夾,然後選擇選單選項 **「添加,新專案**」。
+2. 在「**添加新專案」** 對話方塊中,選擇「資料」類別(參見圖 1)。
+3. 選擇**ADO.NET 實體資料模型**樣本,為實體數據模型指定名稱「電影 DBModel.edmx」,然後按下 **「添加**」按鈕。 按下 **「添加**」按鈕將啟動「數據模型精靈」。
+4. 在 **「選擇模型內容」** 步驟中,選擇「**從資料庫產生**」選項,然後單擊 **「下一步**」按鈕(參見圖 2)。
+5. 在 **「選擇數據連接**」步驟中,選擇 MoviesDB.mdf 資料庫連接,輸入實體連接設置名稱「電影 DB 實體」,然後單擊 **「下一步**」按鈕(參見圖 3)。
+6. 在 **「選擇資料庫物件**」步驟中,選擇「影片資料庫」表並單擊 **「完成」** 按鈕(參見圖 4)。
 
-完成這些步驟之後，就會開啟 [ADO.NET 實體資料模型設計工具（Entity Designer）]。
+完成這些步驟後,將打開ADO.NET實體數據模型設計器(實體設計器)。
 
-**圖1–建立新的實體資料模型**
+**圖 1 = 建立新的實體資料模型**
 
 ![clip_image002](creating-model-classes-with-the-entity-framework-vb/_static/image1.jpg)
 
-**圖2–選擇模型內容步驟**
+**圖 2 = 選擇模型內容步驟**
 
 ![clip_image004](creating-model-classes-with-the-entity-framework-vb/_static/image2.jpg)
 
-**圖3–選擇您的資料連線**
+**圖 3 = 選擇資料連線**
 
 ![clip_image006](creating-model-classes-with-the-entity-framework-vb/_static/image3.jpg)
 
-**圖4–選擇您的資料庫物件**
+**圖 4 = 選擇資料庫物件**
 
 ![clip_image008](creating-model-classes-with-the-entity-framework-vb/_static/image4.jpg)
 
-## <a name="modifying-the-adonet-entity-data-model"></a>修改 ADO.NET 實體資料模型
+## <a name="modifying-the-adonet-entity-data-model"></a>變更ADO.NET實體資料模型
 
-建立實體資料模型之後，您可以利用 Entity Designer 來修改模型（請參閱 [圖 5]）。 您可以在 [方案總管] 視窗內的 [模型] 資料夾中，按兩下包含的 MoviesDBModel，隨時開啟 Entity Designer。
+創建實體數據模型后,可以使用實體設計器修改模型(參見圖 5)。 您可以隨時透過雙擊解決方案資源管理器視窗中的「模型」資料夾中的「電影 DBModel.edmx 檔案」來打開實體設計器。
 
-**[圖 5] – ADO.NET 實體資料模型設計工具**
+**圖 5 = ADO.NET 實體資料模型設計器**
 
 ![clip_image010](creating-model-classes-with-the-entity-framework-vb/_static/image5.jpg)
 
-例如，您可以使用 Entity Designer 來變更「實體模型資料嚮導」所產生的類別名稱。 嚮導會建立名為 [電影] 的新資料存取類別。 換句話說，此 Wizard 提供的類別與資料庫資料表的名稱相同。 因為我們將使用此類別來代表特定電影實例，所以我們應該將類別從電影重新命名為 Movie。
+例如,可以使用實體設計器更改實體模型數據嚮導生成的類的名稱。 嚮導創建了名為"電影"的新數據存取類。 換句話說,嚮導為類指定與資料庫表相同的名稱。 由於我們將使用此類來表示特定的「影片」實例,因此應將類從「影片」重新命名為「影片」。
 
-如果您想要重新命名實體類別，可以按兩下 Entity Designer 中的類別名稱，然後輸入新的名稱（請參閱 [圖 6]）。 或者，您可以在選取 Entity Designer 中的實體之後，變更屬性視窗中的機構名稱。
+如果要重命名實體類,可以按兩下實體設計器中的類名稱並輸入新名稱(參見圖 6)。 或者,您可以在實體設計器中選擇實體后,在"屬性"視窗中更改實體的名稱。
 
-**圖6–變更機構名稱**
+**圖 6 = 變更實體名稱**
 
 ![clip_image012](creating-model-classes-with-the-entity-framework-vb/_static/image6.jpg)
 
-按一下 [儲存] 按鈕（磁片圖示）以進行修改之後，請記得儲存您的實體資料模型。 在幕後，Entity Designer 會產生一組 Visual Basic 的 .NET 類別。 您可以從 [方案總管] 視窗開啟 MoviesDBModel，以查看這些類別。
+請記住,通過按一下「儲存」按鈕(軟盤的圖示)進行修改後保存實體數據模型。 在後台,實體設計器生成一組 Visual Basic .NET 類。 您可以通過從解決方案資源管理器視窗中打開 MoviesDBModel.Designer.vb 檔來查看這些類。
 
-請勿修改設計工具 .vb 檔案中的程式碼，因為您下次使用 Entity Designer 時，將會覆寫變更。 如果您想要擴充設計工具 .vb 檔案中所定義之實體類別的功能，您可以在不同的檔案中建立*部分類別*。
+不要修改 Designer.vb 檔中的代碼,因為下次使用實體設計器時,您的更改將被覆蓋。 如果要擴展在 Designer.vb 檔中定義的實體類別的功能,則可以在單獨的檔案中建立*部分類別*。
 
-#### <a name="selecting-database-records-with-the-entity-framework"></a>使用 Entity Framework 選取資料庫記錄
+#### <a name="selecting-database-records-with-the-entity-framework"></a>使用實體框架選擇資料庫記錄
 
-讓我們開始建立電影資料庫應用程式，方法是建立顯示電影記錄清單的頁面。 [清單 1] 中的 Home 控制器會公開名為 Index （）的動作。 Index （）動作會利用 Entity Framework，從 Movie 資料庫資料表傳回所有電影記錄。
+讓我們通過創建顯示影片記錄列表的頁面開始構建影片資料庫應用程式。 清單 1 中的主控制器公開名為 Index() 的操作。 索引() 操作利用實體框架從影片資料庫表中返回所有影片記錄。
 
-**清單1– Controllers\HomeController.vb**
+**清單1 = 控制器\主控制器.vb**
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample1.vb)]
 
-請注意，[清單 1] 中的控制器包含一個「函式」。 此函式會初始化名為 \_db 的類別層級欄位。 [\_db] 欄位代表 Microsoft Entity Framework 所產生的資料庫實體。 [\_db] 欄位是由 Entity Designer 產生之 MoviesDBEntities 類別的實例。
+請注意,清單 1 中的控制器包括一個構造函數。 建構函數初始化名為\_db 的類級欄位。 db\_欄位表示由Microsoft實體架構生成的資料庫實體。 db\_欄位是實體設計器生成的 MoviesDBEntity 類的實例。
 
-[\_db] 欄位會在 Index （）動作內使用，以從電影資料庫資料表中取出記錄。 運算式 \_db。MovieSet 代表來自電影資料庫資料表的所有記錄。 ToList （）方法可用來將電影組轉換成電影物件的一般集合：清單（電影）。
+db\_欄位在 Index() 操作中使用,以從「影片」資料庫表中檢索記錄。 表達式\_db。MovieSet 表示「影片」資料庫表中的所有記錄。 ToList() 方法用於將影片集轉換為影片物件的通用集合:清單(影片)。
 
-電影記錄是透過 LINQ to Entities 的協助抓取。 [清單 1] 中的 Index （）動作會使用 LINQ*方法語法*來抓取一組資料庫記錄。 如果您想要的話，可以改用 LINQ*查詢語法*。 下列兩個語句會執行相同的動作：
+影片記錄在 LINQ 到實體的幫助下檢索。 清單 1 中的 Index() 操作使用 LINQ*方法語法*來檢索資料庫記錄集。 如果您願意,可以使用 LINQ*查詢文法*。 以下兩個語句執行相同的操作:
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample2.vb)]
 
-使用任何 LINQ 語法（方法語法或查詢語法），這是最直覺的方式。 這兩種方法之間的效能不會有任何差異–唯一的差別在於樣式。
+使用您認為最直觀的 LINQ 語法(方法語法或查詢語法)。 這兩種方法在性能上沒有差別 ,唯一的區別是風格。
 
-[清單 2] 中的視圖會用來顯示電影記錄。
+清單 2 中的檢視用於顯示影片記錄。
 
-**清單2– Views\Home\Index.aspx**
+**清單 2 = 檢視\home_Index.aspx**
 
 [!code-aspx[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample3.aspx)]
 
-[清單 2] 中的視圖包含一個**For each**迴圈，可逐一查看每個電影記錄，並顯示電影記錄的標題和主管屬性的值。 請注意，每個記錄旁都會顯示 [編輯] 和 [刪除] 連結。 此外，[新增電影] 連結會出現在視圖底部（請參閱 [圖 7]）。
+清單 2 中的檢視包含一個 **「每個」** 迴圈,該迴圈遍歷每個影片記錄並顯示影片記錄的標題和導演屬性的值。 請注意,每個記錄旁邊都會顯示"編輯"和"刪除"連結。 此外,檢視底部還顯示「添加影片」連結(參見圖 7)。
 
-**圖7–索引視圖**
+**圖 7 = 索引檢視**
 
 ![clip_image014](creating-model-classes-with-the-entity-framework-vb/_static/image7.jpg)
 
-索引視圖是具*類型的視圖*。 索引視圖具有 &lt;% @ Page%&gt; 指示詞，其中包含 Inherits 屬性。 Inherits 屬性會將 ViewData 屬性轉換成電影物件的強型別泛型清單集合–這是一份清單（電影）。
+索引檢視是*鍵入的檢視*。 索引檢視具有&lt;%@ Page&gt; % 指令,該指令包含繼承屬性。 繼承屬性將 ViewData.Model 屬性強制轉換為影片物件的強類型泛型清單集合 - 清單(影片)。
 
-## <a name="inserting-database-records-with-the-entity-framework"></a>使用 Entity Framework 插入資料庫記錄
+## <a name="inserting-database-records-with-the-entity-framework"></a>將資料庫記錄插入實體框架
 
-您可以使用 Entity Framework，讓您輕鬆地將新的記錄插入資料庫資料表。 [清單 3] 包含兩個新的動作，可供您用來將新記錄插入 Movie 資料庫資料表。
+您可以使用實體框架輕鬆將新記錄插入到資料庫表中。 清單3包含添加到主控制器類的兩個新操作,可用於將新記錄插入到 Movie 資料庫表中。
 
-**清單3– Controllers\HomeController.vb （新增方法）**
+**清單3 = 控制器\主控制器.vb(新增方法)**
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample4.vb)]
 
-第一個 Add （）動作只會傳回一個視圖。 此視圖包含一個表單，可用於新增電影資料庫記錄（請參閱 [圖 8]）。 當您提交表單時，會叫用第二個 Add （）動作。
+第一個 Add() 操作僅返回檢視。 該檢視包含用於添加新影片資料庫記錄的窗體(參見圖 8)。 提交表單時,將調用第二個 Add() 操作。
 
-請注意，第二個 Add （）動作會以 AcceptVerbs 屬性裝飾。 只有在執行 HTTP POST 作業時，才可以叫用此動作。 換句話說，只有在張貼 HTML 表單時，才可以叫用此動作。
+請注意,第二個 Add() 操作用 AcceptVerbs 屬性進行修飾。 僅當執行 HTTP POST 操作時,才能呼叫此操作。 換句話說,此操作只能在發佈 HTML 窗體時調用。
 
-第二個 Add （）動作會使用 ASP.NET MVC TryUpdateModel （）方法的協助，建立 Entity Framework Movie 類別的新實例。 TryUpdateModel （）方法會接受傳遞至 Add （）方法之 FormCollection 中的欄位，並將這些 HTML 表單欄位的值指派給 Movie 類別。
+第二個 Add() 操作在 ASP.NET MVC TryUpdateModel() 方法的幫助下創建實體框架影片類的新實例。 TryUpdateModel() 方法獲取傳遞給 Add() 方法的窗體集合中的欄位,並將這些 HTML 表單欄位的值分配給 Movie 類。
 
-使用 Entity Framework 時，您必須在使用 TryUpdateModel 或 UpdateModel 方法來更新實體類別的屬性時，提供屬性的「白名單」。
+使用實體框架時,在使用 TryUpdateModel 或 UpdateModel 方法更新實體類的屬性時,必須提供屬性的「白名單」。
 
-接下來，Add （）動作會執行一些簡單的表單驗證。 動作會確認 Title 和 Director 屬性都有值。 如果發生驗證錯誤，則會將驗證錯誤訊息新增至 ModelState。
+接下來,Add() 操作執行一些簡單的表單驗證。 該操作驗證"標題"和"控制器"屬性是否具有值。 如果存在驗證錯誤,則會向 ModelState 添加驗證錯誤消息。
 
-如果沒有任何驗證錯誤，則會在 [電影資料庫] 資料表中加入新的電影記錄，並提供 Entity Framework 的協助。 新記錄會使用下列兩行程式碼新增至資料庫：
+如果沒有驗證錯誤,則在實體框架的説明下,將新的影片記錄添加到「電影」資料庫表。 新記錄將新增到資料庫中,並帶有以下兩行代碼:
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample5.vb)]
 
-第一行程式碼會將新的 Movie 實體新增至 Entity Framework 追蹤的電影集合。 第二行程式碼會儲存對重新追蹤至基礎資料庫的電影所做的任何變更。
+第一行代碼將新的影片實體添加到實體框架正在跟蹤的影片集中。 第二行代碼將保存對被跟蹤回基礎資料庫的"電影"所做的任何更改。
 
-**圖8–新增視圖**
+**圖 8 = 新增檢視**
 
 ![clip_image016](creating-model-classes-with-the-entity-framework-vb/_static/image8.jpg)
 
-## <a name="updating-database-records-with-the-entity-framework"></a>使用 Entity Framework 更新資料庫記錄
+## <a name="updating-database-records-with-the-entity-framework"></a>使用實體框架更新資料庫記錄
 
-您可以遵循幾乎相同的方式，使用 Entity Framework 來編輯資料庫記錄，做為我們剛遵循以插入新資料庫記錄的方法。 [清單 4] 包含兩個名為 Edit （）的新控制器動作。 第一個 Edit （）動作會傳回用於編輯電影記錄的 HTML 表單。 第二個 Edit （）動作會嘗試更新資料庫。
+您可以採用幾乎相同的方法,使用實體框架編輯資料庫記錄,就像我們剛才採用的方法插入新的資料庫記錄一樣。 清單4包含兩個名為 Edit() 的新控制器操作。 第一個 Edit() 操作傳回用於編輯影片記錄的 HTML 窗體。 第二個 Edit() 操作嘗試更新資料庫。
 
-**清單4– Controllers\HomeController.vb （編輯方法）**
+**清單4 = 控制器\主控制器.vb(編輯方法)**
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample6.vb)]
 
-第二個 Edit （）動作一開始會從符合所編輯電影識別碼的資料庫中抓取電影記錄。 下列 LINQ to Entities 語句會抓取符合特定識別碼的第一個資料庫記錄：
+第二個 Edit() 操作首先從與正在編輯的影片的 ID 匹配的資料庫檢索影片記錄。 以下 LINQ 到實體語片取得與特定 Id 符合的第一個資料庫紀錄:
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample7.vb)]
 
-接下來，TryUpdateModel （）方法是用來將 HTML 表單欄位的值指派給 movie 實體的屬性。 請注意，提供的白名單是用來指定要更新的確切屬性。
+接下來,TryUpdateModel() 方法用於將 HTML 表單欄位的值分配給影片實體的屬性。 請注意,提供了一個白名單,以指定要更新的確切屬性。
 
-接下來，會執行一些簡單的驗證，以確認電影標題和主管屬性都有值。 如果其中一個屬性遺漏值，則會將驗證錯誤訊息新增至 ModelState，而 ModelState 會傳回 false 值。
+接下來,執行一些簡單的驗證,以驗證影片標題和導演屬性是否具有值。 如果任一屬性缺少值,則驗證錯誤消息將添加到 ModelState 和 ModelState。IsValid 返回該值為 false。
 
-最後，如果沒有任何驗證錯誤，則會藉由呼叫 SaveChanges （）方法，將基礎電影資料庫資料表更新為任何變更。
+最後,如果沒有驗證錯誤,則通過調用 SaveChanges() 方法,將更新基礎「電影」資料庫表與任何更改。
 
-編輯資料庫記錄時，您必須將正在編輯的記錄識別碼傳遞至執行資料庫更新的控制器動作。 否則，控制器動作將不會知道要在基礎資料庫中更新哪一筆記錄。 [清單 5] 中包含的編輯檢視包含隱藏的表單欄位，代表正在編輯之資料庫記錄的識別碼。
+編輯資料庫記錄時,需要將正在編輯的記錄的 Id 傳遞給執行資料庫更新的控制器操作。 否則,控制器操作將不知道要在基礎資料庫中更新哪個記錄。 清單 5 中包含的「編輯」檢視包含隱藏表單欄位,該欄位表示要編輯的資料庫記錄的識別碼。
 
-**清單5– Views\Home\Edit.aspx**
+**清單5 = 檢視\home_編輯.aspx**
 
 [!code-aspx[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample8.aspx)]
 
-## <a name="deleting-database-records-with-the-entity-framework"></a>使用 Entity Framework 刪除資料庫記錄
+## <a name="deleting-database-records-with-the-entity-framework"></a>使用實體框架移除資料庫記錄
 
-我們在本教學課程中需要處理的最終資料庫作業，是刪除資料庫記錄。 您可以使用 [清單 6] 中的 [控制器] 動作來刪除特定的資料庫記錄。
+本教學中需要處理的最終資料庫操作是刪除資料庫記錄。 您可以使用清單 6 中的控制器操作刪除特定的資料庫記錄。
 
-**清單 6--\Controllers\HomeController.vb （刪除動作）**
+**清單6 -- [控制器]主控制器.vb(刪除操作)**
 
 [!code-vb[Main](creating-model-classes-with-the-entity-framework-vb/samples/sample9.vb)]
 
-Delete （）動作會先抓取符合傳遞給動作之識別碼的 Movie 實體。 接下來，藉由呼叫 DeleteObject （）方法並接著 SaveChanges （）方法，從資料庫刪除電影。 最後，會將使用者重新導向回到索引視圖。
+Delete() 操作首先檢索與傳遞給該操作的 ID 匹配的 Movie 實體。 接下來,通過調用 DeleteObject() 方法後跟 SaveChanges() 方法從資料庫中刪除影片。 最後,使用者被重定向回索引視圖。
 
 ## <a name="summary"></a>總結
 
-本教學課程的目的是要示範如何利用 ASP.NET MVC 和 Microsoft Entity Framework，來建立資料庫導向的 web 應用程式。 您已瞭解如何建立可讓您選取、插入、更新和刪除資料庫記錄的應用程式。
+本教學的目的是展示如何利用ASP.NET MVC 和Microsoft 實體架構建構資料庫驅動的 Web 應用程式。 您學習了如何建構應用程式,讓您能夠選擇、插入、更新和刪除資料庫記錄。
 
-首先，我們會討論如何使用實體資料模型 Wizard，從 Visual Studio 內產生實體資料模型。 接下來，您將瞭解如何使用 LINQ to Entities 從資料庫資料表中取出一組資料庫記錄。 最後，我們使用 Entity Framework 來插入、更新和刪除資料庫記錄。
+首先,我們討論了如何使用實體數據模型嚮導從 Visual Studio 中生成實體數據模型。 接下來,您將學習如何使用 LINQ 到實體從資料庫表中檢索一組資料庫記錄。 最後,我們使用實體框架插入、更新和刪除資料庫記錄。
 
 > [!div class="step-by-step"]
-> [上一頁](validation-with-the-data-annotation-validators-cs.md)
-> [下一頁](creating-model-classes-with-linq-to-sql-vb.md)
+> [前一個](validation-with-the-data-annotation-validators-cs.md)
+> [下一個](creating-model-classes-with-linq-to-sql-vb.md)

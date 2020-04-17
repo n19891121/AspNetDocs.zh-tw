@@ -1,156 +1,156 @@
 ---
 uid: mvc/overview/older-versions-1/nerddinner/secure-applications-using-authentication-and-authorization
-title: 使用驗證和授權保護應用程式 |Microsoft Docs
-author: microsoft
-description: 步驟9顯示如何新增驗證和授權來保護我們的 NerdDinner 應用程式，讓使用者必須註冊並登入網站以建立 。
+title: 使用認證與授權的安全應用程式 。微軟文件
+author: rick-anderson
+description: 步驟 9 演示如何添加身份驗證和授權來保護我們的 NerdDinner 應用程式,以便使用者需要註冊並登錄到網站以創建...
 ms.author: riande
 ms.date: 07/27/2010
 ms.assetid: 9e4d5cac-b071-440c-b044-20b6d0c964fb
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/secure-applications-using-authentication-and-authorization
 msc.type: authoredcontent
-ms.openlocfilehash: 8d509c5f15bb4d5014e53b8dc2a736454238e72c
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: d96f2763f6e62f9dd599fdb7977a97993d218305
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78600979"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542569"
 ---
 # <a name="secure-applications-using-authentication-and-authorization"></a>保護使用驗證和授權的應用程式
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
 [下載 PDF](http://aspnetmvcbook.s3.amazonaws.com/aspnetmvc-nerdinner_v1.pdf)
 
-> 這是免費「 [NerdDinner」應用程式教學](introducing-the-nerddinner-tutorial.md)課程的步驟9，逐步解說如何使用 ASP.NET MVC 1 建立一個小型但完整的 web 應用程式。
+> 這是一個免費的[「NerdDinner」應用程式教程](introducing-the-nerddinner-tutorial.md)的第9步,該教程示範如何使用mVC 1 構建小型但完整的 Web 應用程式ASP.NET。
 > 
-> 步驟9顯示如何新增驗證和授權來保護我們的 NerdDinner 應用程式，讓使用者必須註冊並登入網站以建立新的 dinners，而且只有主控晚餐的使用者可以稍後再編輯。
+> 步驟 9 演示如何添加身份驗證和授權來保護我們的 NerdDinner 應用程式,以便使用者需要註冊並登錄到網站以創建新的晚餐,並且只有主持晚宴的使用者才能稍後對其進行編輯。
 > 
-> 如果您使用 ASP.NET MVC 3，建議您遵循[使用 mvc 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md)或[mvc 音樂存放](../../older-versions/mvc-music-store/mvc-music-store-part-1.md)教學課程的消費者入門。
+> 如果您使用的是ASP.NET MVC 3,我們建議您按照[MVC 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md)或[MVC 音樂商店](../../older-versions/mvc-music-store/mvc-music-store-part-1.md)教程進行操作。
 
-## <a name="nerddinner-step-9-authentication-and-authorization"></a>NerdDinner 步驟9：驗證和授權
+## <a name="nerddinner-step-9-authentication-and-authorization"></a>神經晚餐步驟 9:身份驗證和授權
 
-我們的 NerdDinner 應用程式現在會授與網站建立和編輯任何晚餐之詳細資料的能力。 讓我們變更此動作，讓使用者必須註冊並登入網站以建立新的 dinners，並新增限制，如此一來，只有主控晚餐的使用者可以稍後再編輯。
+現在,我們的NerdDinner應用程式允許任何訪問該網站的人能夠創建和編輯任何晚餐的細節。 讓我們更改此內容,以便使用者需要註冊並登錄到網站以創建新的晚餐,並添加限制,以便只有主持晚宴的使用者才能稍後對其進行編輯。
 
-為此，我們將使用驗證和授權來保護應用程式。
+為了啟用此功能,我們將使用身份驗證和授權來保護我們的應用程式。
 
-### <a name="understanding-authentication-and-authorization"></a>瞭解驗證和授權
+### <a name="understanding-authentication-and-authorization"></a>瞭解認證與授權
 
-*驗證*是識別和驗證存取應用程式之用戶端的身分識別的程式。 更簡單的說，就是識別使用者流覽網站時的「使用者」。 ASP.NET 支援多種方式來驗證瀏覽器使用者。 針對網際網路 web 應用程式，最常見的驗證方法稱為「表單驗證」。 表單驗證可讓開發人員在其應用程式中撰寫 HTML 登入表單，然後驗證使用者針對資料庫或其他密碼認證存放區提交的使用者名稱/密碼。 如果使用者名稱/密碼的組合正確，開發人員就可以要求 ASP.NET 發出加密的 HTTP cookie，以在未來的要求中識別使用者。 我們會使用表單驗證搭配我們的 NerdDinner 應用程式。
+*身份驗證*是標識和驗證訪問應用程式的客戶端的標識的過程。 簡單地說,它是關於確定最終使用者在訪問網站時的"誰"。 ASP.NET支援對瀏覽器使用者進行身份驗證的多種方法。 對於 Internet Web 應用程式,最常用的身份驗證方法稱為"表單身份驗證」。。 表單身份驗證使開發人員能夠在其應用程式中創作 HTML 登入表單,然後根據資料庫或其他密碼認證認證最終使用者提交的使用者名/密碼。 如果使用者名/密碼組合正確,開發人員可以請求ASP.NET發出加密的 HTTP Cookie,以識別使用者在未來的請求。 我們將使用表單身份驗證來使用我們的NerdDinner應用程式。
 
-「授權」（ *Authorization* ）是判斷已驗證的使用者是否有權存取特定 URL/資源或執行某個動作的程式。 例如，在我們的 NerdDinner 應用程式中，我們會想要授權只有登入的使用者可以存取 */Dinners/Create* URL，並建立新的 Dinners。 我們也會想要新增授權邏輯，讓只有主控晚餐的使用者可以編輯它，並拒絕其他所有使用者的編輯存取。
+*授權*是確定經過身份驗證的使用者是否具有訪問特定 URL/資源或執行某些操作的許可權的過程。 例如,在我們的NerdDinner應用程式中,我們希望授權只有登錄的使用者才能訪問 */Dinners/創建*URL並創建新的晚餐。 我們還希望添加授權邏輯,以便只有主持晚宴的使用者才能對其進行編輯,並拒絕對所有其他使用者進行編輯訪問。
 
-### <a name="forms-authentication-and-the-accountcontroller"></a>表單驗證和 AccountController
+### <a name="forms-authentication-and-the-accountcontroller"></a>表單識別識別和帳戶控制器
 
-ASP.NET MVC 的預設 Visual Studio 專案範本會在建立新的 ASP.NET MVC 應用程式時，自動啟用表單驗證。 它也會自動將預先建立的帳戶登入頁面執行加入至專案中，這可讓您輕鬆地整合網站內的安全性。
+ASP.NET MVC 的預設 Visual Studio 專案範本在創建新 ASP.NET MVC 應用程式時自動啟用表單身份驗證。 它還會自動向專案添加預構建的帳戶登錄頁實現,從而在網站中集成安全性非常容易。
 
-[預設的網站] 主版頁面會在使用者存取時，于網站右上角顯示「登入」連結（未通過驗證）：
+預設的 Site.master 頁在網站右上角顯示「登錄」連結,當使用者存取該網站時未進行身份驗證:
 
 ![](secure-applications-using-authentication-and-authorization/_static/image1.png)
 
-按一下 [登入] 連結會將使用者帶到 */Account/LogOn* URL：
+點選「登入」連結會將使用者帶到 */帳戶/登錄*URL:
 
 ![](secure-applications-using-authentication-and-authorization/_static/image2.png)
 
-尚未註冊的訪客可以按一下 [註冊] 連結來執行此動作，這會將其帶至 */Account/Register* URL，並允許他們輸入帳戶詳細資料：
+尚未註冊的存取者可以透過按下「註冊」連結(該連結將他們帶到 */帳戶/註冊*URL)並允許您輸入帳戶詳細資訊來執行此操作:
 
 ![](secure-applications-using-authentication-and-authorization/_static/image3.png)
 
-按一下 [註冊] 按鈕會在 ASP.NET 成員資格系統中建立新的使用者，並使用表單驗證在網站上驗證使用者。
+按下「註冊」按鈕將在ASP.NET成員資格系統中創建新使用者,並使用表單身份驗證對使用者進行身份驗證。
 
-當使用者登入時，網站主要會變更頁面的右上方，以輸出「歡迎 [使用者名稱]！」 訊息並呈現「登出」連結，而不是「登入」。 按一下 [登出] 連結會登出使用者：
+當使用者登錄時,Site.master 會更改頁面的右上角以輸出「歡迎 [使用者名]! 消息並呈現「註銷」連結,而不是「登錄」連結。 點選「登出」連結會登出使用者:
 
 ![](secure-applications-using-authentication-and-authorization/_static/image4.png)
 
-上述登入、登出和註冊功能會在 AccountController 類別中實作為其建立專案時 Visual Studio 加入至專案中。 AccountController 的 UI 是使用 \Views\Account 目錄內的視圖範本來執行：
+上述登錄、註銷和註冊功能在帳戶控制器類中實現,該類在創建專案時由 Visual Studio 添加到我們的專案中。 帳號控制器的 UI 使用 [Views_帳戶目錄中的檢視範本] 實現:
 
 ![](secure-applications-using-authentication-and-authorization/_static/image5.png)
 
-AccountController 類別會使用 ASP.NET 表單驗證系統來發出加密的驗證 cookie，以及用來儲存和驗證使用者名稱/密碼的 ASP.NET 成員資格 API。 ASP.NET 成員資格 API 是可擴充的，可讓您使用任何密碼認證存放區。 ASP.NET 隨附內建的成員資格提供者，可將使用者名稱/密碼儲存在 SQL 資料庫中，或在 Active Directory 中。
+帳戶控制器類使用ASP.NET表單身份驗證系統來發出加密的身份驗證 Cookie,ASP.NET成員資格 API 來存儲和驗證使用者名/密碼。 ASP.NET成員資格 API 是可擴展的,並且允許使用任何密碼憑據存儲。 ASP.NET附帶將使用者名/密碼存儲在 SQL 資料庫或活動目錄中的內置成員資格提供程式實現。
 
-我們可以藉由開啟專案根目錄中的 "web.config" 檔案，並尋找其中的 &lt;成員資格&gt; 區段，設定我們的 NerdDinner 應用程式應使用的成員資格提供者。 建立專案時新增的預設 web.config 會註冊 SQL 成員資格提供者，並將它設定為使用名為 "Microsoft.visualbasic.applicationservices.cantstartsingleinstanceexception" 的連接字串來指定資料庫位置。
+我們可以通過打開專案根目錄的"Web.config"檔並在其中查找&lt;成員&gt;資格 部分來配置我們的NerdDinner應用程式應該使用的成員供應商。 創建專案時添加的預設 Web.config 會註冊 SQL 成員資格提供程式,並將其配置為使用名為"應用程式服務"的連接字串來指定資料庫位置。
 
-預設的 "Microsoft.visualbasic.applicationservices.cantstartsingleinstanceexception" 連接字串（在 web.config 檔案的 &lt;connectionStrings&gt; 區段中指定）會設定為使用 SQL Express。 它會指向名為 "ASPNETDB.MDF" 的 SQL Express 資料庫。應用程式的 "App\_Data" 目錄底下的 .MDF "。 如果在應用程式中第一次使用成員資格 API 時，此資料庫不存在，則 ASP.NET 會自動建立資料庫，並在其中布建適當的成員資格資料庫架構：
+預設的「應用程式服務」 連接字串(在 Web.config&lt;&gt;檔案的連接字串部分中指定)設定為使用 SQL Express。 它指向名為「ASPNETDB」的 SQL Express 資料庫。MDF"在應用程式的"應用\_資料"目錄下。 如果首次在應用程式中使用成員資格 API 時此資料庫不存在,ASP.NET將自動建立資料庫並在其中預配適當的成員資格資料庫架構:
 
 ![](secure-applications-using-authentication-and-authorization/_static/image6.png)
 
-如果您想要使用完整的 SQL Server 實例（或連接到遠端資料庫）而不使用 SQL Express，我們只需要更新 web.config 檔案中的 "Microsoft.visualbasic.applicationservices.cantstartsingleinstanceexception" 連接字串，並確認適當的成員資格架構已新增至其指向的資料庫。 您可以在 \Windows\Microsoft.NET\Framework\v2.0.50727\ 目錄中執行 "aspnet\_regsql" 公用程式，將成員資格和其他 ASP.NET 應用程式服務的適當架構加入至資料庫。
+如果我們不想使用 SQL Express,而是想要使用完整的 SQL Server 實例(或連接到遠端資料庫),我們只需更新 Web.config 檔中的「應用程式服務」連接字串,並確保適當的成員資格架構已添加到它指向的資料庫。 您可以在 [Windows_Microsoft.NET_Framework_v2.0.50727] 目錄中運行"aspnet\_regsql.exe"實用程式,以將成員資格和其他ASP.NET應用程式服務的適當架構添加到資料庫中。
 
-### <a name="authorizing-the-dinnerscreate-url-using-the-authorize-filter"></a>使用 [授權] 篩選準則授權/Dinners/Create URL
+### <a name="authorizing-the-dinnerscreate-url-using-the-authorize-filter"></a>使用授權帳號授權 /Dinners/建立 URL
 
-我們不需要撰寫任何程式碼來啟用 NerdDinner 應用程式的安全驗證和帳戶管理。 使用者可以向應用程式註冊新帳戶，以及登入/登出網站。
+我們不必編寫任何代碼來為NerdDinner應用程式啟用安全的身份驗證和帳戶管理實現。 用戶可以在我們的應用程式中註冊新帳戶,以及網站登錄/註銷。
 
-現在，我們可以將授權邏輯新增至應用程式，並使用訪客的驗證狀態和使用者名稱來控制他們在網站內可以和不能執行的動作。 讓我們從將授權邏輯新增至 DinnersController 類別的「建立」動作方法開始。 具體而言，我們會要求存取 */Dinners/Create* URL 的使用者必須登入。 如果未登入，我們會將它們重新導向至登入頁面，讓他們可以登入。
+現在,我們可以向應用程式添加授權邏輯,並使用訪問者的身份驗證狀態和使用者名來控制他們在網站內可以做什麼和不能做什麼。 讓我們首先將授權邏輯添加到 DinnersController 類的"創建"操作方法。 具體來說,我們將要求訪問 */Dinner/Create* URL 的用戶必須登錄。 如果他們沒有登錄,我們會將其重定向到登錄頁面,以便他們可以登錄。
 
-執行此邏輯相當簡單。 我們只需要將 [授權] 篩選屬性新增至我們的 Create 動作方法，如下所示：
+實現此邏輯非常簡單。 我們只需要將 [授權] 篩選器屬性添加到我們的"創建操作方法"中,如下所示:
 
 [!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample1.cs)]
 
-ASP.NET MVC 支援建立「動作篩選準則」的功能，可用來執行可透過宣告方式套用至動作方法的重複使用邏輯。 [授權] 篩選是 ASP.NET MVC 提供的其中一個內建動作篩選準則，可讓開發人員以宣告方式將授權規則套用至動作方法和控制器類別。
+ASP.NET MVC 支援建立「操作篩選器」的能力,該篩選器可用於實現可聲明應用於操作方法的可重用邏輯。 [授權] 篩選器是 ASP.NET MVC 提供的內建操作篩選器之一,它使開發人員能夠聲明授權規則應用於操作方法和控制器類。
 
-套用時，如果沒有任何參數（如上面所示），[授權] 篩選準則會強制執行動作方法要求的使用者必須登入，而且如果不是，則會自動將瀏覽器重新導向至登入 URL。 執行此重新導向時，原先要求的 URL 會當做 querystring 引數傳遞（例如：/Account/LogOn？ReturnUrl =% 2fDinners% 2fCreate）。 然後，AccountController 會在使用者登入後，將其重新導向回到原始要求的 URL。
+在沒有任何參數的情況下應用時(如上文所述),[授權] 篩選器強制必須登錄執行操作方法請求的使用者,如果瀏覽器未登錄,則會自動將瀏覽器重定向到登錄 URL。 執行此操作重定向時,最初請求的 URL 將作為查詢字串參數傳遞(例如:/帳戶/LogOn?傳回Url_%2fDinners%2f創建)。 然後,帳戶控制器將在使用者登錄后將使用者重定向回最初請求的 URL。
 
-[授權] 篩選準則可選擇性地支援指定「使用者」或「角色」內容的能力，此屬性可用來要求使用者必須登入，並在允許的使用者清單中，或是允許的安全性角色的成員。 例如，下列程式碼只允許兩個特定的使用者 "scottgu" 和 "billg" 存取/Dinners/Create URL：
+[授權] 篩選器可以選擇支援指定"使用者"或"角色"屬性的能力,該屬性可用於要求使用者同時登錄並登錄允許的使用者或允許的安全角色的成員清單中。 例如,下面的代碼只允許兩個特定使用者「scottgu」和「billg」訪問 /Dinners/Create URL:
 
 [!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample2.cs)]
 
-不過，在程式碼中內嵌特定的使用者名稱，通常是相當不容易維護的。 較好的方法是定義程式碼所檢查的較高層級「角色」，然後使用資料庫或 active directory 系統（讓實際的使用者對應清單從程式碼外部儲存），將使用者對應至角色。 ASP.NET 包含內建角色管理 API，以及一組內建的角色提供者（包括適用于 SQL 和 Active Directory），可協助執行此使用者/角色對應。 然後，我們可以更新程式碼，只允許特定「系統管理員」角色內的使用者存取/Dinners/Create URL：
+不過,在代碼中嵌入特定的使用者名往往非常無法維護。 更好的方法是定義代碼所針對的更高級別的"角色",然後使用資料庫或活動目錄系統將使用者映射到角色(使實際使用者映射清單能夠從代碼外部存儲)。 ASP.NET包括內建角色管理 API 以及一組內建角色提供者(包括 SQL 和 Active Directory 的內建角色提供者),可幫助執行此使用者/角色映射。 然後,我們可以更新代碼,僅允許特定「管理員」角色中的使用者訪問 /Dinners/Create URL:
 
 [!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample3.cs)]
 
-### <a name="using-the-useridentityname-property-when-creating-dinners"></a>建立 Dinners 時使用 User.Identity.Name 屬性
+### <a name="using-the-useridentityname-property-when-creating-dinners"></a>建立晚餐時使用User.Identity.Name屬性
 
-我們可以使用控制器基類上公開的 User.Identity.Name 屬性，來抓取要求目前登入使用者的使用者名稱。
+我們可以使用 Controller 基類上公開的 User.Identity.Name 屬性檢索請求當前登錄使用者的使用者名稱。
 
-先前當我們實作為 Create （）動作方法的 HTTP POST 版本時，我們已將晚餐的 "HostedBy" 屬性硬式編碼為靜態字串。 我們現在可以更新此程式碼，改為使用 User.Identity.Name 屬性，並為建立晚餐的主機自動新增一個 RSVP：
+早些時候,當我們實現我們的Create() 操作方法的HTTP-POST版本時,我們已經將 Dinner 的「託管比」屬性硬編碼為靜態字串串。 我們現在可以更新此代碼以改用User.Identity.Name屬性,並為創建 Dinner 的主機自動添加 RSVP:
 
 [!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample4.cs)]
 
-因為我們已將 [授權] 屬性新增至 Create （）方法，所以 ASP.NET MVC 會確保只有在流覽/Dinners/Create URL 的使用者登入網站時，才會執行動作方法。 因此，User.Identity.Name 屬性值一律會包含有效的使用者名稱。
+由於我們已經向 Create() 方法添加了 [授權] 屬性,因此 ASP.NET MVC 可確保僅當訪問 /Dinners/Create URL 的使用者登錄網站時,才會執行操作方法。 因此,User.Identity.Name屬性值將始終包含有效的使用者名。
 
-### <a name="using-the-useridentityname-property-when-editing-dinners"></a>編輯 Dinners 時使用 User.Identity.Name 屬性
+### <a name="using-the-useridentityname-property-when-editing-dinners"></a>編輯晚餐時使用User.Identity.Name屬性
 
-現在讓我們新增一些授權邏輯，以限制使用者只能編輯其本身所裝載之 dinners 的屬性。
+現在,讓我們添加一些限制使用者的授權邏輯,以便他們只能編輯自己託管的晚餐的屬性。
 
-為協助解決此情況，我們會先將「IsHostedBy （使用者名稱）」 helper 方法新增至晚餐物件（在我們稍早建立的 Dinner.cs 部分類別中）。 根據提供的使用者名稱是否與晚餐 HostedBy 屬性相符，此 helper 方法會傳回 true 或 false，並封裝對其執行不區分大小寫字串比較所需的邏輯：
+為了幫助達到這一目的,我們將首先向 Dinner 物件添加"Is託管By(使用者名)"幫助器方法(在之前構建的 Dinner.cs 部分類中)。 此說明程式方法傳回 true 或 false,具體取決於提供的使用者名稱是否與 Dinner 託管 By 屬性匹配,並封裝執行不區分大小寫的字串比較所需的邏輯:
 
 [!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample5.cs)]
 
-然後，我們會在 DinnersController 類別內的 Edit （）動作方法中新增 [授權] 屬性。 這可確保使用者必須登入，才能要求 */Dinners/Edit/[id]* URL。
+然後,我們將向 DinnersController 類中的 Edit() 操作方法添加 [授權] 屬性。 這將確保使用者必須登錄才能請求 */Dinners/Edit/[id]* URL。
 
-然後，我們可以將程式碼新增至我們的編輯方法，以使用 IsHostedBy （使用者名稱） helper 方法來確認登入的使用者是否符合晚餐主機。 如果使用者不是主機，我們會顯示「InvalidOwner」視圖並結束要求。 執行此動作的程式碼如下所示：
+然後,我們可以向使用 Dinner.IsHostBy(使用者名)幫助器方法的「編輯」方法添加代碼,以驗證登錄使用者是否與 Dinner 主機匹配。 如果使用者不是主機,我們將顯示"無效擁有者"視圖並終止請求。 執行此操作的代碼如下所示:
 
 [!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample6.cs)]
 
-然後，我們可以在 \Views\Dinners 目錄上按一下滑鼠右鍵，然後選擇 [加入&gt;View] 功能表命令，以建立新的 "InvalidOwner" 視圖。 我們會在其中填入下列錯誤訊息：
+然後,我們可以右鍵單擊 [Views_Dinners]目錄,然後選擇"&gt;添加 -視圖"功能表命令以創建新的"無效擁有者"視圖。 我們將用以下錯誤訊息填充它:
 
 [!code-aspx[Main](secure-applications-using-authentication-and-authorization/samples/sample7.aspx)]
 
-現在當使用者嘗試編輯他們不擁有的晚餐時，他們會收到錯誤訊息：
+現在,當用戶嘗試編輯他們不擁有的晚餐時,他們會得到一條錯誤消息:
 
 ![](secure-applications-using-authentication-and-authorization/_static/image7.png)
 
-我們可以對控制器內的 Delete （）動作方法重複相同的步驟，以鎖定刪除 Dinners 的許可權，並確保只有晚餐的主機可以將其刪除。
+我們可以對控制器中的 Delete() 操作方法重複相同的步驟,以鎖定刪除 Dinner 的許可權,並確保只有晚餐的主持人才能刪除它。
 
-### <a name="showinghiding-edit-and-delete-links"></a>顯示/隱藏編輯和刪除連結
+### <a name="showinghiding-edit-and-delete-links"></a>顯示/隱藏編輯與移除連結
 
-我們會從詳細資料 URL 連結到 DinnersController 類別的 [編輯] 和 [刪除] 動作方法：
+我們正在從「詳細資訊」URL 連結到「晚餐控制器」類的編輯和刪除操作方法:
 
 ![](secure-applications-using-authentication-and-authorization/_static/image8.png)
 
-目前，我們會顯示 [編輯] 和 [刪除] 動作連結，而不論詳細資料 URL 的訪客是否為晚餐的主機。 讓我們變更此項，如此一來，只有在造訪的使用者是晚餐的擁有者時，才會顯示連結。
+目前,我們顯示"編輯和刪除"操作連結,無論詳細資訊 URL 的訪問者是否是晚宴的東道主。 讓我們更改此內容,以便僅當訪問使用者是晚餐的擁有者時才會顯示連結。
 
-DinnersController 內的 Details （）動作方法會抓取晚餐物件，然後將它當做模型物件傳遞至我們的 view 範本：
+晚餐控制器中的「詳細資訊()」操作方法檢索 Dinner 物件,然後將其作為模型物件傳遞給檢視範本:
 
 [!code-csharp[Main](secure-applications-using-authentication-and-authorization/samples/sample8.cs)]
 
-我們可以使用 IsHostedBy （）協助程式方法來更新我們的 view 範本，以有條件地顯示/隱藏編輯和刪除連結，如下所示：
+我們可以更新檢視範本,以便使用「晚餐.Is託管By」()幫助器方法有條件地顯示/隱藏"編輯"和"刪除"連結,如下所示:
 
 [!code-aspx[Main](secure-applications-using-authentication-and-authorization/samples/sample9.aspx)]
 
 #### <a name="next-steps"></a>後續步驟
 
-現在我們來看一下如何讓已驗證的使用者使用 AJAX 來進行 dinners。
+現在,讓我們來看看如何啟用經過身份驗證的使用者到RSVP的晚餐使用AJAX。
 
 > [!div class="step-by-step"]
-> [上一頁](implement-efficient-data-paging.md)
-> [下一頁](use-ajax-to-deliver-dynamic-updates.md)
+> [前一個](implement-efficient-data-paging.md)
+> [下一個](use-ajax-to-deliver-dynamic-updates.md)

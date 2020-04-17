@@ -1,236 +1,236 @@
 ---
 uid: mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-cs
-title: '反復專案 #7 –新增 Ajax 功能C#（） |Microsoft Docs'
-author: microsoft
-description: 在第七次的反復專案中，我們藉由新增 Ajax 的支援來改善應用程式的回應性和效能。
+title: 反覆運算#7 = 添加 Ajax 功能 (C#) |微軟文件
+author: rick-anderson
+description: 在第七次反覆運算中,我們通過增加對Ajax的支援來提高應用程式的回應性和性能。
 ms.author: riande
 ms.date: 02/20/2009
 ms.assetid: f1b0809e-8909-444e-b6bb-a5cd1dea3f72
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-cs
 msc.type: authoredcontent
-ms.openlocfilehash: 7c8eb3d3688674dd2c220b4bd1b5982f2610d0eb
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 12d7348382bc55af049567922bd6963970a9421b
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78544174"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542309"
 ---
-# <a name="iteration-7--add-ajax-functionality-c"></a>反復專案 #7 –新增 Ajax 功能C#（）
+# <a name="iteration-7--add-ajax-functionality-c"></a>反覆項目 #7 – 新增 Ajax 功能 (C#)
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-[下載程式代碼](iteration-7-add-ajax-functionality-cs/_static/contactmanager_7_cs1.zip)
+[下載代碼](iteration-7-add-ajax-functionality-cs/_static/contactmanager_7_cs1.zip)
 
-> 在第七次的反復專案中，我們藉由新增 Ajax 的支援來改善應用程式的回應性和效能。
+> 在第七次反覆運算中,我們通過增加對Ajax的支援來提高應用程式的回應性和性能。
 
-## <a name="building-a-contact-management-aspnet-mvc-application-c"></a>建立連絡人管理 ASP.NET MVC 應用程式（C#）
+## <a name="building-a-contact-management-aspnet-mvc-application-c"></a>編譯聯絡人管理ASP.NET MVC 應用程式 (C#)
 
-在這一系列的教學課程中，我們從一開始就建立了整個連絡人管理應用程式。 連絡人管理員應用程式可讓您儲存連絡人資訊名稱、電話號碼和電子郵件地址，以取得人員清單。
+在本系列教程中,我們從頭到尾構建整個聯繫人管理應用程式。 透過聯絡人管理員應用程式,您可以儲存連絡人資訊 (姓名、電話號碼和電子郵件位址) 人員清單。
 
-我們會透過多個反復專案來建立應用程式。 在每次反覆運算時，我們會逐漸改善應用程式。 這個多個反復專案方法的目標，是要讓您瞭解每項變更的原因。
+我們通過多次反覆運算構建應用程式。 每次反覆運算時,我們都會逐步改進應用程式。 此多反覆運算方法的目標是使您能夠瞭解每次更改的原因。
 
-- 反復專案 #1-建立應用程式。 在第一個反復專案中，我們會以最簡單的方式建立連絡人管理員。 我們新增對基本資料庫作業的支援：建立、讀取、更新和刪除（CRUD）。
+- 反覆運算#1 - 創建應用程式。 在第一次反覆運算中,我們以最簡單的方式創建聯繫人管理器。 我們添加對基本資料庫操作的支援:創建、讀取、更新和刪除 (CRUD)。
 
-- 反復專案 #2-讓應用程式看起來不錯。 在此反復專案中，我們藉由修改預設的 ASP.NET MVC view 主版頁面和級聯樣式表，來改善應用程式的外觀。
+- 反覆運算#2 - 使應用程式看起來不錯。 在此反覆運算中,我們通過修改預設ASP.NET MVC 檢視母版頁和級聯樣式表來改進應用程式的外觀。
 
-- 反復專案 #3-新增表單驗證。 在第三個反復專案中，我們會新增基本表單驗證。 我們會防止人們提交表單，而不需要完成必要的表單欄位。 我們也會驗證電子郵件地址和電話號碼。
+- 反覆運算#3 - 添加表單驗證。 在第三個反覆運算中,我們添加基本表單驗證。 我們防止人們在未填寫所需表單欄位的情況下提交表單。 我們還驗證電子郵件地址和電話號碼。
 
-- 反復專案 #4-讓應用程式鬆散結合。 在這第四次的反復專案中，我們會利用數種軟體設計模式，讓您更輕鬆地維護和修改 Contact Manager 應用程式。 例如，我們會重構應用程式，以使用存放庫模式和相依性插入模式。
+- 反覆運算#4 - 使應用程式鬆散耦合。 在第四次反覆運算中,我們利用多種軟體設計模式,使維護和修改聯繫人管理器應用程式變得更加容易。 例如,我們重構應用程式以使用存儲庫模式和依賴項注入模式。
 
-- 反復專案 #5-建立單元測試。 在第五個反復專案中，我們會藉由新增單元測試，讓應用程式更容易維護和修改。 我們會模擬我們的資料模型類別，並為我們的控制器和驗證邏輯建立單元測試。
+- 反覆運算#5 - 創建單元測試。 在第五次反覆運算中,我們通過添加單元測試使應用程式更易於維護和修改。 我們類比數據模型類,並為控制器和驗證邏輯構建單元測試。
 
-- 反復專案 #6-使用以測試為導向的開發。 在此第六個反復專案中，我們會先撰寫單元測試，並針對單元測試撰寫程式碼，以將新功能加入至應用程式。 在此反復專案中，我們會新增連絡人群組。
+- 反覆運算#6 - 使用測試驅動開發。 在第六次反覆運算中,我們首先編寫單元測試並針對單元測試編寫代碼,從而向應用程式添加新功能。 在此反覆運算中,我們添加聯繫人組。
 
-- 反復專案 #7-新增 Ajax 功能。 在第七次的反復專案中，我們藉由新增 Ajax 的支援來改善應用程式的回應性和效能。
+- 反覆運算#7 - 添加Ajax功能。 在第七次反覆運算中,我們通過增加對Ajax的支援來提高應用程式的回應性和性能。
 
-## <a name="this-iteration"></a>這個反復專案
+## <a name="this-iteration"></a>此反覆運算
 
-在此「連絡人管理員」應用程式的反復專案中，我們會重構應用程式，以利用 Ajax。 藉由利用 Ajax，我們讓應用程式更具回應性。 當我們需要只更新頁面中的特定區域時，我們可以避免轉譯整個頁面。
+在此反覆運算的聯繫人管理器應用程式中,我們將重構應用程式以使用 Ajax。 通過使用Ajax,我們使我們的應用程式回應更快。 當只需要更新頁面中的某個區域時,我們可以避免呈現整個頁面。
 
-我們會重構索引視圖，如此一來，每當有人選取新的連絡人群組時，就不需要重新顯示整個頁面。 相反地，當有人按一下連絡人群組時，我們只會更新連絡人清單，並保留其餘的網頁。
+我們將重構索引視圖,以便每當有人選擇新的聯繫人組時,我們就不需要重新顯示整個頁面。 相反,當有人單擊聯繫人組時,我們只會更新聯繫人清單,並單獨保留頁面的其餘部分。
 
-我們也會變更刪除連結的運作方式。 我們不會顯示個別的確認頁面，而是顯示 JavaScript 確認對話方塊。 如果您確認要刪除連絡人，則會針對伺服器執行 HTTP 刪除作業，以從資料庫中刪除連絡人記錄。
+我們還將更改刪除連結的工作方式。 我們將顯示 JAVAScript 確認對話框,而不是顯示單獨的確認頁。 如果確認要刪除連絡人,則對伺服器執行 HTTP DELETE 操作以從資料庫中刪除連絡人記錄。
 
-此外，我們將利用 jQuery 將動畫效果加入至索引視圖。 當從伺服器提取新的連絡人清單時，我們會顯示動畫。
+此外,我們將利用 jQuery 將動畫效果添加到索引檢視中。 當從伺服器提取新的聯繫人清單時,我們將顯示一個動畫。
 
-最後，我們將利用 ASP.NET AJAX framework 支援來管理瀏覽器歷程記錄。 當我們執行 Ajax 呼叫來更新連絡人清單時，我們會建立歷程記錄點。 如此一來，瀏覽器的 [回溯] 和 [下一頁] 按鈕就會生效。
+最後,我們將利用ASP.NETAJAX框架支援來管理瀏覽器歷史記錄。 每當執行 Ajax 調用以更新聯繫人清單時,我們都會創建歷史記錄點。 這樣,瀏覽器的後退和向前按鈕將工作。
 
-## <a name="why-use-ajax"></a>為何要使用 Ajax？
+## <a name="why-use-ajax"></a>為什麼要使用Ajax?
 
-使用 Ajax 有許多優點。 首先，將 Ajax 功能新增至應用程式會導致更好的使用者體驗。 在一般 web 應用程式中，每次使用者執行動作時，整個頁面都必須回傳至伺服器。 每當您執行動作時，瀏覽器就會鎖定，使用者必須等到整個頁面被提取並重新顯示為止。
+使用Ajax有很多好處。 首先,將Ajax功能添加到應用程式中可以提供更好的用戶體驗。 在正常 Web 應用程式中,每次使用者執行操作時,都必須將整個頁面發回伺服器。 每當執行操作時,瀏覽器都會鎖定,用戶必須等待,直到提取並重新顯示整個頁面。
 
-在桌面應用程式的情況下，這會是無法接受的體驗。 但是，在傳統上，我們在 web 應用程式的情況下會遇到這種不正確的使用者體驗，因為我們並不知道我們可以做得更好。 我們認為這是 web 應用程式的限制，但實際上，這只是我們 imaginations 的限制。
+在桌面應用程序的情況下,這是不可接受的體驗。 但是,傳統上,我們生活在一個Web應用程序的情況下,這種糟糕的用戶體驗,因為我們不知道我們可以做得更好。 我們認為這是Web應用程式的一個限制,而實際上,這隻是我們想像力的一個限制。
 
-在 Ajax 應用程式中，您不需要讓使用者體驗只是為了更新頁面而終止。 相反地，您可以在背景執行非同步要求來更新頁面。 您不會在部分頁面更新時強制使用者等待。
+在 Ajax 應用程式中,無需僅更新頁面就停止用戶體驗。 相反,您可以在後台執行非同步請求以更新頁面。 在頁面部分更新時,不會強制使用者等待。
 
-藉由利用 Ajax，您也可以改善應用程式的效能。 請考慮 Contact Manager 應用程式目前在沒有 Ajax 功能的情況下的運作方式。 當您按一下連絡人群組時，必須重新顯示整個索引視圖。 連絡人清單和連絡人群組清單必須從資料庫伺服器抓取。 所有的資料都必須從 web 伺服器傳遞到網頁瀏覽器。
+通過使用Ajax,您還可以提高應用程式的性能。 請考慮聯繫人管理器應用程式現在如何工作,而無需 Ajax 功能。 按一下聯絡人組時,必須重新顯示整個索引檢視。 必須從資料庫伺服器檢索聯繫人列表和連絡人組清單。 所有這些資料都必須通過從 Web 伺服器到 Web 瀏覽器的線傳遞。
 
-不過，在我們將 Ajax 功能新增至應用程式之後，我們可以避免在使用者按一下連絡人群組時重新出現整個頁面。 我們不再需要從資料庫抓取連絡人群組。 我們也不需要在網路上推送整個索引視圖。 藉由利用 Ajax，我們減少了資料庫伺服器必須執行的工作量，並減少應用程式所需的網路流量。
+但是,在將 Ajax 功能添加到應用程式後,我們可以避免在使用者單擊聯繫人組時重新播放整個頁面。 我們不再需要從資料庫獲取聯繫人組。 我們也不需要將整個索引視圖推送到導線上。 通過使用 Ajax,我們減少了資料庫伺服器必須執行的工作量,並減少了應用程式所需的網路流量。
 
-## <a name="don-t-be-afraid-of-ajax"></a>千萬別害怕 Ajax
+## <a name="don-t-be-afraid-of-ajax"></a>不要害怕阿賈克斯
 
-有些開發人員會避免使用 Ajax，因為他們會擔心舊版瀏覽器。 在不支援 JavaScript 的瀏覽器存取時，他們想要確保其 web 應用程式仍可運作。 由於 Ajax 相依于 JavaScript，因此有些開發人員會避免使用 Ajax。
+一些開發人員避免使用Ajax,因為他們擔心低級瀏覽器。 他們希望確保他們的 Web 應用程式在不受支援 JAvaScript 的瀏覽器訪問時仍然有效。 由於Ajax依賴於JAVAScript,一些開發人員避免使用Ajax。
 
-不過，如果您想要瞭解如何執行 Ajax，則可以建立同時使用上層和下層瀏覽器的應用程式。 我們的連絡人管理員應用程式將會使用支援 JavaScript 的瀏覽器，以及不支援的瀏覽器。
+但是,如果您對如何實現Ajax很小心,則可以構建同時使用高級瀏覽器和低級瀏覽器的應用程式。 我們的連絡人管理員應用程式將適用於支援 JAVAScript 的瀏覽器和不支援的瀏覽器。
 
-如果您使用 Contact Manager 應用程式搭配支援 JavaScript 的瀏覽器，則會有更好的使用者體驗。 例如，當您按一下連絡人群組時，只會更新顯示連絡人的頁面區域。
+如果將連絡人管理員應用程式與支援 JAvaScript 的瀏覽器一起使用,那麼您將有更好的用戶體驗。 例如,當您按一下連絡人組時,將僅更新顯示聯絡人的頁面區域。
 
-另一方面，如果您將 Contact Manager 應用程式與不支援 JavaScript 的瀏覽器搭配使用（或已停用 JavaScript），則您會有稍微不需要的使用者體驗。 例如，當您按一下連絡人群組時，整個索引視圖必須回傳至瀏覽器，才能顯示相符的連絡人清單。
+另一方面,如果將聯繫人管理器應用程式用於不支援 JAVAScript(或禁用了 JAVAScript)的瀏覽器,則您的使用者體驗將稍遜一籌。 例如,當您按一下連絡人組時,必須將整個 Index 檢視發回瀏覽器才能顯示聯絡人的匹配清單。
 
-## <a name="adding-the-required-javascript-files"></a>新增必要的 JavaScript 檔案
+## <a name="adding-the-required-javascript-files"></a>新增需要的 JavaScript 檔案
 
-我們必須使用三個 JavaScript 檔案，將 Ajax 功能新增至我們的應用程式。 這三個檔案都包含在新 ASP.NET MVC 應用程式的 [腳本] 資料夾中。
+我們需要使用三個 JavaScript 檔將 Ajax 功能添加到我們的應用程式中。 所有這些檔都包含在新的ASP.NET MVC 應用程式的文本資料夾中。
 
-如果您打算在應用程式的多個頁面中使用 Ajax，則在您的應用程式 s 視圖主版頁面中包含必要的 JavaScript 檔案是合理的。 如此一來，JavaScript 檔案就會自動包含在應用程式的所有頁面中。
+如果您計劃在應用程式中的多個頁面中使用Ajax,那麼在應用程式的檢視母版頁中包含所需的 JAVAScript 檔是有意義的。 這樣,JavaScript 檔將自動包含在應用程式中的所有頁面中。
 
-在您的視圖主版頁面的 &lt;標頭&gt; 標記中新增下列 JavaScript 包含：
+在檢視母版頁&lt;的頭部&gt;標記中加入以下 JAVAScript:
 
 [!code-html[Main](iteration-7-add-ajax-functionality-cs/samples/sample1.html)]
 
-## <a name="refactoring-the-index-view-to-use-ajax"></a>重構索引視圖以使用 Ajax
+## <a name="refactoring-the-index-view-to-use-ajax"></a>重構索引檢視以使用 Ajax
 
-讓我們從修改索引視圖開始，讓按一下連絡人群組只會更新顯示連絡人的視圖區域。 [圖 1] 中的紅色方塊包含我們想要更新的區域。
+讓我們首先修改我們的 Index 檢視,以便單擊連絡人組僅更新顯示聯絡人的檢視區域。 圖 1 中的紅色框包含我們要更新的區域。
 
-[![只更新連絡人](iteration-7-add-ajax-functionality-cs/_static/image1.jpg)](iteration-7-add-ajax-functionality-cs/_static/image1.png)
+[![只更新聯絡人](iteration-7-add-ajax-functionality-cs/_static/image1.jpg)](iteration-7-add-ajax-functionality-cs/_static/image1.png)
 
-**圖 01**：僅更新連絡人（[按一下以觀看完整大小的影像](iteration-7-add-ajax-functionality-cs/_static/image2.png)）
+**圖 01**:僅更新聯絡人([按下以檢視全尺寸影像](iteration-7-add-ajax-functionality-cs/_static/image2.png))
 
-第一個步驟是將我們想要以非同步方式更新的視圖部分，分別放在不同的部分（view user control）。 顯示 [連絡人] 資料表的 [索引] 視圖區段已移至 [清單 1] 中的部分。
+第一步是將要異步更新的視圖部分分離為單獨的部分(視圖使用者控件)。 顯示聯絡人表的 Index 檢視部分已移動到清單 1 中的部分。
 
-**清單 1-Views\Contact\ContactList.ascx**
+**清單 1 - 檢視\連絡人\連絡人清單.ascx**
 
 [!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample2.aspx)]
 
-請注意，[清單 1] 中的部分與 [索引] 視圖的模型不同。 &lt;% @ Page%&gt; 指示詞中的*Inherits*屬性指定部分繼承自 ViewUserControl&lt;群組&gt; 類別。
+請注意,清單 1 中的部分具有與索引視圖不同的模型。 %@ Page&lt;&gt;%&lt;指令中的*繼承*屬性指定從 ViewUserControl 組&gt;類別的部分繼承。
 
-更新的索引視圖包含在 [清單 2] 中。
+更新的索引檢視包含在清單 2 中。
 
-**清單 2-Views\Contact\Index.aspx**
+**清單2 - 檢視\連絡人\Index.aspx**
 
 [!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample3.aspx)]
 
-在 [清單 2] 中，您應該會注意到已更新的視圖有兩件事。 首先，請注意，移入部分的所有內容都會取代為 RenderPartial （）的呼叫。 第一次要求索引視圖以顯示初始連絡人集時，會呼叫 RenderPartial （）方法。
+關於清單2中更新的視圖,您應該注意兩件事。 首先,請注意,移動到部分的所有內容都將替換為對 Html.Render 部分()的調用。 首次請求索引檢視以顯示初始連絡人集時調用 Html.Render 部分() 方法。
 
-第二，請注意，用來顯示連絡人群組的 .Html （）已取代為 Html.actionlink （）。 使用下列參數呼叫了 Ajax （）：
+其次,請注意,用於顯示連絡人組的 Html.ActionLink() 已替換為 Ajax.ActionLink()。 Ajax.ActionLink()使用以下參數呼叫:
 
 [!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample4.aspx)]
 
-第一個參數表示要顯示的連結文字，第二個參數代表路由值，而第三個參數代表 Ajax 選項。 在此情況下，我們會使用 UpdateTargetId Ajax 選項，指向在 Ajax 要求完成後要更新的 HTML &lt;div&gt; 標記。 我們想要使用新的連絡人清單來更新 &lt;div&gt; 標記。
+第一個參數表示要顯示的連結的文本,第二個參數表示路由值,第三個參數表示 Ajax 選項。 在這種情況下,我們使用 UpdateTargetId Ajax 選項來指向要在&lt;&gt;Ajax 請求完成後更新的 HTML div 標記。 我們希望使用新的聯繫人清單&lt;&gt;更新 div 標記。
 
-連絡人控制器的更新索引（）方法包含在 [清單 3] 中。
+聯繫人控制器的更新索引() 方法包含在清單 3 中。
 
-**清單 3-Controllers\ContactController.cs （Index 方法）**
+**清單3 - 控制器\聯絡控制器.cs(索引方法)**
 
 [!code-csharp[Main](iteration-7-add-ajax-functionality-cs/samples/sample5.cs)]
 
-已更新的 Index （）動作會有條件地傳回兩個專案的其中一個。 如果由 Ajax 要求叫用 Index （）動作，則控制器會傳回部分。 否則，Index （）動作會傳回整個視圖。
+更新的 Index() 操作有條件地返回兩件事情之一。 如果 Ajax 請求調用了 Index() 操作,則控制器返回部分。 否則,Index() 操作將返回整個檢視。
 
-請注意，Index （）動作不需要傳回 Ajax 要求所叫用的資料量。 在一般要求的內容中，「索引」動作會傳回所有連絡人群組和所選連絡人群組的清單。 在 Ajax 要求的內容中，Index （）動作只會傳回選取的群組。 Ajax 表示資料庫伺服器上的工作量較少。
+請注意,當 Ajax 請求調用時,Index() 操作不需要返回盡可能多的數據。 在正常請求的上下文中,Index 操作返回所有連絡人組和所選連絡人組的清單。 在 Ajax 請求的上下文中,Index() 操作僅返回選定的組。 Ajax 意味著資料庫伺服器上的工作更少。
 
-在上層和舊版瀏覽器的情況下，我們修改過的索引視圖都適用。 如果您按一下連絡人群組，而且瀏覽器支援 JavaScript，則只會更新包含連絡人清單的視圖區域。 另一方面，如果您的瀏覽器不支援 JavaScript，則會更新整個視圖。
+我們修改的 Index 檢視適用於上層瀏覽器和低級瀏覽器。 如果按一下連絡人組,並且您的瀏覽器支援 JAVAScript,則僅更新包含連絡人清單的檢視區域。 另一方面,如果您的瀏覽器不支援 JAvaScript,則整個檢視將更新。
 
-我們更新的索引視圖有一個問題。 當您按一下連絡人群組時，將不會反白顯示選取的群組。 因為群組清單會顯示在 Ajax 要求期間更新的區域之外，所以不會反白顯示正確的群組。 我們將在下一節修正此問題。
+我們更新的索引視圖有一個問題。 按一下連絡人組時,所選組不會突出顯示。 由於組清單顯示在 Ajax 請求期間更新的區域之外,因此不會突出顯示正確的組。 我們將在下一節中解決此問題。
 
 ## <a name="adding-jquery-animation-effects"></a>新增 jQuery 動畫效果
 
-一般來說，當您按一下網頁中的連結時，可以使用瀏覽器的進度列來偵測瀏覽器是否正在主動提取更新的內容。 另一方面，執行 Ajax 要求時，瀏覽器的進度列不會顯示任何進度。 這可讓使用者擔心。 您如何知道瀏覽器是否已凍結？
+通常,當您單擊網頁中的連結時,可以使用瀏覽器進度欄來檢測瀏覽器是否主動獲取更新的內容。 另一方面,當執行 Ajax 請求時,瀏覽器進度列不顯示任何進度。 這會使用戶感到緊張。 您如何知道瀏覽器是否已凍結?
 
-有數種方式可讓您向使用者指出執行 Ajax 要求時所執行的工作。 其中一個方法是顯示簡單的動畫。 例如，您可以在 Ajax 要求開始時淡出區域，並在要求完成時淡入區域。
+有幾種方法可以向使用者指示在執行 Ajax 請求時正在執行工作。 一種方法是顯示一個簡單的動畫。 例如,當 Ajax 請求開始並淡入該區域時,可以淡出該區域。"
 
-我們將使用 Microsoft ASP.NET MVC 架構隨附的 jQuery 程式庫來建立動畫效果。 更新的索引視圖包含在 [清單 4] 中。
+我們將使用 Microsoft ASP.NET MVC 框架中包含的 jQuery 庫來創建動畫效果。 更新的索引檢視包含在清單 4 中。
 
-**清單 4-Views\Contact\Index.aspx**
+**清單4 - 檢視_連絡人_Index.aspx**
 
 [!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample6.aspx)]
 
-請注意，更新的索引視圖包含三個新的 JavaScript 函數。 當您按一下新的連絡人群組時，前兩個函式會使用 jQuery 淡出並淡入連絡人清單。 當 Ajax 要求導致錯誤（例如網路超時）時，第三個函式會顯示錯誤訊息。
+請注意,更新的索引檢視包含三個新的 JAVAScript 函數。 按一下新連絡人組時,前兩個函數使用 jQuery 淡入淡出並淡入聯繫人清單中。 當 Ajax 請求導致錯誤(例如,網路超時)時,第三個函數將顯示一條錯誤消息。
 
-第一個函式也會負責反白顯示選取的群組。 Class = selected 屬性會加入至所按元素的父元素（LI 元素）。 同樣地，jQuery 可讓您輕鬆選取正確的專案，並加入 CSS 類別。
+第一個函數還負責突出顯示所選組。 類* 選取的屬性將添加到單擊的元素的父元素(LI 元素)。 同樣,jQuery 便於選擇正確的元素並添加 CSS 類。
 
-這些腳本會透過 AjaxOptions 參數的協助，系結至群組連結。 更新的 Ajax （）方法呼叫看起來像這樣：
+這些文本在Ajax.ActionLink())AjaxOptions參數的説明下與組連結相關聯。 更新的Ajax.ActionLink()方法呼叫以下所示:
 
 [!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample7.aspx)]
 
-## <a name="adding-browser-history-support"></a>新增瀏覽器歷程記錄支援
+## <a name="adding-browser-history-support"></a>新增瀏覽器歷史記錄支援
 
-一般來說，當您按一下連結來更新頁面時，您的瀏覽器歷程記錄就會更新。 如此一來，您可以按一下瀏覽器的 [上一頁] 按鈕，將時間移回到頁面的先前狀態。 例如，如果您按一下 [friend 連絡人] 群組，然後按一下 [商務連絡人] 群組，則可以按一下 [瀏覽器上一頁] 按鈕，在選取 [朋友連絡人] 群組時，流覽回頁面的狀態。
+通常,當您按下連結以更新頁面時,您的瀏覽器歷史記錄將更新。 這樣,您可以按一下瀏覽器"後退"按鈕以及時移回頁面的上一個狀態。 例如,如果您按兩下「好友聯繫人組」然後單擊「業務聯繫人組」,則可以按一下瀏覽器「後退」按鈕,在選擇「好友聯繫人組」時導航回頁面狀態。
 
-可惜的是，執行 Ajax 要求並不會自動更新瀏覽器記錄。 如果您按一下連絡人群組，並使用 Ajax 要求來抓取相符連絡人清單，則不會更新瀏覽器記錄。 選取新的連絡人群組之後，您就無法使用瀏覽器的 [上一頁] 按鈕來流覽回連絡人群組。
+遺憾的是,執行 Ajax 請求不會自動更新瀏覽器歷史記錄。 如果按一下聯絡人組,並且使用 Ajax 請求檢索匹配聯絡人的清單,則瀏覽器歷史記錄不會更新。 選擇新的連絡人組後,不能使用瀏覽器"後退"按鈕導航回連絡人組。
 
-如果您想要讓使用者在執行 Ajax 要求之後能夠使用瀏覽器的 [上一頁] 按鈕，則您需要執行更多工作。 您必須利用 ASP.NET AJAX 架構內建的瀏覽器歷程記錄管理功能。
+如果您希望使用者在執行 Ajax 請求後能夠使用瀏覽器" 後退「 按鈕,則需要執行更多工作」。 您需要利用ASP.NET AJAX 框架中建構的瀏覽器歷史記錄管理功能。
 
-ASP.NET AJAX browser 歷程記錄，您需要做三件事：
+ASP.NET AJAX 瀏覽器歷史記錄,您需要執行以下三項操作:
 
-1. 將 enableBrowserHistory 屬性設定為 true，以啟用瀏覽器歷程記錄。
-2. 當視圖的狀態藉由呼叫 addHistoryPoint （）方法來變更時，儲存歷程記錄點。
-3. 當引發導覽事件時，重建視圖的狀態。
+1. 通過將啟用瀏覽器歷史記錄屬性設置為 true,啟用瀏覽器歷史記錄。
+2. 通過調用 addHistoryPoint() 方法,在檢視狀態發生變化時保存歷史記錄點。
+3. 引發導航事件時重建視圖的狀態。
 
-更新的索引視圖包含在 [清單 5] 中。
+更新的索引檢視包含在清單 5 中。
 
-**清單 5-Views\Contact\Index.aspx**
+**清單5 - 檢視_連絡人_Index.aspx**
 
 [!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample8.aspx)]
 
-在 [清單 5] 中，已在 pageInit （）函數中啟用瀏覽器歷程記錄。 PageInit （）函數也用來設定導覽事件的事件處理常式。 每當瀏覽器的 [轉寄] 或 [上一頁] 按鈕導致頁面的狀態變更時，就會引發 [導覽] 事件。
+在清單5中,瀏覽器歷史記錄在頁面 Init() 函數中啟用。 pageInit() 函數還用於設置導航事件的事件處理程式。 每當瀏覽器「前進」或「後退」按鈕導致頁面狀態更改時,將引發導航事件。
 
-當您按一下連絡人群組時，會呼叫 beginContactList （）方法。 這個方法會藉由呼叫 addHistoryPoint （）方法來建立新的記錄點。 已按下之連絡人群組的識別碼會新增至 [歷程記錄]。
+按一下連絡人組時將調用開始連絡人清單() 方法。 此方法通過調用 add 歷史點() 方法創建新的歷史記錄點。 按一下的連絡人組的 ID 將添加到歷史記錄中。
 
-系統會從 contact 群組連結上的 expando 屬性來抓取群組識別碼。 連結會以下列對 Ajax 的呼叫來呈現（）。
+從連絡人組連結上的擴展屬性檢索組 ID。 鏈接呈現與以下調用Ajax.ActionLink()。
 
 [!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample9.aspx)]
 
-傳遞至 Ajax 的最後一個參數（）會將名為 groupid 的 expando 屬性加入至連結（XHTML 相容性為小寫）。
+傳遞給Ajax.ActionLink()的最後一個參數將名為 groupid 的 expando 屬性添加到連結(XHTML 相容性小寫)。
 
-當使用者點擊瀏覽器的 [上一頁] 或 [下一頁] 按鈕時，就會引發導覽事件並呼叫導覽（）方法。 這個方法會更新頁面中顯示的連絡人，以符合與傳遞至導覽方法之瀏覽器歷程記錄點對應的頁面狀態。
+當用戶點擊瀏覽器"後退"或"前進"按鈕時,將引發導航事件並調用 navigate() 方法。 此方法更新頁面中顯示的聯繫人,以匹配與傳遞給導航方法的瀏覽器歷史記錄點對應的頁面狀態。
 
-## <a name="performing-ajax-deletes"></a>執行 Ajax 刪除
+## <a name="performing-ajax-deletes"></a>執行 Ajax 移除
 
-目前若要刪除連絡人，您必須按一下 [刪除] 連結，然後按一下 [刪除確認] 頁面中顯示的 [刪除] 按鈕（請參閱 [圖 2]）。 這似乎很多頁面要求，可以執行像是刪除資料庫記錄的簡單動作。
+目前,要刪除連絡人,您需要按一下"刪除"鏈接,然後單擊刪除確認頁中顯示的"刪除"按鈕(參見圖 2)。 這似乎是很多頁面請求,以做一些簡單的事情,如刪除資料庫記錄。
 
-[![[刪除確認] 頁面](iteration-7-add-ajax-functionality-cs/_static/image2.jpg)](iteration-7-add-ajax-functionality-cs/_static/image3.png)
+[![刪除確認頁](iteration-7-add-ajax-functionality-cs/_static/image2.jpg)](iteration-7-add-ajax-functionality-cs/_static/image3.png)
 
-**圖 02**：刪除確認頁面（[按一下以查看完整大小的影像](iteration-7-add-ajax-functionality-cs/_static/image4.png)）
+**圖 02**: 刪除確認頁([按下以檢視全尺寸影像](iteration-7-add-ajax-functionality-cs/_static/image4.png))
 
-略過刪除確認頁面，並直接從索引視圖刪除連絡人是很吸引人的。 您應該避免這個誘惑，因為採取此方法會將您的應用程式開啟至安全性漏洞。 一般來說，您不會想要在叫用修改 web 應用程式狀態的動作時，執行 HTTP GET 作業。 執行刪除時，您會想要執行 HTTP POST，或更好的 HTTP 刪除作業。
+最好跳過刪除確認頁,直接從索引視圖中刪除連絡人。 您應該避免這種誘惑,因為採用這種方法會將應用程式打開到安全漏洞中。 通常,在調用修改 Web 應用程式狀態的操作時,不希望執行 HTTP GET 操作。 執行刪除時,要執行 HTTP POST,或者更好的是執行 HTTP DELETE 操作。
 
-[刪除] 連結包含在 ContactList 部分中。 [清單 6] 中包含 ContactList 部分的更新版本。
+"刪除"链接包含在"連絡人列表"部分中。 清單 6 中包含連絡人清單部分的更新版本。
 
-**清單 6-Views\Contact\ContactList.ascx**
+**清單 6 - 檢視\聯絡人清單.ascx**
 
 [!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample10.aspx)]
 
-[刪除] 連結會使用下列 ImageActionLink （）方法的呼叫來呈現：
+刪除連結呈現與以下調用 Ajax.ImageActionLink() 方法:
 
 [!code-aspx[Main](iteration-7-add-ajax-functionality-cs/samples/sample11.aspx)]
 
 > [!NOTE] 
 > 
-> ImageActionLink （）不是 ASP.NET MVC 架構的標準部分。 ImageActionLink （）是包含在 Contact Manager 專案中的自訂 helper 方法。
+> Ajax.ImageActionLink()不是mVCASP.NET標準部分。 Ajax.ImageActionLink()是聯絡人管理員專案中包括的自定義幫助器方法。
 
-AjaxOptions 參數有兩個屬性。 首先，Confirm 屬性是用來顯示快捷方式 JavaScript 確認對話方塊。 第二，HttpMethod 屬性是用來執行 HTTP 刪除作業。
+AjaxOptions 參數有兩個屬性。 首先,"確認"屬性用於顯示彈出的 JavaScript 確認對話方塊。 其次,HttpMethod 屬性用於執行 HTTP DELETE 操作。
 
-[清單 7] 包含新的 AjaxDelete （）動作，已新增至連絡人控制器。
+清單7包含已添加到聯繫人控制器的新 AjaxDelete() 操作。
 
-**清單 7-Controllers\ContactController.cs （AjaxDelete）**
+**清單7 - 控制器\聯絡控制器.cs(Ajax刪除)**
 
 [!code-csharp[Main](iteration-7-add-ajax-functionality-cs/samples/sample12.cs)]
 
-AjaxDelete （）動作會以 AcceptVerbs 屬性裝飾。 除了 HTTP 刪除作業以外的任何 HTTP 作業以外，此屬性可防止叫用動作。 特別是，您無法使用 HTTP GET 叫用此動作。
+AjaxDelete() 操作使用 AcceptVerbs 屬性進行修飾。 此屬性可防止調用操作,但 HTTP DELETE 操作以外的任何 HTTP 操作除外。 特別是,您不能使用 HTTP GET 呼叫此操作。
 
-刪除資料庫記錄之後，您必須顯示未包含已刪除記錄之連絡人的更新清單。 AjaxDelete （）方法會傳回 ContactList 部分和更新的連絡人清單。
+刪除資料庫記錄後,需要顯示不包含已刪除記錄的聯繫人的更新清單。 AjaxDelete() 方法傳回聯絡人清單部分和更新的連絡人清單。
 
 ## <a name="summary"></a>總結
 
-在此反復專案中，我們已將 Ajax 功能新增至我們的 Contact Manager 應用程式。 我們使用 Ajax 來改善應用程式的回應性和效能。
+在此反覆運算中,我們將 Ajax 功能添加到我們的聯繫人管理器應用程式中。 我們使用Ajax來提高應用程式的回應性和性能。
 
-首先，我們重構了索引視圖，因此按一下連絡人群組並不會更新整個視圖。 相反地，按一下連絡人群組只會更新連絡人清單。
+首先,我們重構了 Index 視圖,以便單擊聯繫人組不會更新整個檢視。 相反,按一下聯繫人組只會更新聯繫人清單。
 
-接下來，我們使用 jQuery 動畫效果淡出並淡入連絡人清單中。 將動畫新增至 Ajax 應用程式，可以用來提供應用程式的使用者，使其具有對等的瀏覽器進度列。
+接下來,我們使用 jQuery 動畫效果淡入淡出並淡入聯繫人清單中。 向 Ajax 應用程式添加動畫可用於向應用程式的使用者提供等效的瀏覽器進度列。
 
-我們也將瀏覽器歷程記錄支援新增至我們的 Ajax 應用程式。 我們已讓使用者按一下瀏覽器的 [上一頁] 和 [下一頁] 按鈕，以變更索引視圖的狀態。
+我們還向 Ajax 應用程式添加了瀏覽器歷史記錄支援。 我們允許使用者單擊瀏覽器"後退"和"前進"按鈕以更改"索引"視圖的狀態。
 
-最後，我們建立了支援 HTTP 刪除作業的刪除連結。 藉由執行 Ajax delete，我們可以讓使用者刪除資料庫記錄，而不需要使用者要求額外的刪除確認頁面。
+最後,我們創建了一個支援 HTTP DELETE 操作的刪除連結。 通過執行 Ajax 刪除,我們允許使用者刪除資料庫記錄,而無需使用者請求額外的刪除確認頁。
 
 > [!div class="step-by-step"]
-> [上一頁](iteration-6-use-test-driven-development-cs.md)
-> [下一頁](iteration-1-create-the-application-vb.md)
+> [前一個](iteration-6-use-test-driven-development-cs.md)
+> [下一個](iteration-1-create-the-application-vb.md)

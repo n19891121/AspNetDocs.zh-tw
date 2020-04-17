@@ -1,258 +1,258 @@
 ---
 uid: web-forms/overview/moving-to-aspnet-20/membership
-title: 成員資格 |Microsoft Docs
-author: microsoft
-description: ASP.NET 成員資格是以 ASP.NET 1.x 的表單驗證模型成功為基礎。 ASP.NET 表單驗證提供便利的方式來 incorp 。
+title: 會員 |微軟文件
+author: rick-anderson
+description: ASP.NET成員資格基於表單身份驗證模型從ASP.NET1.x的成功為基礎。 ASP.NET窗體身份驗證提供了一種便捷的方法來進行體形...
 ms.author: riande
 ms.date: 02/20/2005
 ms.assetid: f2339485-5d78-4c5e-8c0a-dc9b8a315345
 msc.legacyurl: /web-forms/overview/moving-to-aspnet-20/membership
 msc.type: authoredcontent
-ms.openlocfilehash: da6fc205bd852a818d65425586cec38fdb08d310
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ed48c11cbd483de088239bad7c2452b7fc60a1cf
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78642153"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543765"
 ---
 # <a name="membership"></a>成員資格
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-> ASP.NET 成員資格是以 ASP.NET 1.x 的表單驗證模型成功為基礎。 ASP.NET 表單驗證提供便利的方法，將登入表單併入您的 ASP.NET 應用程式，並針對資料庫或其他資料存放區驗證使用者。
+> ASP.NET成員資格基於表單身份驗證模型從ASP.NET1.x的成功為基礎。 ASP.NET窗體身份驗證提供了將登錄表單合併到ASP.NET應用程式中以及根據資料庫或其他數據存儲驗證使用者的便捷方法。
 
-ASP.NET 成員資格是以 ASP.NET 1.x 的表單驗證模型成功為基礎。 ASP.NET 表單驗證提供便利的方法，將登入表單併入您的 ASP.NET 應用程式，並針對資料庫或其他資料存放區驗證使用者。 FormsAuthentication 類別的成員可以處理 cookie 以進行驗證、檢查是否有有效的登入、將使用者登出等等。不過，在 ASP.NET 1.x 應用程式中執行表單驗證，可能需要相當多的程式碼。
+ASP.NET成員資格基於表單身份驗證模型從ASP.NET1.x的成功為基礎。 ASP.NET窗體身份驗證提供了將登錄表單合併到ASP.NET應用程式中以及根據資料庫或其他數據存儲驗證使用者的便捷方法。 表單身份驗證類的成員可以處理 Cookie 進行身分驗證、檢查有效登錄、登出使用者等。但是,在ASP.NET 1.x 應用程序中實現窗體身份驗證可能需要大量代碼。
 
-ASP.NET 2.0 中的成員資格只是使用表單驗證的主要進步。 （與表單驗證結合時，成員資格最強大，但不需要使用表單驗證）。您很快就會看到，您可以使用 ASP.NET 成員資格和 ASP.NET 2.0 中的登入控制項來執行功能強大的成員資格系統，而不需要撰寫太多程式碼。
+ASP.NET 2.0 中的成員資格是單獨使用窗體身份驗證的一大進步。 (與表單身份驗證結合時,成員資格最可靠,但使用窗體身份驗證不是要求。正如您很快就會看到的那樣,您可以使用ASP.NET 2.0 中的ASP.NET成員資格和登錄控制項來實現強大的成員資格系統,而無需編寫大量代碼。
 
-## <a name="implementing-membership-in-aspnet-20"></a>在 ASP.NET 2.0 中執行成員資格
+## <a name="implementing-membership-in-aspnet-20"></a>在 ASP.NET 2.0 中實施成員資格
 
-成員資格是透過下列四個步驟來執行。 請記住，其中包含許多子步驟，以及可同時執行的選擇性設定。 這些步驟的目的是要說明設定成員資格的重要概念。
+成員資格通過以下四個步驟實現。 請記住,涉及許多子步驟以及可選配置,也可以實現。 這些步驟旨在說明配置成員資格的大圖景。
 
-1. 建立您的成員資格資料庫（如果 SQL Server 做為成員資格存放區）。
-2. 在您的應用程式佈建檔中指定成員資格選項。 （預設會啟用成員資格）。
-3. 決定您想要使用的成員資格存放區類型。 選項包括： 
+1. 創建成員資格資料庫(如果 SQL Server 用作成員資格存儲。
+2. 指定應用程式設定檔中的成員資格選項。 (默認情況下啟用成員資格。
+3. 確定要使用的成員資格存儲的類型。 選項包括： 
 
-    - Microsoft SQL Server （版本7.0 或更新版本）
-    - Active Directory 存放區
+    - 微軟 SQL 伺服器(版本 7.0 或更高版本)
+    - 活動目錄儲存
     - 自訂成員資格提供者
-4. 設定應用程式以進行 ASP.NET 表單驗證。 同樣地，成員資格是設計來利用表單驗證，但不需要使用表單驗證。
-5. 定義成員資格的使用者帳戶，並視需要設定角色。
+4. 配置應用程式以進行ASP.NET窗體身份驗證。 再次,成員資格旨在利用窗體身份驗證,但使用窗體身份驗證不是一項要求。
+5. 為成員資格定義使用者帳戶,並根據需要配置角色。
 
 ## <a name="creating-the-membership-database"></a>建立成員資格資料庫
 
-如果您使用 SQL Server 7.0 或更新版本作為您的成員資格存放區，則可以使用 aspnet\_regsql 公用程式（可從 Visual Studio .NET 2005 命令提示字元中輕鬆取得）來設定您的資料庫。 Aspnet\_regsql 公用程式可用來做為命令提示字元工具或透過 GUI wizard。 Wizard 方法是設定資料庫最簡單的方式。 若要存取嚮導，只要執行下列命令即可：
+如果您使用 SQL Server 7.0 或更高版本作為成員資格存儲,則可以\_使用 aspnet regsql 實用程式(從 Visual Studio .NET 2005 命令提示符中最容易使用)來配置資料庫。 aspnet\_regsql 實用程式可用作命令提示工具或透過 GUI 精靈。 嚮導方法是配置資料庫的最簡單方法。 要存取精靈,只需執行以下指令:
 
 `aspnet_regsql W`
 
-執行該命令後，您會看到 ASP.NET SQL Server 安裝程式嚮導，如下所示。
+運行該命令後,將顯示ASP.NET SQL 伺服器設置嚮導,如下所示。
 
 ![](membership/_static/image1.jpg)
 
 **圖 1**
 
-[ASP.NET SQL Server 安裝程式] 會在您于 Wizard 中指定的實例中建立網站。 不過，ASP.NET 會使用 machine.config 檔案中的連接字串來連接到您的資料庫。 根據預設，這個連接字串會指向 SQL Server 2005 實例，因此，如果您使用 SQL Server 2000 或 SQL Server 7.0 實例，就必須修改 machine.config 檔案中的連接字串。 該連接字串可以在這裡找到：
+ASP.NET SQL 伺服器設置精靈會在嚮導中指定的實例中創建網站。 但是,ASP.NET將使用計算機中的連接字串。 預設情況下,此連接字串將指向 SQL Server 2005 實例,因此,如果您使用的是 SQL Server 2000 或 SQL Server 7.0 實例,則需要修改電腦中的連接字元串。 該連線字串可以位於此處:
 
 [!code-xml[Main](membership/samples/sample1.xml)]
 
-可惜的是，如果您不修改連接字串，ASP.NET 就不會提供描述性錯誤。 它只會繼續抱怨，指出您尚未建立資料庫。 在上述案例中，我已修改連接字串，以指向我的本機 SQL Server 2000 實例。
+遺憾的是,如果不修改連接字串,ASP.NET不會給您帶來描述性錯誤。 它會繼續抱怨說,你還沒有創建資料庫。 在上面的案例中,我修改了連接字串以指向我的本地 SQL Server 2000 實例。
 
-## <a name="specifying-configuration-and-adding-users-and-roles"></a>指定設定及新增使用者和角色
+## <a name="specifying-configuration-and-adding-users-and-roles"></a>指定設定與新增使用者與角色
 
-設定成員資格的下一個步驟是將必要的資訊新增至應用程式的 web.config 檔案。 在 ASP.NET 1.x 中，修改 web.config 檔案有時候很棘手，因為使用的是 lowerCamelCase，而缺乏 Intellisense。 Visual Studio .NET 2005 可讓您更輕鬆地使用 Intellisense 來處理設定檔，但 ASP.NET 2.0 會藉由提供 Web 介面來編輯設定檔，而更進一步。
+設定成員資格的下一步是向應用程式的 Web.config 檔添加必要的資訊。 在ASP.NET 1.x 中,由於使用較低CamelCase和缺乏 Intellisense,修改 Web.config 文件有時很困難。 Visual Studio .NET 2005 使配置檔的 Intellisense 任務更加輕鬆,但 ASP.NET 2.0 透過提供用於編輯設定檔的網頁介面更進一步。
 
-若要啟動 Web 介面，您可以按一下 [方案總管] 工具列上的 [ASP.NET 設定] 按鈕，如下所示。 您也可以透過在插入登入控制項時顯示的快顯視窗，啟動 Web 介面。
+您可以透過單擊解決方案資源管理器工具列上的ASP.NET配置按鈕來啟動 Web 介面,如下所示。 您還可以透過插入登入控制項時顯示的彈出視窗啟動 Web 介面。
 
 ![](membership/_static/image2.jpg)
 
 **圖 2**
 
-這會啟動 ASP.NET 的網站管理工具，如下所示。 ASP.NET 網站管理是一個四個索引標籤的介面，可讓您輕鬆地管理應用程式設定。 下列索引標籤可供使用：
+這將啟動下面所示的ASP.NET網站管理工具。 ASP.NET網站管理是一個四選項卡介面,便於管理應用程式設置。 以下選項卡可用:
 
-- **Home**
-- **安全性**設定使用者、角色和存取權。
-- **應用程式**設定應用程式設定。
-- **提供者**設定並測試您的應用程式成員資格提供者。
+- **首頁**
+- **安全性**配置使用者、角色和訪問許可權。
+- **套用**配置應用程式設置。
+- **供應商**配置和測試應用程式成員資格提供者。
 
-網站管理工具可讓您輕鬆地建立新的使用者、建立新的角色，以及管理使用者和角色。 Windows 介面不提供這項功能。 Windows 介面可讓您輕鬆定義授權設定，以及加入、刪除及管理提供者、不在網站管理工具中的功能。
+網站管理工具允許您輕鬆創建新使用者、創建新角色以及管理使用者和角色。 此功能在 Windows 介面中不可用。 Windows 介面允許您輕鬆定義授權設置,並添加、刪除和管理不在網站管理工具中的提供程式。
 
-若要啟動 Windows 介面，請開啟 [Internet Information Services] 嵌入式管理單元，以滑鼠右鍵按一下您的應用程式，然後選擇 [屬性]。 按一下 [ASP.NET] 索引標籤，然後按一下 [編輯設定] 按鈕。 （應用程式必須在 ASP.NET 2.0 下執行，才能啟用 [編輯設定] 按鈕。 您也可以在 [ASP.NET] 對話方塊中設定 ASP.NET 版本）。[ASP.NET 設定設定] 對話方塊隨即顯示，如下所示。
+要啟動 Windows 介面,請打開 Internet 資訊服務卡入,右鍵單擊應用程式,然後選擇"屬性"。 按下ASP.NET選項卡,然後按下「編輯配置」按鈕。 (應用程式必須在 2.0 ASP.NET 下運行才能啟用"編輯配置"按鈕。 您還可以在ASP.NET對話框中配置ASP.NET版本。ASP.NET 配置設置對話方塊如下所示。
 
 ![](membership/_static/image3.jpg)
 
 **圖 3**
 
-[一般] 索引標籤上會列出 [連接字串] 和 [應用程式設定]。 斜體中的任何設定都定義于父設定檔中（machine.config 或較高層級的 web.config），而不是斜體的設定則來自應用程式佈建檔。 如果在應用層級新增、移除或編輯設定，ASP.NET 會在應用層級 web.config 新增、移除或修改設定，而不是從繼承它的設定檔中移除設定。
+在「常規」選項卡上,將列出連接字串和應用程式設定。 斜體的任何設定都在父配置檔(機器.config 或更高級別的 Web.config)中定義,而斜體化的設置來自應用程式配置檔。 如果在應用程式級別添加、刪除或編輯設定,ASP.NET將在應用程式級別 Web.config 上添加、刪除或修改該設定,而不是從繼承該設定的設定檔中刪除該設定。
 
-[驗證] 索引標籤如下所示。 這是您將設定成員資格設定的位置。 您可以在這裡設定表單驗證設定、成員資格提供者和角色提供者。
+"身份驗證"選項卡如下所示。 這是您將配置成員資格設置的位置。 可以在此處配置窗體身份驗證設置、成員資格提供程式和角色提供程式。
 
 ![](membership/_static/image4.jpg)
 
 **圖 4**
 
-## <a name="implementing-membership-in-your-application"></a>在您的應用程式中執行成員資格
+## <a name="implementing-membership-in-your-application"></a>在應用程式中實現成員資格
 
-在您的應用程式中執行 ASP.NET 2.0 成員資格的最簡單方式，就是使用提供的登入控制項。 這個方法可讓您在不需撰寫任何程式碼的情況下，執行 ASP.NET 2.0 成員資格的基本概念。
+實現應用程式中ASP.NET 2.0 成員資格的最簡單方法是使用提供的登錄控制項。 此方法允許您實現ASP.NET 2.0 成員資格的基礎知識,而無需編寫任何代碼。
 
-ASP.NET 2.0 提供下列登入控制：
+以下登入控制項在 2.0 ASP.NET 中可用:
 
-## <a name="login-control"></a>Login 控制項
+## <a name="login-control"></a>登入控制
 
-登入控制項會提供介面，讓使用者登入您的成員資格系統。 它會為您提供 [使用者名稱] 和 [密碼] 文字方塊和 [登入] 按鈕。 還有許多其他常見的功能，例如註冊尚未完成的人員的連結、可讓使用者在後續造訪時自動登入的核取方塊、密碼提醒的連結等等。您可以透過控制項的屬性自訂登入控制項的所有功能。
+登錄控制項為某人提供登錄您的成員資格系統的介面。 它為您提供使用者名稱和密碼文本框和登錄按鈕。 許多其他常見功能,例如尚未註冊的使用者的連結、允許使用者在後續訪問時自動登錄的複選框、密碼提醒連結等。登錄控制件的所有功能都可透過控制的屬性進行自定義。
 
-在 ASP.NET 1.x 中，開發人員在使用表單驗證時，必須撰寫相當大量的程式碼來進行查閱。 有了 ASP.NET 2.0 成員資格，您就可以驗證使用者，而不需要撰寫任何程式碼。 ASP.NET 會自動為您執行使用者查閱。 （如果您使用登入控制項，而不使用 ASP.NET 成員資格，則可以使用**OnAuthenticate**方法來驗證使用者）。
+在ASP.NET 1.x 中,開發人員在使用窗體身份驗證時必須編寫相當數量的代碼來執行查找。 使用ASP.NET 2.0 成員資格,無需編寫任何代碼即可驗證使用者。 ASP.NET會自動為您查找使用者。 (如果您使用登錄控制項而不使用ASP.NET成員資格,則可以使用**OnAuthenticate**方法驗證使用者。
 
 ## <a name="loginview-control"></a>LoginView 控制項
 
-LoginView 控制項是樣板化控制項，預設會提供兩個範本;AnonymousTemplate 和 LoggedInTemplate。 所顯示的範本取決於使用者是否登入您的成員資格系統。 此控制項通常用來在使用者尚未登入時顯示登入控制項，以及在使用者已登入時，使用 LoginStatus 控制項和（或）其他登入控制項。 如果您在 ASP.NET 應用程式中使用角色管理，LoginView 控制項可以根據使用者角色來顯示特定的範本。 （稍後會涵蓋 ASP.NET 角色管理的詳細資訊。）
+LoginView 控件是一個範本化控制項,預設情況下提供兩個範本;匿名範本和登錄範本。 顯示的範本由使用者是否登錄到您的成員資格系統決定。 此控件通常用於在使用者尚未登錄時顯示登錄控制項,以及使用者登錄時的登錄狀態控制項和/或其他登錄控制項。 如果在ASP.NET應用程式中使用角色管理,則LoginView控制項可以基於使用者角色顯示特定的範本。 (稍後將介紹有關ASP.NET角色管理的更多內容。
 
-## <a name="passwordrecovery-control"></a>PasswordRecovery 控制項
+## <a name="passwordrecovery-control"></a>密碼修復控制
 
-PasswordRecovery 控制項可讓使用者使用其目前的密碼來接收電子郵件，或重設其密碼。 純文字和加密密碼可以復原，並以電子郵件傳送給使用者。 如果密碼已雜湊，則無法復原。 相反地，使用者將需要執行密碼重設。
+密碼修復控制項允許使用者接收包含其當前密碼的電子郵件或重置其密碼。 可以恢復明文和加密的密碼並通過電子郵件發送給使用者。 如果密碼已哈希,則無法恢復密碼。 相反,使用者將需要執行密碼重置。
 
-## <a name="loginstatus-control"></a>LoginStatus 控制項
+## <a name="loginstatus-control"></a>登入狀態控制
 
-LoginStatus 控制項是用來對未登入的使用者，以及目前登入的使用者顯示登出指示器。 IsAuthenticated 屬性是用來決定要顯示的指標。 LoginStatus 控制項所顯示的指標可以是文字（透過**LoginText**和**LogoutText**屬性實作為）或影像（透過**LoginImageUrl**和**LogoutImageUrl**屬性實作為實）。
+登錄狀態控制項用於向未登錄的使用者顯示登錄指示器,向目前登錄的使用者顯示登出指示器。 "請求.已驗證"屬性用於確定要顯示的指示器。 登錄狀態控制項顯示的指示器可以是文本(透過**登錄文本**和**註銷文本**屬性實現)或圖像(透過**登錄圖像Url**和**LogoutImageUrl**屬性實現)。
 
-當使用者透過 LoginStatus 控制項登出時，會將他或她重新導向至**LogoutPageUrl**屬性所指定的 URL。 如果未設定該屬性，則會重新整理目前的頁面。 由於網站可能受到表單驗證的保護，因此目前頁面的重新整理會將使用者重新導向至網站的登入頁面。
+當使用者通過登錄狀態控件註銷時,他或她將重定向到**LogoutPageUrl**屬性指定的 URL。 如果未設置該屬性,則刷新當前頁面。 由於網站可能受窗體身份驗證保護,因此當前頁面的刷新將用戶重定向到網站的登錄頁。
 
-## <a name="loginname-control"></a>LoginName 控制項
+## <a name="loginname-control"></a>登入名控制
 
-LoginName 控制項會顯示目前登入網站的使用者名稱。
+"登錄名稱"控制件顯示當前登錄到網站的使用者的使用者名稱。
 
-## <a name="createuserwizard-control"></a>CreateUserWizard 控制項
+## <a name="createuserwizard-control"></a>建立使用者精靈控制項
 
-CreateUserWizard 控制項提供使用者一個便利的方式來註冊您的成員資格系統。 您可以透過如下所示的介面，新增步驟（實作為 WizardSteps 的集合）。
+CreateUserWizard 控制項為使用者提供註冊會員系統的便捷方式。 您可以通過如下所示的介面添加步驟(作為嚮導步驟的集合實現)。
 
 ![](membership/_static/image5.jpg)
 
-**圖5**
+**圖 5**
 
-CreateUserWizard 是衍生自 Wizard 類別的樣板化控制項，並提供下列範本：
+CreateUserWizard 是一個範本化控制項,派生自嚮導類並提供以下範本:
 
-- **System.windows.controls.headereditemscontrol.headertemplate**此範本控制 wizard 標頭的外觀。
-- **SidebarTemplate**此範本控制 wizard 提要欄位的外觀。
-- **StartNavigationTemplate**此範本會在開始步驟中控制流覽的外觀。
-- **StepNavigationTemplate**此範本控制流覽區域的外觀，而不是在 [開始] 或 [完成] 步驟中。
-- **FinishNavigationTemplate**此範本會在完成步驟時控制流覽區域的外觀。
+- **標題樣本**此範本控制嚮導標頭的外觀。
+- **側邊欄樣本**此範本控制嚮導側邊欄的外觀。
+- **開機瀏覽樣本**此範本控制導航的外觀是嚮導在開始步驟。
+- **步進瀏覽樣本**此範本控制在導航區域的外觀時不在開始或完成步驟中。
+- **完成瀏覽樣本**此範本控制導航區域在完成步驟上的外觀。
 
-此外，針對您新增至 Wizard 的每個步驟，ASP.NET 都會建立一個自訂範本，其中同時包含該步驟的 ContentTemplate 和 CustomNavigationTemplate。 如需自訂 CreateUserWizard 的完整詳細資料，請參閱 VS.NET 2005 檔：
+此外,對於添加到嚮導的每個步驟,ASP.NET將創建一個自定義範本,其中包含該步驟的內容範本和自定義導航範本。 有關自訂 CreateUserWizard 的完整詳細資訊,請參閱 2005 年VS.NET文檔:
 
-## <a name="changepassword-control"></a>ChangePassword 控制項
+## <a name="changepassword-control"></a>變更密碼控制
 
-ChangePassword 控制項可讓使用者變更其密碼。 如果 DisplayUserName 屬性為 true （預設為 false），則使用者可以在未登入時變更其密碼。 如果使用者已經登入，而且 DisplayUserName 屬性為 true，*使用者就能夠*變更另一位未登入使用者的密碼，讓他們知道該使用者的使用者識別碼。
+更改密碼控制項允許使用者更改其密碼。 如果 DisplayUserName 屬性為 true(預設情況下為 false),則用戶可以在未登錄時更改其密碼。 如果使用者*已*登錄,並且 DisplayUserName 屬性為 true,則使用者將能夠更改未登錄的其他使用者的密碼,前提是他們知道該使用者的使用者 ID。
 
-請記住，如果您想要讓使用者能夠在不登入的情況下變更密碼，您必須確定顯示 ChangePassword 控制項的頁面允許匿名存取。 很明顯地，使用者必須提供其舊密碼，才能變更其密碼。
+請記住,如果您希望用戶能夠在無需登錄的情況下更改密碼,則需要確保顯示更改密碼控制項的頁面允許匿名存取。 顯然,用戶必須提供其舊密碼才能更改其密碼。
 
 ## <a name="role-management"></a>角色管理
 
-角色管理可讓您將使用者指派給特定角色，然後根據該角色來限制對特定檔案或資料夾的存取權。 角色管理也會提供 API，讓您以程式設計方式判斷更輕鬆地角色，或判斷特定角色中的所有使用者，並據以回應。
+角色管理允許您將使用者分配給特定角色,然後根據該角色限制對某些檔或資料夾的訪問。 角色管理還提供 API,以便您可以以程式設計方式確定某人的角色或確定特定角色的所有使用者並做出相應回應。
 
-角色管理不是 ASP.NET 成員資格的需求，也不需要成員資格就能使用角色管理。 不過，這兩個補充程式都很好，而開發人員可能會將它們彼此搭配使用。
+角色管理不是ASP.NET成員的要求,也不是使用角色管理的要求。 然而,兩者互相補充得很好,開發人員可能會將它們結合使用。
 
-若要在您的應用程式中啟用角色管理，請在 web.config 檔案中進行下列變更：
+要在應用程式中啟用角色管理,請對 Web.config 檔中進行以下變更:
 
 [!code-xml[Main](membership/samples/sample2.xml)]
 
-當**cacheRolesInCookie**屬性設定為 true 時，ASP.NET 會在用戶端上的 cookie 中快取使用者角色成員資格。 這可讓角色查閱進行，而不需要呼叫 RoleProvider。 使用此屬性時，建議開發人員確保**cookieProtection**屬性設定為 All。 （這是預設設定）。這可確保 cookie 資料經過加密，並協助確保 cookie 內容尚未改變。 您可以使用 [網站管理工具] 來新增角色。 它可讓您輕鬆地定義角色、根據這些角色設定網站元件的存取權，以及將使用者指派給角色。
+當**快取RolesInCookie**屬性設置為 true 時,ASP.NET緩存用戶端 Cookie 中的使用者角色成員身份。 這允許在不調用角色提供程序的情況下進行角色查找。 使用此屬性時,鼓勵開發人員確保**cookie 保護**屬性設置為" 全部" (這是默認設置。這可確保 Cookie 數據經過加密,並有助於確保 Cookie 內容未被更改。 可以使用網站管理工具添加角色。 它允許您輕鬆定義角色、根據這些角色配置對網站部分的訪問,並將使用者分配給角色。
 
 ![](membership/_static/image6.jpg)
 
-**圖6**
+**圖 6**
 
-如上所示，只要輸入角色的名稱，然後按一下 [新增角色]，即可新增角色。 按一下現有角色清單中的適當連結，即可管理或刪除現有的角色。
+如上所述,只需輸入角色的名稱,然後單擊"添加角色"即可添加新角色。 通過按一下現有角色清單中的相應連結,可以管理或刪除現有角色。
 
-當您管理角色時，您可以新增或移除使用者，如下所示。
+管理角色時,可以添加或刪除使用者,如下所示。
 
 ![](membership/_static/image7.jpg)
 
-**圖7**
+**圖 7**
 
-藉由勾選 [使用者為角色] 核取方塊，您可以輕鬆地將使用者新增至特定角色。 ASP.NET 會自動以適當的專案更新您的成員資格資料庫。 您也會想要設定應用程式的存取規則。 ASP.NET 1.x 開發人員很熟悉如何透過 web.config 檔案中的 &lt;authorization&gt; 元素進行這項作業，而且 ASP.NET 2.0 中仍提供該選項。 不過，使用網站管理工具來管理存取規則的方式較簡單，如下所示。
+通過選中「用戶處於角色」複選框,可以輕鬆地將使用者添加到特定角色。 ASP.NET將自動使用適當的條目更新您的成員資格資料庫。 您還需要為應用程式設定訪問規則。 ASP.NET 1.x 開發人員熟悉通過 Web.config 檔中&lt;的授權&gt;元素執行此操作,該選項在 2.0 ASP.NET 中仍然可用。 但是,它更易於使用網站管理工具管理訪問規則,如下所示。
 
 ![](membership/_static/image8.jpg)
 
-**圖8**
+**圖 8**
 
-在此情況下，系統管理資料夾會反白顯示（很難以看出，因為工具會以淺灰色醒目提示），而且系統管理員角色已被授與存取權。 所有其他使用者都會遭到拒絕。 您可以按一下 head 圖示來選取規則，然後使用 [上移] 和 [下移] 按鈕來排列規則。 如同 ASP.NET &lt;授權&gt; 元素，規則會依照其出現的順序進行處理。 換句話說，如果上述的程式中的規則順序已反轉，則沒有人可以存取 [系統管理] 資料夾，因為 ASP.NET 會遇到的第一個規則是拒絕每個使用者加入該資料夾的規則。
+在這種情況下,管理資料夾將突出顯示(由於該工具以淺灰色突出顯示它而難以查看),並且管理員角色已被授予訪問許可權。 所有其他使用者都被拒絕。 您可以按下頭部圖示來選擇規則,然後使用「向上移動」 和「向下移動」按鈕來排列規則。 與ASP.NET&lt;&gt;授權 元素一樣,規則按它們出現的順序進行處理。 換句話說,如果上述鏡頭中的規則順序顛倒,則任何人都無法訪問管理檔夾,因為ASP.NET遇到的第一個規則是拒絕所有人到該資料夾的規則。
 
-ASP.NET 2.0 會將 web.config 檔案新增至您要為其指定存取規則的資料夾。 您可以透過設定檔或透過網站管理工具來編輯存取規則。 換句話說，網站管理工具只是一個介面，可以在使用者易記的環境中編輯設定檔。
+ASP.NET 2.0 將 Web.config 檔添加到要為其指定訪問規則的資料夾。 訪問規則可以通過配置檔或通過網站管理工具進行編輯。 換句話說,網站管理工具只是一個介面,可以通過該介面在使用者友好的環境中編輯配置檔。
 
 ## <a name="using-roles-in-code"></a>在程式碼中使用角色
 
-自1.x 版起，角色管理的 API 尚未變更。 **IsInRole**方法是用來判斷使用者是否為特定角色。
+自版本 1.x 以來,用於角色管理的 API 未更改。 **IsInRole**方法用於確定使用者是否處於特定角色。
 
 [!code-csharp[Main](membership/samples/sample3.cs)]
 
-ASP.NET 也會建立 RolePrincipal 實例，做為目前內容的成員。 RolePrincipal 物件可以用來取得使用者所屬的所有角色，如下所示：
+ASP.NET還會創建作為當前上下文的成員的 RoleThe 實例。 RoleThe 物件可用於獲取使用者所屬的所有角色,如下所示:
 
 [!code-csharp[Main](membership/samples/sample4.cs)]
 
-## <a name="using-rolegroups-with-the-loginview-control"></a>使用 Rolegroup 搭配 LoginView 控制項
+## <a name="using-rolegroups-with-the-loginview-control"></a>將角色群組與登入檢視控制項一起使用
 
-既然您已經瞭解角色管理和成員資格，讓我們來簡單地討論 LoginView 控制項如何利用 ASP.NET 2.0 中的這項功能。 如先前所討論，LoginView 控制項是一個樣板化控制項，其中預設包含兩個範本;AnonymousTemplate 和 LoggedInTemplate。 在 [LoginView 工作] 對話方塊中，是一個連結（如下所示），可讓您編輯 Rolegroup。
+現在,您已經瞭解了角色管理和成員資格,讓我們簡要討論一下 LoginView 控件如何在 ASP.NET 2.0 中利用此功能。 如前所述,LoginView 控件是一個範本化控制項,預設情況下包含兩個範本;預設情況下,該控件包含兩個範本。匿名範本和登錄範本。 在「登錄查看工作」對話框中,是一個連結(如下所示),允許您編輯角色組。
 
 ![](membership/_static/image9.jpg)
 
-**圖9**
+**圖 9**
 
-每個 RoleGroup 物件都包含一個字串陣列，用以定義 RoleGroup 適用的角色。 若要將新的 RoleGroup 加入至 LoginView 控制項，請按一下 [編輯 Rolegroup] 連結。 在上圖中，您可以看到我已為系統管理員加入新的 RoleGroup。 藉由從 [Views] 下拉式清單中選取該 RoleGroup （RoleGroup [0]），我可以設定只會向系統管理員角色成員顯示的範本。 在下圖中，我加入了新的 RoleGroup，它會套用至 Sales 角色的成員和散發角色。 這會將第二個 RoleGroup 新增至 [LoginView 工作] 對話方塊中的 [Views] 下拉式清單，而任何加入該範本的專案將會由 [銷售] 或 [散發] 角色中的任何使用者顯示。
+每個 RoleGroup 物件都包含一個字串陣列,用於定義角色組應用於哪些角色。 要向「登錄檢視」控制件添加新角色組,請單擊「編輯角色組」連結。 在上面的映射中,您可以看到我為管理員添加了新的角色組。 通過從「檢視」下拉清單中選擇該角色組(RoleGroup{0}),我可以配置一個僅顯示給管理員角色的範本。 在下圖中,我添加了一個新的 RoleGroup,該角色組適用於銷售角色和分發角色的成員。 這會將第二個角色組添加到 LoginView 任務對話方塊中的「視圖」下拉下拉,而添加到該範本的任何內容都將被「銷售」或「分發」角色中的任何使用者看到。
 
 ![](membership/_static/image10.jpg)
 
-**圖10**
+**圖 10**
 
-## <a name="overriding-the-existing-membership-provider"></a>覆寫現有的成員資格提供者
+## <a name="overriding-the-existing-membership-provider"></a>重寫現有成員資格提供者
 
-有幾種方式可讓您擴充 ASP.NET 成員資格的功能。 首先，您可以很明顯地變更 SqlMembershipProvider 類別的現有功能，方法是從它繼承並覆寫其方法。 例如，如果您想要在建立使用者時執行自己的功能，您可以建立繼承自 SqlMembershipProvider 的自訂類別，如下所示：
+有幾種方法可以擴展ASP.NET成員資格的功能。 首先,您顯然可以通過繼承 SqlSasas 提供者類並重寫其方法來更改其現有功能。 例如,如果要在創建使用者時實現自己的功能,可以創建自己的類,從 SqlSaasProvider 繼承,如下所示:
 
 [!code-csharp[Main](membership/samples/sample5.cs)]
 
-另一方面，如果您想要建立自己的提供者（例如，將您的成員資格資訊儲存在 Access 資料庫中），您可以建立自己的提供者。
+另一方面,如果要創建自己的提供程式(例如,將成員資格資訊存儲在 Access 資料庫中),則可以創建自己的提供程式。
 
 ## <a name="creating-your-own-membership-provider"></a>建立您自己的成員資格提供者
 
-若要建立您自己的成員資格提供者，首先您必須建立繼承自 MembershipProvider 類別的類別。 如果您使用 VB.NET，Visual Studio 2005 將會為您需要覆寫的所有方法新增存根。 如果您使用C#的是，您可以在其中加入 stub。
+要創建自己的成員資格提供程式,首先需要創建從成員資格提供程式類繼承的類。 如果使用VB.NET,Visual Studio 2005 將添加需要重寫的所有方法的存根。 如果使用 C#,則要添加存根。
 
-您將需要覆寫下列各項：
+您需要重寫以下內容:
 
-- ApplicationName 屬性
-- ChangePassword 函數
-- ChangePasswordQuestionAndAnswer 函式
-- CreateUser 函式
-- DeleteUser 函式
-- EnablePasswordReset 屬性
-- EnablePasswordRetrieval 屬性
-- FindUsersByEmail 函式
-- FindUsersByName 函式
-- GetAllUsers 函式
-- GetNumberOfUsersOnline 函式
-- GetPassword 函式
-- GetUser 函式
-- GetUserNameByEmail 函式
-- MaxInvalidPasswordAttempts 屬性
-- MinRequiredNonAlphanumericCharacters 屬性
-- MinRequiredPasswordLength 屬性
-- PasswordAttemptWindow 屬性
-- PasswordFormat 屬性
-- PasswordStrengthRegularExpression 屬性
-- RequiresQuestionAndAnswer 屬性
-- RequiresUniqueEmail 屬性
-- ResetPassword 函式
-- 解除鎖定使用者函式
-- UpdateUser 函式
-- ValidateUser 函式
+- 應用程式名稱屬性
+- 變更密碼功能
+- 變更密碼問答功能
+- 建立使用者函數
+- 移除使用者功能
+- 開啟密碼重設屬性
+- 開啟密碼擷取權
+- 尋找使用者電子郵件功能
+- 尋找使用者依名稱函數
+- 取得所有使用者功能
+- 取得使用者數量上線功能
+- 取得密碼功能
+- 取得使用者功能
+- 取得使用者名稱透過電子郵件功能
+- 最大不合法密碼嘗試屬性
+- 最小必需的NonAlpha字元屬性
+- 最小所需密碼長度屬性
+- 密碼嘗試視窗屬性
+- 密碼格式屬性
+- 密碼強度正規表示式屬性
+- 需要問答屬性
+- 需要唯一電子郵件屬性
+- 重置密碼功能
+- 解除鎖定使用者功能
+- 更新使用者功能
+- 驗證使用者功能
 
-這是一份以C#開發人員的身分來執行的清單。 您可能會發現，在 VB.NET 中建立類別，而不需要任何執行，然後使用 .NET 反映程式或類似的工具，將C#程式碼轉換為。
+這是一個相當的清單,以C#開發人員實現。 您可能會發現在沒有任何實現的情況下在VB.NET中創建類會更容易,然後使用 .NET 反射器或類似工具將代碼轉換為 C#。
 
-連接字串和其他屬性應設定為 Initialize 方法中的預設值。 （在執行時間載入提供者時，會引發 Initialize 方法）。Initialize 方法的第二個參數是 NameValueCollection 類型，而且是與 web.config 檔案中自訂提供者相關聯之 &lt;加入&gt; 元素的參考。 該專案看起來如下所示：
+連接字串和其他屬性應設定為初始化方法中的預設值。 (在運行時載入提供程式時,將觸發初始化方法。初始化方法的第二個參數是 System.集合.專業.NameValueCollection,它是對 Web.config&lt;&gt;檔中與自訂提供程式關聯的添加元素的引用。 該條目如下所示:
 
 [!code-xml[Main](membership/samples/sample6.xml)]
 
-以下是 Initialize 方法的範例。
+下面是初始化方法的示例。
 
 [!code-csharp[Main](membership/samples/sample7.cs)]
 
-若要在提交登入表單時驗證使用者，您將需要使用 ValidateUser 方法。 這個方法會在使用者按一下登入控制項中的 [登入] 按鈕時引發。 您將會在此方法中放置執行使用者查閱的程式碼。
+為了驗證使用者提交登錄表單時,您需要使用驗證使用者方法。 當用戶按一下登錄控制項中的登錄按鈕時,將觸發此方法。 您將在此方法中放置執行使用者查找的代碼。
 
-如您所見，撰寫自己的成員資格提供者並不容易，而且可讓您擴充 ASP.NET 2.0 的這項強大功能。
+正如您所看到的,編寫自己的成員資格提供程式並不困難,允許您擴展ASP.NET 2.0 的強大功能。

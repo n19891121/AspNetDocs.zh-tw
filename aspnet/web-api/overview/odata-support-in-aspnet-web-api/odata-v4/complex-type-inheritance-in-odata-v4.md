@@ -1,76 +1,76 @@
 ---
 uid: web-api/overview/odata-support-in-aspnet-web-api/odata-v4/complex-type-inheritance-in-odata-v4
-title: OData v4 中具有 ASP.NET Web API 的複雜類型繼承 |Microsoft Docs
-author: microsoft
-description: 根據 OData v4 規格，複雜型別可以繼承自另一個複雜型別。 （複雜型別是沒有索引鍵的結構化型別）。Web API 。
+title: 使用ASP.NET Web API 的 OData v4 中的複雜類型繼承 |微軟文件
+author: rick-anderson
+description: 根據 OData v4 規範,複雜類型可以從另一種複雜類型繼承。 (複雜類型是無鍵的結構化類型。Web API...
 ms.author: riande
 ms.date: 09/16/2014
 ms.assetid: a00d3600-9c2a-41bc-9460-06cc527904e2
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/odata-v4/complex-type-inheritance-in-odata-v4
 msc.type: authoredcontent
-ms.openlocfilehash: 3d90216c8e594055f77577eb6d8b1d978ae4c24d
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: f433cf625c7d6ff4922d8c4a9954682fc0f1cc33
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78556305"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543596"
 ---
-# <a name="complex-type-inheritance-in-odata-v4-with-aspnet-web-api"></a>具有 ASP.NET Web API 的 OData v4 中的複雜類型繼承
+# <a name="complex-type-inheritance-in-odata-v4-with-aspnet-web-api"></a>使用ASP.NET Web API 的 OData v4 中的複雜類型繼承
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-> 根據 OData v4[規格](http://www.odata.org/documentation/odata-version-4-0/)，複雜型別可以繼承自另一個複雜型別。 （*複雜*型別是沒有索引鍵的結構化型別）。Web API OData 5.3 支援複雜類型繼承。
+> 根據 OData v4[規範](http://www.odata.org/documentation/odata-version-4-0/),複雜類型可以從另一種複雜類型繼承。 (*複雜*類型是無鍵的結構化類型。Web API OData 5.3 支援複雜的類型繼承。
 > 
-> 本主題說明如何建立具有複雜繼承類型的 entity data model （EDM）。 如需完整的原始程式碼，請參閱[OData 複雜型別繼承範例](http://aspnet.codeplex.com/sourcecontrol/latest#Samples/WebApi/OData/v4/ODataComplexTypeInheritanceSample/ReadMe.txt)。
+> 本主題示範如何構建具有複雜繼承類型的實體數據模型 (EDM)。 有關完整的原始碼,請參考[OData 複雜類型繼承範例](http://aspnet.codeplex.com/sourcecontrol/latest#Samples/WebApi/OData/v4/ODataComplexTypeInheritanceSample/ReadMe.txt)。
 > 
-> ## <a name="software-versions-used-in-the-tutorial"></a>教學課程中使用的軟體版本
+> ## <a name="software-versions-used-in-the-tutorial"></a>本教學中使用的軟體版本
 > 
 > 
-> - Web API OData 5。3
+> - Web API OData 5.3
 > - OData v4
 
-## <a name="model-hierarchy"></a>模型階層
+## <a name="model-hierarchy"></a>模型層次結構
 
-為了說明複雜型別繼承，我們將使用下列類別階層架構。
+為了說明複雜的類型繼承,我們將使用以下類層次結構。
 
 ![](complex-type-inheritance-in-odata-v4/_static/image1.png)
 
-`Shape` 是抽象的複雜類型。 `Rectangle`、`Triangle`和 `Circle` 是衍生自 `Shape`的複雜類型，而 `RoundRectangle` 衍生自 `Rectangle`。 `Window` 是實體類型，且包含 `Shape` 實例。
+`Shape`是一種抽象的複雜類型。 `Rectangle``Triangle`與`Circle`從 派`Shape`生的複雜類型,`RoundRectangle`並且 派`Rectangle`生自 。 `Window`是實體類型,包含實體`Shape`。
 
-以下是定義這些類型的 CLR 類別。
+下面是定義這些類型的CLR類。
 
 [!code-csharp[Main](complex-type-inheritance-in-odata-v4/samples/sample1.cs)]
 
-## <a name="build-the-edm-model"></a>建立 EDM 模型
+## <a name="build-the-edm-model"></a>編譯 EDM 模型
 
-若要建立 EDM，您可以使用**ODataConventionModelBuilder**，它會推斷 CLR 類型的繼承關聯性。
+要創建 EDM,可以使用**ODataConventionModelBuilder**,它推斷出 CLR 類型的繼承關係。
 
 [!code-csharp[Main](complex-type-inheritance-in-odata-v4/samples/sample2.cs)]
 
-您也可以使用**用**，明確地建立 EDM。 這會產生更多的程式碼，但可讓您更充分掌控 EDM。
+您還可以使用**ODataModelBuilder**顯式構建 EDM。 這需要更多的代碼,但使您能夠對 EDM 進行更多的控制。
 
 [!code-csharp[Main](complex-type-inheritance-in-odata-v4/samples/sample3.cs)]
 
-這兩個範例會建立相同的 EDM 架構。
+這兩個範例創建相同的 EDM 架構。
 
-## <a name="metadata-document"></a>元資料檔案
+## <a name="metadata-document"></a>中繼資料文件
 
-以下是 OData 元資料檔案，其中顯示覆雜型別繼承。
+下面是 OData 中數據文件,顯示複雜的類型繼承。
 
 [!code-xml[Main](complex-type-inheritance-in-odata-v4/samples/sample4.xml?highlight=13,17,25,30)]
 
-在元資料檔案中，您可以看到：
+從中繼資料文件中,您可以看到:
 
-- `Shape` 複雜型別是抽象的。
-- `Rectangle`、`Triangle`和 `Circle` 複雜類型具有基底類型 `Shape`。
-- `RoundRectangle` 型別具有 `Rectangle`的基底型別。
+- 複雜`Shape`類型是抽象的。
+- `Triangle``Rectangle`與`Circle`複合類型具有基型`Shape`態 。
+- 類型`RoundRectangle`有基`Rectangle`型態 。
 
-## <a name="casting-complex-types"></a>轉換複雜類型
+## <a name="casting-complex-types"></a>鑄造複雜類型
 
-現在支援在複雜類型上轉換。 例如，下列查詢會將 `Shape` 轉換成 `Rectangle`。
+現在支援對複雜類型的強制轉換。 例如,以下查詢將 轉換`Shape`為`Rectangle`。
 
 [!code-console[Main](complex-type-inheritance-in-odata-v4/samples/sample5.cmd)]
 
-回應承載如下：
+下面是回應負載:
 
 [!code-console[Main](complex-type-inheritance-in-odata-v4/samples/sample6.cmd)]

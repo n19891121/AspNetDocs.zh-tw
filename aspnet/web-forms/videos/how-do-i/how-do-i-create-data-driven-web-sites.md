@@ -1,24 +1,24 @@
 ---
 uid: web-forms/videos/how-do-i/how-do-i-create-data-driven-web-sites
-title: '[How Do I：]建立以資料為導向的網站？ | Microsoft Docs'
-author: microsoft
-description: 瞭解使用 ASP.NET 2.0、Visual Web Developer 2005 Express Edition 建立資料驅動網站有多麼簡單，以及 SQL Server 2005 Express Edition。 學習 。
+title: '[我如何:]創建數據驅動網站? | Microsoft Docs'
+author: rick-anderson
+description: 瞭解使用ASP.NET 2.0、Visual Web 開發人員 2005 快速版和 SQL Server 2005 快速版創建數據驅動網站是多麼簡單。 學習。。。
 ms.author: riande
 ms.date: 01/16/2006
 ms.assetid: 793a01ac-3800-41b2-b542-2d88715cbe3b
 msc.legacyurl: /web-forms/videos/how-do-i/how-do-i-create-data-driven-web-sites
 msc.type: video
-ms.openlocfilehash: eaebe2a171a5dd57f1c8a35b85fadd10ebeadd80
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 3634a599af7d61000a35077b3745ac73528248a2
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78572832"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543778"
 ---
-# <a name="how-do-i-create-data-driven-web-sites"></a>[How Do I：]建立以資料為導向的網站？
+# <a name="how-do-i-create-data-driven-web-sites"></a>[我如何:]創建數據驅動網站?
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-瞭解使用 ASP.NET 2.0、Visual Web Developer 2005 Express Edition 建立資料驅動網站有多麼簡單，以及 SQL Server 2005 Express Edition。 瞭解如何建立資料庫、加入其資料，以及在網頁上顯示該資料。
+瞭解使用ASP.NET 2.0、Visual Web 開發人員 2005 快速版和 SQL Server 2005 快速版創建數據驅動網站是多麼簡單。 瞭解如何創建資料庫、添加其數據並在網頁上顯示該數據。
 
-[&#9654;觀看影片（13分鐘）](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-create-data-driven-web-sites)
+[&#9654;观看视频(13 分鐘)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/how-do-i-create-data-driven-web-sites)

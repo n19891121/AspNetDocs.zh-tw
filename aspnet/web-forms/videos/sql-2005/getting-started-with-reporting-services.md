@@ -1,28 +1,28 @@
 ---
 uid: web-forms/videos/sql-2005/getting-started-with-reporting-services
-title: Reporting Services 的消費者入門 |Microsoft Docs
-author: microsoft
-description: SQL Server Reporting Services 可讓您設計和部署格式美觀且互動式的報表代表您的資料。 適用于列印或 onl 。
+title: 開始使用報告服務 |微軟文件
+author: rick-anderson
+description: SQL 伺服器報告服務允許您設計和部署格式良好的互動式報表,以代表數據。 調整或列印...
 ms.author: riande
 ms.date: 10/21/2006
 ms.assetid: f348a388-d3a2-4ea8-baf0-be2e6ef8efe1
 msc.legacyurl: /web-forms/videos/sql-2005/getting-started-with-reporting-services
 msc.type: video
-ms.openlocfilehash: 10fcdb1a2eb4ae88c9a480787612ed7a9500d73d
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 338714a6eb3a23bf5eec6866f0fcbcfee2d3876e
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78618066"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543284"
 ---
 # <a name="getting-started-with-reporting-services"></a>Reporting Services 使用者入門
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-SQL Server Reporting Services 可讓您設計和部署格式美觀且互動式的報表代表您的資料。 適用于列印或線上發佈，這些報表和可讓您非常快速地取得專業成果。 這段影片示範如何設定 Reporting Services 和 Business Intelligence Development Studio，以使用嚮導和設計工具來建立報表，並將其部署到您的報表伺服器。
+SQL 伺服器報告服務允許您設計和部署格式良好的互動式報表,以代表數據。 適用於列印或在線分發,這些報告,它可以讓你得到專業的結果非常快。 本視頻演示如何設置報告服務和商業智慧開發工作室,以便使用嚮導和設計器生成報表,並將它們部署到報表伺服器。
 
-[&#9654;觀看影片（32分鐘）](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/getting-started-with-reporting-services)
+[&#9654;观看视频(32 分鐘)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/getting-started-with-reporting-services)
 
 > [!div class="step-by-step"]
-> [上一頁](using-sql-server-management-studio.md)
-> [下一頁](building-and-customizing-reports-in-business-intelligence-development-studio.md)
+> [前一個](using-sql-server-management-studio.md)
+> [下一個](building-and-customizing-reports-in-business-intelligence-development-studio.md)

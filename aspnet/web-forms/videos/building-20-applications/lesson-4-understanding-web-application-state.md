@@ -1,28 +1,28 @@
 ---
 uid: web-forms/videos/building-20-applications/lesson-4-understanding-web-application-state
-title: '[第4課：]瞭解 Web 應用程式狀態 |Microsoft Docs'
-author: microsoft
-description: 在這一課，您將瞭解如何在 ASP.NET 中維護狀態，包括您可以用來儲存 ASP.NET 2.0 & 資訊的各種物件 。
+title: '[第4課:]瞭解 Web 應用程式狀態 |微軟文件'
+author: rick-anderson
+description: 在本課中,您將瞭解如何在ASP.NET中保持狀態,包括可用於存儲ASP.NET 2.0 應用資訊的各種物件。
 ms.author: riande
 ms.date: 11/28/2005
 ms.assetid: 22ddc59d-cd84-4def-a58b-ec3ca57f0d85
 msc.legacyurl: /web-forms/videos/building-20-applications/lesson-4-understanding-web-application-state
 msc.type: video
-ms.openlocfilehash: 4508d77b7288a08ba1d9e72a683a0c102503ebcc
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 1f3fb1fb5e39dc3c131b7ac488a73159cbc984bf
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78631366"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543479"
 ---
 # <a name="lesson-4-understanding-web-application-state"></a>[第 4 課：] 了解 Web 應用程式狀態
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-在這一課，您將瞭解如何在 ASP.NET 中維護狀態，包括可用來儲存 ASP.NET 2.0 應用程式資訊的各種物件。
+在本課中,您將瞭解如何在ASP.NET中保持狀態,包括可用於存儲ASP.NET 2.0 應用程式資訊的各種物件。
 
-[&#9654;觀看影片（40分鐘）](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-4-understanding-web-application-state)
+[&#9654;观看视频(40 分鐘)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/lesson-4-understanding-web-application-state)
 
 > [!div class="step-by-step"]
-> [上一頁](lesson-3-understanding-more-about-events-and-postback.md)
-> [下一頁](lesson-5-debugging-and-tracing-your-website.md)
+> [前一個](lesson-3-understanding-more-about-events-and-postback.md)
+> [下一個](lesson-5-debugging-and-tracing-your-website.md)

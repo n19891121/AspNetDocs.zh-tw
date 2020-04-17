@@ -1,72 +1,72 @@
 ---
 uid: mvc/overview/older-versions-1/controllers-and-routing/creating-custom-routes-cs
-title: 建立自訂路由C#（） |Microsoft Docs
-author: microsoft
-description: 瞭解如何將自訂路由新增至 ASP.NET MVC 應用程式。 在本教學課程中，您將瞭解如何修改 global.asax 檔案中的預設路由表。
+title: 建立自定義路由 (C#) |微軟文件
+author: rick-anderson
+description: 瞭解如何向ASP.NET MVC 應用程式添加自定義路由。 在本教學中,您將瞭解如何修改 Global.asax 檔中的預設路由表。
 ms.author: riande
 ms.date: 02/16/2009
 ms.assetid: 3cd08f02-8763-490a-b625-2ac96a24b73f
 msc.legacyurl: /mvc/overview/older-versions-1/controllers-and-routing/creating-custom-routes-cs
 msc.type: authoredcontent
-ms.openlocfilehash: 58f72e390f0053d136ef00ddbda0b071ba225d98
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: b66ccc5e0cd4f6d7e5884394c2b7555b76382d3d
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78601329"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542751"
 ---
 # <a name="creating-custom-routes-c"></a>建立自訂路由 (C#)
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-> 瞭解如何將自訂路由新增至 ASP.NET MVC 應用程式。 在本教學課程中，您將瞭解如何修改 global.asax 檔案中的預設路由表。
+> 瞭解如何向ASP.NET MVC 應用程式添加自定義路由。 在本教學中,您將瞭解如何修改 Global.asax 檔中的預設路由表。
 
-在本教學課程中，您將瞭解如何將自訂路由新增至 ASP.NET MVC 應用程式。 您將瞭解如何使用自訂路由來修改 global.asax 檔案中的預設路由表。
+在本教學中,您將瞭解如何向ASP.NET MVC 應用程式添加自定義路由。 您將瞭解如何使用自訂路由修改 Global.asax 檔中的預設路由表。
 
-對於許多簡單的 ASP.NET MVC 應用程式而言，預設路由表會正常執行。 不過，您可能會發現您有特殊的路由需求。 在此情況下，您可以建立自訂路由。
+對於許多簡單的ASP.NET MVC 應用程式,預設路由表將工作正常。 但是,您可能會發現您有專門的路由需求。 在這種情況下,您可以創建自定義路由。
 
-例如，假設您要建立一個 blog 應用程式。 您可能會想要處理傳入的要求，如下所示：
+例如,假設您正在構建一個博客應用程式。 您可能需要處理以下所示的傳入請求:
 
-/Archive/12-25-2009
+/存檔/12-25-2009
 
-當使用者輸入此要求時，您會想要傳回對應于日期12/25/2009 的 blog 專案。 若要處理這種類型的要求，您必須建立自訂路由。
+當使用者輸入此請求時,您希望返回與日期 12/25/2009 對應的博客條目。 為了處理這種類型的請求,您需要創建自定義路由。
 
-[清單 1] 中的 global.asax 檔案包含新的自訂路由，名為 Blog，它會處理類似/Archive/*專案日期*的要求。
+清單1中的 Global.asax 檔包含名為 Blog 的新自訂路由,它處理看起來像 /存檔/*條目日期*的請求。
 
-**清單 1-global.asax （含自訂路由）**
+**清單 1 - 全域.asax(含自訂路由)**
 
 [!code-csharp[Main](creating-custom-routes-cs/samples/sample1.cs)]
 
-您新增至路由表的路由順序很重要。 新的自訂 Blog 路由會在現有的預設路由之前新增。 如果您反轉順序，則預設路由一律會呼叫，而不是自訂路由。
+添加到工藝路線表的路由的順序很重要。 我們新的自定義博客路由在現有預設路由之前添加。 如果顛倒了訂單,則預設路由將始終被調用,而不是自定義路由。
 
-自訂的 Blog 路由會符合任何以/Archive/. 開頭的要求 因此，它會符合下列所有 Url：
+自定義博客路由匹配以 /存檔/開頭的任何請求。 因此,它與以下網址匹配:
 
-- /Archive/12-25-2009
+- /存檔/12-25-2009
 
-- /Archive/10-6-2004
+- /存檔/10-6-2004
 
-- /Archive/apple
+- /存檔/蘋果
 
-自訂路由會將傳入要求對應至名為 Archive 的控制器，並叫用 Entry （）動作。 呼叫 Entry （）方法時，會將專案日期當做名為 entryDate 的參數傳遞。
+自定義路由將傳入請求映射到名為「存檔」的控制器,並調用 Entry() 操作。 調用 entry() 方法時,條目日期將作為名為 entryDate 的參數傳遞。
 
-您可以在 [清單 2] 中使用與控制器的 Blog 自訂路由。
+您可以將博客自定義路由與清單 2 中的控制器一起使用。
 
-**清單 2-ArchiveController.cs**
+**清單2 - ArchiveController.cs**
 
 [!code-csharp[Main](creating-custom-routes-cs/samples/sample2.cs)]
 
-請注意，[清單 2] 中的 Entry （）方法會接受 DateTime 類型的參數。 MVC 架構很聰明，可以將 URL 中的輸入日期自動轉換成日期時間值。 如果 URL 中的 entry date 參數無法轉換成 DateTime，則會引發錯誤（請參閱 [圖 1]）。
+請注意,清單 2 中的 entry() 方法接受 DateTime 類型的參數。 MVC 框架足夠智慧,可以自動將 URL 的輸入日期轉換為 DateTime 值。 如果 URL 中的輸入日期參數無法轉換為 DateTime,則引發錯誤(參見圖 1)。
 
-**圖 1-轉換參數時發生的錯誤**
+**圖 1 - 轉換參數時發生錯誤**
 
-[![[新增專案] 對話方塊](creating-custom-routes-cs/_static/image1.jpg)](creating-custom-routes-cs/_static/image1.png)
+[![[New Project] \(新增專案\) 對話方塊](creating-custom-routes-cs/_static/image1.jpg)](creating-custom-routes-cs/_static/image1.png)
 
-**圖 01**：轉換參數時發生錯誤（[按一下以觀看完整大小的影像](creating-custom-routes-cs/_static/image2.png)）
+**圖 01**: 轉換參數時發生錯誤 ([按下以檢視全尺寸影像](creating-custom-routes-cs/_static/image2.png))
 
 ## <a name="summary"></a>總結
 
-本教學課程的目的是要示範如何建立自訂路由。 您已瞭解如何將自訂路由新增至代表 blog 專案之 global.asax 檔案中的路由表。 我們已討論如何將 blog 專案的要求對應至名為 ArchiveController 的控制器，以及名為 Entry （）的控制器動作。
+本教學的目的是示範如何創建自定義路由。 您學習了如何在表示部落格條目的 Global.asax 檔中向路由表添加自訂路由。 我們討論了如何將部落格條目的請求映射到名為 ArchiveController 的控制器和名為 entry() 的控制器操作。
 
 > [!div class="step-by-step"]
-> [上一頁](aspnet-mvc-controllers-overview-cs.md)
-> [下一頁](creating-a-route-constraint-cs.md)
+> [前一個](aspnet-mvc-controllers-overview-cs.md)
+> [下一個](creating-a-route-constraint-cs.md)

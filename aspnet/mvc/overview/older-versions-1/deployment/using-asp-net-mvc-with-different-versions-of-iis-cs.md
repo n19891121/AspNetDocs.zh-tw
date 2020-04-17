@@ -1,212 +1,212 @@
 ---
 uid: mvc/overview/older-versions-1/deployment/using-asp-net-mvc-with-different-versions-of-iis-cs
-title: 使用 ASP.NET MVC 搭配不同版本的 IIS （C#） |Microsoft Docs
-author: microsoft
-description: 在本教學課程中，您將瞭解如何使用不同版本 Internet Information Services 的 ASP.NET MVC 和 URL 路由。 您將瞭解不同的策略 。
+title: 將ASP.NET MVC 與不同版本的 IIS (C#) 一起使用 |微軟文件
+author: rick-anderson
+description: 在本教學中,您將瞭解如何使用ASP.NET MVC 和 URL 路由,以及不同版本的 Internet 資訊服務。 你學習不同的原則...
 ms.author: riande
 ms.date: 08/19/2008
 ms.assetid: b0cf4a34-2c1d-4717-bb54-ff029e722990
 msc.legacyurl: /mvc/overview/older-versions-1/deployment/using-asp-net-mvc-with-different-versions-of-iis-cs
 msc.type: authoredcontent
-ms.openlocfilehash: 3b0a9509c0600f3598fd1218a7b383430548d4c0
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 8c239c3c7cbbaae5d9c5e4dd91dc66ff4e98bcfb
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78601098"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542075"
 ---
 # <a name="using-aspnet-mvc-with-different-versions-of-iis-c"></a>使用 ASP.NET MVC 與不同版本的 IIS (C#)
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-> 在本教學課程中，您將瞭解如何使用不同版本 Internet Information Services 的 ASP.NET MVC 和 URL 路由。 您會瞭解使用 ASP.NET MVC 搭配 IIS 7.0 （傳統模式）、IIS 6.0 和舊版 IIS 的不同策略。
+> 在本教學中,您將瞭解如何使用ASP.NET MVC 和 URL 路由,以及不同版本的 Internet 資訊服務。 您將學習將 ASP.NET MVC 與 IIS 7.0(經典模式)、IIS 6.0 和早期版本的 IIS 使用的不同策略。
 
-ASP.NET MVC 架構相依于 ASP.NET 路由，以將瀏覽器要求路由至控制器動作。 為了充分利用 ASP.NET 路由，您可能必須在 web 伺服器上執行其他設定步驟。 這全都取決於應用程式的 Internet Information Services （IIS）版本和要求處理模式。
+ASP.NET MVC 框架依賴於 ASP.NET 路由來將瀏覽器請求路由到控制器操作。 為了利用ASP.NET路由,您可能需要在Web伺服器上執行其他配置步驟。 這完全取決於互聯網資訊服務 (IIS) 的版本和應用程式的請求處理模式。
 
-以下是不同版本 IIS 的摘要：
+以下是不同版本的 IIS 的摘要:
 
-- IIS 7.0 （整合模式）-不需要特殊設定即可使用 ASP.NET 路由。
-- IIS 7.0 （傳統模式）-您需要執行特殊設定以使用 ASP.NET 路由。
-- IIS 6.0 或以下-您需要執行特殊設定，才能使用 ASP.NET 路由。
+- IIS 7.0(整合模式) - 無需特殊配置ASP.NET路由。
+- IIS 7.0(經典模式) - 您需要執行特殊配置才能使用ASP.NET路由。
+- IIS 6.0 或以下 - 您需要執行特殊配置才能使用ASP.NET路由。
 
-最新版本的 IIS 是7.5 版（在 Win7 上）。 Iis 的 iis 7 包含在 Windows Server 2008 和 VISTA/SP1 及更新版本中。 您也可以在任何版本的 Vista 作業系統（Home Basic 除外）上安裝 IIS 7.0 （請參閱[https://technet.microsoft.com/library/cc731179%28WS.10%29.aspx](https://technet.microsoft.com/library/cc731179%28WS.10%29.aspx)）。
+最新版本的IIS版本為7.5版本(在Win7上)。 IIS 7 的 IIS 包含在 Windows 伺服器 2008 和 VISTA/SP1 及更高版本中。 您還可以在 Vista 作業系統的任何版本上安裝 IIS 7.0,但家庭[https://technet.microsoft.com/library/cc731179%28WS.10%29.aspx](https://technet.microsoft.com/library/cc731179%28WS.10%29.aspx)基本版除外 (參見 )。
 
-IIS 7.0 支援兩種模式來處理要求。 您可以使用整合模式或傳統模式。 在整合模式中使用 IIS 7.0 時，您不需要執行任何特殊的設定步驟。 不過，在傳統模式中使用 IIS 7.0 時，您必須執行其他設定。
+IIS 7.0 支援兩種處理請求的模式。 您可以使用整合模式或傳統模式。 在整合模式下使用IIS 7.0時,無需執行任何特殊配置步驟。 但是,在經典模式下使用IIS 7.0時,您確實需要執行其他配置。
 
-Microsoft Windows Server 2003 包含 IIS 6.0。 當您使用 Windows Server 2003 作業系統時，無法將 IIS 6.0 升級至 IIS 7.0。 使用 IIS 6.0 時，您必須執行額外的設定步驟。
+微軟 Windows 伺服器 2003 包括 IIS 6.0。 使用 Windows Server 2003 作業系統時,無法將 IIS 6.0 升級到 IIS 7.0。 使用IIS 6.0時,必須執行其他配置步驟。
 
-Microsoft Windows XP Professional 包含 IIS 5.1。 使用 IIS 5.1 時，您必須執行額外的設定步驟。
+微軟視窗XP專業版包括IIS 5.1。 使用IIS 5.1時,必須執行其他配置步驟。
 
-最後，Microsoft Windows 2000 和 Microsoft Windows 2000 Professional 包含 IIS 5.0。 使用 IIS 5.0 時，您必須執行額外的設定步驟。
+最後,微軟 Windows 2000 和微軟 Windows 2000 專業版包括 IIS 5.0。 使用IIS 5.0時,必須執行其他配置步驟。
 
-## <a name="integrated-versus-classic-mode"></a>整合式與傳統模式
+## <a name="integrated-versus-classic-mode"></a>整合模式與傳統模式
 
-IIS 7.0 可以使用兩種不同的要求處理模式來處理要求：整合式和傳統。 整合模式可提供更佳的效能和更多功能。 包括傳統模式，以提供與舊版 IIS 的回溯相容性。
+IIS 7.0 可以使用兩種不同的請求處理模式處理請求:集成和經典。 集成模式提供更好的性能和更多功能。 經典模式包括向後相容早期版本的IIS。
 
-要求處理模式取決於應用程式集區。 藉由判斷與應用程式相關聯的應用程式集區，您可以判斷特定 web 應用程式正在使用哪種處理模式。 請依照下列步驟：
+請求處理模式由應用程式池確定。 通過確定與應用程式關聯的應用程式池,可以確定特定 Web 應用程式正在使用哪種處理模式。 請遵循下列步驟：
 
-1. 啟動 Internet Information Services 管理員
-2. 在 [連線] 視窗中，選取應用程式
-3. 在 [動作] 視窗中，按一下 [**基本設定**] 連結以開啟 [編輯應用程式] 對話方塊（請參閱 [圖 1]）
-4. 記下所選的應用程式集區。
+1. 推出網際網路資訊服務管理員
+2. 在「連線」視窗中,選擇應用程式
+3. 在「操作」視窗中,按下 **「基本設定」** 連結以開啟「編輯應用程式」對話框(參見圖 1)
+4. 請注意所選的應用程式池。
 
-根據預設，IIS 會設定為支援兩個應用程式集區： **DefaultAppPool**和**傳統 .net AppPool**。 如果已選取 [DefaultAppPool]，則您的應用程式會以整合式要求處理模式執行。 如果選取了傳統的 .NET AppPool，您的應用程式就會在傳統要求處理模式下執行。
+預設情況下,IIS 設定為支援兩個應用程式池:**預設 AppPool**和**經典 .NET AppPool**。 如果選擇了預設AppPool,則應用程式以整合的請求處理模式運行。 如果選擇了經典 .NET AppPool,則應用程式以經典請求處理模式運行。
 
-[![[新增專案] 對話方塊](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image1.jpg)](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image1.png)
+[![[New Project] \(新增專案\) 對話方塊](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image1.jpg)](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image1.png)
 
-**圖 1**：偵測要求處理模式（[按一下以查看完整大小的影像](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image2.png)）
+**圖1:** 偵測要求處理模式([按下以檢視全尺寸影像](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image2.png))
 
-請注意，您可以在 [編輯應用程式] 對話方塊中修改要求處理模式。 按一下 [選取] 按鈕，並變更與應用程式相關聯的應用程式集區。 請注意，將 ASP.NET 應用程式從 [傳統] 變更為 [整合模式] 時，會發生相容性問題。 如需詳細資訊，請參閱下列文章：
+請注意,您可以在"編輯應用程式"對話框中修改請求處理模式。 按下「選擇」按鈕並更改與應用程式關聯的應用程式池。 請注意,將ASP.NET應用程式從經典模式更改為集成模式時存在相容性問題。 如需詳細資訊，請參閱下列文章：
 
-- 在 Windows Vista 和 Windows Server 上將 ASP.NET 1.1 升級至 IIS 7.0 2008-- [https://www.iis.net/learn/application-frameworks/building-and-running-aspnet-applications/upgrading-aspnet-11-to-iis-on-windows-vista-and-windows-server-2008](https://www.iis.net/learn/application-frameworks/building-and-running-aspnet-applications/upgrading-aspnet-11-to-iis-on-windows-vista-and-windows-server-2008)
-- ASP.NET 與 IIS 7.0 整合- [https://www.iis.net/learn/application-frameworks/building-and-running-aspnet-applications/aspnet-integration-with-iis](https://www.iis.net/learn/application-frameworks/building-and-running-aspnet-applications/aspnet-integration-with-iis)
+- 將 ASP.NET 1.1 升級到 Windows Vista 和 Windows 伺服器 2008 上的 IIS 7.0 --[https://www.iis.net/learn/application-frameworks/building-and-running-aspnet-applications/upgrading-aspnet-11-to-iis-on-windows-vista-and-windows-server-2008](https://www.iis.net/learn/application-frameworks/building-and-running-aspnet-applications/upgrading-aspnet-11-to-iis-on-windows-vista-and-windows-server-2008)
+- ASP.NET與 IIS 7.0 整合 -[https://www.iis.net/learn/application-frameworks/building-and-running-aspnet-applications/aspnet-integration-with-iis](https://www.iis.net/learn/application-frameworks/building-and-running-aspnet-applications/aspnet-integration-with-iis)
 
-如果 ASP.NET 應用程式正在使用 DefaultAppPool，則您不需要執行任何額外的步驟，即可讓 ASP.NET 路由（因而 ASP.NET MVC）得以正常操作。 不過，如果 ASP.NET 應用程式設定為使用傳統的 .NET AppPool，然後繼續閱讀，則您會有更多的工作要執行。
+如果ASP.NET應用程式正在使用 DefaultAppPool,則無需執行任何其他步驟,就可以使ASP.NET路由(因此ASP.NET MVC)正常工作。 但是,如果ASP.NET應用程式配置為使用經典 .NET AppPool,然後繼續閱讀,您還有更多工作要做。
 
-## <a name="using-aspnet-mvc-with-older-versions-of-iis"></a>搭配舊版 IIS 使用 ASP.NET MVC
+## <a name="using-aspnet-mvc-with-older-versions-of-iis"></a>將ASP.NET MVC 與舊版本的 IIS 一起使用
 
-如果您需要使用比 IIS 7.0 更舊的 IIS 版本的 ASP.NET MVC，或需要在傳統模式中使用 IIS 7.0，則您有兩個選項。 首先，您可以修改路由表以使用副檔名。 例如，您會要求類似/Store.aspx/Details. 的 URL，而不是要求/Store/Details 之類的 URL。
+如果您需要將 IIS 版本早於 IIS 7.0 的舊版本 ASP.NET MVC 使用,或者需要在傳統模式下使用 IIS 7.0,則有兩個選項。 首先,您可以修改路由表以使用文件副檔名。 例如,您請求的 URL 不是 /Store/詳細資訊,而是請求 URL,如 /Store.aspx/詳細資訊。
 
-第二個選項是建立一個名為*萬用字元腳本對應*的東西。 萬用字元腳本對應可讓您將每個要求對應到 ASP.NET 架構。
+第二個選項是創建稱為*通配符腳本映射*的內容。 通配符文稿對應讓您能夠將每個請求映射到ASP.NET框架。
 
-如果您沒有 web 伺服器的存取權（例如，您的 ASP.NET MVC 應用程式是由網際網路服務提供者所裝載），則您必須使用第一個選項。 如果您不想修改 Url 的外觀，而且可以存取您的 web 伺服器，則可以使用第二個選項。
+如果您無法存取 Web 伺服器(例如,您的 ASP.NET MVC 應用程式由 Internet 服務提供者託管),則需要使用第一個選項。 如果不想修改 URL 的外觀,並且可以訪問 Web 伺服器,則可以使用第二個選項。
 
-我們將在下列各節中詳細探討每個選項。
+我們將在以下部分中詳細介紹每個選項。
 
-## <a name="adding-extensions-to-the-route-table"></a>將擴充功能新增至路由表
+## <a name="adding-extensions-to-the-route-table"></a>新增於表新增延伸
 
-取得 ASP.NET 路由以使用舊版 IIS 的最簡單方式，就是修改 global.asax 檔案中的路由表。 [清單 1] 中的預設和未修改的 global.asax 檔案會設定一個名為「預設路由」的路由。
+獲取ASP.NET路由以使用舊版本的IIS的最簡單方法是修改Global.asax檔中的路由表。 清單1中的預設和未修改的 Global.asax 檔配置了一個名為"預設路由"的路由。
 
-**清單 1-global.asax （未修改）**
+**清單1 - 全域.asax(未修改)**
 
 [!code-csharp[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample1.cs)]
 
-[清單 1] 中設定的預設路由可讓您路由 Url，如下所示：
+通過清單 1 中設定的預設路由,您可以路由如下所示的 URL:
 
-/Home/Index
+/首頁/索引
 
-/Product/Details/3
+/產品/詳細資訊/3
 
 /Product
 
-可惜的是，較舊版本的 IIS 不會將這些要求傳遞至 ASP.NET 架構。 因此，這些要求將不會路由傳送至控制器。 例如，如果您對 URL/Home/Index 提出瀏覽器要求，則會出現 [圖 2] 中的錯誤頁面。
+遺憾的是,舊版本的IIS不會將這些請求傳遞給ASP.NET框架。 因此,這些請求不會路由到控制器。 例如,如果您對 URL/Home/Index 發出瀏覽器請求,則將在圖 2 中獲取錯誤頁。
 
-[![[新增專案] 對話方塊](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image2.jpg)](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image3.png)
+[![[New Project] \(新增專案\) 對話方塊](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image2.jpg)](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image3.png)
 
-**圖 2**：收到404找不到錯誤（[按一下以觀看完整大小的影像](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image4.png)）
+**圖2**: 收到 404 找不到錯誤([按下以檢視全尺寸影像](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image4.png))
 
-較舊版本的 IIS 只會將特定要求對應至 ASP.NET framework。 要求必須是具有正確副檔名的 URL。 例如，/SomePage.aspx 的要求會對應至 ASP.NET 架構。 不過，/SomePage.htm 的要求不會。
+較舊版本的IIS僅將某些請求映射到ASP.NET框架。 請求必須針對具有正確檔副檔名的 URL。 例如,對 /SomePage.aspx 的請求將映射到ASP.NET框架。 但是,對 /SomePage.htm 的請求沒有。
 
-因此，若要讓 ASP.NET 路由能夠正常執行，我們必須修改預設路由，使其包含對應至 ASP.NET 架構的副檔名。
+因此,要使ASP.NET路由正常工作,我們必須修改預設路由,以便它包含映射到ASP.NET框架的檔擴展名。
 
-這是使用名為 `registermvc.wsf`的腳本來完成。 它隨附于 `C:\Program Files\Microsoft ASP.NET\ASP.NET MVC\Scripts`中的 ASP.NET MVC 1 版本，但從 ASP.NET 2 開始，此腳本已移至 ASP.NET 的未來，可從[http://aspnet.codeplex.com/releases/view/39978](http://aspnet.codeplex.com/releases/view/39978)取得。
+這是使用名為`registermvc.wsf`的腳本完成的。 它包含在 ASP.NET MVC`C:\Program Files\Microsoft ASP.NET\ASP.NET MVC\Scripts`1 版本中 ,但截至 ASP.NET 2,此文本[http://aspnet.codeplex.com/releases/view/39978](http://aspnet.codeplex.com/releases/view/39978)已移動到 ASP.NET 期貨,可在 。
 
-執行此腳本會向 IIS 註冊新的. mvc 延伸模組。 註冊 mvc 副檔名之後，您可以修改 global.asax 檔案中的路由，讓路由使用 mvc 副檔名。
+執行此文本會使用IIS註冊新的.mvc擴展。 註冊 .mvc 副檔名後,您可以在 Global.asax 檔中修改路由,以便路由使用 .mvc 擴展名。
 
-[清單 2] 中修改的 global.asax 檔案可與舊版的 IIS 搭配運作。
+清單2中修改後的 Global.asax 檔適用於舊版本的 IIS。
 
-**清單 2-global.asax （使用延伸模組修改）**
+**清單 2 - 全域.asax(使用延伸修改)**
 
 [!code-csharp[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample2.cs)]
 
-**重要**事項：請記得在變更 global.asax 檔案之後，再次建立您的 ASP.NET MVC 應用程式。
+**重要提示**:在更改 Global.asax 檔後,請記住再次構建ASP.NET MVC 應用程式。
 
-[清單 2] 中的 global.asax 檔案有兩項重要的變更。 現在 global.asax 中定義了兩個路由。 預設路由的 URL 模式（第一個路由）現在看起來像這樣：
+清單2中全域.asax 檔有兩個重要更改。 現在,全域.asax 中定義了兩個路由。 預設路由(第一個路由)的 URL 模式現在如下所示:
 
-{controller}. mvc/{action}/{id}
+{控制器}.mvc/{操作}/{id}
 
-新增 mvc 副檔名會變更 ASP.NET 路由模組所攔截的檔案類型。 透過這項變更，ASP.NET MVC 應用程式現在會路由傳送如下的要求：
+.mvc 副檔名的添加會更改ASP.NET路由模組截獲的文件類型。 透過此變更,ASP.NET MVC 應用程式現在路由如下所示的請求:
 
-/Home.mvc/Index/
+/Home.mvc/指數/
 
-/Product.mvc/Details/3
+/產品.mvc/細節/3
 
-/Product.mvc/
+/產品.mvc/
 
-第二個路由（根路由）是新的。 根路由的此 URL 模式是空字串。 需要此路由，才能比對對您的應用程式根目錄提出的要求。 例如，根路由會符合如下所示的要求：
+第二個路由,根路由,是新的。 根路由的此 URL 模式是一個空字串。 對於匹配針對應用程式根發出的請求,此路由是必需的。 例如,根路由將匹配如下所示的請求:
 
 [http://www.YourApplication.com/](http://www.YourApplication.com/)
 
-對您的路由表進行這些修改之後，您必須確定應用程式中的所有連結都與這些新的 URL 模式相容。 換句話說，請確定您所有的連結都包含 mvc 副檔名。 如果您使用 Html.actionlink （） helper 方法來產生連結，則不需要進行任何變更。
+對路由表進行這些修改後,需要確保應用程式中的所有連結都與這些新 URL 模式相容。 換句話說,請確保所有連結都包含 .mvc 擴展。 如果使用 Html.ActionLink() 説明器方法產生連結,則不需要進行任何更改。
 
-除了使用 registermvc，您也可以將新的延伸模組新增至 IIS，並手動對應至 ASP.NET 架構。 自行新增擴充功能時，請確定未核取標示為 [**確認檔案存在**] 的核取方塊。
+您可以手動向 iIS 添加新擴展 ASP.NET,而不是使用 registermvc.wcf 腳本。 自行新增新副檔名時,請確保未選取的標記為 **「驗證該檔存在」 選單 。**
 
-## <a name="hosted-server"></a>主控伺服器
+## <a name="hosted-server"></a>託管伺服器
 
-您不一定可以存取您的網頁伺服器。 例如，如果您使用網際網路主控提供者裝載 ASP.NET MVC 應用程式，則您不一定會有 IIS 的存取權。
+您並不總是有權訪問 Web 伺服器。 例如,如果您使用 Internet 託管供應商託管 ASP.NET MVC 應用程式,則不一定有權訪問 IIS。
 
-在這種情況下，您應該使用對應至 ASP.NET 架構的其中一個現有副檔名。 對應至 ASP.NET 的副檔名範例包括 .aspx、axd 和 ashx 延伸模組。
+在這種情況下,應使用映射到ASP.NET框架的現有文件副檔名之一。 映射到ASP.NET的檔副檔名的範例包括 .aspx、.axd 和 .ashx 副檔名。
 
-例如，在 [清單 3] 中修改的 global.asax 檔案使用 .aspx 副檔名，而不是 mvc 副檔名。
+例如,清單 3 中修改的 Global.asax 檔使用 .aspx 擴展名而不是 .mvc 擴展名。
 
-**清單 3-global.asax （以 .aspx 副檔名修改）**
+**清單 3 - 全域.asax(使用 .aspx 擴展修改)**
 
 [!code-csharp[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample3.cs)]
 
-[清單 3] 中的 global.asax 檔案與先前的 global.asax 檔案完全相同，不同之處在于它使用 .aspx 副檔名，而不是 mvc 副檔名。 您不需要在遠端 web 伺服器上執行任何安裝程式，就能使用 .aspx 副檔名。
+清單3中的 Global.asax 檔與以前的 Global.asax 檔案完全相同,只是它使用 .aspx 擴展名而不是 .mvc 副檔名。 您不必在遠端 Web 伺服器上執行任何設定才能使用 .aspx 擴展。
 
-## <a name="creating-a-wildcard-script-map"></a>建立萬用字元腳本對應
+## <a name="creating-a-wildcard-script-map"></a>建立通配符文稿對應
 
-如果您不想要修改 ASP.NET MVC 應用程式的 Url，而且可以存取您的 web 伺服器，則您會有額外的選項。 您可以建立萬用字元腳本對應，將 web 伺服器的所有要求對應到 ASP.NET 架構。 如此一來，您就可以使用預設的 ASP.NET MVC 路由表搭配 IIS 7.0 （在傳統模式中）或 IIS 6.0。
+如果您不想修改ASP.NET MVC 應用程式的 URL,並且可以造訪 Web 伺服器,則有其他選項。 您可以建立通配符文本映射,將所有請求映射到 Web 伺服器 ASP.NET 框架。 這樣,您可以使用預設ASP.NET MVC 路由表與IIS 7.0(經典模式)或IIS 6.0。
 
-請注意，此選項會使 IIS 攔截對網頁伺服器提出的每個要求。 這包括對影像、傳統 ASP 網頁和 HTML 網頁的要求。 因此，啟用萬用字元腳本對應至 ASP.NET 會對效能造成影響。
+請注意,此選項會導致IIS攔截針對Web伺服器的每個請求。 這包括對圖像、經典 ASP 頁面和 HTML 頁面的請求。 因此,將通配符腳本映射啟用ASP.NET確實會影響性能。
 
-以下是針對 IIS 7.0 啟用萬用字元腳本對應的方式：
+以下是為 IIS 7.0 啟用通配符文稿對應的方式:
 
-1. 在 [連接] 視窗中選取您的應用程式
-2. 請確定已選取 [**功能**] 視圖
-3. 按兩下 [**處理常式**對應] 按鈕
-4. 按一下 [**新增萬用字元腳本對應**] 連結（請參閱 [圖 3]）
-5. 輸入 aspnet\_isapi .dll 檔案的路徑（您可以從 PageHandlerFactory 腳本對應複製此路徑）
-6. 輸入 MVC 的名稱
-7. 按一下 [**確定]** 按鈕
+1. 在「連線」視窗中選擇應用程式
+2. 確保選擇**了 「功能」** 檢視
+3. 雙擊 **「處理程式映射」** 按鈕
+4. 按下 **「新增通配符文稿映射」** 連結(參見圖 3) 3
+5. 輸入 aspnet\_isapi.dll 檔案的路徑 (可以從 PageHandlerFactory 文稿映射複製此路徑)
+6. 輸入名稱 MVC
+7. 點選 **「確定」** 按鈕
 
-[![[新增專案] 對話方塊](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image3.jpg)](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image5.png)
+[![[New Project] \(新增專案\) 對話方塊](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image3.jpg)](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image5.png)
 
-**圖 3**：使用 IIS 7.0 建立萬用字元腳本對應（[按一下以觀看完整大小的影像](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image6.png)）
+**圖 3**: 使用 IIS 7.0 建立通配符文稿映射([按下以檢視全尺寸影像](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image6.png))
 
-請遵循下列步驟，以使用 IIS 6.0 建立萬用字元腳本對應：
+依以下步驟建立具有 IIS 6.0 的通配符文稿映射:
 
-1. 以滑鼠右鍵按一下網站，然後選取 [屬性]
-2. 選取 [**主目錄**] 索引標籤
-3. 按一下 [**設定**] 按鈕
-4. 選取 [**對應**] 索引標籤
-5. 按一下 [**插入**] 按鈕（請參閱 [圖 4]）
-6. 將 aspnet\_的路徑貼到 [可執行檔] 欄位中（您可以從 .aspx 檔案的腳本對應複製此路徑）
-7. 取消核取標示為 [**確認檔案存在**] 的核取方塊
-8. 按一下 [**確定]** 按鈕
+1. 右鍵按一下網站並選擇"屬性"
+2. 選擇**家目錄**選項卡
+3. 點選 **「設定」** 按鈕
+4. 選擇**映射選項**卡
+5. 點選 **「插入」** 按鈕(參見圖 4)
+6. 將 aspnet\_isapi.dll 的路徑貼上為可執行欄位(可以從 .aspx 檔案的文稿映射中複製此路徑)
+7. 取消選擇標籤為 **「驗證檔案存在」複選框**
+8. 點選 **「確定」** 按鈕
 
-[![[新增專案] 對話方塊](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image4.jpg)](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image7.png)
+[![[New Project] \(新增專案\) 對話方塊](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image4.jpg)](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image7.png)
 
-**圖 4**：使用 IIS 6.0 建立萬用字元腳本對應（[按一下以觀看完整大小的影像](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image8.png)）
+**圖 4**: 使用 IIS 6.0 建立通配符文稿映射([按下以檢視全尺寸影像](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image8.png))
 
-啟用萬用字元腳本對應之後，您必須修改 global.asax 檔案中的路由表，使其包含根路由。 否則，當您對應用程式的根頁面提出要求時，您會看到 [圖 5] 中的錯誤頁面。 您可以使用 [清單 4] 中已修改的 global.asax 檔案。
+啟用通配符文本映射後,需要修改 Global.asax 檔中的路由表,以便它包含根路由。 否則,當您請求應用程式的根頁時,您將獲得圖 5 中的錯誤頁。 您可以使用清單 4 中修改的 Global.asax 檔案。
 
-[![[新增專案] 對話方塊](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image5.jpg)](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image9.png)
+[![[New Project] \(新增專案\) 對話方塊](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image5.jpg)](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image9.png)
 
-**圖 5**：遺漏根路由錯誤（[按一下以查看完整大小的影像](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image10.png)）
+**圖 5**: 缺少根路由錯誤([按下以檢視全尺寸影像](using-asp-net-mvc-with-different-versions-of-iis-cs/_static/image10.png))
 
-**清單 4-global.asax （使用根路由修改）**
+**清單 4 - 全域.asax(使用根路由修改)**
 
 [!code-csharp[Main](using-asp-net-mvc-with-different-versions-of-iis-cs/samples/sample4.cs)]
 
-啟用 IIS 7.0 或 IIS 6.0 的萬用字元腳本對應之後，您可以建立與預設路由表搭配使用的要求，如下所示：
+為 IIS 7.0 或 IIS 6.0 啟用通配符文本映射後,可以發出適用於預設路由表的請求,如下所示:
 
 /
 
-/Home/Index
+/首頁/索引
 
-/Product/Details/3
+/產品/詳細資訊/3
 
 /Product
 
 ## <a name="summary"></a>總結
 
-本教學課程的目的是要說明在使用舊版 IIS （或傳統模式的 IIS 7.0）時，您可以如何使用 ASP.NET MVC。 我們討論了兩種取得 ASP.NET 路由以使用舊版 IIS 的方法：修改預設路由表或建立萬用字元腳本對應。
+本教學的目的是解釋在使用舊版本的 IIS(或經典模式下的 IIS 7.0)時如何使用ASP.NET MVC。 我們討論了使ASP.NET路由與舊版本的IIS配合使用的方法:修改預設路由表或創建通配符腳本映射。
 
-第一個選項會要求您修改 ASP.NET MVC 應用程式中使用的 Url。 第一個選項的其中一個非常重要的優點是，您不需要存取 web 伺服器，就可以修改路由表。 這表示您可以使用這個第一個選項，即使是在裝載與網際網路主控公司的 ASP.NET MVC 應用程式時也一樣。
+第一個選項要求您修改ASP.NET MVC 應用程式中使用的 URL。 第一個選項的一個顯著優點是,您不需要訪問 Web 伺服器來修改路由表。 這意味著,即使使用 internet 託管公司託管 ASP.NET MVC 應用程式,您也可以使用此選項。
 
-第二個選項是建立萬用字元腳本對應。 第二個選項的優點是您不需要修改 Url。 第二個選項的缺點是，它可能會影響 ASP.NET MVC 應用程式的效能。
+第二個選項是創建通配符腳本映射。 第二個選項的優點是不需要修改 URL。 第二個選項的缺點是它會影響ASP.NET MVC 應用程式的性能。
 
 > [!div class="step-by-step"]
-> [下一個](using-asp-net-mvc-with-different-versions-of-iis-vb.md)
+> [下一步](using-asp-net-mvc-with-different-versions-of-iis-vb.md)

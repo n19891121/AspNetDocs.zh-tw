@@ -1,6 +1,6 @@
 ---
 uid: web-pages/videos/index
-title: 影片 |Microsoft Docs
+title: 視頻 |微軟文件
 author: rick-anderson
 description: ''
 ms.author: riande
@@ -8,17 +8,17 @@ ms.date: 05/18/2012
 ms.assetid: febf2824-4e3d-4dc6-84c5-f99777ec6144
 msc.legacyurl: /web-pages/videos
 msc.type: book
-ms.openlocfilehash: 4c22b024240740d971740e9f043231ccbcdc47fb
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 8c24a01b592bead86369a0a9cebeca05f566de53
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78631744"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543037"
 ---
-# <a name="videos"></a>視訊
+# <a name="videos"></a>影片
 
 > [!NOTE] 
-> 不再建議使用 WebMatrix 做為 ASP.NET Web Pages 的整合式開發環境。 使用[Visual Studio](xref:aspnet/web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio)或[Visual Studio Code](https://code.visualstudio.com/)。
+> 不再建議將 WebMatrix 作為 ASP.NET 網頁的整合式開發環境。 使用[視覺工作室](xref:web-pages/overview/getting-started/program-asp-net-web-pages-in-visual-studio)或[視覺工作室代碼](https://code.visualstudio.com/)。
 
 - [簡介](introduction/index.md)
 
@@ -32,20 +32,20 @@ ms.locfileid: "78631744"
     - [在 WebMatrix 中建立編輯資料頁面](introduction/create-an-edit-data-page-in-webmatrix.md)
     - [在 WebMatrix 中建立刪除資料頁面](introduction/create-a-delete-data-page-in-webmatrix.md)
     - [使用 WebMatrix 將網站發佈至網際網路](introduction/publish-a-website-to-the-internet-using-webmatrix.md)
-- [ASP.NET Razor Pages](aspnet-razor-pages/index.md)
+- [ASP.NET剃刀頁面](aspnet-razor-pages/index.md)
 
     - [開始使用 WebMatrix 及 ASP.NET 網頁](aspnet-razor-pages/getting-started-with-webmatrix-and-aspnet-web-pages.md)
     - [ASP.NET Web 程式設計 Razor 語法簡介](aspnet-razor-pages/introduction-to-aspnet-web-programming-using-the-razor-syntax.md)
-    - [建立一致的外觀 (第 1 節)](aspnet-razor-pages/creating-a-consistent-look-part-1.md)
+    - [建立一致的外觀 (第 1 部分)](aspnet-razor-pages/creating-a-consistent-look-part-1.md)
     - [建立一致的外觀 (第 2 節)](aspnet-razor-pages/creating-a-consistent-look-part-2.md)
     - [使用表單 (第 1 節)](aspnet-razor-pages/working-with-forms-part-1.md)
-    - [使用表單 (第 2 節)](aspnet-razor-pages/working-with-forms-part-2.md)
+    - [使用表單 (第 2 部分)](aspnet-razor-pages/working-with-forms-part-2.md)
     - [使用資料 (第 1 節)](aspnet-razor-pages/working-with-data-part-1.md)
-    - [使用資料 (第 2 節)](aspnet-razor-pages/working-with-data-part-2.md)
+    - [使用資料 (第 2 部分)](aspnet-razor-pages/working-with-data-part-2.md)
     - [以網格顯示資料](aspnet-razor-pages/displaying-data-in-a-grid.md)
-    - [以圖表顯示資料 (第 1 節)](aspnet-razor-pages/displaying-data-in-a-chart-part-1.md)
-    - [以圖表顯示資料 (第 2 節)](aspnet-razor-pages/displaying-data-in-a-chart-part-2.md)
-    - [使用檔案](aspnet-razor-pages/working-with-files.md)
+    - [以圖表顯示資料 (第 1 部分)](aspnet-razor-pages/displaying-data-in-a-chart-part-1.md)
+    - [以圖表顯示資料 (第 2 部分)](aspnet-razor-pages/displaying-data-in-a-chart-part-2.md)
+    - [處理檔案](aspnet-razor-pages/working-with-files.md)
     - [使用影像](aspnet-razor-pages/working-with-images.md)
     - [使用影片](aspnet-razor-pages/working-with-video.md)
     - [將電子郵件新增到您的網站](aspnet-razor-pages/adding-email-to-your-web-site.md)

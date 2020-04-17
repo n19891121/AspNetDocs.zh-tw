@@ -1,146 +1,146 @@
 ---
 uid: mvc/overview/older-versions-1/models-data/validation-with-the-data-annotation-validators-cs
-title: 使用資料注釋驗證程式（C#）進行驗證 |Microsoft Docs
-author: microsoft
-description: 利用資料批註模型系結器，在 ASP.NET MVC 應用程式中執行驗證。 瞭解如何使用不同類型的驗證程式 。
+title: 使用資料註解驗證器 (C#) 進行驗證 |微軟文件
+author: rick-anderson
+description: 利用數據註釋模型綁定器在 mVC 應用程式中執行驗證ASP.NET。 瞭解如何使用不同類型的驗證器...
 ms.author: riande
 ms.date: 05/29/2009
 ms.assetid: 7ca8013e-9dfc-4e33-8336-cdccfd5f9414
 msc.legacyurl: /mvc/overview/older-versions-1/models-data/validation-with-the-data-annotation-validators-cs
 msc.type: authoredcontent
-ms.openlocfilehash: e154384c08adf0c14920afff85e983a67b41707c
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 28ea52b9b412431d59d7afdd1c7cce93a50a7e2a
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78542130"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542673"
 ---
 # <a name="validation-with-the-data-annotation-validators-c"></a>驗證與資料註解驗證器 (C#)
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-> 利用資料批註模型系結器，在 ASP.NET MVC 應用程式中執行驗證。 瞭解如何使用不同類型的驗證程式屬性，並在 Microsoft Entity Framework 中使用它們。
+> 利用數據註釋模型綁定器在 mVC 應用程式中執行驗證ASP.NET。 瞭解如何使用不同類型的驗證器屬性,並在 Microsoft 實體框架中使用它們。
 
-在本教學課程中，您將瞭解如何使用資料批註驗證程式，在 ASP.NET MVC 應用程式中執行驗證。 使用資料批註驗證器的優點是，它們可讓您藉由將一或多個屬性（例如 Required 或 StringLength 屬性）新增至類別屬性來執行驗證。
+在本教學中,您將瞭解如何使用數據註釋驗證器在 ASP.NET MVC 應用程式中執行驗證。 使用數據註釋驗證器的優點是,它們僅通過向類屬性添加一個或多個屬性(如"必需"或"字串長度"屬性)即可執行驗證。
 
-在您可以使用資料批註驗證程式之前，您必須先下載資料批註模型系結器。 您可以按一下[這裡](http://aspnet.codeplex.com/Release/ProjectReleases.aspx?ReleaseId=24471)，從 CodePlex 網站下載資料批註模型系結器範例。
+在使用數據註釋驗證器之前,必須下載數據註釋模型綁定器。 您可以通過[按一下此處](http://aspnet.codeplex.com/Release/ProjectReleases.aspx?ReleaseId=24471)從 CodePlex 網站下載數據註釋模型粘合劑範例。
 
-請務必瞭解資料批註模型系結器不是 Microsoft ASP.NET MVC 架構的官方部分。 雖然資料批註模型系結器是由 Microsoft ASP.NET MVC 小組所建立，但 Microsoft 不會針對本教學課程中所述和使用的資料批註模型系結器提供正式的產品支援。
+請務必瞭解,數據註釋模型綁定器不是 Microsoft ASP.NET MVC 框架的正式部分。 儘管數據註釋模型活頁夾是由 Microsoft ASP.NET MVC 團隊創建的,但 Microsoft 不會為本教程中介紹和使用的數據註釋模型粘合劑提供官方產品支援。
 
-## <a name="using-the-data-annotation-model-binder"></a>使用資料注釋模型系結器
+## <a name="using-the-data-annotation-model-binder"></a>使用資料註解模型繫結器
 
-若要在 ASP.NET 的 MVC 應用程式中使用資料批註模型系結器，您必須先加入 DataAnnotations 的參考和 System.workflow.componentmodel.activity. DataAnnotations .dll 元件中。 選取功能表選項 [**專案]、[加入參考**]。 接著，按一下 [**流覽**] 索引標籤，並流覽至您下載（和解壓縮）資料批註模型系結器範例的位置（請參閱 [**圖 1**]）。
+為了在ASP.NET MVC 應用程式中使用數據註釋模型綁定器,首先需要添加對 Microsoft.Web.Mvc.Dataannotations.dll 程式集和 System.元件模型.Datathethe.dll 程式集的引用。 選擇選單選項 **「專案」,新增參考**。 接下來,按一下 **「瀏覽」** 選項卡並瀏覽到下載(並解壓縮)數據註釋模型裝訂器範例的位置(參見**圖 1)。**
 
 [![](validation-with-the-data-annotation-validators-cs/_static/image2.png)](validation-with-the-data-annotation-validators-cs/_static/image1.png)
 
-**圖 1**：加入資料批註模型系結器的參考（[按一下以查看完整大小的影像](validation-with-the-data-annotation-validators-cs/_static/image3.png)）
+**圖 1**: 新增對資料註解模型載入([按下以檢視全尺寸影像](validation-with-the-data-annotation-validators-cs/_static/image3.png))
 
-選取 DataAnnotations 元件和 System.workflow.componentmodel.activity. DataAnnotations .dll 元件，然後按一下 **確定**按鈕。
+同時選擇 Microsoft.Web.Mvc.Data註解.dll 程式集和系統.元件模型.DataAnnotations.dll 程式集,然後單擊 **"確定"** 按鈕。
 
-您無法使用 .NET Framework Service Pack 1 隨附的 DataAnnotations 和資料批註模型系結器。 您必須使用包含在資料批註模型系結器範例下載中的 System.workflow.componentmodel.activity. DataAnnotations .dll 元件版本。
+不能使用系統.元件模型.Data註釋.dll 程式集包含在 .NET 框架服務包 1 與數據註釋模型綁定器。 您必須使用系統版本.元件模型.Data註釋.dll 程式集包含在數據註釋模型裝訂器示例下載中。
 
-最後，您必須在 global.asax 檔案中註冊 DataAnnotations 模型系結器。 將下列程式程式碼新增至應用程式\_Start （）事件處理常式，讓應用程式\_Start （）方法看起來像這樣：
+最後,您需要在 Global.asax 檔中註冊 DataAnnotations 模型綁定器。 將以下代碼列加入到應用程式\_Start() 事件處理程式,\_以便應用程式 Start() 方法如下所示:
 
 [!code-csharp[Main](validation-with-the-data-annotation-validators-cs/samples/sample1.cs)]
 
-這一行程式碼會將 ataAnnotationsModelBinder 註冊為整個 ASP.NET MVC 應用程式的預設模型系結器。
+此代碼行將 ataAnnotationsModelBinder 註冊為整個ASP.NET MVC 應用程式的預設模型活頁夾。
 
-## <a name="using-the-data-annotation-validator-attributes"></a>使用資料批註驗證程式屬性
+## <a name="using-the-data-annotation-validator-attributes"></a>使用資料註解驗證器屬性
 
-當您使用資料批註模型系結器時，您會使用驗證程式屬性來執行驗證。 System.workflow.componentmodel.activity. DataAnnotations 命名空間包含下列驗證程式屬性：
+使用數據註釋模型裝訂器時,可以使用驗證器屬性執行驗證。 系統.元件模型.Data註解命名空間包括以下驗證器屬性:
 
-- 範圍–可讓您驗證屬性的值是否落在指定的值範圍之間。
-- RegularExpression –可讓您驗證屬性的值是否符合指定的正則運算式模式。
-- 必要–可讓您將屬性標示為必要。
-- StringLength –可讓您指定字串屬性的最大長度。
-- 驗證–所有驗證程式屬性的基類。
+- 範圍 – 使您能夠驗證屬性的值是否介於指定的值範圍之間。
+- 正規表示式 – 使您能夠驗證屬性的值是否與指定的正規表示式模式匹配。
+- 必需 = 使您能夠根據需要標記屬性。
+- 字串長度 – 使您能夠為字串屬性指定最大長度。
+- 驗證 = 所有驗證器屬性的基類。
 
 > [!NOTE] 
 > 
-> 如果任何標準驗證程式都不符合您的驗證需求，則您一律可以選擇從基底驗證屬性繼承新的驗證程式屬性，以建立自訂的驗證程式屬性。
+> 如果任何標準驗證器未滿足驗證需求,則始終可以選擇通過從基本驗證屬性繼承新的驗證器屬性來創建自定義驗證器屬性。
 
-[**清單 1** ] 中的 [Product] 類別說明如何使用這些驗證程式屬性。 [名稱]、[描述] 和 [單價] 屬性會標示為必要。 Name 屬性的字串長度必須小於10個字元。 最後，[單價] 屬性必須符合代表貨幣金額的正則運算式模式。
+**清單1**中的「產品」類說明瞭如何使用這些驗證器屬性。 名稱、說明和單價屬性按要求進行標記。 Name 屬性的字串長度必須小於 10 個字元。 最後,UnitPrice 屬性必須匹配表示貨幣金額的正則運算式模式。
 
 [!code-csharp[Main](validation-with-the-data-annotation-validators-cs/samples/sample2.cs)]
 
-**清單 1**： Models\Product.cs
+**清單1**:型號\產品.cs
 
-Product 類別說明如何使用一個額外的屬性： DisplayName 屬性。 當屬性顯示在錯誤訊息中時，DisplayName 屬性可讓您修改屬性的名稱。 您可以顯示錯誤訊息「需要價格欄位」，而不是顯示錯誤訊息「需要單價欄位」。
+"產品"類說明瞭如何使用一個附加屬性:顯示名稱屬性。 在錯誤訊息中顯示屬性時,顯示Name 屬性允許您修改屬性的名稱。 您可以顯示錯誤消息"需要價格",而不是顯示錯誤消息"需要價格"
 
 > [!NOTE] 
 > 
-> 如果您想要完全自訂驗證程式所顯示的錯誤訊息，您可以將自訂錯誤訊息指派給驗證器的 ErrorMessage 屬性，如下所示： `<Required(ErrorMessage:="This field needs a value!")>`
+> 如果要完全自訂驗證器顯示的錯誤訊息,則可以將自訂錯誤訊息分配給驗證器的 ErrorMessage 屬性,如下所示:`<Required(ErrorMessage:="This field needs a value!")>`
 
-您可以使用 [**清單 1** ] 中的 [Product] 類別搭配 [**清單 2**] 中的 Create （）控制器動作。 當模型狀態包含任何錯誤時，此控制器動作會重新顯示 [建立] 視圖。
+您可以將**清單 1**中的「產品」類與 清單**2**中的 Create() 控制器操作一起使用。 當模型狀態包含任何錯誤時,此控制器操作重新顯示"創建"檢視。
 
 [!code-csharp[Main](validation-with-the-data-annotation-validators-cs/samples/sample3.cs)]
 
-**清單 2**： Controllers\ProductController.vb
+**清單2**:控制器\產品控制器.vb
 
-最後，您可以用滑鼠右鍵按一下 [建立] （）動作，然後選取功能表選項 [**加入視圖**]，在 [**清單 3** ] 中建立此視圖。 建立具有 Product 類別的強型別視圖做為模型類別。 從 [視圖內容] 下拉式清單中選取 [**建立**] （請參閱 [**圖 2**]）。
+最後,您可以通過右鍵單擊 Create() 操作並選擇功能表選項 **「添加檢視**」來在**清單 3**中創建檢視。 創建以 Product 類為模型類的強類型視圖。 從檢視內容下拉清單中**選擇"創建**"(參見**圖 2**)。
 
 [![](validation-with-the-data-annotation-validators-cs/_static/image5.png)](validation-with-the-data-annotation-validators-cs/_static/image4.png)
 
-**圖 2**：新增 Create View
+**圖 2**: 新增建立檢視
 
 [!code-aspx[Main](validation-with-the-data-annotation-validators-cs/samples/sample4.aspx)]
 
-**清單 3**： Views\Product\Create.aspx
+**清單3**:檢視\產品\創建.aspx
 
 > [!NOTE] 
 > 
-> 從 [**加入視圖**] 功能表選項所產生的 [建立] 表單中移除 [識別碼] 欄位。 因為識別碼欄位對應到識別欄位，所以您不會想要允許使用者輸入此欄位的值。
+> 從「**新增檢視」** 選單選項產生的「創建窗體」 中移除「 Id」 欄位。 由於 Id 欄位對應於標識列,因此您不希望允許使用者輸入此欄位的值。
 
-如果您提交表單以建立產品，但未在必要欄位中輸入值，則會顯示 [**圖 3** ] 中的驗證錯誤訊息。
+如果提交表單以創建產品,並且未輸入所需欄位的值,則將顯示**圖 3**中的驗證錯誤消息。
 
 [![](validation-with-the-data-annotation-validators-cs/_static/image7.png)](validation-with-the-data-annotation-validators-cs/_static/image6.png)
 
-**圖 3**：遺漏必要欄位
+**圖 3**:缺少必填欄位
 
-如果您輸入不正確貨幣金額，則會顯示 [**圖 4** ] 中的錯誤訊息。
+如果輸入無效的貨幣金額,則將顯示**圖 4**中的錯誤消息。
 
 [![](validation-with-the-data-annotation-validators-cs/_static/image9.png)](validation-with-the-data-annotation-validators-cs/_static/image8.png)
 
-**圖 4**：不正確貨幣金額
+**圖4**:無效貨幣金額
 
-## <a name="using-data-annotation-validators-with-the-entity-framework"></a>搭配 Entity Framework 使用資料批註驗證程式
+## <a name="using-data-annotation-validators-with-the-entity-framework"></a>將資料註解驗證器與實體框架一起使用
 
-如果您使用 Microsoft Entity Framework 來產生資料模型類別，則無法直接將驗證程式屬性套用至您的類別。 因為 Entity Framework Designer 會產生模型類別，所以您對模型類別所做的任何變更將會在下一次於設計工具中進行任何變更時遭到覆寫。
+如果使用 Microsoft 實體框架生成數據模型類,則無法將驗證器屬性直接應用於類。 由於實體框架設計器生成模型類,因此下次在設計器中進行任何更改時,將對模型類所做的任何更改都將被覆蓋。
 
-如果您想要將驗證程式與 Entity Framework 產生的類別搭配使用，則需要建立中繼資料類別。 您可以將驗證程式套用至中繼資料類別，而不是將驗證程式套用至實際的類別。
+如果要將驗證器與實體框架生成的類一起使用,則需要創建元數據類。 將驗證器應用於元數據類,而不是將驗證器應用於實際類。
 
-例如，假設您已使用 Entity Framework 建立電影類別（請參閱 [**圖 5**]）。 想像一下，您想要讓電影標題和主管屬性都需要屬性。 在這種情況下，您可以在 [**清單 4**] 中建立部分類別和中繼資料類別。
+例如,假設您已使用實體框架創建了 Movie 類(參見**圖 5**)。 此外,假設您要使影片標題和導演屬性成為所需的屬性。 在這種情況下,您可以在**清單 4**中創建部分類和元數據類。
 
 [![](validation-with-the-data-annotation-validators-cs/_static/image11.png)](validation-with-the-data-annotation-validators-cs/_static/image10.png)
 
-**圖 5**： Entity Framework 產生的 Movie 類別
+**圖 5**: 實體框架產生的影片類別
 
 [!code-csharp[Main](validation-with-the-data-annotation-validators-cs/samples/sample5.cs)]
 
-**清單 4**： Models\Movie.cs
+**清單4**: 模型_電影.cs
 
-[**清單 4** ] 中的檔案包含兩個名為 Movie 和 MovieMetaData 的類別。 Movie 類別是部分類別。 它會對應到 DataModel 所產生的部分類別，這些是由包含在 .vb 檔案中的 Entity Framework。
+**清單4**中的檔包含名為「電影」和「MovieMetaData」的兩個類。 "影片"類是部分類。 它對應於數據模型.Designer.vb 檔中包含的實體框架生成的部分類。
 
-目前，.NET framework 不支援部分屬性。 因此，您無法將驗證程式屬性套用至 DataModel 中定義的 Movie 類別屬性，方法是將驗證程式屬性套用至**清單 4**中所定義之 movie 類別的屬性。
+目前,.NET 框架不支援部分屬性。 因此,無法通過將驗證器屬性應用於**清單 4**中檔中定義的 Movie 類的屬性,從而將驗證器屬性應用於 DataModel.designer.vb 檔中定義的 Movie 類的屬性。
 
-請注意，Movie 部分類別會以指向 MovieMetaData 類別的 MetadataType 屬性裝飾。 MovieMetaData 類別包含 Movie 類別屬性的 proxy 屬性。
+請注意,影片部分類用指向 MovieMetaData 類的元數據類型屬性進行修飾。 MovieMetaData 類包含影片類屬性的代理屬性。
 
-驗證程式屬性會套用至 MovieMetaData 類別的屬性。 Title、Director 和 DateReleased 屬性都會標示為必要屬性。 必須指派包含少於5個字元的字串給 Director 屬性。 最後，DisplayName 屬性會套用至 DateReleased 屬性，以顯示錯誤訊息，例如「需要發行日期欄位」。 而不是「需要 DateReleased 欄位」錯誤。
+驗證器屬性應用於 MovieMetaData 類的屬性。 標題、控制器和日期釋放屬性都標記為必需屬性。 必須為 Director 屬性分配包含少於 5 個字元的字串。 最後,顯示Name 屬性應用於 Date 下達屬性,以顯示錯誤消息,如"需要發佈日期發佈"欄位。 而不是錯誤"需要日期釋放欄位」。
 
 > [!NOTE] 
 > 
-> 請注意，MovieMetaData 類別中的 proxy 屬性不需要表示與 Movie 類別中的對應屬性相同的類型。 例如，Director 屬性是 Movie 類別中的字串屬性和 MovieMetaData 類別中的物件屬性。
+> 請注意,MovieMetaData 類中的代理屬性不需要表示與 Movie 類中的相應屬性相同的類型。 例如,Director 屬性是 Movie 類中的字串屬性和 MovieMetaData 類中的物件屬性。
 
-[**圖 6** ] 中的頁面說明當您為電影內容輸入不正確值時，所傳回的錯誤訊息。
+**圖 6**中的頁面演示了在為 Movie 屬性輸入無效值時返回的錯誤消息。
 
 [![](validation-with-the-data-annotation-validators-cs/_static/image13.png)](validation-with-the-data-annotation-validators-cs/_static/image12.png)
 
-**圖 6**：搭配 Entity Framework 使用驗證程式（[按一下以觀看完整大小的影像](validation-with-the-data-annotation-validators-cs/_static/image14.png)）
+**圖 6**: 使用驗證器與實體框架 ([按下以檢視全尺寸影像](validation-with-the-data-annotation-validators-cs/_static/image14.png))
 
 ## <a name="summary"></a>總結
 
-在本教學課程中，您已瞭解如何利用資料批註模型系結器，在 ASP.NET MVC 應用程式中執行驗證。 您已瞭解如何使用不同類型的驗證程式屬性，例如 Required 和 StringLength 屬性。 您也已瞭解如何在使用 Microsoft Entity Framework 時使用這些屬性。
+在本教學中,您學習了如何使用數據註釋模型綁定器在ASP.NET MVC 應用程式中執行驗證。 您學習了如何使用不同類型的驗證器屬性,如"必需"和"字串長度"屬性。 在使用 Microsoft 實體框架時,您還學習了如何使用這些屬性。
 
 > [!div class="step-by-step"]
-> [上一頁](validating-with-a-service-layer-cs.md)
-> [下一頁](creating-model-classes-with-the-entity-framework-vb.md)
+> [前一個](validating-with-a-service-layer-cs.md)
+> [下一個](creating-model-classes-with-the-entity-framework-vb.md)

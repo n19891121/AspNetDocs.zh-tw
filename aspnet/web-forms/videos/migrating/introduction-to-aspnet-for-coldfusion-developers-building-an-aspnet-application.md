@@ -1,28 +1,28 @@
 ---
 uid: web-forms/videos/migrating/introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application
-title: 適用于 ColdFusion 開發人員的 ASP.NET 簡介：建立 ASP.NET 應用程式 |Microsoft Docs
-author: microsoft
-description: 這段網路廣播示範如何建立從空白表單開始的 ASP.NET 應用程式，讓有經驗的 ColdFusion 開發人員清楚瞭解到底是什麼 。
+title: ColdFusion 開發人員ASP.NET簡介:構建ASP.NET應用程式 |微軟文件
+author: rick-anderson
+description: 本網络廣播演示如何從空白表單開始構建ASP.NET應用程式,讓經驗豐富的 ColdFusion 開發人員清楚地瞭解其確切內容...
 ms.author: riande
 ms.date: 07/25/2006
 ms.assetid: 47316dec-a4cd-4818-8ba7-87e29d963c38
 msc.legacyurl: /web-forms/videos/migrating/introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application
 msc.type: video
-ms.openlocfilehash: 8ebbd7a8e8fa4adb9835cea9560797beee2b86fa
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 7726ec1cfc61fe08a7d1739e254032420cb25207
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78639836"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81543375"
 ---
-# <a name="introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application"></a>適用于 ColdFusion 開發人員的 ASP.NET 簡介：建立 ASP.NET 應用程式
+# <a name="introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application"></a>ColdFusion 開發人員ASP.NET簡介:建置ASP.NET應用程式
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-這段網路廣播示範如何建立從空白表單開始的 ASP.NET 應用程式，讓有經驗的 ColdFusion 開發人員清楚瞭解所牽涉到的內容。
+本網路廣播演示如何從空白表單開始構建ASP.NET應用程式,讓經驗豐富的 ColdFusion 開發人員清楚地瞭解所涉及的內容。
 
-[&#9654;觀看影片（77分鐘）](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application)
+[&#9654;观看视频(77 分鐘)](https://channel9.msdn.com/Blogs/ASP-NET-Site-Videos/introduction-to-aspnet-for-coldfusion-developers-building-an-aspnet-application)
 
 > [!div class="step-by-step"]
-> [上一頁](intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire.md)
-> [下一頁](interop-between-php-and-the-windows-platform.md)
+> [前一個](intro-to-aspnet-for-coldfusion-developers-adding-aspnet-to-your-repertoire.md)
+> [下一個](interop-between-php-and-the-windows-platform.md)

@@ -1,438 +1,438 @@
 ---
 uid: mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-application-vb
-title: '反復專案 #1 –建立應用程式（VB） |Microsoft Docs'
-author: microsoft
-description: 在第一個反復專案中，我們會以最簡單的方式建立連絡人管理員。 我們新增對基本資料庫作業的支援：建立、讀取、更新和 。
+title: 反覆運算#1 = 建立應用程式 (VB) |微軟文件
+author: rick-anderson
+description: 在第一次反覆運算中,我們以最簡單的方式創建聯繫人管理器。 我們增加了對基本資料庫操作的支援:創建、讀取、更新和 D...
 ms.author: riande
 ms.date: 02/20/2009
 ms.assetid: 5b033582-1646-42c2-b20d-7edc8814e970
 msc.legacyurl: /mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-application-vb
 msc.type: authoredcontent
-ms.openlocfilehash: c6bf4712fb734cf14420fd62c9eaf190a2c28168
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 235f6f8812a2f584de8e07dcf97d5c1712c51776
+ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78602316"
+ms.lasthandoff: 04/17/2020
+ms.locfileid: "81542530"
 ---
-# <a name="iteration-1--create-the-application-vb"></a>反復專案 #1 –建立應用程式（VB）
+# <a name="iteration-1--create-the-application-vb"></a>反覆項目 #1 – 建立應用程式 (VB)
 
-由[Microsoft](https://github.com/microsoft)
+由[微軟](https://github.com/microsoft)
 
-[下載程式代碼](iteration-1-create-the-application-vb/_static/contactmanager_1_vb1.zip)
+[下載代碼](iteration-1-create-the-application-vb/_static/contactmanager_1_vb1.zip)
 
-> 在第一個反復專案中，我們會以最簡單的方式建立連絡人管理員。 我們新增對基本資料庫作業的支援：建立、讀取、更新和刪除（CRUD）。
+> 在第一次反覆運算中,我們以最簡單的方式創建聯繫人管理器。 我們添加對基本資料庫操作的支援:創建、讀取、更新和刪除 (CRUD)。
 
-## <a name="building-a-contact-management-aspnet-mvc-application-vb"></a>建立連絡人管理 ASP.NET MVC 應用程式（VB）
+## <a name="building-a-contact-management-aspnet-mvc-application-vb"></a>建構 MVC 應用程式 (VB) ASP.NET連絡人管理
 
-在這一系列的教學課程中，我們從一開始就建立了整個連絡人管理應用程式。 連絡人管理員應用程式可讓您儲存連絡人資訊名稱、電話號碼和電子郵件地址，以取得人員清單。
+在本系列教程中,我們從頭到尾構建整個聯繫人管理應用程式。 透過聯絡人管理員應用程式,您可以儲存連絡人資訊 (姓名、電話號碼和電子郵件位址) 人員清單。
 
-我們會透過多個反復專案來建立應用程式。 在每次反覆運算時，我們會逐漸改善應用程式。 這個多個反復專案方法的目標，是要讓您瞭解每項變更的原因。
+我們通過多次反覆運算構建應用程式。 每次反覆運算時,我們都會逐步改進應用程式。 此多反覆運算方法的目標是使您能夠瞭解每次更改的原因。
 
-- 反復專案 #1-建立應用程式。 在第一個反復專案中，我們會以最簡單的方式建立連絡人管理員。 我們新增對基本資料庫作業的支援：建立、讀取、更新和刪除（CRUD）。
+- 反覆運算#1 - 創建應用程式。 在第一次反覆運算中,我們以最簡單的方式創建聯繫人管理器。 我們添加對基本資料庫操作的支援:創建、讀取、更新和刪除 (CRUD)。
 
-- 反復專案 #2-讓應用程式看起來不錯。 在此反復專案中，我們藉由修改預設的 ASP.NET MVC view 主版頁面和級聯樣式表，來改善應用程式的外觀。
+- 反覆運算#2 - 使應用程式看起來不錯。 在此反覆運算中,我們通過修改預設ASP.NET MVC 檢視母版頁和級聯樣式表來改進應用程式的外觀。
 
-- 反復專案 #3-新增表單驗證。 在第三個反復專案中，我們會新增基本表單驗證。 我們會防止人們提交表單，而不需要完成必要的表單欄位。 我們也會驗證電子郵件地址和電話號碼。
+- 反覆運算#3 - 添加表單驗證。 在第三個反覆運算中,我們添加基本表單驗證。 我們防止人們在未填寫所需表單欄位的情況下提交表單。 我們還驗證電子郵件地址和電話號碼。
 
-- 反復專案 #4-讓應用程式鬆散結合。 在這第四次的反復專案中，我們會利用數種軟體設計模式，讓您更輕鬆地維護和修改 Contact Manager 應用程式。 例如，我們會重構應用程式，以使用存放庫模式和相依性插入模式。
+- 反覆運算#4 - 使應用程式鬆散耦合。 在第四次反覆運算中,我們利用多種軟體設計模式,使維護和修改聯繫人管理器應用程式變得更加容易。 例如,我們重構應用程式以使用存儲庫模式和依賴項注入模式。
 
-- 反復專案 #5-建立單元測試。 在第五個反復專案中，我們會藉由新增單元測試，讓應用程式更容易維護和修改。 我們會模擬我們的資料模型類別，並為我們的控制器和驗證邏輯建立單元測試。
+- 反覆運算#5 - 創建單元測試。 在第五次反覆運算中,我們通過添加單元測試使應用程式更易於維護和修改。 我們類比數據模型類,並為控制器和驗證邏輯構建單元測試。
 
-- 反復專案 #6-使用以測試為導向的開發。 在此第六個反復專案中，我們會先撰寫單元測試，並針對單元測試撰寫程式碼，以將新功能加入至應用程式。 在此反復專案中，我們會新增連絡人群組。
+- 反覆運算#6 - 使用測試驅動開發。 在第六次反覆運算中,我們首先編寫單元測試並針對單元測試編寫代碼,從而向應用程式添加新功能。 在此反覆運算中,我們添加聯繫人組。
 
-- 反復專案 #7-新增 Ajax 功能。 在第七次的反復專案中，我們藉由新增 Ajax 的支援來改善應用程式的回應性和效能。
+- 反覆運算#7 - 添加Ajax功能。 在第七次反覆運算中,我們通過增加對Ajax的支援來提高應用程式的回應性和性能。
 
-## <a name="this-iteration"></a>這個反復專案
+## <a name="this-iteration"></a>此反覆運算
 
-在第一個反復專案中，我們會建立基本應用程式。 目標是以最快速且最簡單的方式建立 Contact Manager。 在後續的反復專案中，我們會改善應用程式的設計。
+在第一次反覆運算中,我們將構建基本應用程式。 目標是以最快、最簡單的方式構建聯繫人管理器。 在以後的反覆運算中,我們改進了應用程式的設計。
 
-Contact Manager 應用程式是基本的資料庫導向應用程式。 您可以使用此應用程式來建立新的連絡人、編輯現有的連絡人，以及刪除連絡人。
+聯繫人管理器應用程式是一個基本的資料庫驅動應用程式。 您可以使用該應用程式創建新連絡人、編輯現有連絡人和刪除連絡人。
 
-在此反復專案中，我們會完成下列步驟：
+在此反覆運算中,我們完成以下步驟:
 
 1. ASP.NET MVC 應用程式
-2. 建立資料庫來儲存我們的連絡人
-3. 使用 Microsoft Entity Framework 為我們的資料庫產生模型類別
-4. 建立控制器動作和視圖，讓我們列出資料庫中的所有連絡人
-5. 建立控制器動作和可讓我們在資料庫中建立新連絡人的視圖
-6. 建立控制器動作，以及讓我們編輯資料庫中現有連絡人的視圖
-7. 建立控制器動作，以及可讓我們刪除資料庫中現有連絡人的視圖
+2. 建立資料庫以儲存我們的聯絡人
+3. 使用 Microsoft 實體架構為資料庫產生模型類別
+4. 建立控制器操作與檢視,讓我們能夠列出資料庫中的所有聯絡人
+5. 建立控制器操作與檢視,讓我們能夠建立新聯絡人
+6. 建立控制器操作與檢視,讓我們可以編輯資料庫中的現有聯絡人
+7. 建立控制器操作與檢視,讓我們能夠移除資料庫中的現有聯絡人
 
 ## <a name="software-prerequisites"></a>軟體必要條件
 
-在 ASP.NET MVC 應用程式中，您必須在電腦上安裝 Visual Studio 2008 或 Visual Web Developer 2008 （Visual Web Developer 是免費版本的 Visual Studio，其中不包含 Visual Studio 的所有 advanced 功能）。 您可以從下列位址下載試用版的 Visual Studio 2008 或 Visual Web Developer：
+在ASP.NET MVC 應用程式中,必須在您的電腦上安裝 Visual Studio 2008 或 Visual Web 開發人員 2008(可視化 Web 開發人員是 Visual Studio 的免費版本,不包含 Visual Studio 的所有高級功能)。 您可以透過以下位址下載 Visual Studio 2008 試用版或視覺化 Web 開發人員版本:
 
 [https://www.asp.net/downloads/essential/](https://www.asp.net/downloads/essential)
 
 > [!NOTE] 
 > 
-> 若要使用 Visual Web Developer ASP.NET MVC 應用程式，您必須安裝 Visual Web Developer Service Pack 1。 若不含 Service Pack 1，您就無法建立 Web 應用程式專案。
+> 對於具有視覺化 Web 開發人員 ASP.NET MVC 應用程式,必須安裝可視化 Web 開發人員服務包 1。 如果沒有服務包 1,則無法創建 Web 應用程式專案。
 
-ASP.NET MVC 架構。 您可以從下列位址下載 ASP.NET MVC 架構：
+ASP.NET MVC 框架。 可以從以下位址下載ASP.NET MVC 框架:
 
 [https://www.asp.net/mvc](../../../index.md)
 
-在本教學課程中，我們會使用 Microsoft Entity Framework 來存取資料庫。 Entity Framework 隨附于 .NET Framework 3.5 Service Pack 1。 您可以從下列位置下載此 Service Pack：
+在本教學中,我們使用Microsoft實體框架訪問資料庫。 實體框架包含在 .NET 框架 3.5 服務包 1 中。 您可以透過以下位置下載此服務套件:
 
-[https://www.microsoft.com/downloads/details.aspx?familyid=ab99342f-5d1a-413d-8319-81da479ab0d7&amp;d isplaylang = en](https://www.microsoft.com/downloads/details.aspx?familyid=ab99342f-5d1a-413d-8319-81da479ab0d7&amp;displaylang=en)
+[https://www.microsoft.com/downloads/details.aspx?familyid=ab99342f-5d1a-413d-8319-81da479ab0d7&amp;d斯普拉朗](https://www.microsoft.com/downloads/details.aspx?familyid=ab99342f-5d1a-413d-8319-81da479ab0d7&amp;displaylang=en)
 
-另一種方式是逐一執行每個下載，您可以利用 Web Platform Installer （Web PI）。 您可以從下列位址下載 Web PI：
+作為逐個執行每個下載的替代方法,您可以利用 Web 平臺安裝程式 (Web PI)。 您可以透過以下位址下載 Web PI:
 
 [https://www.asp.net/downloads/essential/](https://www.asp.net/downloads/essential)
 
 ## <a name="aspnet-mvc-project"></a>ASP.NET MVC 專案
 
-ASP.NET MVC Web 應用程式專案。 啟動 Visual Studio 並選取 [功能表選項] [檔案] **、[新增專案**]。 [**新增專案**] 對話方塊隨即出現（請參閱 [圖 1]）。 選取 [ **Web** ] 專案類型和 [ **ASP.NET MVC Web 應用程式**] 範本。 將新專案命名為*ContactManager* ，然後按一下 [確定] 按鈕。
+ASP.NET MVC Web 應用程式專案。 啟動視覺化工作室並選擇選單選項**檔案,新專案**。 將顯示 **「新專案」** 對話框(參見圖 1)。 選擇**Web**專案類型和**ASP.NET MVC Web 應用程式**樣本。 說出您的新項目*聯繫人管理器*,然後按下"確定"按鈕。
 
-請確定您已從 [**新增專案**] 對話方塊右上角的下拉式清單中選取 [.NET Framework 3.5]。 否則，ASP.NET MVC Web 應用程式範本將不會出現。
+請確保從 **「新專案」** 對話框右上角的下拉清單中選擇了 .NET Framework 3.5。 否則,將不會顯示ASP.NET MVC Web 應用程式範本。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image1.jpg)](iteration-1-create-the-application-vb/_static/image1.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image1.jpg)](iteration-1-create-the-application-vb/_static/image1.png)
 
-**圖 01**： [新增專案] 對話方塊（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image2.png)）
+**圖 01**: 新的項目對話框([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image2.png))
 
-ASP.NET MVC 應用程式時，會出現 [**建立單元測試專案**] 對話方塊。 當您建立 ASP.NET MVC 應用程式時，可以使用此對話方塊來表示您要建立單元測試專案，並將其新增至方案。 雖然我們不會在此反復專案中建立單元測試，但您應該選取 [**是，建立單元測試專案] 選項，** 因為我們計畫要在稍後的反復專案中加入單元測試。 當您第一次建立新的 ASP.NET MVC 專案時加入測試專案，比在建立 ASP.NET MVC 專案之後加入測試專案來得簡單許多。
+ASP.NET MVC 應用程式,將顯示 **「創建單元測試項目**」對話方塊。 可以使用此對話方塊指示在創建ASP.NET MVC 應用程式時要創建單元測試專案並將其添加到解決方案中。 儘管我們在此反覆運算中不會構建單元測試,但應選擇選項 **「是」,創建單元測試專案**,因為我們計劃在以後的反覆運算中添加單元測試。 首次創建新的ASP.NET MVC 專案時添加測試專案比創建ASP.NET MVC 專案後添加測試專案要容易得多。
 
 > [!NOTE] 
 > 
-> 由於 Visual Web Developer 不支援測試專案，因此當您使用 Visual Web Developer 時，不會取得 [建立單元測試專案] 對話方塊。
+> 由於視覺化 Web 開發人員不支援測試專案,因此在使用可視化 Web 開發人員時,您不會獲取「創建單元測試專案」 對話框。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image2.jpg)](iteration-1-create-the-application-vb/_static/image3.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image2.jpg)](iteration-1-create-the-application-vb/_static/image3.png)
 
-**圖 02**： [建立單元測試專案] 對話方塊（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image4.png)）
+**圖 02**: 建立單元測試項目對話框 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image4.png))
 
-ASP.NET MVC 應用程式會出現在 [Visual Studio 方案總管] 視窗中（請參閱 [圖 3]）。 如果您沒有看到 方案總管 視窗，則可以選取 功能表 選項 **查看，方案總管** 來開啟此視窗。 請注意，解決方案包含兩個專案： ASP.NET MVC 專案和測試專案。 ASP.NET MVC 專案的名稱為 ContactManager，而測試專案的名稱為 ContactManager。測試。
+ASP.NET MVC 應用程式顯示在可視化工作室解決方案資源管理器視窗中(參見圖 3)。 如果看不到"解決方案資源管理器"視窗,則可以通過選擇功能表選項 **"視圖"、"解決方案資源管理員**"來打開此視窗。 請注意,該解決方案包含兩個專案:ASP.NET MVC 專案和測試專案。 mVCASP.NET專案命名為"連絡人管理器",測試專案命名為"連絡人管理器"。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image3.jpg)](iteration-1-create-the-application-vb/_static/image5.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image3.jpg)](iteration-1-create-the-application-vb/_static/image5.png)
 
-**圖 03**： [方案總管] 視窗（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image6.png)）
+**圖 03**: 解決方案資源管理員視窗 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image6.png))
 
-## <a name="deleting-the-project-sample-files"></a>刪除專案範例檔案
+## <a name="deleting-the-project-sample-files"></a>刪除項目範例檔案
 
-ASP.NET MVC 專案範本包含控制器和視圖的範例檔案。 在建立新的 ASP.NET MVC 應用程式之前，您應該先刪除這些檔案。 您可以在 [方案總管] 視窗中，以滑鼠右鍵按一下檔案或資料夾，然後選取 [**刪除**] 功能表選項，以刪除檔案和資料夾。
+ASP.NET MVC 專案範本包括控制器和檢視的範例檔。 在創建新ASP.NET MVC 應用程式之前,應刪除這些檔。 您可以通過右鍵單擊檔或資料夾並選擇功能表選項 **「刪除**」來刪除解決方案資源管理器視窗中的檔案和資料夾。
 
-您必須從 ASP.NET MVC 專案中刪除下列檔案：
+您需要從 ASP.NET MVC 項目中移除以下檔案:
 
-- \Controllers\HomeController.vb
+- [控制器]主控制器.vb
 
-- \Views\Home\About.aspx
+- [視圖]主頁\關於.aspx
 
-- \Views\Home\Index.aspx
+- [視圖]主頁\索引.aspx
 
-而且，您必須從測試專案中刪除下列檔案：
+而且,您需要從測試項目中刪除以下檔:
 
-\Controllers\HomeControllerTest.vb
+[控制器]主控制器測試.vb
 
 ## <a name="creating-the-database"></a>建立資料庫
 
-Contact Manager 應用程式是資料庫驅動的 web 應用程式。 我們使用資料庫來儲存連絡人資訊。
+連絡人管理員應用程式是資料庫驅動的 Web 應用程式。 我們使用資料庫來存儲聯繫資訊。
 
-ASP.NET MVC 架構與任何現代化資料庫，包括 Microsoft SQL Server、Oracle、MySQL 和 IBM DB2 資料庫。 在本教學課程中，我們會使用 Microsoft SQL Server 資料庫。 當您安裝 Visual Studio 時，系統會提供安裝 Microsoft SQL Server Express 的選項，這是 Microsoft SQL Server 資料庫的免費版本。
+ASP.NET MVC 框架,包含任何現代資料庫,包括 Microsoft SQL Server、Oracle、MySQL 和 IBM DB2 資料庫。 在本教學中,我們使用Microsoft SQL Server資料庫。 安裝 Visual Studio 時,系統會提供安裝 Microsoft SQL Server Express 的選項,這是 Microsoft SQL Server 資料庫的免費版本。
 
-以滑鼠右鍵按一下 [方案總管] 視窗中的應用程式\_[Data] 資料夾，然後選取功能表選項 [**新增]、[新專案]，** 以建立新的資料庫。 在 [**加入新專案**] 對話方塊中，選取 [**資料**類別目錄] 和 [ **SQL Server 資料庫**] 範本（請參閱 [圖 4]）。 將新的資料庫命名為 ContactManagerDB，然後按一下 [確定] 按鈕。
+通過右鍵單擊解決方案資源管理器視窗中的應用\_資料資料夾並選擇功能表選項 **「添加、新專案**」來創建新資料庫。 在 **「新增新項目」** 對話方塊中,選擇 **「資料**」類別和**SQL Server 資料庫**樣本(參見圖 4)。 命名新資料庫 ContactManagerDB.mdf,然後單擊"確定"按鈕。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image4.jpg)](iteration-1-create-the-application-vb/_static/image7.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image4.jpg)](iteration-1-create-the-application-vb/_static/image7.png)
 
-**圖 04**：建立新的 Microsoft SQL Server Express 資料庫（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image8.png)）
+**圖04**:建立新的微軟 SQL Server Express 資料庫 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image8.png))
 
-建立新的資料庫之後，資料庫會出現在 [方案總管] 視窗的 [應用程式\_資料] 資料夾中。 按兩下 [ContactManager] 檔案以開啟 [伺服器總管] 視窗，並連接到資料庫。
+創建新資料庫後,資料庫將顯示在解決方案資源管理器視窗中的應用\_資料資料夾中。 按兩下 ContactManager.mdf 檔案以開啟伺服器資源管理員視窗並連接到資料庫。
 
 > [!NOTE] 
 > 
-> 在 Microsoft Visual Web Developer 的案例中，[伺服器總管] 視窗稱為 [資料庫總管] 視窗。
+> 伺服器資源管理員窗口稱為資料庫資源管理員視窗(對於Microsoft視覺化Web開發人員)。
 
-您可以使用 [伺服器總管] 視窗來建立新的資料庫物件，例如資料庫資料表、視圖、觸發程式和預存程式。 以滑鼠右鍵按一下 [資料表] 資料夾，然後選取 [**加入新的資料表**] 功能表選項。 資料庫資料表設計工具隨即出現（請參閱 圖 5）。
+可以使用 Server 資源管理器視窗創建新的資料庫物件,如資料庫表、視圖、觸發器和儲存過程。 右鍵按下「表」資料夾並選擇功能表選項 **「新增新表**」。。 將顯示資料庫表設計器(參見圖 5)。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image5.jpg)](iteration-1-create-the-application-vb/_static/image9.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image5.jpg)](iteration-1-create-the-application-vb/_static/image9.png)
 
-**圖 05**：資料庫資料表設計工具（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image10.png)）
+**圖 05**: 資料庫表設計器 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image10.png))
 
-我們需要建立包含下列資料行的資料表：
+我們需要建立以下欄的表格:
 
 <a id="0.2_table01"></a>
 
 | **資料行名稱** | **資料類型** | **允許 Null** |
 | --- | --- | --- |
-| ID | int | false |
-| FirstName | nvarchar(50) | false |
-| LastName | nvarchar(50) | false |
-| Phone | nvarchar(50) | false |
-| Email | nvarchar(255) | false |
+| Id | int | false |
+| 名字 | nvarchar(50) | false |
+| 姓氏 | nvarchar(50) | false |
+| 電話 | nvarchar(50) | false |
+| 電子郵件 | nvarchar(255) | false |
 
-第一個資料行（[識別碼] 資料行）是特殊的。 您必須將識別碼資料行標示為識別欄位和主鍵資料行。 您可以藉由展開 [資料行屬性] （查看 [圖 6] 的底部）並向下滾動至 [識別規格] 屬性，來指出資料行是識別欄位。 將 [ **（Is Identity）** ] 屬性設定為 [**是]** 值。
+第一列"Id"列是特殊的。 您需要將 Id 列標記為識別列和主鍵列。 通過展開列屬性(查看圖 6 的底部)向下滾動到標識規範屬性,指示列是標識列。 將 **(是識別)** 屬性設定為值**是**。
 
-您可以選取資料行，然後按一下具有索引鍵圖示的按鈕，將資料行標示為主鍵資料行。 將資料行標記為主鍵資料行之後，索引鍵的圖示會出現在資料行的旁邊（請參閱 [圖 6]）。
+通過選擇列並按一下帶有鍵圖示的按鈕,將列標記為主鍵列。 將列標記為主鍵列后,列旁邊將顯示一個鍵圖示(參見圖 6)。
 
-建立資料表之後，請按一下 [儲存] 按鈕（具有軟碟圖示的按鈕）以儲存新的資料表。 為新資料表命名 [*連絡人*]。
+完成表創建後,按下「儲存」按鈕(帶有軟盤圖示的按鈕)以保存新錶。 為您的新表命名 *「連絡人*」。
 
-完成建立 Contacts 資料庫資料表之後，您應該在資料表中加入一些記錄。 以滑鼠右鍵按一下 [伺服器總管] 視窗中的 [連絡人] 資料表，然後選取 [**顯示資料表資料**] 功能表選項。 在出現的方格中輸入一或多個連絡人。
+完成創建"連絡人"資料庫表後,應向該表添加一些記錄。 右鍵按一下伺服器資源管理器視窗中的"連絡人"表,然後選擇功能表選項 **"顯示表資料**"。 在顯示的網格中輸入一個或多個聯繫人。
 
 ## <a name="creating-the-data-model"></a>建立資料模型
 
-ASP.NET MVC 應用程式是由模型、視圖和控制器所組成。 我們一開始先建立一個代表我們在上一節中建立之 Contacts 資料表的模型類別。
+ASP.NET MVC 應用程式由模型、視圖和控制器組成。 我們首先創建一個模型類,該類表示我們在上一節中創建的"連絡人"表。
 
-在本教學課程中，我們會使用 Microsoft Entity Framework 自動從資料庫產生模型類別。
+在本教學中,我們使用Microsoft實體框架從資料庫自動生成模型類。
 
 > [!NOTE] 
 > 
-> ASP.NET MVC 架構不會以任何方式系結至 Microsoft Entity Framework。 您可以使用 ASP.NET MVC 搭配替代的資料庫存取技術，包括 NHibernate、LINQ to SQL 或 ADO.NET。
+> ASP.NET MVC 框架不以任何方式綁定到 Microsoft 實體框架。 您可以將mVCASP.NET替代資料庫存取技術(包括 NHibernate、LINQ 到 SQL 或ADO.NET) 使用。
 
-請遵循下列步驟來建立資料模型類別：
+依以下步驟建立資料模型類別:
 
-1. 以滑鼠右鍵按一下 [方案總管] 視窗中的 [模型] 資料夾，然後選取 [**加入]、[新增專案**]。 [新增**專案**] 對話方塊隨即出現（請參閱 [圖 6]）。
-2. 選取 [**資料**類別] 和 [ **ADO.NET 實體資料模型**] 範本。 將您的資料模型命名為*ContactManagerModel* ，然後按一下 [**新增**] 按鈕。 [實體資料模型 wizard] 隨即出現（請參閱 [圖 7]）。
-3. 在 [**選擇模型內容**] 步驟中，選取 [**從資料庫產生**] （請參閱 [圖 7]）。
-4. 在 [**選擇您的資料**連線] 步驟中，選取 [ContactManagerDB] 資料庫，並輸入實體連接設定的名稱*ContactManagerDBEntities* （請參閱 [圖 8]）。
-5. 在 [**選擇您的資料庫物件**] 步驟中，選取標示為 [資料表] 的核取方塊（見 [圖 9]）。 資料模型會包含資料庫中包含的所有資料表（其中只有一個 [連絡人] 資料表）。 輸入命名空間*模型*。 按一下 [完成] 按鈕以完成嚮導。
+1. 右鍵按下「解決方案資源管理器」視窗中的「模型」資料夾,然後選擇「**添加新專案**」。 將顯示 **「添加新專案」** 對話框(參見圖 6)。
+2. 選擇 **「資料**」類別和**ADO.NET 實體資料模型**樣本。 命名資料模型*ContactManagerModel.edmx,* 然後按下 **「添加**」按鈕。 將顯示實體數據模型向導(參見圖 7)。
+3. 在 **「選擇模型內容」** 步驟中,選擇**從資料庫中生成**(參見圖 7)。
+4. 在 **「選擇資料連線**」步驟中,選擇 ContactManagerDB.mdf 資料庫,並輸入實體連接設定的名稱 *「連絡人管理器資料庫實體*」(參見圖 8)。
+5. 在 **「選擇資料庫物件**」步驟中,選擇標記為表的複選框(參見圖 9)。 數據模型將包括資料庫中包含的所有表(只有一個,"連絡人"表)。 輸入命名空間*模型*。 按下「完成」按鈕以完成嚮導。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image6.jpg)](iteration-1-create-the-application-vb/_static/image11.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image6.jpg)](iteration-1-create-the-application-vb/_static/image11.png)
 
-**圖 06**： [加入新專案] 對話方塊（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image12.png)）
+**圖 06**: 新增新項目對話框 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image12.png))
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image7.jpg)](iteration-1-create-the-application-vb/_static/image13.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image7.jpg)](iteration-1-create-the-application-vb/_static/image13.png)
 
-**圖 07**：選擇模型內容（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image14.png)）
+**圖 07**: 選擇模型內容 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image14.png))
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image8.jpg)](iteration-1-create-the-application-vb/_static/image15.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image8.jpg)](iteration-1-create-the-application-vb/_static/image15.png)
 
-**圖 08**：選擇您的資料連線（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image16.png)）
+**圖 08**: 選擇您的資料連線 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image16.png))
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image9.jpg)](iteration-1-create-the-application-vb/_static/image17.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image9.jpg)](iteration-1-create-the-application-vb/_static/image17.png)
 
-**圖 09**：選擇您的資料庫物件（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image18.png)）
+**圖 09**: 選擇資料庫物件([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image18.png))
 
-完成實體資料模型 Wizard 之後，實體資料模型設計工具隨即出現。 設計工具會顯示對應至每個模型化之資料表的類別。 您應該會看到一個名為 [連絡人] 的類別。
+完成實體數據模型嚮導後,將顯示實體數據模型設計器。 設計器顯示與要建模的每個表對應的類。 您應該會看到一個名為"連絡人"的類。
 
-實體資料模型 wizard 會根據資料庫資料表名稱來產生類別名稱。 您幾乎都需要變更 wizard 所產生的類別名稱。 以滑鼠右鍵按一下設計工具中的 [連絡人] 類別，然後選取 [**重新命名**] 功能表選項。 將類別的名稱從 [連絡人（複數）] 變更為 [連絡人（單數）]。 在您變更類別名稱之後，類別應該會如 [圖 10] 所示。
+實體數據模型向導基於資料庫表名稱生成類名稱。 您幾乎總是需要更改精靈產生的類的名稱。 右鍵單擊設計器中的"連絡人"類,然後選擇功能表選項 **"重新命名**。 將類的名稱從"連絡人"(複數)更改為"連絡人"(單數)。 更改類名稱后,類應如下所示 10。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image10.jpg)](iteration-1-create-the-application-vb/_static/image19.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image10.jpg)](iteration-1-create-the-application-vb/_static/image19.png)
 
-**圖 10**： Contact 類別（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image20.png)）
+**圖10**: 連絡人類 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image20.png))
 
-此時，我們已建立資料庫模型。 我們可以使用 Contact 類別來代表資料庫中的特定連絡人記錄。
+此時,我們創建了資料庫模型。 我們可以使用 Contact 類來表示資料庫中的特定聯繫人記錄。
 
 ## <a name="creating-the-home-controller"></a>建立主控制器
 
-下一步是建立我們的主控制器。 Home 控制器是在 ASP.NET MVC 應用程式中叫用的預設控制器。
+下一步是創建我們的主控制器。 主控制器是在 mVC 應用程式中調用的預設控制器 ASP.NET。
 
-以滑鼠右鍵按一下 [方案總管] 視窗中的 [控制器] 資料夾，然後選取 [**新增]、[控制器**] 功能表選項（請參閱 [圖 11]），以建立主控制器類別。 請注意，標示**為 [新增]、[更新] 和 [詳細資料] 情節的動作方法**。 請確定已核取此核取方塊，然後再按一下 [**新增**] 按鈕。
+通過右鍵單擊解決方案資源管理器視窗中的控制器資料夾並選擇功能表選項 **「添加,控制器**」(參見圖 11),創建主控制器類。 請注意,標記為「**添加創建、更新和詳細資訊方案」操作方法的**複選框。 在按下「**添加**」按鈕之前,請確保選中此複選框。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image11.jpg)](iteration-1-create-the-application-vb/_static/image21.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image11.jpg)](iteration-1-create-the-application-vb/_static/image21.png)
 
-**圖 11**：新增主控制器（[按一下以觀看完整大小的影像](iteration-1-create-the-application-vb/_static/image22.png)）
+**圖11**: 新增主控制器 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image22.png))
 
-當您建立主控制器時，您會取得清單1中的類別。
+建立主控制器時,您將獲得清單 1 中的類。
 
-**清單 1-Controllers\HomeController.vb**
+**清單1 - 控制器\主控制器.vb**
 
 [!code-vb[Main](iteration-1-create-the-application-vb/samples/sample1.vb)]
 
-## <a name="listing-the-contacts"></a>列出連絡人
+## <a name="listing-the-contacts"></a>列出聯絡人
 
-為了顯示 [連絡人] 資料庫資料表中的記錄，我們需要建立索引（）動作和索引視圖。
+為了在"連絡人"資料庫表中顯示記錄,我們需要創建一個索引() 操作和索引視圖。
 
-Home 控制器已經包含 Index （）動作。 我們需要修改這個方法，使其看起來像 [清單 2]。
+主控制器已包含索引() 操作。 我們需要修改此方法,以便它看起來像清單 2。
 
-**清單 2-Controllers\HomeController.vb**
+**清單2 - 控制器\主控制器.vb**
 
 [!code-vb[Main](iteration-1-create-the-application-vb/samples/sample2.vb)]
 
-請注意，[清單 2] 中的 Home 控制器類別包含名為 \_實體的私用欄位。 [\_實體] 欄位代表資料模型中的實體。 我們會使用 [\_實體] 欄位來與資料庫通訊。
+請注意,清單 2 中的主控制器類\_包含名為 實體的專用欄位。 實體\_欄位表示數據模型中的實體。 我們使用\_實體欄位與資料庫通信。
 
-Index （）方法會傳回代表連絡人資料庫資料表中所有連絡人的視圖。 運算式 \_的實體。ContactSet. ToList （）會傳回連絡人清單做為泛型清單。
+Index() 方法傳回表示連絡人資料庫表中的所有聯繫人的檢視。 表達式\_實體。連絡人集.ToList() 將連絡人清單作為通用清單返回。
 
-既然我們已建立索引控制器，接下來我們需要建立索引視圖。 建立索引視圖之前，請先選取 [**組建]、[組建方案**] 功能表選項來編譯您的應用程式。 在加入視圖之前，您應該一律編譯專案，以便在 [**加入視圖**] 對話方塊中顯示模型類別清單。
+現在,我們已經創建了索引控制器,接下來我們需要創建索引視圖。 在創建索引檢視之前,請透過選擇功能表選項 **「生成、生成解決方案**」來編譯應用程式。 在添加檢視之前,應始終編譯專案,以便在 **「添加檢視**」對話框中顯示模型類清單。
 
-以滑鼠右鍵按一下 [索引] （）方法，然後選取 [**加入視圖**] 功能表選項（請參閱 [圖 12]），即可建立索引視圖。 選取此功能表選項會開啟 [**加入視圖**] 對話方塊（請參閱 [圖 13]）。
+通過右鍵單擊 Index() 方法並選擇選單選項 **「添加檢視**」來建立索引檢視(請參見圖 12)。 選擇此選單選項將打開 **「添加檢視」** 對話框(參見圖 13)。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image12.jpg)](iteration-1-create-the-application-vb/_static/image23.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image12.jpg)](iteration-1-create-the-application-vb/_static/image23.png)
 
-**圖 12**：新增索引視圖（[按一下以觀看完整大小的影像](iteration-1-create-the-application-vb/_static/image24.png)）
+**圖 12**: 新增索引檢視 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image24.png))
 
-在 [**加入視圖**] 對話方塊中，核取標示為 [**建立強型別的視圖**] 的核取方塊。 選取 [View data class ContactManager. Contact] 和 [View content] 清單。 選取這些選項會產生一個顯示連絡人記錄清單的視圖。
+在 **'新增檢視'** 對話框中, 選擇標籤為「**建立強類型檢視」 選單的欄位**。 選擇「查看數據類聯繫人管理器.連絡人」 和「查看內容清單」。 選擇這些選項將生成顯示聯繫人記錄列表的檢視。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image13.jpg)](iteration-1-create-the-application-vb/_static/image25.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image13.jpg)](iteration-1-create-the-application-vb/_static/image25.png)
 
-**圖 13**： [加入視圖] 對話方塊（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image26.png)）
+**圖 13**: 新增檢視對話框 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image26.png))
 
-當您按一下 [**新增**] 按鈕時，就會產生 [清單 3] 中的索引視圖。 請注意，出現在檔案頂端的 &lt;% @ Page%&gt; 指示詞。 索引視圖會繼承自 ViewPage&lt;IEnumerable&lt;ContactManager&gt;&gt; 類別。 換句話說，視圖中的 Model 類別代表連絡人實體的清單。
+按下「**添加**」按鈕時,將生成清單 3 中的索引檢視。 請注意&lt;顯示在檔案頂部&gt;的 %@ 頁 % 指令。 &lt;索引檢視從ViewPage IE500"&lt;聯繫人管理器.模型.連&gt;&gt;絡人 類繼承。 換句話說,視圖中的 Model 類表示聯繫人實體的清單。
 
-索引視圖的主體包含 foreach 迴圈，可逐一查看模型類別所代表的每個連絡人。 Contact 類別的每個屬性值都會顯示在 HTML 資料表中。
+Index 檢視的正文包含一個 foreach 迴圈,該迴圈通過模型類表示的每個聯繫人進行迴圈。 Contact 類別的每個屬性的值顯示在 HTML 表中。
 
-**清單 3-Views\Home\Index.aspx （未修改）**
+**清單 3 - 檢視\home_Index.aspx(未修改)**
 
 [!code-aspx[Main](iteration-1-create-the-application-vb/samples/sample3.aspx)]
 
-我們需要對索引視圖進行一次修改。 因為我們不會建立詳細資料檢視，所以我們可以移除 [詳細資料] 連結。 從 [索引] 視圖中尋找並移除下列程式碼：
+我們需要對索引視圖進行一次修改。 由於我們不是在創建"詳細資訊"視圖,因此我們可以刪除"詳細資訊"連結。 從索引檢視尋找與移除以下代碼:
 
-{. id = item。識別碼}）%&gt;
+{.id = 項。Id=)%&gt;
 
-修改索引視圖之後，您可以執行 Contact Manager 應用程式。 選取功能表選項 [Debug]、[開始調試]，或直接按 F5。 第一次執行應用程式時，您會看到 [圖 14] 中的對話方塊。 選取 [**修改 web.config 檔案以啟用調試**] 選項，然後按一下 [確定] 按鈕。
+修改索引檢視後,可以運行聯繫人管理器應用程式。 選擇功能表選項「調試」、「開始調試」或「按 F5」。 首次運行應用程式時,您將獲得圖 14 中的對話方塊。 選擇 **「修改 Web.config 檔以啟用除錯**」選項,然後單擊「確定」 按鈕。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image14.jpg)](iteration-1-create-the-application-vb/_static/image27.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image14.jpg)](iteration-1-create-the-application-vb/_static/image27.png)
 
-**圖 14**：啟用調試（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image28.png)）
+**圖14**:啟用除錯 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image28.png))
 
-預設會傳回索引視圖。 此視圖會列出 [連絡人] 資料庫資料表中的所有資料（請參閱 [圖 15]）。
+默認情況下,將返回索引視圖。 此檢視列出聯繫人資料庫表中的所有數據(參見圖 15)。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image15.jpg)](iteration-1-create-the-application-vb/_static/image29.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image15.jpg)](iteration-1-create-the-application-vb/_static/image29.png)
 
-**圖 15**：索引視圖（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image30.png)）
+**圖 15**: 索引檢視 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image30.png))
 
-請注意，索引視圖包含在視圖底部標示為 [建立新的] 的連結。 在下一節中，您將瞭解如何建立新的連絡人。
+請注意,索引檢視在視圖底部包含標記為"新建"的連結。 在下一節中,您將瞭解如何創建新聯繫人。
 
 ## <a name="creating-new-contacts"></a>建立新連絡人
 
-若要讓使用者能夠建立新的連絡人，我們必須將兩個 Create （）動作新增至主控制器。 我們需要建立一個 Create （）動作，以傳回用來建立新連絡人的 HTML 表單。 我們需要建立第二個 Create （）動作，以執行新連絡人的實際資料庫插入。
+為了使用戶能夠創建新的聯繫人,我們需要向主控制器添加兩個 Create() 操作。 我們需要創建一個 Create() 操作,該操作傳回 HTML 表單以創建新連絡人。 我們需要創建第二個 Create() 操作,以執行新聯繫人的實際資料庫插入。
 
-我們需要新增至主控制器的新 Create （）方法包含在 [清單 4] 中。
+我們需要添加到主控制器的新 Create() 方法包含在清單 4 中。
 
-**清單 4-Controllers\HomeController.vb （含 Create 方法）**
+**清單4 - 控制器\homeController.vb(使用建立方法)**
 
 [!code-vb[Main](iteration-1-create-the-application-vb/samples/sample4.vb)]
 
-第一個 Create （）方法可以使用 HTTP GET 叫用，而第二個 Create （）方法只能由 HTTP POST 叫用。 換句話說，只有在張貼 HTML 表單時，才可以叫用第二個 Create （）方法。 第一個 Create （）方法只會傳回一個視圖，其中包含用於建立新連絡人的 HTML 表單。 第二個 Create （）方法更為有趣：它會將新的連絡人加入資料庫。
+第一個 Create() 方法可以使用 HTTP GET 調用,而第二個 Create() 方法只能由 HTTP POST 調用。 換句話說,第二個 Create() 方法只能在發表 HTML 窗體時調用。 第一個 Create() 方法僅傳回包含用於創建新連絡人的 HTML 窗體的檢視。 第二個 Create() 方法更有趣:它將新的聯繫人添加到資料庫中。
 
-請注意，第二個 Create （）方法已經過修改，可接受 Contact 類別的實例。 從 HTML 表單張貼的表單值會由 ASP.NET MVC 架構自動系結至這個連絡人類別。 HTML 建立表單中的每個表單欄位都會指派給 Contact 參數的屬性。
+請注意,已修改第二個 Create() 方法以接受 Contact 類的實例。 從 HTML 窗體發佈的表單值由 ASP.NET MVC 框架自動綁定到此 Contact 類。 HTML 創建表單中的每個表單欄位都分配給聯絡人「參數的屬性。
 
-請注意，Contact 參數是以 [Bind] 屬性裝飾。 [Bind] 屬性是用來從系結中排除 Contact Id 屬性。 因為 Id 屬性代表識別屬性，所以我們不想要設定 Id 屬性。
+請注意,連絡人參數用 [Bind] 屬性進行修飾。 [綁定] 屬性用於從綁定中排除聯繫人 Id 屬性。 由於 Id 屬性表示標識屬性,因此我們不希望設置 Id 屬性。
 
-在 Create （）方法的主體中，Entity Framework 是用來將新的連絡人插入資料庫中。 新的連絡人會加入至現有的連絡人集，並呼叫 SaveChanges （）方法，將這些變更推送回基礎資料庫。
+在 Create() 方法的正文中,實體框架用於將新的聯繫人插入到資料庫中。 新的連絡人將添加到現有的連絡人集,並調用 SaveChanges() 方法將這些更改推送回基礎資料庫。
 
-您可以用滑鼠右鍵按一下兩個 Create （）方法，然後選取功能表選項 [**加入視圖**] （請參閱 [圖 16]），產生建立新連絡人的 HTML 表單。
+您可以通過右鍵按兩個 Create() 方法之一併選擇選單選項 **「新增檢視**」來生成用於創建新聯繫人的 HTML 表單(參見圖 16)。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image16.jpg)](iteration-1-create-the-application-vb/_static/image31.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image16.jpg)](iteration-1-create-the-application-vb/_static/image31.png)
 
-**圖 16**：新增 Create View （[按一下以觀看完整大小的影像](iteration-1-create-the-application-vb/_static/image32.png)）
+**圖 16**: 新增建立檢視 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image32.png))
 
-在 [**加入視圖**] 對話方塊中，選取 [ **ContactManager** ] 類別和 [視圖內容] 的 [**建立**] 選項（請參閱 [圖 17]）。 當您按一下 [**新增**] 按鈕時，就會自動產生 Create view。
+在 **「添加檢視」** 對話方塊中,選擇 **「連絡人管理員.連絡人」** 類別和「建立檢視內容 **」** 選項(參見圖 17)。 按下「**添加**」按鈕時,將自動生成"創建"檢視。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image17.jpg)](iteration-1-create-the-application-vb/_static/image33.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image17.jpg)](iteration-1-create-the-application-vb/_static/image33.png)
 
-**圖 17**：查看頁面分解（[按一下以觀看完整大小的影像](iteration-1-create-the-application-vb/_static/image34.png)）
+**圖17**: 看到頁面爆炸 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image34.png))
 
-[建立] 視圖包含 Contact 類別之每個屬性的表單欄位。 [建立] 視圖的程式碼包含在 [清單 5] 中。
+"創建"檢視包含 Contact 類的每個屬性的表單欄位。 "創建"檢視的代碼包含在清單 5 中。
 
-**清單 5-Views\Home\Create.aspx**
+**清單 5 - 檢視\home_Create.aspx**
 
 [!code-aspx[Main](iteration-1-create-the-application-vb/samples/sample5.aspx)]
 
-修改 Create （）方法並新增 Create view 之後，您可以執行 Contact manager 應用程式，並建立新的連絡人。 按一下 [索引] 視圖中出現的 [**建立新**的] 連結，以流覽至 [建立] 視圖。 您應該會在 [圖 18] 看到此視圖。
+修改 Create() 方法並添加"創建"視圖後,可以運行連絡人經理應用程式並創建新連絡人。 按下「**新建**」檢視中顯示的連結以導航到「創建」檢視。 您應該在圖 18 中看到檢視。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image18.jpg)](iteration-1-create-the-application-vb/_static/image35.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image18.jpg)](iteration-1-create-the-application-vb/_static/image35.png)
 
-**圖 18**： [建立] 視圖（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image36.png)）
+**圖 18**: 建立檢視 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image36.png))
 
-## <a name="editing-contacts"></a>編輯連絡人
+## <a name="editing-contacts"></a>編輯聯絡人
 
-加入編輯連絡人記錄的功能，與加入建立新連絡人記錄的功能非常類似。 首先，我們需要將兩個新的編輯方法加入至 Home 控制器類別。 這些新的 Edit （）方法包含在 [清單 6] 中。
+添加用於編輯連絡人記錄的功能與添加創建新連絡人記錄的功能非常相似。 首先,我們需要向主控制器類添加兩種新的 Edit 方法。 這些新的 Edit() 方法包含在清單 6 中。
 
-**清單 6-Controllers\HomeController.vb （含編輯方法）**
+**清單6 - 控制器\主控制器.vb(使用編輯方法)**
 
 [!code-vb[Main](iteration-1-create-the-application-vb/samples/sample6.vb)]
 
-第一個 Edit （）方法是由 HTTP GET 作業叫用。 識別碼參數會傳遞給這個方法，代表正在編輯之連絡人記錄的識別碼。 Entity Framework 是用來抓取符合識別碼的連絡人。會傳回包含編輯記錄之 HTML 表單的視圖。
+第一個 Edit() 方法由 HTTP GET 操作調用。 Id 參數傳遞給此方法,此方法表示要編輯的聯繫人記錄的 ID。 實體框架用於檢索與 Id 匹配的連絡人。返回包含用於編輯記錄的 HTML 窗體的檢視。
 
-第二個 Edit （）方法會對資料庫執行實際的更新。 這個方法會接受 Contact 類別的實例做為參數。 ASP.NET MVC 架構會自動將表單欄位從編輯表單系結到這個類別。 請注意，當您編輯連絡人時，不會包含 [Bind] 屬性（我們需要 Id 屬性的值）。
+第二個 Edit() 方法執行對資料庫的實際更新。 此方法接受 Contact 類的實例作為參數。 ASP.NET MVC 框架會自動將表單欄位從「編輯」窗體綁定到此類。 請注意,在編輯連絡人時,您沒有包含 [Bind] 屬性(我們需要 Id 屬性的值)。
 
-Entity Framework 可用來將修改過的連絡人儲存至資料庫。 原始連絡人必須先從資料庫中抓取。 接下來，會呼叫 Entity Framework ApplyPropertyChanges （）方法來記錄連絡人的變更。 最後，會呼叫 Entity Framework SaveChanges （）方法，將變更保存至基礎資料庫。
+實體框架用於將修改後的聯繫人保存到資料庫。 必須首先從資料庫中檢索原始聯繫人。 接下來,調用實體框架應用屬性更改() 方法來記錄對聯繫人的更改。 最後,調用實體框架保存更改() 方法來保留對基礎資料庫的更改。
 
-以滑鼠右鍵按一下 [編輯] （）方法，然後選取 [新增視圖] 功能表選項，即可產生包含編輯表單的視圖。 在 [加入視圖] 對話方塊中，選取 [ **ContactManager** ] 類別和 [**編輯**視圖] 內容（請參閱 [圖 19]）。
+您可以通過右鍵按一下 Edit() 方法並選擇選單選項「添加檢視」來生成包含「編輯」窗體的視圖。 在"添加檢視"對話框中,選擇 **"連絡人管理器.模型.聯繫人類"** 和 **「編輯**檢視」內容(參見圖 19)。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image19.jpg)](iteration-1-create-the-application-vb/_static/image37.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image19.jpg)](iteration-1-create-the-application-vb/_static/image37.png)
 
-**圖 19**：新增編輯檢視（[按一下以觀看完整大小的影像](iteration-1-create-the-application-vb/_static/image38.png)）
+**圖 19**: 新增編輯檢視 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image38.png))
 
-當您按一下 [新增] 按鈕時，就會自動產生新的編輯檢視。 產生的 HTML 表單包含對應至 Contact 類別之每個屬性的欄位（請參閱 [清單 7]）。
+按下「添加」按鈕時,將自動生成新的「編輯」檢視。 生成的 HTML 窗體包含對應於 Contact 類的每個屬性的欄位(請參見清單 7)。
 
-**清單 7-Views\Home\Edit.aspx**
+**清單7 - 檢視\home_編輯.aspx**
 
 [!code-aspx[Main](iteration-1-create-the-application-vb/samples/sample7.aspx)]
 
-## <a name="deleting-contacts"></a>刪除連絡人
+## <a name="deleting-contacts"></a>移除聯絡人
 
-如果您想要刪除連絡人，則需要將兩個 Delete （）動作新增至 Home 控制器類別。 第一個 Delete （）動作會顯示刪除確認表單。 第二個 Delete （）動作會執行實際的刪除。
+如果要刪除連絡人,則需要向主控制器類添加兩個 Delete() 操作。 第一個刪除() 操作顯示刪除確認表單。 第二個 Delete() 操作執行實際刪除。
 
 > [!NOTE] 
 > 
-> 之後，在反復專案 #7 中，我們會修改 Contact Manager，使其支援一個步驟 Ajax delete。
+> 稍後,在反覆運算#7中,我們修改聯繫人管理器,以便它支援 Ajax 刪除的一個步驟。
 
-[清單 8] 中包含兩個新的 Delete （）方法。
+清單8中包含兩種新的 Delete() 方法。
 
-**清單 8-Controllers\HomeController.vb （Delete 方法）**
+**清單8 - 控制器\主控制器.vb(刪除方法)**
 
 [!code-vb[Main](iteration-1-create-the-application-vb/samples/sample8.vb)]
 
-第一個 Delete （）方法會傳回確認表單，以便從資料庫中刪除連絡人記錄（請參閱 Figure20）。 第二個 Delete （）方法會對資料庫執行實際的刪除作業。 從資料庫抓取原始連絡人之後，會呼叫 Entity Framework DeleteObject （）和 SaveChanges （）方法來執行資料庫刪除。
+第一個 Delete() 方法傳回一個確認表單,用於從資料庫中刪除連絡人記錄(參見圖 20)。 第二個 Delete() 方法對資料庫執行實際刪除操作。 從資料庫檢索原始連絡人後,將調用實體框架 DeleteObject() 和保存更改()方法以執行資料庫刪除。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image20.jpg)](iteration-1-create-the-application-vb/_static/image39.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image20.jpg)](iteration-1-create-the-application-vb/_static/image39.png)
 
-**圖 20**：刪除確認視圖（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image40.png)）
+**圖20**:刪除確認檢視([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image40.png))
 
-我們需要修改索引視圖，使其包含刪除連絡人記錄的連結（請參閱 [圖 21]）。 您必須將下列程式碼加入至包含編輯連結的相同資料表資料格：
+我們需要修改 Index 檢視,以便它包含用於刪除聯繫人記錄的連結(參見圖 21)。 您需要將以下代碼加入包含「編輯」連結的同一表單元格中:
 
-{. id = item。識別碼}）%&gt;
+{.id = 項。Id=)%&gt;
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image21.jpg)](iteration-1-create-the-application-vb/_static/image41.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image21.jpg)](iteration-1-create-the-application-vb/_static/image41.png)
 
-**圖 21**：具有編輯連結的索引視圖（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image42.png)）
+**圖21**:索引檢視與編輯連結([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image42.png))
 
-接下來，我們需要建立刪除確認視圖。 以滑鼠右鍵按一下 Home 控制器類別中的 Delete （）方法，然後選取 [新增視圖] 功能表選項。 [加入視圖] 對話方塊隨即出現（請參閱 [圖 22]）。
+接下來,我們需要創建刪除確認檢視。 右鍵按一下主控制器類中的 Delete() 方法,然後選擇選單選項「添加視圖」。 將顯示「添加檢視」對話框(參見圖 22)。
 
-不同于清單的案例、建立和編輯檢視，[加入視圖] 對話方塊不會包含建立刪除視圖的選項。 相反地，請選取 [ **ContactManager** ] 資料類別和 [**空白**視圖內容]。 選取 [空白視圖內容] 選項將需要我們自己建立視圖。
+與「清單」、"創建「和」編輯「檢視」的情況不同,「添加檢視」對話框不包含創建「刪除」檢視的選項。 而是選擇 **「聯繫人管理器.模型.連絡人**資料類」和 **「空**檢視」內容。 選擇"空檢視內容"選項需要我們自己創建視圖。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image22.jpg)](iteration-1-create-the-application-vb/_static/image43.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image22.jpg)](iteration-1-create-the-application-vb/_static/image43.png)
 
-**圖 22**：新增刪除確認視圖（[按一下以觀看完整大小的影像](iteration-1-create-the-application-vb/_static/image44.png)）
+**圖22**:新增刪除確認檢視 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image44.png))
 
-[刪除] 視圖的內容包含在 [清單 9] 中。 此視圖包含一個表單，可確認是否應刪除特定的連絡人（請參閱 [圖 21]）。
+"刪除"檢視的內容包含在清單 9 中。 此檢視包含一個表單,該窗體確認是否應刪除特定聯繫人(參見圖 21)。
 
-**清單 9-Views\Home\Delete.aspx**
+**清單 9 - 檢視\home_Delete.aspx**
 
 [!code-aspx[Main](iteration-1-create-the-application-vb/samples/sample9.aspx)]
 
-## <a name="changing-the-name-of-the-default-controller"></a>變更預設控制器的名稱
+## <a name="changing-the-name-of-the-default-controller"></a>變更預設控制器名稱
 
-這可能會讓您想要讓使用連絡人的控制器類別名稱命名為 HomeController 類別。 控制器不應該命名為 ContactController 嗎？
+使用聯絡人的控制器類的名稱名為 HomeController 類,這可能會讓您煩惱。 控制器不應被命名為「連絡人控制器」?
 
-這個問題很容易修正。 首先，我們需要重構主控制器的名稱。 在 Visual Studio Code 編輯器中開啟 HomeController 類別，以滑鼠右鍵按一下類別的名稱，然後選取 [**重新命名**] 功能表選項。 選取此功能表選項會開啟 [重新命名] 對話方塊。
+此問題很容易解決。 首先,我們需要重構主控制器的名稱。 在 Visual Studio 代碼編輯器中打開 HomeController 類,右鍵單擊類的名稱並選擇選單選項 **「重命名**」。 選擇此選單選項將打開" 重新命名對話框。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image23.jpg)](iteration-1-create-the-application-vb/_static/image45.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image23.jpg)](iteration-1-create-the-application-vb/_static/image45.png)
 
-**圖 23**：重構控制器名稱（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image46.png)）
+**圖23**:重構控制器名稱 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image46.png))
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image24.jpg)](iteration-1-create-the-application-vb/_static/image47.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image24.jpg)](iteration-1-create-the-application-vb/_static/image47.png)
 
-**圖 24**：使用 [重新命名] 對話方塊（[按一下以查看完整大小的影像](iteration-1-create-the-application-vb/_static/image48.png)）
+**圖24**:使用重新命名對話框 ([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image48.png))
 
-如果您將控制器類別重新命名，Visual Studio 也會在 [Views] 資料夾中更新資料夾的名稱。 Visual Studio 會將 \Views\Home 資料夾重新命名為 \Views\Contact 資料夾。
+如果重新命名控制器類,Visual Studio 也會更新「檢視」資料夾中資料夾的名稱。 Visual Studio 會將 [視圖]主頁資料夾重命名為 [視圖]連絡人資料夾。
 
-進行這種變更之後，您的應用程式將不再有主控制器。 當您執行應用程式時，您會看到 [圖 25] 中的錯誤頁面。
+進行此更改後,應用程式將不再具有主控制器。 執行應用程式時,您將獲得圖 25 中的錯誤頁。
 
-[![[新增專案] 對話方塊](iteration-1-create-the-application-vb/_static/image25.jpg)](iteration-1-create-the-application-vb/_static/image49.png)
+[![[New Project] \(新增專案\) 對話方塊](iteration-1-create-the-application-vb/_static/image25.jpg)](iteration-1-create-the-application-vb/_static/image49.png)
 
-**圖 25**：沒有預設控制器（[按一下以觀看完整大小的影像](iteration-1-create-the-application-vb/_static/image50.png)）
+**圖25:** 無預設控制器([按下以檢視全尺寸影像](iteration-1-create-the-application-vb/_static/image50.png))
 
-我們必須更新 global.asax 檔案中的預設路由，才能使用連絡人控制器，而不是主控制器。 開啟 global.asax 檔案，並修改預設路由所使用的預設控制器（請參閱 [清單 10]）。
+我們需要更新 Global.asax 檔案中的預設路由,以便使用聯繫人控制器而不是主控制器。 打開 Global.asax 檔並修改預設路由使用的預設控制器(請參見清單 10)。
 
-**清單 10-global.asax .vb**
+**清單10 - 全域.asax.vb**
 
 [!code-vb[Main](iteration-1-create-the-application-vb/samples/sample10.vb)]
 
-在您進行這些變更之後，Contact Manager 就會正確執行。 現在，它會使用 Contact controller 類別做為預設控制器。
+進行這些更改後,聯繫人管理器將正確運行。 現在,它將使用聯繫人控制器類作為默認控制器。
 
 ## <a name="summary"></a>總結
 
-在第一次的反復專案中，我們以最快速的方式建立了基本的 Contact Manager 應用程式。 我們利用 Visual Studio 來自動產生控制器和 views 的初始程式碼。 我們也利用 Entity Framework 來自動產生我們的資料庫模型類別。
+在第一次反覆運算中,我們以盡可能快的方式創建了一個基本的聯繫人管理器應用程式。 我們利用 Visual Studio 自動為控制器和檢視生成初始代碼。 我們還利用實體框架自動生成資料庫模型類。
 
-目前，我們可以使用 Contact Manager 應用程式來列出、建立、編輯和刪除連絡人記錄。 換句話說，我們可以執行資料庫驅動 web 應用程式所需的所有基本資料庫作業。
+目前,我們可以使用聯繫人管理器應用程式列出、創建、編輯和刪除聯繫人記錄。 換句話說,我們可以執行資料庫驅動的 Web 應用程式所需的所有基本資料庫操作。
 
-可惜的是，我們的應用程式有一些問題。 首先，我想承認這一點，Contact Manager 應用程式並不是最吸引人的應用程式。 它需要一些設計工作。 在下一個反復專案中，我們將探討如何變更預設的視圖主版頁面和級聯樣式表，以改善應用程式的外觀。
+不幸的是,我們的應用程式有一些問題。 首先,我猶豫地承認這一點,聯繫人管理器應用程式不是最有吸引力的應用程式。 它需要一些設計工作。 在下一次反覆運算中,我們將瞭解如何更改默認視圖母版頁和級聯樣式表,以改善應用程序的外觀。
 
-第二，我們尚未實行任何表單驗證。 例如，沒有任何內容可以防止您提交建立連絡人表單，而不需要輸入任何表單欄位的值。 此外，您可以輸入不正確電話號碼和電子郵件地址。 我們開始在反復專案 #3 中解決表單驗證的問題。
+其次,我們尚未實現任何表單驗證。 例如,沒有任何措施可以阻止您提交"創建連絡人表單",而無需為任何表單欄位輸入值。 此外,您還可以輸入無效的電話號碼和電子郵寄地址。 我們開始在反覆運算#3解決表單驗證問題。
 
-最後，最重要的是，無法輕鬆地修改或維護連絡人管理員應用程式的目前反復專案。 例如，資料庫存取邏輯會直接內建至控制器動作。 這表示我們無法修改我們的資料存取程式碼，而不需要修改控制器。 在稍後的反復專案中，我們會探索可執行檔軟體設計模式，讓 Contact Manager 更有彈性地進行變更。
+最後,最重要的是,無法輕鬆修改或維護聯繫人管理器應用程式的當前反覆運算。 例如,資料庫訪問邏輯直接烘焙到控制器操作中。 這意味著,如果不修改控制器,我們就無法修改數據訪問代碼。 在以後的反覆運算中,我們探索了可以實現的軟體設計模式,以使聯繫人管理器對更改更具彈性。
 
 > [!div class="step-by-step"]
-> [上一頁](iteration-7-add-ajax-functionality-cs.md)
-> [下一頁](iteration-2-make-the-application-look-nice-vb.md)
+> [前一個](iteration-7-add-ajax-functionality-cs.md)
+> [下一個](iteration-2-make-the-application-look-nice-vb.md)
