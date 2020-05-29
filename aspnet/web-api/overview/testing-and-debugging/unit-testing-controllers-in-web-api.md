@@ -2,18 +2,18 @@
 uid: web-api/overview/testing-and-debugging/unit-testing-controllers-in-web-api
 title: ASP.NET Web API 2 中的單元測試控制器 |Microsoft Docs
 author: MikeWasson
-description: 本主題描述 Web API 2 中的單元測試控制器的一些特定技術。 閱讀本主題之前，您可能會想要閱讀教學課程單元 。
+description: 本主題描述 Web API 2 中的單元測試控制器的一些特定技術。 閱讀本主題之前，您可能會想要閱讀教學課程單元 .。。
 ms.author: riande
 ms.date: 06/11/2014
 ms.assetid: 43a6cce7-a3ef-42aa-ad06-90d36d49f098
 msc.legacyurl: /web-api/overview/testing-and-debugging/unit-testing-controllers-in-web-api
 msc.type: authoredcontent
-ms.openlocfilehash: cdb1700537021e276669de1a9e0330a62659746c
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 3b89009a375e766f1c5b439dfe3fffd43b4963b3
+ms.sourcegitcommit: a4c3c7e04e5f53cf8cd334f036d324976b78d154
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78554989"
+ms.lasthandoff: 05/29/2020
+ms.locfileid: "84172922"
 ---
 # <a name="unit-testing-controllers-in-aspnet-web-api-2"></a>ASP.NET Web API 2 中的單元測試控制器
 
@@ -30,7 +30,7 @@ ms.locfileid: "78554989"
 > [!NOTE]
 > 我使用 Moq，但相同的想法適用于任何模擬架構。 Moq 4.5.30 （和更新版本）支援 Visual Studio 2017、Roslyn 和 .NET 4.5 及更新版本。
 
-在單元測試中，常見的模式是 &quot;排列-act-assert&quot;：
+單元測試中的常見模式是 &quot; 排列-act-assert &quot; ：
 
 - 排列：設定要執行測試的任何必要條件。
 - Act：執行測試。
@@ -53,21 +53,21 @@ ms.locfileid: "78554989"
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample1.cs)]
 
-請注意，控制器會使用相依性插入來插入 `IProductRepository`。 這可讓控制器更具測試性，因為您可以插入模擬存放庫。 下列單元測試會確認 `Get` 方法會將 `Product` 寫入回應主體。 假設 `repository` 是 mock `IProductRepository`。
+請注意，控制器會使用相依性插入來插入 `IProductRepository` 。 這可讓控制器更具測試性，因為您可以插入模擬存放庫。 下列單元測試會驗證方法是否將 `Get` 寫入 `Product` 至回應主體。 假設 `repository` 是 mock `IProductRepository` 。
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample2.cs)]
 
-請務必在**控制器上設定** **要求**和設定。 否則，測試將會失敗，並出現**system.argumentnullexception**或**InvalidOperationException**。
+請務必在**控制器上設定****要求**和設定。 否則，測試將會失敗，並出現**system.argumentnullexception**或**InvalidOperationException**。
 
 ## <a name="testing-link-generation"></a>測試連結產生
 
-`Post` 方法會呼叫**UrlHelper** ，以在回應中建立連結。 在單元測試中，這需要進行一些設定：
+`Post`方法會呼叫**UrlHelper** ，以在回應中建立連結。 在單元測試中，這需要進行一些設定：
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample3.cs)]
 
 **UrlHelper**類別需要要求 URL 和路由資料，因此測試必須設定這些的值。 另一個選項是 mock 或存根**UrlHelper**。 使用這種方法，您可以將[ApiController](https://msdn.microsoft.com/library/system.web.http.apicontroller.url.aspx)的預設值取代為會傳回固定值的模擬或存根版本。
 
-讓我們使用[Moq](https://github.com/Moq)架構來重寫測試。 在測試專案中安裝 `Moq` NuGet 套件。
+讓我們使用[Moq](https://github.com/Moq)架構來重寫測試。 `Moq`在測試專案中安裝 NuGet 套件。
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample4.cs)]
 
@@ -85,7 +85,7 @@ ms.locfileid: "78554989"
 
 ### <a name="action-returns-200-ok-with-a-response-body"></a>動作會傳回200（確定）與回應主體
 
-如果找到產品，`Get` 方法會呼叫 `Ok(product)`。 在單元測試中，請確定傳回類型為**OkNegotiatedContentResult** ，而傳回的產品具有正確的識別碼。
+`Get` `Ok(product)` 如果找到產品，方法會呼叫。 在單元測試中，請確定傳回類型為**OkNegotiatedContentResult** ，而傳回的產品具有正確的識別碼。
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample6.cs)]
 
@@ -93,30 +93,30 @@ ms.locfileid: "78554989"
 
 ### <a name="action-returns-404-not-found"></a>動作傳回404（找不到）
 
-如果找不到產品，`Get` 方法會呼叫 `NotFound()`。 在此情況下，單元測試只會檢查傳回型別是否為**NotFoundResult**。
+`Get` `NotFound()` 如果找不到產品，方法會呼叫。 在此情況下，單元測試只會檢查傳回型別是否為**NotFoundResult**。
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample7.cs)]
 
 ### <a name="action-returns-200-ok-with-no-response-body"></a>動作會傳回200（確定），而不會傳迴響應主體
 
-`Delete` 方法會呼叫 `Ok()` 以傳回空的 HTTP 200 回應。 如同上述範例，單元測試會檢查傳回類型，在此案例中為**OkResult**。
+`Delete`方法會呼叫 `Ok()` 以傳回空的 HTTP 200 回應。 如同上述範例，單元測試會檢查傳回類型，在此案例中為**OkResult**。
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample8.cs)]
 
 ### <a name="action-returns-201-created-with-a-location-header"></a>動作會傳回201（已建立）與位置標頭
 
-`Post` 方法會呼叫 `CreatedAtRoute`，以在 Location 標頭中傳回具有 URI 的 HTTP 201 回應。 在單元測試中，確認動作是否已設定正確的路由值。
+`Post`方法會呼叫 `CreatedAtRoute` ，以在 Location 標頭中傳回具有 URI 的 HTTP 201 回應。 在單元測試中，確認動作是否已設定正確的路由值。
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample9.cs)]
 
 ### <a name="action-returns-another-2xx-with-a-response-body"></a>動作會傳回另一個具有回應主體的2xx
 
-`Put` 方法會呼叫 `Content`，以傳回包含回應主體的 HTTP 202 （已接受）回應。 這種情況類似于傳回200（OK），但是單元測試也應該檢查狀態碼。
+`Put`方法會呼叫 `Content` ，以傳回包含回應主體的 HTTP 202 （接受）回應。 這種情況類似于傳回200（OK），但是單元測試也應該檢查狀態碼。
 
 [!code-csharp[Main](unit-testing-controllers-in-web-api/samples/sample10.cs)]
 
 ## <a name="additional-resources"></a>其他資源
 
 - [單元測試 ASP.NET Web API 2 時的模擬 Entity Framework](mocking-entity-framework-when-unit-testing-aspnet-web-api-2.md)
-- [撰寫 ASP.NET Web API 服務的測試](https://blogs.msdn.com/b/youssefm/archive/2013/01/28/writing-tests-for-an-asp-net-webapi-service.aspx)（Youssef Moussaoui 的 blog 文章）。
-- [使用路由偵錯工具進行 ASP.NET Web API 的偵錯工具](https://blogs.msdn.com/b/webdev/archive/2013/04/04/debugging-asp-net-web-api-with-route-debugger.aspx)
+- [撰寫 ASP.NET Web API 服務的測試](https://docs.microsoft.com/en-gb/archive/blogs/youssefm/writing-tests-for-an-asp-net-web-api-service)（Youssef Moussaoui 的 blog 文章）。
+- [使用 Route Debugger 進行 ASP.NET Web API 偵錯](https://blogs.msdn.com/b/webdev/archive/2013/04/04/debugging-asp-net-web-api-with-route-debugger.aspx)

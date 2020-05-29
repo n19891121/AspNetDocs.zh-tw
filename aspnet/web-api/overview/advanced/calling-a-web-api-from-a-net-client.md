@@ -1,6 +1,6 @@
 ---
 uid: web-api/overview/advanced/calling-a-web-api-from-a-net-client
-title: 從 .NET 用戶端呼叫 Web API （C#）-ASP.NET 4。x
+title: '從 .NET 用戶端呼叫 Web API （c #）-ASP.NET 4。x'
 author: MikeWasson
 description: 本教學課程說明如何從 .NET 4.x 應用程式呼叫 Web API。
 ms.author: riande
@@ -8,14 +8,14 @@ ms.date: 11/24/2017
 ms.custom: seoapril2019
 msc.legacyurl: /web-api/overview/advanced/calling-a-web-api-from-a-net-client
 msc.type: authoredcontent
-ms.openlocfilehash: ab3ba71839123e848dffaa59871f9dac8c1a88d0
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 484d927eeb0ba49f5f00d476f4658ebc081d0a4a
+ms.sourcegitcommit: a4c3c7e04e5f53cf8cd334f036d324976b78d154
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78622616"
+ms.lasthandoff: 05/29/2020
+ms.locfileid: "84172935"
 ---
-# <a name="call-a-web-api-from-a-net-client-c"></a>從 .NET 用戶端呼叫 Web API （C#）
+# <a name="call-a-web-api-from-a-net-client-c"></a>從 .NET 用戶端呼叫 Web API （c #）
 
 由[Mike Wasson](https://github.com/MikeWasson)和[Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -27,7 +27,7 @@ ms.locfileid: "78622616"
 
 | 動作 | HTTP method | 相對 URI |
 | --- | --- | --- |
-| 依識別碼取得產品 | GET | /api/products/*識別碼* |
+| 依照識別碼取得產品 | GET | /api/products/*識別碼* |
 | 建立新的產品 | POST | /api/products |
 | 更新產品 | PUT | /api/products/*識別碼* |
 | 刪除產品 | 刪除 | /api/products/*識別碼* |
@@ -36,6 +36,11 @@ ms.locfileid: "78622616"
 )。
 
 為了簡單起見，本教學課程中的用戶端應用程式是 Windows 主控台應用程式。 Windows Phone 和 Windows Store 應用程式也支援**HttpClient** 。 如需詳細資訊，請參閱[使用便攜程式庫撰寫適用于多個平臺的 WEB API 用戶端程式代碼](https://blogs.msdn.com/b/webdev/archive/2013/07/19/writing-web-api-client-code-for-multiple-platforms-using-portable-libraries.aspx)
+
+**注意：** 如果您將基底 Url 和相對 Uri 傳遞為硬式編碼值，請注意使用 API 的規則 `HttpClient` 。 `HttpClient.BaseAddress`屬性應設定為尾端斜線（）的位址 `/` 。 例如，將硬式編碼的資源 Uri 傳遞給 `HttpClient.GetAsync` 方法時，請勿包含前置正斜線。 若要 `Product` 依識別碼取得：
+
+1. 設定`client.BaseAddress = new Uri("https://localhost:5001/");`
+1. 要求 `Product` 。 例如 `client.GetAsync<Product>("api/products/4");`。
 
 <a id="CreateConsoleApp"></a>
 ## <a name="create-the-console-application"></a>建立主控台應用程式
@@ -46,7 +51,7 @@ ms.locfileid: "78622616"
 
 上述程式碼是完整的用戶端應用程式。
 
-`RunAsync` 執行並封鎖，直到完成為止。 大部分的**HttpClient**方法都是非同步，因為它們會執行網路 i/o。 所有非同步工作都是在 `RunAsync`內完成。 應用程式通常不會封鎖主執行緒，但此應用程式不允許任何互動。
+`RunAsync`會執行並封鎖，直到完成為止。 大部分的**HttpClient**方法都是非同步，因為它們會執行網路 i/o。 所有非同步工作都是在內部完成 `RunAsync` 。 應用程式通常不會封鎖主執行緒，但此應用程式不允許任何互動。
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_run)]
 
@@ -55,7 +60,7 @@ ms.locfileid: "78622616"
 
 使用 NuGet 套件管理員來安裝 Web API 用戶端程式庫套件。
 
-從 [工具] 功能表中，選取 [NuGet 套件管理員] >  [套件管理員主控台]。 在 [套件管理員主控台] （PMC）中，輸入下列命令：
+從 [工具]**** 功能表中，選取 [NuGet 封裝管理員]**** > [封裝管理員主控台]****。 在 [套件管理員主控台] （PMC）中，輸入下列命令：
 
 `Install-Package Microsoft.AspNet.WebApi.Client`
 
@@ -73,7 +78,7 @@ Netwonsoft （也稱為 Json.NET）是適用于 .NET 的熱門高效能 JSON 架
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_prod)]
 
-這個類別符合 Web API 所使用的資料模型。 應用程式可以使用**HttpClient**從 HTTP 回應讀取 `Product` 實例。 應用程式不需要撰寫任何還原序列化程式碼。
+這個類別符合 Web API 所使用的資料模型。 應用程式可以使用**HttpClient** `Product` 從 HTTP 回應讀取實例。 應用程式不需要撰寫任何還原序列化程式碼。
 
 <a id="InitClient"></a>
 ## <a name="create-and-initialize-httpclient"></a>建立和初始化 HttpClient
@@ -107,7 +112,7 @@ Netwonsoft （也稱為 Json.NET）是適用于 .NET 的熱門高效能 JSON 架
 
 **GetAsync**方法會傳送 HTTP GET 要求。 當方法完成時，它會傳回包含 HTTP 回應的**HttpResponseMessage** 。 如果回應中的狀態碼是成功的程式碼，回應主體會包含產品的 JSON 標記法。 呼叫**ReadAsAsync**將 JSON 承載還原序列化為 `Product` 實例。 **ReadAsAsync**方法是非同步，因為回應主體可以任意大。
 
-當 HTTP 回應包含錯誤代碼時， **HttpClient**不會擲回例外狀況。 相反地，如果狀態為錯誤碼，則 **.issuccessstatuscode**屬性為**false** 。 如果您想要將 HTTP 錯誤碼視為例外狀況，請在回應物件上呼叫[HttpResponseMessage. EnsureSuccessStatusCode](https://msdn.microsoft.com/library/system.net.http.httpresponsemessage.ensuresuccessstatuscode(v=vs.110).aspx) 。 如果狀態碼落在 200&ndash;299 的範圍外，`EnsureSuccessStatusCode` 會擲回例外狀況。 請注意， **HttpClient**可能會因其他原因而擲回例外狀況 &mdash; 例如，如果要求超時。
+當 HTTP 回應包含錯誤代碼時， **HttpClient**不會擲回例外狀況。 相反地，如果狀態為錯誤碼，則 **.issuccessstatuscode**屬性為**false** 。 如果您想要將 HTTP 錯誤碼視為例外狀況，請在回應物件上呼叫[HttpResponseMessage. EnsureSuccessStatusCode](https://msdn.microsoft.com/library/system.net.http.httpresponsemessage.ensuresuccessstatuscode(v=vs.110).aspx) 。 `EnsureSuccessStatusCode`如果狀態碼落在 200 299 的範圍外，則擲回例外狀況 &ndash; 。 請注意， **HttpClient**可能會因其他原因而擲回例外狀況 &mdash; ，例如，如果要求超時。
 
 <a id="MediaTypeFormatters"></a>
 ### <a name="media-type-formatters-to-deserialize"></a>要還原序列化的媒體類型格式器
@@ -129,7 +134,7 @@ resp.Content.ReadAsAsync<IEnumerable<Product>>(formatters);
 
 ## <a name="sending-a-post-request-to-create-a-resource"></a>傳送 POST 要求以建立資源
 
-下列程式碼會傳送 POST 要求，其中包含 JSON 格式的 `Product` 實例：
+下列程式碼會傳送 POST 要求，其中包含 `Product` JSON 格式的實例：
 
 [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet_CreateProductAsync)]
 
@@ -165,7 +170,7 @@ resp.Content.ReadAsAsync<IEnumerable<Product>>(formatters);
 
 若要測試用戶端應用程式：
 
-1. [下載](https://github.com/dotnet/AspNetDocs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/sample/server)並執行伺服器應用程式。 [下載指示](/aspnet/core/#how-to-download-a-sample)。 確認伺服器應用程式正在運作。 例如，`http://localhost:64195/api/products` 應該會傳回一份產品清單。
+1. [下載](https://github.com/dotnet/AspNetDocs/tree/master/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client/sample/server)並執行伺服器應用程式。 [下載指示](/aspnet/core/#how-to-download-a-sample)。 確認伺服器應用程式正在運作。 例如， `http://localhost:64195/api/products` 應該會傳回產品清單。
 2. 設定 HTTP 要求的基底 URI。 將埠號碼變更為伺服器應用程式中所使用的埠。
     [!code-csharp[Main](calling-a-web-api-from-a-net-client/sample/client/Program.cs?name=snippet5&highlight=2)]
 
