@@ -8,12 +8,12 @@ ms.date: 10/14/2017
 ms.assetid: 8935bf14-ca6d-4a4e-9dbe-b96ce74cef49
 msc.legacyurl: /ajax/cdn
 msc.type: content
-ms.openlocfilehash: 27b1ca8567e29fa4bca0ae9f32e0c904ad54ba8f
-ms.sourcegitcommit: a4c3c7e04e5f53cf8cd334f036d324976b78d154
+ms.openlocfilehash: b66e812f0324be95effdd8d232baa6a59302b9df
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84172948"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240607"
 ---
 # <a name="microsoft-ajax-content-delivery-network"></a>Microsoft Ajax 內容傳遞網路
 
@@ -48,7 +48,7 @@ ms.locfileid: "84172948"
  [在 CDN 上回應版本](#Respond_Releases_on_the_CDN_13)  
  [CDN 上的啟動程式版本](#Bootstrap_Releases_on_the_CDN_14)  
  [CDN 上的啟動程式 TouchCarousel 版本](#BootstrapTouchCarousel_Releases_on_the_CDN_18)  
- [CDN 上的 Hammer 版本](#Hammerjs_Releases_on_the_CDN_19)  
+ [CDN 上的Hammer.js 版本](#Hammerjs_Releases_on_the_CDN_19)  
  [在 CDN 上 ASP.NET Web Forms 和 Ajax 版本](#ASPNET_Web_Forms_and_Ajax_Releases_on_the_CDN_15)  
  [在 CDN 上 ASP.NET MVC 版本](#ASPNET_MVC_Releases_on_the_CDN_16)  
  [CDN 上的 ASP.NET SignalR 版本](#ASPNET_SignalR_Releases_on_the_CDN_17)
@@ -627,6 +627,7 @@ jQuery 遷移版本1.2。0
 
 下列的[JQuery 驗證](https://jqueryvalidation.org/ "jQuery 驗證外掛程式")外掛程式版本裝載于此 CDN 上。 按一下每個連結，以查看實際的檔案清單。
 
+- [jQuery 驗證1.19。2](jquery-validate/cdnjqueryvalidate1192.md "jQuery 驗證1.19。2")
 - [jQuery 驗證1.19。1](jquery-validate/cdnjqueryvalidate1191.md "jQuery 驗證1.19。1")
 - [jQuery 驗證1.19。0](jquery-validate/cdnjqueryvalidate1190.md "jQuery 驗證1.19。0")
 - [jQuery 驗證1.17.0 或](jquery-validate/cdnjqueryvalidate1170.md "jQuery 驗證1.17.0 或")
@@ -779,7 +780,7 @@ jQuery 遷移版本1.2。0
     - 所有文化特性
 - https://ajax.aspnetcdn.com/ajax/globalize/0.1.1/cultures/globalize.culture.{culture-code}.js
 
-    - 以所需的文化特性代碼（例如全球化）取代 "{culture-code}"。 en-GB （CDN = = Microsoft Files）。
+    - 將 "{culture-code}" 取代為所需的文化特性代碼，例如 globalize.culture.en-GB.js= = CDN 上的 Microsoft 檔案 = = Microsoft 上傳了這些程式庫。
 
 <a id="Respond_Releases_on_the_CDN_13"></a>
 
@@ -1186,11 +1187,11 @@ jQuery 遷移版本1.2。0
 
 <a id="Hammerjs_Releases_on_the_CDN_19"></a>
 
-### <a name="hammerjs-releases-on-the-cdn"></a>CDN 上的 Hammer 版本
+### <a name="hammerjs-releases-on-the-cdn"></a>CDN 上的 Hammer.js 版本
 
-下列 Hammer 版本裝載 [http://hammerjs.github.io/](http://hammerjs.github.io/ "HTTP://hammerjs.github.io/") 于 CDN 上：
+下列版本的 [http://hammerjs.github.io/](http://hammerjs.github.io/ "HTTP://hammerjs.github.io/") Hammer.js 版本裝載于 CDN 上：
 
-#### <a name="hammerjs-version-204"></a>Hammer .js 版本2.0.4 版
+#### <a name="hammerjs-version-204"></a>Hammer.js 版本2.0.4 版
 
 - https://ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.js
 - https://ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.min.js

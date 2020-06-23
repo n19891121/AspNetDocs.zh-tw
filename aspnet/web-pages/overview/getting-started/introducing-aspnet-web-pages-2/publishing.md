@@ -2,22 +2,22 @@
 uid: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/publishing
 title: 簡介 ASP.NET Web Pages 使用 WebMatrix 發佈網站 |Microsoft Docs
 author: Rick-Anderson
-description: 本教學課程是教學課程集中的最後一篇介紹 ASP.NET Web Pages 和 Microsoft WebMatrix 的文章。 它會討論如何發佈您的網站 t 。
+description: 本教學課程是教學課程集中的最後一篇介紹 ASP.NET Web Pages 和 Microsoft WebMatrix 的文章。 它會討論如何發佈您的網站 t .。。
 ms.author: riande
 ms.date: 05/28/2015
 ms.assetid: 7e85c70e-1a88-4408-8b3d-29611c7713ed
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/publishing
 msc.type: authoredcontent
-ms.openlocfilehash: 49a841dbda183bf1d59153b83f694c9f517e0b94
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: a09339a833ea0b4a2d3c3a9323cce777577ea048
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78633613"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240590"
 ---
 # <a name="introducing-aspnet-web-pages---publishing-a-site-by-using-webmatrix"></a>簡介 ASP.NET Web Pages 使用 WebMatrix 發佈網站
 
-由[Tom FitzMacken](https://github.com/tfitzmac)
+ 作者：[Tom FitzMacken](https://github.com/tfitzmac)
 
 > 本教學課程是教學課程集中的最後一篇介紹 ASP.NET Web Pages 和 Microsoft WebMatrix 的文章。 它會討論如何將您的網站發佈至網際網路，讓其他人可以使用它。 它假設您已完成[建立 ASP.NET Web Pages 網站一致外觀](https://go.microsoft.com/fwlink/?LinkId=251585)的系列。
 > 
@@ -48,7 +48,7 @@ ms.locfileid: "78633613"
 <a id="defaultpage"></a>
 ## <a name="setting-up-the-default-page"></a>設定預設頁面
 
-當使用者流覽至您網站的基底位址時，會向使用者顯示網站的預設頁面。 例如，當*預設的 .htm*在 `www.contoso.com`設定為網站的預設頁面時，流覽至 `www.contoso.com` 與流覽至 `www.contoso.com/Default.htm`相同。
+當使用者流覽至您網站的基底位址時，會向使用者顯示網站的預設頁面。 例如，當*Default.htm*設定為網站的預設頁面時 `www.contoso.com` ，流覽至與 `www.contoso.com` 流覽至相同 `www.contoso.com/Default.htm` 。
 
 目前，您的網站會使用**預設的. cshtml**做為預設頁面。 此頁面適用于您的預設頁面，但在本教學課程中，您尚未將任何內容新增至該頁面，因此會顯示空白頁面。 開啟 Default. cshtml，並以下列程式碼取代內容。
 
@@ -59,7 +59,7 @@ ms.locfileid: "78633613"
 <a id="azure"></a>
 ## <a name="publishing-your-site-to-microsoft-azure"></a>將您的網站發佈至 Microsoft Azure
 
-本教學課程會先示範如何將您的網站部署至 Microsoft Azure。 藉由使用 Microsoft 帳戶登入，您可以在 Azure 上建立多達10個免費網站。 這些免費網站提供便利的方式來測試您的網站。 您稍後可以隨時刪除此範例網站，以避免使用您所有的免費網站。 只需要幾分鐘的時間，您就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/free/?WT.mc_id=A443DD604)。
+本教學課程會先示範如何將您的網站部署至 Microsoft Azure。 藉由使用 Microsoft 帳戶登入，您可以在 Azure 上建立多達10個免費網站。 這些免費網站提供便利的方式來測試您的網站。 您稍後可以隨時刪除此範例網站，以避免使用您所有的免費網站。 只需要幾分鐘的時間，您就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/free/dotnet/)。
 
 在 [WebMatrix] 功能區中，按一下 [**發佈**] 按鈕。
 
@@ -71,7 +71,7 @@ ms.locfileid: "78633613"
 
 如果您尚未登入 Microsoft 帳戶，系統會再次提供您登入的機會。 您必須登入 Microsoft 帳戶，才能在 Azure 上發佈您的網站。
 
-![登入](publishing/_static/image3.png)
+![Sign In](publishing/_static/image3.png)
 
 登入您的 Microsoft 帳戶之後，對話方塊中會包含在 Azure 上建立新網站或連線至 Azure 上的其中一個現有網站的連結。
 
@@ -156,11 +156,11 @@ WebMatrix 會顯示要發佈至網站的檔案和資料庫。 由於這是您第
 
 ![如果發行設定發生問題，則會出現錯誤訊息](publishing/_static/image16.png)
 
-按一下 [Save] 儲存您的設定。 WebMatrix 提供來執行測試，以確保它可以與主控網站正確通訊：
+按一下 [Save] **** 儲存您的設定。 WebMatrix 提供來執行測試，以確保它可以與主控網站正確通訊：
 
 ![用來執行發佈程式測試的訊息供應專案](publishing/_static/image17.png)
 
-按一下 [ **是**]。 WebMatrix 將一些範例檔案上傳到主控提供者。 當相容性測試完成時，WebMatrix 會報告結果：
+按一下 [是] 。 WebMatrix 將一些範例檔案上傳到主控提供者。 當相容性測試完成時，WebMatrix 會報告結果：
 
 ![發佈測試的結果](publishing/_static/image18.png)
 
@@ -170,7 +170,7 @@ WebMatrix 會顯示要發佈至網站的檔案和資料庫。 由於這是您第
 
 要發佈的檔案清單包含您建立的網頁，如 [*電影*]。 此清單也包含您已安裝之協助程式的檔案、要針對您的資料庫 SQL Server Compact 版本執行的檔案等等。 因此，初始發佈程式可能很可觀。
 
-按一下 [繼續]。 WebMatrix 會將您的檔案複製到主控提供者的伺服器。 完成時，會在狀態列中報告結果：
+按一下 **[繼續]** 。 WebMatrix 會將您的檔案複製到主控提供者的伺服器。 完成時，會在狀態列中報告結果：
 
 ![當發行程式成功完成時的狀態列訊息](publishing/_static/image20.png)
 
@@ -181,9 +181,9 @@ WebMatrix 會顯示要發佈至網站的檔案和資料庫。 由於這是您第
 <a id="update"></a>
 ## <a name="updating-the-live-site-republishing"></a>更新即時網站：重新發佈
 
-一旦您發佈網站（至 Azure 或虛擬主機公司），就會有兩個複本 &mdash; 您電腦上的版本，以及服務提供者上的版本。 您可能會想要繼續開發網站（如果沒有其他，則是下一個教學課程集的一部分）。 當您這麼做時，必須重新發佈網站，才能將變更從電腦複製到服務提供者。 WebMatrix 中的發佈程式可判斷您的網站上有哪些檔案已變更，並只發行那些檔案。
+一旦您發佈網站（至 Azure 或虛擬主機公司）之後，您的電腦上會有兩個版本， &mdash; 以及服務提供者上的版本。 您可能會想要繼續開發網站（如果沒有其他，則是下一個教學課程集的一部分）。 當您這麼做時，必須重新發佈網站，才能將變更從電腦複製到服務提供者。 WebMatrix 中的發佈程式可判斷您的網站上有哪些檔案已變更，並只發行那些檔案。
 
-若要查看重新發行的運作方式，請開啟 [*電影*] 網站，進行一些小變更，然後儲存檔案。 例如，將標題變更為 `Movies - Updated`。
+若要查看重新發行的運作方式，請開啟 [*電影*] 網站，進行一些小變更，然後儲存檔案。 例如，將標題變更為 `Movies - Updated` 。
 
 按一下功能區中的 [**發佈**] 按鈕。 WebMatrix 會決定已變更的內容，並顯示其將發佈之檔案的預覽。
 
@@ -191,9 +191,9 @@ WebMatrix 會顯示要發佈至網站的檔案和資料庫。 由於這是您第
 
 > [!IMPORTANT] 
 > 
-> 根據預設，WebMatrix 只會在您第一次發行網站時發行您的資料庫（ *.sdf*檔案）。 一旦您的網站發佈，而人們與網站互動之後，即時網站上的資料庫通常會有網站的實際資料。 您必須小心不要使用電腦上的 *.sdf*檔案來覆寫即時資料庫，這通常只包含測試資料。 這就是為什麼您會看到警告**發佈會覆寫任何遠端資料庫**，以及為什麼預設會清除*WebPagesMovies*的核取方塊。
+> 根據預設，WebMatrix 只會在您第一次發行網站時發行您的資料庫（*.sdf*檔案）。 一旦您的網站發佈，而人們與網站互動之後，即時網站上的資料庫通常會有網站的實際資料。 您必須小心不要使用電腦上的 *.sdf*檔案來覆寫即時資料庫，這通常只包含測試資料。 這就是為什麼您會看到警告**發佈會覆寫任何遠端資料庫**，以及為什麼預設會清除*WebPagesMovies*的核取方塊。
 
-按一下 [繼續]。 WebMatrix 會發佈變更的檔案，並顯示成功的訊息，就像您第一次發佈一樣。
+按一下 **[繼續]** 。 WebMatrix 會發佈變更的檔案，並顯示成功的訊息，就像您第一次發佈一樣。
 
 前往即時網站（如果仍顯示，您可以按一下成功訊息中的連結），並確認您的變更已發佈。
 
@@ -212,4 +212,4 @@ WebMatrix 會顯示要發佈至網站的檔案和資料庫。 由於這是您第
 - [ASP.NET WebMatrix ASP.NET Web Pages 論壇](https://forums.asp.net/1224.aspx/1?WebMatrix+and+ASP+NET+Web+Pages)，這是張貼問題和獲得解答的絕佳地方。
 
 > [!div class="step-by-step"]
-> [上一篇](layouts.md)
+> [上一步](layouts.md)

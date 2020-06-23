@@ -2,22 +2,22 @@
 uid: web-pages/overview/getting-started/introducing-aspnet-web-pages-2/getting-started
 title: 開始使用 | Microsoft Docs
 author: Rick-Anderson
-description: 不再建議使用 WebMatrix 做為 ASP.NET Web Pages 的整合式開發環境。 使用 Visual Studio 或 Visual Studio Code。 本指導方針 。
+description: 不再建議使用 WebMatrix 做為 ASP.NET Web Pages 的整合式開發環境。 使用 Visual Studio 或 Visual Studio Code。 本指導方針 .。。
 ms.author: riande
 ms.date: 05/28/2015
 ms.assetid: a36d3bdf-ef1b-47a4-b932-3a0cf4cad716
 msc.legacyurl: /web-pages/overview/getting-started/introducing-aspnet-web-pages-2/getting-started
 msc.type: authoredcontent
-ms.openlocfilehash: bb863f8605e6f8faca3b285607b63a3e88e83012
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ac2111980e6393388a0530375fb9ef78dbbfaff6
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78547100"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240752"
 ---
-# <a name="getting-started"></a>快速入門
+# <a name="getting-started"></a>開始使用
 
-由[Tom FitzMacken](https://github.com/tfitzmac)
+ 作者：[Tom FitzMacken](https://github.com/tfitzmac)
 
 [!INCLUDE[](~/includes/rp.md)]
 
@@ -59,16 +59,16 @@ ms.locfileid: "78547100"
 我們假設您已經熟悉：
 
 - **HTML**。 不需要深入的專業知識。 我們不會說明 HTML，但我們也不會使用任何複雜的專案。 我們會提供 HTML 教學課程的連結，我們認為這些是有用的。
-- **級聯樣式表（CSS）** 。 與 HTML 相同。
+- **級聯樣式表（CSS）**。 與 HTML 相同。
 - **基本資料庫的想法**。 如果您使用試算表來儲存資料，並將資料排序和篩選，這就是我們通常會在本教學課程中假設的專業知識層級。
 
-我們也假設您有興趣學習基本程式設計。 ASP.NET Web Pages 使用名C#為的程式設計語言。 您不需要在程式設計中擁有任何背景，只是其中的重點。 如果您之前曾在網頁中撰寫過任何 JavaScript，就有許多背景。
+我們也假設您有興趣學習基本程式設計。 ASP.NET Web Pages 使用稱為 c # 的程式設計語言。 您不需要在程式設計中擁有任何背景，只是其中的重點。 如果您之前曾在網頁中撰寫過任何 JavaScript，就有許多背景。
 
 請注意，如果您熟悉程式設計，您可能會發現，本教學課程最初的設定速度會變慢，而我們會讓新的程式開發人員加快速度。 不過，我們在過去的幾個教學課程中，將會有較少的基本程式設計，而且會以更快速的剪輯來移動專案。
 
 ## <a name="what-do-you-need"></a>您需要什麼？
 
-以下是您需要的項目：
+以下是您需要的內容：
 
 - 執行 Windows 8、Windows 7、Windows Server 2008 或 Windows Server 2012 的電腦。
 - 即時網際網路連線。
@@ -133,7 +133,7 @@ WebMatrix 是一種工具，可整合網頁編輯器、資料庫公用程式、�
 
 在 ASP.NET 網站的 [ [Web Pages] 頁面](../../../index.md)上，按一下 [**安裝**]。
 
-![ASP.NET 顯示 &quot;安裝 WebMatrix&quot; 按鈕的網站](getting-started/_static/image3.png)
+![顯示 [ &quot; 安裝 WebMatrix] 按鈕的 ASP.NET 網站 &quot;](getting-started/_static/image3.png)
 
 在安裝 WebMatrix 之前，系統會要求您接受授權條款和隱私權聲明。
 
@@ -143,7 +143,7 @@ WebMatrix 是一種工具，可整合網頁編輯器、資料庫公用程式、�
 
 ![](getting-started/_static/image5.png)
 
-隨即顯示 Web Platform Installer，準備好安裝 WebMatrix。 按一下 [安裝]。
+隨即顯示 Web Platform Installer，準備好安裝 WebMatrix。 按一下 [Install] 。
 
 ![](getting-started/_static/image6.png)
 
@@ -153,13 +153,13 @@ WebMatrix 是一種工具，可整合網頁編輯器、資料庫公用程式、�
 
 完成後，安裝程式就可以自動啟動 WebMatrix。 如果沒有，請在 Windows 中，從 [**開始**] 功能表啟動**Microsoft WebMatrix**。
 
-當您第一次啟動 WebMatrix 時，您有機會使用您的 Microsoft 帳戶登入 Microsoft Azure。 藉由登入，您將可透過 Azure 獲得10個免費的 web 應用程式。 這些免費的 web 應用程式提供便利的方式來測試您的應用程式。 如果您還沒有 Azure 帳戶，但是有 MSDN 訂閱，則可以[啟用您的 msdn 訂閱權益](https://www.windowsazure.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A443DD604)。 否則，您只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/free/?WT.mc_id=A443DD604)。
+當您第一次啟動 WebMatrix 時，您有機會使用您的 Microsoft 帳戶登入 Microsoft Azure。 藉由登入，您將可透過 Azure 獲得10個免費的 web 應用程式。 這些免費的 web 應用程式提供便利的方式來測試您的應用程式。 如果您還沒有 Azure 帳戶，但是有 MSDN 訂閱，則可以[啟用您的 msdn 訂閱權益](https://www.windowsazure.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A443DD604)。 否則，您只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/free/dotnet/)。
 
 您不需要立即登入，即可繼續進行本教學課程。 如果您目前未登入，您仍然可以選擇稍後再登入。 本教學課程系列中的最後一個[主題](publishing.md)涵蓋如何將您的網站部署至 Azure;因此，您必須登入才能完成該主題。
 
 此時，請使用您的 Microsoft 帳戶登入，或選取右下角的 [**不是現在**]。
 
-![登入](getting-started/_static/image7.png)
+![Sign In](getting-started/_static/image7.png)
 
 首先，您將建立空白網站並新增頁面。 在此集合稍後的教學課程中，您將會使用其中一個內建網站範本來播放。
 
@@ -175,7 +175,7 @@ WebMatrix 是一種工具，可整合網頁編輯器、資料庫公用程式、�
 
 ![已選取空白網站範本的 WebMatrix [快速入門] 視窗](getting-started/_static/image10.png)
 
-按 [下一步]。
+按 [下一步] 。
 
 如果您已登入 Microsoft 帳戶，系統會提供您在 Azure 上建立網站的機會。 根據您的網站名稱，建議**WebPagesMovies.azurewebsites.net**的預設名稱。不過，驚嘆號表示此名稱無法在 Windows Azure 上使用。 為求簡化，請選取 [**跳過**]，立即略過在 Azure 上建立網站。 稍後在此系列中，我們會將網站發佈至 Azure。
 
@@ -199,7 +199,7 @@ WebMatrix 會建立並開啟網站：
 
 在功能區中，按一下 [**新增**] 底下的箭號，然後按一下 [**新增**檔案]。
 
-![使用功能區中的 &quot;New&quot; 命令來建立新檔案](getting-started/_static/image14.png)
+![使用 &quot; 功能區中的 [新增] &quot; 命令來建立新檔案](getting-started/_static/image14.png)
 
 WebMatrix 會顯示檔案類型的清單。 選取 [ **CSHTML**]，然後在 [**名稱**] 方塊中輸入 "HelloWorld"。 CSHTML 頁面是 ASP.NET Web Pages 頁面。
 
@@ -217,9 +217,9 @@ WebMatrix 會建立頁面，並在編輯器中開啟它。
 
 這是為了新增程式碼，您很快就會看到。
 
-請注意，頁面的不同部分 &mdash; 專案名稱、屬性和文字，以及頂端的區塊，全都以不同的色彩表示。 這稱為語法反白*顯示*，可讓您更輕鬆地保持所有專案的清晰。 它是可讓您在 WebMatrix 中輕鬆使用網頁的其中一項功能。
+請注意，頁面的不同部分（專案 &mdash; 名稱、屬性和文字，以及頂端的區塊）都是不同的色彩。 這稱為語法反白*顯示*，可讓您更輕鬆地保持所有專案的清晰。 它是可讓您在 WebMatrix 中輕鬆使用網頁的其中一項功能。
 
-新增 `<head>` 和 `<body>` 元素的內容，如下列範例所示。 （如有需要，您可以只複製下列區塊，並將整個現有的頁面取代為此程式碼）。
+加入和元素的內容， `<head>` `<body>` 如下列範例所示。 （如有需要，您可以只複製下列區塊，並將整個現有的頁面取代為此程式碼）。
 
 [!code-cshtml[Main](getting-started/samples/sample2.cshtml)]
 
@@ -235,13 +235,13 @@ WebMatrix 會建立頁面，並在編輯器中開啟它。
 
 WebMatrix 啟動內建的網頁伺服器（IIS Express），您可以用來測試電腦上的頁面。 （不 IIS Express 在 WebMatrix 中，您必須先將頁面發佈到 web 伺服器，然後才能進行測試）。頁面會顯示在您的預設瀏覽器中。
 
-![在瀏覽器中執行 &quot;Hello World&quot; 頁面](getting-started/_static/image19.png)
+![&quot;&quot;在瀏覽器中執行 Hello World 頁面](getting-started/_static/image19.png)
 
-請注意，當您在 WebMatrix 中測試頁面時，瀏覽器中的 URL 會是類似 `http://localhost:33651/HelloWorld.cshtml.` 名稱*localhost*指的是本機伺服器，這表示網頁是由自己電腦上的網頁伺服器所提供。 如先前所述，WebMatrix 包含名為 IIS Express 的 web 伺服器程式，會在您啟動頁面時執行。
+請注意，當您在 WebMatrix 中測試頁面時，瀏覽器中的 URL 會是 `http://localhost:33651/HelloWorld.cshtml.` 名稱*localhost*參照本機伺服器，這表示網頁是由自己電腦上的網頁伺服器所提供。 如先前所述，WebMatrix 包含名為 IIS Express 的 web 伺服器程式，會在您啟動頁面時執行。
 
 *Localhost*之後的數位（例如， *localhost： 33651*）會參考您電腦上的*埠號碼*。 這是 IIS Express 用於此特定網站的「通道」數目。 當您建立網站時，會從範圍1024到65536隨機選取埠號碼，而且您建立的每個網站都有不同的通訊埠編號。 （當您測試自己的網站時，埠號碼幾乎一定會與33561不同）。藉由對每個網站使用不同的埠，IIS Express 可以將其與您的網站進行直接的溝通。
 
-稍後當您將網站發佈至公用 web 伺服器時，URL 中就不會再看到*localhost* 。 此時，您會看到較常見的 URL，例如 `http://myhostingsite/mywebsite/HelloWorld.cshtml` 或頁面的內容。 您稍後會在本教學課程系列中深入瞭解如何發佈網站。
+稍後當您將網站發佈至公用 web 伺服器時，URL 中就不會再看到*localhost* 。 此時，您會看到較典型的 URL，例如 `http://myhostingsite/mywebsite/HelloWorld.cshtml` 或頁面是什麼。 您稍後會在本教學課程系列中深入瞭解如何發佈網站。
 
 ## <a name="adding-some-server-side-code"></a>新增一些伺服器端程式碼
 
@@ -251,17 +251,17 @@ WebMatrix 啟動內建的網頁伺服器（IIS Express），您可以用來測�
 
 [!code-cshtml[Main](getting-started/samples/sample3.cshtml)]
 
-這有點 Razor 程式碼。 這可能會很清楚，它會取得目前的日期和時間，並將該值放入名為 `currentDateTime`的*變數*中。 您將在下一個教學課程中深入瞭解 Razor 語法。
+這有點 Razor 程式碼。 這可能會清楚地取得目前的日期和時間，並將該值放入名為的*變數*中 `currentDateTime` 。 您將在下一個教學課程中深入瞭解 Razor 語法。
 
-在頁面主體中，于 `<p>Hello World!</p>` 元素之後，新增下列專案：
+在頁面主體中，于 `<p>Hello World!</p>` 元素後面新增下列專案：
 
 [!code-html[Main](getting-started/samples/sample4.html)]
 
-此程式碼會取得您放入頂端 `currentDateTime` 變數中的值，並將它插入頁面的標記中。 `@` 字元會標示頁面中的 ASP.NET Web Pages 程式碼。
+此程式碼會取得您放入 `currentDateTime` 變數頂端的值，並將它插入至頁面的標記中。 `@`字元會標示頁面中的 ASP.NET Web Pages 程式碼。
 
 再次執行頁面（WebMatrix 會在執行頁面之前為您儲存變更）。 這次您會在頁面中看到日期和時間。
 
-![&quot;Hello World 在瀏覽器中執行的&quot; 頁面，以動態產生的時間顯示](getting-started/_static/image20.png)
+![&quot;以 &quot; 動態方式產生的時間顯示，在瀏覽器中執行的 Hello World 頁面](getting-started/_static/image20.png)
 
 請稍候片刻，然後在瀏覽器中重新整理頁面。 日期和時間顯示會更新。
 
@@ -269,7 +269,7 @@ WebMatrix 啟動內建的網頁伺服器（IIS Express），您可以用來測�
 
 [!code-html[Main](getting-started/samples/sample5.html)]
 
-請注意，頂端的 `@{ }` 區塊不存在。 另請注意，日期和時間顯示會顯示實際的字元字串（`1/18/2012 2:49:50 PM` 或任何），而不像您在 *. cshtml*頁面中的一樣 `@currentDateTime`。 這裡發生的情況是，當您執行頁面時，ASP.NET 已處理標記為 `@`的所有程式碼（在此案例中很少）。 程式碼會產生輸出，並將該輸出插入頁面中。
+請注意， `@{ }` 頂端的區塊不存在。 另請注意，日期和時間顯示會顯示實際的字元字串（ `1/18/2012 2:49:50 PM` 或任何內容），而不 `@currentDateTime` 像您在*cshtml*頁面中的一樣。 這裡發生的情況是，當您執行頁面時，ASP.NET 已處理標記為的所有程式碼（在此案例中很少） `@` 。 程式碼會產生輸出，並將該輸出插入頁面中。
 
 ## <a name="this-is-what-aspnet-web-pages-are-about"></a>這就是 ASP.NET Web Pages 的相關資訊
 
@@ -288,4 +288,4 @@ WebMatrix 啟動內建的網頁伺服器（IIS Express），您可以用來測�
 [從頭開始建立 ASP.NET 網站](https://www.microsoft.com/web/post/create-an-aspnet-website-from-scratch)。 本教學課程特別說明如何使用 WebMatrix （不 ASP.NET Web Pages）。 另外還有一些關於 WebMatrix 的其他功能，我們將不會在本教學課程中討論到的詳細資訊。
 
 > [!div class="step-by-step"]
-> [下一個](intro-to-web-pages-programming.md)
+> [下一步](intro-to-web-pages-programming.md)

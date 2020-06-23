@@ -2,18 +2,18 @@
 uid: visual-studio/overview/2012/windows-azure-authentication
 title: Windows Azure 驗證 |Microsoft Docs
 author: Rick-Anderson
-description: 適用于 Windows Azure Active Directory 的 Microsoft ASP.NET 工具可讓您輕鬆地針對 Windows Azure 網站上託管的 web 應用程式啟用驗證 。
+description: 適用于 Windows Azure Active Directory 的 Microsoft ASP.NET 工具可讓您輕鬆地針對 Windows Azure 網站上託管的 web 應用程式啟用驗證 .。。
 ms.author: riande
 ms.date: 02/20/2013
 ms.assetid: a3cef801-a54b-4ebd-93c3-55764e2e14b1
 msc.legacyurl: /visual-studio/overview/2012/windows-azure-authentication
 msc.type: authoredcontent
-ms.openlocfilehash: ce98effe18dd739504fb0d5453bae8a46c3ba102
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ab75218cbe3817c14a064e9816388aebc7e431f7
+ms.sourcegitcommit: 0cf7d06071a8ff986e6c028ac9daf0c0e7490412
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78557859"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85240562"
 ---
 # <a name="windows-azure-authentication"></a>Windows Azure 驗證
 
@@ -25,7 +25,7 @@ ms.locfileid: "78557859"
 >
 > 如需如何設定內部部署 Active Directory 與 Windows Azure Active Directory 租使用者之間同步處理的詳細資訊，請參閱[使用 AD FS 2.0 來執行和管理單一登入](https://technet.microsoft.com/library/jj205462.aspx)。
 >
-> Windows Azure Active Directory 目前以[免費預覽服務](https://azure.microsoft.com/free/?WT.mc_id=A443DD604)的形式提供。
+> Windows Azure Active Directory 目前以[免費預覽服務](https://azure.microsoft.com/free/dotnet/)的形式提供。
 
 ## <a name="requirements"></a>需求：
 
@@ -65,7 +65,7 @@ ms.locfileid: "78557859"
 ![](windows-azure-authentication/_static/image6.png)
 
 對話方塊會顯示使用 Azure Active Directory 的原則布建應用程式時所需的 [**網域**]、[**應用程式主體識別碼**] 和 [**回復 URL** ]。 您必須將此資訊提供給具有足夠許可權的使用者來布建應用程式。 如需如何使用 Cmdlet 來手動建立服務主體的詳細資訊，請參閱[如何搭配 Windows Azure Active Directory ASP.NET 應用程式執行單一登入](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect)。
-成功布建應用程式之後，您可以按一下 **[繼續]，使用選取的設定來更新 web.config**。 如果您想要在等候布建發生時繼續開發應用程式，您可以按一下 **[關閉]，以記住 [專案檔] 中的設定**。 下次您叫用 [啟用 Windows Azure 驗證] 並取消核取 [布建] 核取方塊時，您會看到相同的設定，而且您可以按一下 [**繼續**]，然後按一下 [**在 web.config 中套用這些設定**]。
+成功布建應用程式之後，您可以按一下 **[繼續]，以選取的設定來更新 web.config**。 如果您想要在等候布建發生時繼續開發應用程式，您可以按一下 **[關閉]，以記住 [專案檔] 中的設定**。 下次您叫用 [啟用 Windows Azure 驗證] 並取消核取 [布建] 核取方塊時，您會看到相同的設定，而且您可以按一下 [**繼續**]，然後按一下 [**在 web.config中套用這些設定**。
 
 1. 請等候您的應用程式設定為使用 windows Azure 驗證，並以 Windows Azure Active Directory 進行布建。
 2. 啟用應用程式的 Windows Azure 驗證之後，請按一下 [**關閉]：**
@@ -85,9 +85,9 @@ ms.locfileid: "78557859"
 
 啟用 Windows Azure 驗證會對您的應用程式進行下列變更：
 
-- 會將反跨網站偽造要求（[CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF))）類別（*應用程式\_Start\AntiXsrfConfig.cs* ）新增至您的專案。
-- `System.IdentityModel.Tokens.ValidatingIssuerNameRegistry` 的 NuGet 套件會新增至您的專案。
-- 您應用程式中的 windows Identity Foundation 設定會設定為接受來自您 Windows Azure Active Directory 租使用者的安全性權杖。 按一下下方的影像，以查看*對 web.config 檔案*所做之變更的擴充。
+- 已將反跨網站偽造要求（[CSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF))）類別（*應用程式 \_ Start\AntiXsrfConfig.cs* ）新增至您的專案。
+- NuGet 套件 `System.IdentityModel.Tokens.ValidatingIssuerNameRegistry` 會新增至您的專案。
+- 您應用程式中的 windows Identity Foundation 設定會設定為接受來自您 Windows Azure Active Directory 租使用者的安全性權杖。 按一下下方影像，以查看對*Web.config*檔案所做變更的展開。
 
      ![](windows-azure-authentication/_static/image9.png)
 - 將會布建您的 Windows Azure Active Directory 租使用者中應用程式的服務主體。
@@ -141,7 +141,7 @@ Windows Azure 驗證目前未提供必要的角色宣告，因此可以執行以
 
 #### <a name="browsing-to-an-application-with-windows-azure-authentication-results-in-the-error-acs20016-the-domain-of-the-logged-in-user-livecom-does-not-match-any-allowed-domain-of-this-sts"></a>流覽至具有 Windows Azure 驗證的應用程式會導致錯誤「ACS20016 登入使用者的網域（live.com）不符合此 STS 的任何允許網域」
 
-如果您已經登入 Microsoft 帳戶（例如 hotmail.com、live.com、outlook.com），而您嘗試存取已啟用 Windows Azure 驗證的應用程式，您可能會收到400錯誤回應，因為您的 Microsoft 帳戶的網域Windows Azure Active Directory 無法辨識。 若要登入應用程式，請先從您的 Microsoft 帳戶登出。
+如果您已經登入 Microsoft 帳戶（例如 hotmail.com、live.com、outlook.com），而您嘗試存取已啟用 Windows Azure 驗證的應用程式，您可能會收到400錯誤回應，因為 Windows Azure Active Directory 無法辨識 Microsoft 帳戶的網域。 若要登入應用程式，請先從您的 Microsoft 帳戶登出。
 
 #### <a name="logging-into-an-application-with-windows-azure-authentication-enabled-and-a-x509certificatevalidationmode-other-than-none-results-in-certificate-validation-errors-for-the-accountsaccesscontrolwindowsnet-certificate"></a>登入已啟用 Windows Azure 驗證的應用程式，而非 [無] 的 X509certificatevalidationmode.custom 會導致 accounts.accesscontrol.windows.net 憑證的憑證驗證錯誤
 
