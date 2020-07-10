@@ -1,39 +1,39 @@
 ---
 uid: web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options
-title: 支援 OData 查詢選項在 ASP.NET Web API 2-ASP.NET 4.x
+title: 支援 ASP.NET Web API 2-ASP.NET 4.x 中的 OData 查詢選項
 author: MikeWasson
-description: 概觀與程式碼範例顯示 ASP.NET Web API 2 中支援的 OData 查詢選項，asp.net 4.x。
+description: 使用程式碼範例的總覽顯示 ASP.NET 4.x 的 ASP.NET Web API 2 中支援的 OData 查詢選項。
 ms.author: riande
 ms.date: 02/04/2013
 ms.custom: seoapril2019
 ms.assetid: 50e6e62b-e72e-4a29-8293-4b67377bd21f
 msc.legacyurl: /web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options
 msc.type: authoredcontent
-ms.openlocfilehash: 428e4942e42436585049c1e84cd7b07a4a79c0d1
-ms.sourcegitcommit: 0f1119340e4464720cfd16d0ff15764746ea1fea
+ms.openlocfilehash: 96820fab7ac89885058962f44ded86cb0184ee97
+ms.sourcegitcommit: ce28244209db8615bc9bdd576a2e2c88174d318d
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59411562"
+ms.lasthandoff: 04/06/2020
+ms.locfileid: "86188609"
 ---
-# <a name="supporting-odata-query-options-in-aspnet-web-api-2"></a>ASP.NET Web API 2 中支援 OData 查詢選項
+# <a name="supporting-odata-query-options-in-aspnet-web-api-2"></a>支援 ASP.NET Web API 2 中的 OData 查詢選項
 
-藉由[Mike Wasson](https://github.com/MikeWasson)
+由[Mike Wasson](https://github.com/MikeWasson)
 
-本概觀的程式碼範例示範支援的 OData 查詢選項，ASP.NET Web API 2 中 asp.net 4.x。 
+此總覽與程式碼範例示範 ASP.NET 4.x 的 ASP.NET Web API 2 中支援的 OData 查詢選項。 
 
-OData 會定義可用來修改 OData 查詢的參數。 用戶端在要求 URI 查詢字串中傳送這些參數。 例如，若要排序的結果，用戶端會使用 $orderby 參數：
+OData 定義可用於修改 OData 查詢的參數。 用戶端會在要求 URI 的查詢字串中傳送這些參數。 例如，若要排序結果，用戶端會使用 $orderby 參數：
 
 `http://localhost/Products?$orderby=Name`
 
-OData 規格會呼叫這些參數*查詢選項*。 您可以啟用您專案中的任何 Web API 控制器的 OData 查詢選項&#8212;控制器不需要是 OData 端點。 這會讓您加入功能，例如篩選和排序任何 Web API 應用程式的便利方式。
+OData 規格會呼叫這些參數*查詢選項*。 您可以為專案中的任何 Web API 控制器啟用 OData 查詢選項 &#8212; 控制器不需要是 OData 端點。 這可讓您輕鬆地在任何 Web API 應用程式中新增功能，例如篩選和排序。
 
-啟用查詢選項，請參閱本主題之前[OData 安全性指導](odata-security-guidance.md)。
+啟用查詢選項之前，請先閱讀[OData 安全性指引](odata-security-guidance.md)主題。
 
 - [啟用 OData 查詢選項](#enable)
 - [範例查詢](#examples)
-- [Server-Driven Paging](#server-paging)
-- [限制的查詢選項](#limiting_query_options)
+- [伺服器導向的分頁](#server-paging)
+- [限制查詢選項](#limiting_query_options)
 - [直接叫用查詢選項](#ODataQueryOptions)
 - [查詢驗證](#query-validation)
 
@@ -44,83 +44,82 @@ Web API 支援下列 OData 查詢選項：
 
 | 選項 | 描述 |
 | --- | --- |
-| $expand | 展開相關的實體內嵌。 |
-| $filter | 篩選結果，根據布林條件。 |
-| $inlinecount | 告知伺服器應回應中包含的相符實體總計數。 （適用於伺服器端分頁。） |
+| $expand | 以內嵌方式展開相關的實體。 |
+| $filter | 根據布林值條件來篩選結果。 |
+| $inlinecount | 告訴伺服器在回應中包含相符實體的總計數。  (適用于伺服器端分頁。 )  |
 | $orderby | 排序結果。 |
 | $select | 選取要包含在回應中的屬性。 |
 | $skip | 略過前 n 個結果。 |
-| $top | 傳回前 n 個結果。 |
+| $top | 只傳回前 n 個結果。 |
 
-若要使用的 OData 查詢選項，您必須明確啟用它們。 您可以全域啟用整個應用程式，或針對特定控制器或特定的動作啟用它們。
+若要使用 OData 查詢選項，您必須明確加以啟用。 您可以針對整個應用程式全域啟用它們，或針對特定控制器或特定動作啟用它們。
 
-若要全域啟用 OData 查詢選項，請呼叫**EnableQuerySupport**上**HttpConfiguration**在啟動類別：
+若要全域啟用 OData 查詢選項，請在啟動時呼叫**HttpConfiguration**類別上的**EnableQuerySupport** ：
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample1.cs)]
 
-**EnableQuerySupport**方法可讓查詢選項，會傳回任何控制器動作的全域**IQueryable**型別。 如果您不想啟用整個應用程式的查詢選項，您可以讓它們適用於特定的控制器動作加 **[Queryable]** 屬性加入動作方法。
+**EnableQuerySupport**方法會針對傳回**IQueryable**類型的任何控制器動作，全域啟用查詢選項。 如果您不想要針對整個應用程式啟用查詢選項，可以藉由將 **[可查詢]** 屬性新增至動作方法，針對特定的控制器動作啟用它們。
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample2.cs)]
 
 <a id="examples"></a>
-## <a name="example-queries"></a>範例查詢
+## <a name="example-queries"></a>查詢範例
 
-本節說明是可能使用的 OData 查詢選項的查詢的類型。 如特定的查詢選項的詳細資訊，請參閱 OData 文件，網址[www.odata.org](http://www.odata.org/)。
+本節顯示使用 OData 查詢選項時可能發生的查詢類型。 如需查詢選項的特定詳細資料，請參閱 OData 檔，網址為[www.odata.org](http://www.odata.org/)。
 
-如需 $展開和 $select，請參閱[使用 $select，$expand、 和 ASP.NET Web API OData 中的 $value](using-select-expand-and-value.md)。
+如需 $expand 和 $select 的詳細資訊，請參閱[在 $Value OData 中使用 $select、$expand 和 ASP.NET Web API](using-select-expand-and-value.md)。
 
-**Client-Driven Paging**
+**用戶端導向的分頁**
 
-為大型實體集，用戶端可能會想要限制結果數目。 例如，用戶端可能會顯示 10 個項目一次 下一步 」 的連結，來取得下一頁的結果。 若要這樣做，用戶端會使用 $top] 和 [$skip 選項。
+對於大型實體集，用戶端可能會想要限制結果的數目。 例如，用戶端可能會一次顯示10個專案，其中包含「下一步」連結以取得下一個頁面的結果。 若要這樣做，用戶端會使用 $top 和 $skip 選項。
 
 `http://localhost/Products?$top=10&$skip=20`
 
-$Top 選項提供項目，以傳回，最大數目，以及 $skip 選項以略過的項目數。 前一個範例會擷取項目 21 到 30。
+[$Top] 選項會提供要傳回的最大專案數，而 [$skip] 選項則會提供要略過的專案數。 上一個範例會提取專案21到30。
 
 **篩選**
 
-$Filter 選項可讓用戶端所套用的布林運算式篩選結果。 篩選條件運算式是相當強大;其中包括邏輯和算術運算子、 字串函數，以及日期函式。
+[$Filter] 選項可讓用戶端套用布林運算式來篩選結果。 篩選運算式非常強大;其中包括邏輯和算術運算子、字串函數和日期函數。
 
-| 會傳回等於 「 玩具 」 類別的所有產品。 | `http://localhost/Products?$filter=Category` eq 'Toys' |
+| 傳回類別目錄等於「玩具」的所有產品。 | `http://localhost/Products?$filter=Category`eq ' 玩具 ' |
 | --- | --- |
-| 會傳回標價小於 10 的所有產品。 | `http://localhost/Products?$filter=Price` l 10 |
-| 邏輯運算子：傳回所有產品，價格 > = 5 且價格 < = 15。 | `http://localhost/Products?$filter=Price` ge 5 和價格 le 15 |
-| 字串函數：傳回與"zz"的所有產品名稱中。 | `http://localhost/Products?$filter=substringof('zz',Name)` |
-| 日期函數：傳回所有產品 ReleaseDate 2005 之後。 | `http://localhost/Products?$filter=year(ReleaseDate)` t 2005 |
+| 傳回價格小於10的所有產品。 | `http://localhost/Products?$filter=Price`lt 10 |
+| 邏輯運算子：傳回價格 >= 5 且價格 <= 15 的所有產品。 | `http://localhost/Products?$filter=Price`ge 5 和價格 le 15 |
+| 字串函數：傳回名稱中有 "zz" 的所有產品。 | `http://localhost/Products?$filter=substringof('zz',Name)` |
+| 日期函數：傳回2005之後的所有產品 ReleaseDate。 | `http://localhost/Products?$filter=year(ReleaseDate)`gt 2005 |
 
 **排序**
 
-若要排序的結果，請使用 $orderby 篩選。
+若要排序結果，請使用 [$orderby] 篩選準則。
 
-| 價格依排序。 | `http://localhost/Products?$orderby=Price` |
+| 依價格排序。 | `http://localhost/Products?$orderby=Price` |
 | --- | --- |
-| 排序依據以遞減順序 （最高到最低） 的價格。 | `http://localhost/Products?$orderby=Price desc` |
-| 依類別排序，然後依價格遞減類別內的順序排序。 | `http://localhost/odata/Products?$orderby=Category,Price desc` |
+| 依價格以遞減順序排序 (最高到最低) 。 | `http://localhost/Products?$orderby=Price desc` |
+| 依分類排序，然後依價格遞減分類內的遞增順序排序。 | `http://localhost/odata/Products?$orderby=Category,Price desc` |
 
 <a id="server-paging"></a>
-## <a name="server-driven-paging"></a>伺服器驅動型分頁
+## <a name="server-driven-paging"></a>伺服器導向的分頁
 
-如果您的資料庫包含數百萬筆記錄，您不想傳送這些全都放在一個裝載。 若要避免這個問題，伺服器可以限制單一回應中傳送的項目數。 若要啟用伺服器分頁，將**PageSize**中的屬性**Queryable**屬性。 值是要傳回的項目數目上限。
+如果您的資料庫包含數百萬筆記錄，您就不會想要在一個承載中全部傳送。 為了避免這種情況，伺服器可能會限制在單一回應中傳送的專案數。 若要啟用伺服器分頁，請在可**查詢**的屬性中設定**PageSize**屬性。 值是要傳回的最大專案數。
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample3.cs)]
 
-如果您的控制器傳回 OData 格式時，回應主體會包含下一頁資料的連結：
+如果您的控制器傳回 OData 格式，回應主體會包含下一頁數據的連結：
 
 [!code-json[Main](supporting-odata-query-options/samples/sample4.json?highlight=8)]
 
-用戶端可以使用此連結，以擷取下一個頁面。 若要了解結果集中的項目總數，用戶端可以設定 $inlinecount 查詢選項的值"allpages 」。
+用戶端可以使用此連結來提取下一個頁面。 若要瞭解結果集中的總專案數，用戶端可以使用 "allpages 提出要求" 值來設定 $inlinecount 查詢選項。
 
 `http://localhost/Products?$inlinecount=allpages`
 
-值"allpages 」 會要求伺服器在回應中包含的總數：
+值 "allpages 提出要求" 會告訴伺服器將總計數包含在回應中：
 
 [!code-json[Main](supporting-odata-query-options/samples/sample5.json?highlight=3)]
 
 > [!NOTE]
-> 下一頁連結和內嵌計數都需要 OData 格式。 原因是，OData 會定義特殊欄位來保存的連結和計數的回應主體中。
+> 下一個頁面連結和內嵌計數都需要 OData 格式。 原因是 OData 會在回應主體中定義特殊欄位，以保存連結和計數。
 
-
-對於非 OData 格式，就仍然可以支援藉由包裝的查詢結果中的下一頁連結和內嵌計數**PageResult&lt;T&gt;** 物件。 不過，它需要更多的程式碼。 請看以下範例：
+對於非 OData 格式，仍然可以支援下一頁連結和內嵌計數，方法是將查詢結果包裝在**PageResult &lt; T &gt; **物件中。 不過，它需要更多的程式碼。 範例如下：
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample6.cs)]
 
@@ -129,60 +128,60 @@ $Filter 選項可讓用戶端所套用的布林運算式篩選結果。 篩選�
 [!code-json[Main](supporting-odata-query-options/samples/sample7.json)]
 
 <a id="limiting_query_options"></a>
-## <a name="limiting-the-query-options"></a>限制的查詢選項
+## <a name="limiting-the-query-options"></a>限制查詢選項
 
-查詢選項會導致在用戶端控制伺服器執行的查詢很多。 在某些情況下，您可能想要限制可用的選項，基於安全性或效能的考量。 **[Queryable]** 屬性有部分內建屬性的。 以下是一些範例。
+查詢選項可讓用戶端對在伺服器上執行的查詢有很大的控制權。 在某些情況下，您可能會想要基於安全性或效能的考慮，限制可用的選項。 **[可查詢]** 屬性具有這個的一些內建屬性。 以下是一些範例。
 
-僅允許 $skip 和 $top，以支援分頁並沒有其他項目：
+僅允許 $skip 和 $top，以支援分頁和其他任何動作：
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample8.cs)]
 
-若要避免在資料庫中建立索引的屬性上的排序順序只能由特定的屬性，可讓：
+只允許特定屬性進行排序，以防止對資料庫中未編制索引的屬性進行排序：
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample9.cs)]
 
-允許"eq"的邏輯函式，但沒有其他的邏輯函數：
+允許 "eq" 邏輯函式，但沒有其他邏輯函數：
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample10.cs)]
 
-不允許任何的算術運算子：
+不允許任何算術運算子：
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample11.cs)]
 
-您可以藉由建構，全域限制選項**QueryableAttribute**執行個體，並將其傳遞給**EnableQuerySupport**函式：
+您可以藉由建立**QueryableAttribute**實例，並將它傳遞至**EnableQuerySupport**函式，來全域限制選項：
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample12.cs)]
 
 <a id="ODataQueryOptions"></a>
 ## <a name="invoking-query-options-directly"></a>直接叫用查詢選項
 
-而不是使用 **[Queryable]** 屬性，您可以直接在您的控制器中叫用的查詢選項。 若要這樣做，請新增**ODataQueryOptions**控制器方法的參數。 在此情況下，您不需要 **[Queryable]** 屬性。
+您可以直接在控制器中叫用查詢選項，而不是使用 **[可查詢]** 屬性。 若要這麼做，請將**ODataQueryOptions**參數新增至控制器方法。 在此情況下，您不需要 **[可查詢]** 屬性。
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample13.cs)]
 
-Web API 會填入**ODataQueryOptions**從 URI 查詢字串。 若要套用查詢，請傳遞**IQueryable**要**ApplyTo**方法。 此方法會傳回另一個**IQueryable**。
+Web API 會從 URI 查詢字串填入**ODataQueryOptions** 。 若要套用查詢，請將**IQueryable**傳遞至**ApplyTo**方法。 方法會傳回另一個**IQueryable**。
 
-對於進階案例，如果您不需要**IQueryable**查詢提供者，您可以檢查**ODataQueryOptions**並轉譯成另一種形式的查詢選項。 (例如，請參閱 RaghuRam Nadiminti 部落格文章[轉譯的 OData 查詢，為 HQL](https://blogs.msdn.com/b/webdev/archive/2013/02/25/translating-odata-queries-to-hql.aspx)，其中也包括[範例](http://aspnet.codeplex.com/SourceControl/changeset/view/75a56ec99968#Samples/WebApi/NHibernateQueryableSample/Readme.txt)。)
+針對先進的案例，如果您沒有**IQueryable**查詢提供者，您可以檢查**ODataQueryOptions** ，並將查詢選項轉譯成另一個表單。  (例如，請參閱 RaghuRam Nadiminti 的 blog 文章[將 OData 查詢翻譯為 HQL](https://blogs.msdn.com/b/webdev/archive/2013/02/25/translating-odata-queries-to-hql.aspx)，其中也包含[範例](http://aspnet.codeplex.com/SourceControl/changeset/view/75a56ec99968#Samples/WebApi/NHibernateQueryableSample/Readme.txt)。 ) 
 
 <a id="query-validation"></a>
 ## <a name="query-validation"></a>查詢驗證
 
-**[Queryable]** 屬性驗證的查詢，然後再執行它。 驗證步驟在中執行**QueryableAttribute.ValidateQuery**方法。 您也可以自訂驗證程序。
+**[可查詢]** 屬性會在執行查詢之前進行驗證。 驗證步驟會在**QueryableAttribute. ValidateQuery**方法中執行。 您也可以自訂驗證程式。
 
-另請參閱[OData 安全性指導](odata-security-guidance.md)。
+另請參閱[OData 安全性指引](odata-security-guidance.md)。
 
-覆寫其中一個驗證程式也就是類別定義中的第一次， **Web.Http.OData.Query.Validators**命名空間。 例如，下列的驗證程式類別會停用 $orderby 選項的 'desc' 選項。
+首先，覆寫在**web.config**命名空間中定義的其中一個驗證程式類別。 例如，下列驗證程式類別會停用 $orderby 選項的 ' desc ' 選項。
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample14.cs)]
 
-子類別 **[Queryable]** 屬性來覆寫**ValidateQuery**方法。
+子類別化 **[可查詢]** 屬性來覆寫**ValidateQuery**方法。
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample15.cs)]
 
-然後設定您的自訂屬性是全域或每個控制站：
+然後，將您的自訂屬性設定為全域或每個控制器：
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample16.cs)]
 
-如果您使用**ODataQueryOptions**直接設定選項中的 驗證程式：
+如果您直接使用**ODataQueryOptions** ，請在選項上設定驗證程式：
 
 [!code-csharp[Main](supporting-odata-query-options/samples/sample17.cs)]
