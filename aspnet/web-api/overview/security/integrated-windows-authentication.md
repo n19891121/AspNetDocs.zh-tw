@@ -8,22 +8,24 @@ ms.date: 12/18/2012
 ms.assetid: 71ee4c78-c500-4d1c-b761-b4e161a291b5
 msc.legacyurl: /web-api/overview/security/integrated-windows-authentication
 msc.type: authoredcontent
-ms.openlocfilehash: e4f31f191f3c0fabff308ea5dadb0f1d9ce7d448
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: c5fe57c4a20e28fa434659a75484e3a4c37195f8
+ms.sourcegitcommit: 000cbcd1de66fe8a766f203ef2d6f009e4435f53
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78621741"
+ms.lasthandoff: 07/16/2020
+ms.locfileid: "86424788"
 ---
 # <a name="integrated-windows-authentication"></a>整合式 Windows 驗證
 
 由[Mike Wasson](https://github.com/MikeWasson)
 
-整合式 Windows 驗證可讓使用者使用 Kerberos 或 NTLM，以其 Windows 認證登入。 用戶端會在授權標頭中傳送認證。 Windows 驗證最適合內部網路環境。 如需詳細資訊，請參閱 [Windows 驗證](https://www.iis.net/configreference/system.webserver/security/authentication/windowsauthentication)。
+整合式 Windows 驗證可讓使用者使用 Kerberos 或 NTLM，以其 Windows 認證登入。 用戶端會在授權標頭中傳送認證。 Windows 驗證最適合用於內部網路環境。 如需詳細資訊，請參閱 [Windows 驗證](https://www.iis.net/configreference/system.webserver/security/authentication/windowsauthentication)。
 
 | 優點 | 缺點 |
 | --- | --- |
-| -內建于 IIS 中。 -不會傳送要求中的使用者認證。 -如果用戶端電腦屬於網域（例如，內部網路應用程式），使用者就不需要輸入認證。 | -不建議用於網際網路應用程式。 -需要用戶端中的 Kerberos 或 NTLM 支援。 -用戶端必須在 Active Directory 網域中。 |
+| 內建于 IIS 中。 | 不建議用於網際網路應用程式。 | 
+| 不會傳送要求中的使用者認證。 | 需要用戶端中的 Kerberos 或 NTLM 支援。 |
+| 如果用戶端電腦屬於網域（例如，內部網路應用程式），使用者就不需要輸入認證。 | 用戶端必須位於 Active Directory 網域。 |
 
 > [!NOTE]
 > 如果您的應用程式裝載于 Azure 上，而且您有內部部署 Active Directory 網域，請考慮將您的內部部署 AD 與 Azure Active Directory 同盟。 如此一來，使用者就可以使用其內部部署認證登入，但驗證是由 Azure AD 執行。 如需詳細資訊，請參閱[Azure 驗證](../../../visual-studio/overview/2012/windows-azure-authentication.md)。
