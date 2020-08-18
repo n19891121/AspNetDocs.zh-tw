@@ -1,183 +1,182 @@
 ---
 uid: whitepapers/what-is-new-in-aspnet-mvc
-title: 什麼是 ASP.NET MVC 2 的新功能 |Microsoft Docs
+title: ASP.NET MVC 2 的新功能 |Microsoft Docs
 author: rick-anderson
-description: 本文件說明新功能和 ASP.NET MVC 2 中引進的增強功能。 這份文件也可供下載。
+description: 本檔說明 ASP.NET MVC 2 中引進的新功能和增強功能。 這份檔也可供下載。
 ms.author: riande
 ms.date: 04/20/2010
 ms.assetid: 69a8d6f8-4b10-4602-8822-2d6c05fc432b
 msc.legacyurl: /whitepapers/what-is-new-in-aspnet-mvc
 msc.type: content
-ms.openlocfilehash: 7f846e807309f3123db52b3053b9aa8d6aca81e6
-ms.sourcegitcommit: 0f1119340e4464720cfd16d0ff15764746ea1fea
+ms.openlocfilehash: 1a0a29241d8afecd295b11013b27621b21c9ed52
+ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/17/2019
-ms.locfileid: "59394831"
+ms.lasthandoff: 03/06/2020
+ms.locfileid: "86162697"
 ---
 # <a name="whats-new-in-aspnet-mvc-2"></a>ASP.NET MVC 2 的新功能
 
-> 本文件說明新功能和 ASP.NET MVC 2 中引進的增強功能。 這份文件也已開放[下載](https://download.microsoft.com/download/F/1/6/F16F9AF9-8EF4-4845-BC97-639791D5699C/WhatIsNewInMVC_2.pdf)
+> 本檔說明 ASP.NET MVC 2 中引進的新功能和增強功能。 這份檔也可供 [下載](https://download.microsoft.com/download/F/1/6/F16F9AF9-8EF4-4845-BC97-639791D5699C/WhatIsNewInMVC_2.pdf)
 
-
-[簡介](#_TOC1)   
-[將 ASP.NET MVC 1.0 專案升級至 ASP.NET MVC 2](#_TOC2)   
+[介紹](#_TOC1)   
+[將 ASP.NET MVC 1.0 專案升級為 ASP.NET MVC 2](#_TOC2)   
 [新功能](#_TOC3)   
-[樣板化 Helper](#_TOC3_1)   
-[區域](#_TOC3_2)   
-[非同步控制器的的支援](#_TOC3_3)   
-[DefaultValueAttribute 在動作方法參數的支援](#_TOC3_4)   
-[繫結的二進位資料，模型繫結器的支援](#_TOC3_5)   
+[樣板化協助程式](#_TOC3_1)   
+[地區](#_TOC3_2)   
+[支援非同步控制器](#_TOC3_3)   
+[在動作方法參數中支援 DefaultValueAttribute](#_TOC3_4)   
+[支援使用模型系結器來系結二進位資料](#_TOC3_5)   
 [ModelMetadata 和 ModelMetadataProvider 類別](#_TOC3_6)   
 [DataAnnotations 屬性的支援](#_TOC3_7)   
 [模型驗證程式提供者](#_TOC3_8)   
 [用戶端驗證](#_TOC3_9)   
-[適用於 Visual Studio 2010 的新程式碼片段](#_TOC3_10)   
-[新的 RequireHttpsAttribute 動作篩選條件](#_TOC3_11)   
-[覆寫的 HTTP 方法的動詞命令](#_TOC3_12)   
-[樣板化 Helper 的新 HiddenInputAttribute 類別](#_TOC3_13)   
-[Html.ValidationSummary 協助程式方法可以顯示模型層級錯誤](#_TOC3_14)   
-[在 Visual Studio 產生程式碼特定的 T4 範本至.NET framework 目標版本](#_TOC3_15)[API 增強功能](#_TOC4)  
+[Visual Studio 2010 的新程式碼片段](#_TOC3_10)   
+[新增 RequireHttpsAttribute 動作篩選](#_TOC3_11)   
+[覆寫 HTTP 方法動詞](#_TOC3_12)   
+[樣板化 helper 的新 HiddenInputAttribute 類別](#_TOC3_13)   
+[ValidationSummary Helper 方法可顯示模型層級錯誤](#_TOC3_14)   
+[Visual Studio 中的 T4 範本會產生適用于 .NET Framework](#_TOC3_15)[API 改進](#_TOC4)目標版本的程式碼  
 [重大變更](#_TOC5)  
 [免責聲明](#_TOC6)  
 
-## <a id="_TOC1"></a>  簡介
+## <a name="introduction"></a><a id="_TOC1"></a>  介紹
 
-ASP.NET MVC 2 是根據 ASP.NET MVC 1.0，並引進大量的增強功能和功能，著重於提升產能。 此版本是與 ASP.NET MVC 1.0 中，相容的因此所有您知識、 技能、 程式碼和適用於 ASP.NET MVC 1.0 仍會繼續套用。
+ASP.NET MVC 2 建置於 ASP.NET MVC 1.0，並引進一組大量的增強功能和功能，著重于提升生產力。 此版本與 ASP.NET MVC 1.0 相容，因此您所有適用于 ASP.NET MVC 1.0 的知識、技能、程式碼和延伸模組都會繼續套用。
 
-如需有關 ASP.NET MVC 的詳細資訊，請瀏覽下列資源：
+如需有關 ASP.NET MVC 的詳細資訊，請造訪下列資源：
 
-- [MSDN 上的 ASP.NET MVC 文件](https://go.microsoft.com/fwlink/?LinkId=159758)
+- [MSDN 上的 ASP.NET MVC 檔](https://go.microsoft.com/fwlink/?LinkId=159758)
 - [ASP.NET MVC 網站](https://asp.net/mvc/)
 - [ASP.NET MVC 論壇](https://forums.asp.net/1146.aspx)
 
-## <a id="_TOC2"></a>  將 ASP.NET MVC 1.0 專案升級至 ASP.NET MVC 2
+## <a name="upgrading-an-aspnet-mvc-10-project-to-aspnet-mvc-2"></a><a id="_TOC2"></a>  將 ASP.NET MVC 1.0 專案升級為 ASP.NET MVC 2
 
-ASP.NET MVC 2 可以與 ASP.NET MVC 1.0 並存安裝在相同伺服器上，讓應用程式開發人員彈性來選擇升級至 ASP.NET MVC 2 的 ASP.NET MVC 1.0 應用程式的時機。 如需如何升級的詳細資訊，請參閱文件[ASP.NET MVC 1.0 應用程式升級為 ASP.NET MVC 2](https://go.microsoft.com/fwlink/?LinkID=185459)。
+ASP.NET MVC 2 可以與 ASP.NET MVC 1.0 並存安裝在同一部伺服器上，如此可讓應用程式開發人員選擇何時將 ASP.NET MVC 1.0 應用程式升級至 ASP.NET MVC 2。 如需有關如何升級的詳細資訊，請參閱將 [ASP.NET mvc 1.0 應用程式升級至 ASP.NET mvc 2](https://go.microsoft.com/fwlink/?LinkID=185459)的檔。
 
-## <a id="_TOC3"></a>  新功能
+## <a name="new-features"></a><a id="_TOC3"></a>  新功能
 
-本節說明已引進的功能中的 MVC 2 版。
+本節說明 MVC 2 版本中引進的功能。
 
-### <a id="_TOC3_1"></a>  樣板化 Helper
+### <a name="templated-helpers"></a><a id="_TOC3_1"></a>  樣板化協助程式
 
-樣板化 helper 可讓您自動產生關聯的 HTML 項目進行編輯，並顯示與資料型別。 例如，當資料類型為 System.DateTime 會顯示在檢視中，日期選擇器 UI 項目可以自動轉譯。 這是在 ASP.NET Dynamic Data 欄位範本的運作方式類似。 如需詳細資訊，請參閱 <<c0> [ 來顯示資料使用樣板化 Helper](https://go.microsoft.com/fwlink/?LinkId=159062) MSDN 網站上。
+樣板化協助程式可讓您自動建立 HTML 專案的關聯，以便編輯和顯示資料類型。 例如，當 view 中顯示 system.string 類型的資料時，可以自動轉譯日期選擇器 UI 元素。 這類似于欄位範本在 ASP.NET 動態資料中的運作方式。 如需詳細資訊，請參閱使用樣板化 helper 在 MSDN 網站上 [顯示資料](https://go.microsoft.com/fwlink/?LinkId=159062) 。
 
-### <a id="_TOC3_2"></a>  區域
+### <a name="areas"></a><a id="_TOC3_2"></a>  地區
 
-區域可讓您大型專案分成多個較小的區段，以管理大型的 Web 應用程式的複雜度。 每個區段 （「 區域 」） 通常代表大網站的個別區段，並可用來分組相關的控制器和檢視集。 如需詳細資訊，請參閱[逐步解說：組織 ASP.NET MVC 應用程式透過區域](https://go.microsoft.com/fwlink/?LinkId=158978)MSDN 網站上。
+區域可讓您將大型專案組織成多個較小的區段，以便管理大型 Web 應用程式的複雜度。 每個區段 ( 「區域」 ) 通常代表大型網站的個別區段，並可用來將相關聯的控制器和 views 集合分組。 如需詳細資訊，請參閱 MSDN 網站上的逐步解說 [：依區域組織 ASP.NET MVC 應用程式](https://go.microsoft.com/fwlink/?LinkId=158978) 。
 
-若要建立新的區域，請在 [方案總管] 中，以滑鼠右鍵按一下專案，按一下 [新增]，然後按一下區域。 這會顯示對話方塊，提示您輸入的區域名稱。 輸入區域名稱之後，Visual Studio 會將新的區域加入專案中。
+若要建立新的區域，請在 [方案總管中，以滑鼠右鍵按一下專案，按一下 [新增]，然後按一下 [區域]。 這會顯示一個對話方塊，提示您輸入區功能變數名稱稱。 輸入區功能變數名稱稱之後，Visual Studio 會將新區域新增至專案。
 
-下圖顯示具有兩個區域，系統管理員和部落格專案配置範例。
+下圖顯示具有兩個區域、系統管理員和 Blog 的專案範例版面配置。
 
 ![](what-is-new-in-aspnet-mvc/_static/image1.png)
 
-當您建立區域時，Visual Studio 會新增至每個區域從 AreaRegistration 衍生的類別。 這個類別，才能註冊區域和其路由中，如下列範例所示：
+當您建立區域時，Visual Studio 會將衍生自 AreaRegistration 的類別加入至每個區域。 此類別是必要的，才能註冊區域和其路由，如下列範例所示：
 
 [!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample1.cs)]
 
-ASP.NET MVC 2 的預設專案範本在 Global.asax 檔案的程式碼中包含 RegisterAllAreas 方法的呼叫。 藉由尋找衍生自 AreaRegistration 類別的所有類型的具現化型別的執行個體，然後呼叫執行個體上的 RegisterArea 方法，這個方法會註冊每個區域中的專案。 下列範例會示範如何做到這點。
+ASP.NET MVC 2 的預設專案範本包含對 global.asax 檔案程式碼中 RegisterAllAreas 方法的呼叫。 這個方法會藉由尋找衍生自 AreaRegistration 類別的所有類型、具現化類型的實例，然後在實例上呼叫 RegisterArea 方法，來註冊專案中的每個區域。 下列範例顯示如何完成這項操作。
 
 [!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample2.cs)]
 
-如果您未藉由呼叫內容 RegisterArea 方法中指定的命名空間。預設會使用 Namespaces.Add 方法，註冊類別的命名空間。
+如果您未藉由呼叫內容來指定 RegisterArea 方法中的命名空間。命名空間： Add 方法，預設會使用註冊類別的命名空間。
 
-### <a id="_TOC3_3"></a>  非同步控制器的的支援
+### <a name="support-for-asynchronous-controllers"></a><a id="_TOC3_3"></a>  支援非同步控制器
 
-ASP.NET MVC 2 現在可讓控制器以非同步方式處理要求。 藉由使用伺服器會經常要改為呼叫非封鎖式的對應項目呼叫 （例如網路要求） 的封鎖作業，這可能會導致效能提升。 如需詳細資訊，請參閱 <<c0> [ 在 ASP.NET MVC 中使用非同步控制器](https://msdn.microsoft.com/library/ee728598(v=VS.100).aspx)MSDN 上的主題。
+ASP.NET MVC 2 現在允許控制器以非同步方式處理要求。 這可能會讓經常呼叫封鎖作業的伺服器 (例如網路要求) 來改為呼叫非封鎖的對應專案，進而提升效能。 如需詳細資訊，請參閱 MSDN 上的 [使用 ASP.NET MVC 中的非同步控制器](https://msdn.microsoft.com/library/ee728598(v=VS.100).aspx) 主題。
 
-### <a id="_TOC3_4"></a>  DefaultValueAttribute 在動作方法參數的支援
+### <a name="support-for-defaultvalueattribute-in-action-method-parameters"></a><a id="_TOC3_4"></a>  在動作方法參數中支援 DefaultValueAttribute
 
-System.ComponentModel.DefaultValueAttribute 類別可讓動作方法的引數參數所提供的預設值。 例如，假設下列的預設路由，定義：
+ComponentModel. DefaultValueAttribute 類別允許將引數參數的預設值提供給動作方法。 例如，假設已定義下列預設路由：
 
 [!code-json[Main](what-is-new-in-aspnet-mvc/samples/sample3.json)]
 
-也會假設下列控制器和動作方法的定義：
+也假設已定義下列控制器和動作方法：
 
 [!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample4.cs)]
 
-下列要求的任何 Url 將會叫用上述範例中所定義的檢視動作方法。
+下列任何一個要求 Url 都會叫用上述範例中所定義的 View 動作方法。
 
-- / 文件/檢視/123
-- / 文件/檢視/123？ 頁面 = 1 （效力等同於先前的要求）
-- /Article/View/123?page=2
+- /Article/View/123
+- /Article/View/123？ page = 1 (與先前的要求有效) 
+- /Article/View/123？ page = 2
 
-如果沒有 DefaultValueAttribute 屬性中，從上述清單的第一個 URL 不是可行，因為頁面引數是尚未提供其值不可為 null 的實值型別。
+如果沒有 DefaultValueAttribute 屬性，則上述清單中的第一個 URL 將無法運作，因為頁面引數是未提供值的不可為 null 實值型別。
 
-如果您的程式碼以 Visual Basic 2010 或 Visual C# 2010年撰寫，您可以使用選擇性參數，而不是 DefaultValueAttribute 屬性，如下列範例所示即可：
+如果您的程式碼是以 Visual Basic 2010 或 Visual c # 2010 撰寫，您可以使用選擇性參數，而不是 DefaultValueAttribute 屬性，如下列範例所示：
 
 [!code-vb[Main](what-is-new-in-aspnet-mvc/samples/sample5.vb)]
 
-### <a id="_TOC3_5"></a>  繫結的二進位資料，模型繫結器的支援
+### <a name="support-for-binding-binary-data-with-model-binders"></a><a id="_TOC3_5"></a>  支援使用模型系結器來系結二進位資料
 
-有兩個新的多載 Html.Hidden helper，編碼為 base-64 編碼字串的二進位值：
+Html 會有兩個新的多載，可將二進位值編碼為 base-64 編碼的字串：
 
 [!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample6.cs)]
 
-典型的用法是內嵌在檢視中的物件時的時間戳記。 比方說，您的應用程式可能會包含下列產品物件：
+一般用途是在視圖中内嵌物件的時間戳記。 例如，您的應用程式可能包含下列產品物件：
 
 [!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample7.cs)]
 
-編輯表單可以轉譯時間戳記屬性，格式如下列範例所示：
+編輯表單可以轉譯表單中的時間戳記屬性，如下列範例所示：
 
 [!code-aspx[Main](what-is-new-in-aspnet-mvc/samples/sample8.aspx)]
 
-此標記會隱藏的 input 的元素，以時間戳記值轉譯成 base-64 編碼的字串，類似下列範例：
+這項標記會轉譯隱藏的輸入專案，其時間戳記值為 base-64 編碼的字串，類似于下列範例：
 
 [!code-html[Main](what-is-new-in-aspnet-mvc/samples/sample9.html)]
 
-此表單可能會張貼至動作方法具有類型產品的引數，如下列範例所示：
+此表單可能會張貼至具有 Product 類型引數的動作方法，如下列範例所示：
 
 [!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample10.cs)]
 
-在動作方法中，因為已張貼的 base-64 編碼字串轉換成位元組陣列，已正確地填入時間戳記屬性。
+在動作方法中，TimeStamp 屬性已正確填入，因為張貼的 base-64 編碼的字串會轉換為位元組陣列。
 
-### <a id="_TOC3_6"></a>  ModelMetadata 和 ModelMetadataProvider 類別
+### <a name="modelmetadata-and-modelmetadataprovider-classes"></a><a id="_TOC3_6"></a>  ModelMetadata 和 ModelMetadataProvider 類別
 
-ModelMetadataProvider 類別提供取得檢視內之資料模型的中繼資料的抽象概念。 MVC 2 包含預設的提供者，可提供 System.ComponentModel.DataAnnotations 命名空間中的屬性所公開的中繼資料。 可以建立提供從其他資料存放區，例如資料庫或 XML 檔案的中繼資料的中繼資料提供者。
+ModelMetadataProvider 類別會提供一個抽象概念，讓您能夠在視圖內取得模型的中繼資料。 MVC 2 包含的預設提供者，可讓 ComponentModel. DataAnnotations 命名空間中的屬性所公開的中繼資料。 您可以建立中繼資料提供者，以提供來自其他資料存放區的中繼資料，例如資料庫或 XML 檔案。
 
-ViewDataDictionary 類別會公開包含由 ModelMetadataProvider 類別從模型擷取中繼資料的 ModelMetadata 物件。 這可讓使用此中繼資料，並據以調整其輸出的樣板化 helper。
+>viewdatadictionary 類別會公開 ModelMetadata 物件，其中包含由 ModelMetadataProvider 類別從模型中解壓縮的中繼資料。 這可讓樣板化協助程式取用此中繼資料，並據以調整其輸出。
 
-如需詳細資訊，請參閱文件[ModelMetadata](https://msdn.microsoft.com/library/system.web.mvc.modelmetadataprovider(VS.100).aspx)並[ModelMetadataProvider](https://msdn.microsoft.com/library/system.web.mvc.modelmetadataprovider(VS.100).aspx)類別。
+如需詳細資訊，請參閱 [ModelMetadata](https://msdn.microsoft.com/library/system.web.mvc.modelmetadataprovider(VS.100).aspx) 和 [ModelMetadataProvider](https://msdn.microsoft.com/library/system.web.mvc.modelmetadataprovider(VS.100).aspx) 類別的檔。
 
-### <a id="_TOC3_7"></a>  DataAnnotations 屬性的支援
+### <a name="support-for-dataannotations-attributes"></a><a id="_TOC3_7"></a>  DataAnnotations 屬性的支援
 
-ASP.NET MVC 2 支援使用 RangeAttribute、 出現 RequiredAttribute、 StringLengthAttribute 和 RegexAttribute 驗證屬性 （定義在 System.ComponentModel.DataAnnotations 命名空間） 當您繫結至模型以提供輸入驗證。
+ASP.NET MVC 2 支援使用 RangeAttribute、RequiredAttribute、StringLengthAttribute 和 RegexAttribute 驗證屬性 (在 ComponentModel. DataAnnotations 命名空間中定義，) 當您系結至模型以便提供輸入驗證時。
 
-如需詳細資訊，請參閱[如何：驗證模型的資料使用 DataAnnotations 屬性](https://go.microsoft.com/fwlink/?LinkId=159063)MSDN 網站上。 說明如何使用這些屬性的範例專案是下載[ https://go.microsoft.com/fwlink/?LinkId=157753 ](https://go.microsoft.com/fwlink/?LinkId=157753)。
+如需詳細資訊，請參閱 MSDN 網站上的 how [to：使用 DataAnnotations 屬性來驗證模型資料](https://go.microsoft.com/fwlink/?LinkId=159063) 。 您可以從下載說明如何使用這些屬性的範例專案 [https://go.microsoft.com/fwlink/?LinkId=157753](https://go.microsoft.com/fwlink/?LinkId=157753) 。
 
-### <a id="_TOC3_8"></a>  模型驗證程式提供者
+### <a name="model-validator-providers"></a><a id="_TOC3_8"></a>  模型驗證程式提供者
 
-模型驗證提供者類別表示提供模型的驗證邏輯的抽象概念。 ASP.NET MVC 包含根據 System.ComponentModel.DataAnnotations 命名空間中包含的驗證屬性的預設提供者。 您也可以建立自己的驗證提供者模型中定義自訂驗證規則和自訂驗證規則的對應。 如需詳細資訊，請參閱文件[ModelValidatorProvider](https://msdn.microsoft.com/library/system.web.mvc.ModelValidatorProvider(VS.100).aspx)類別。
+模型驗證提供者類別表示提供模型之驗證邏輯的抽象概念。 ASP.NET MVC 包含以 ComponentModel DataAnnotations 命名空間中包含的驗證屬性為基礎的預設提供者。 您也可以建立自己的驗證提供者，來定義自訂驗證規則，以及對模型進行驗證規則的自訂對應。 如需詳細資訊，請參閱 [ModelValidatorProvider](https://msdn.microsoft.com/library/system.web.mvc.ModelValidatorProvider(VS.100).aspx) 類別的檔。
 
-### <a id="_TOC3_9"></a>  用戶端驗證
+### <a name="client-side-validation"></a><a id="_TOC3_9"></a>  用戶端驗證
 
-模型驗證程式提供者類別會公開可供用戶端驗證程式庫的 JSON 序列化資料的形式中的瀏覽器來驗證中繼資料。 ASP.NET MVC 2 包含用戶端驗證程式庫和支援先前所述的 DataAnnotations 命名空間驗證屬性的配接器。 提供者類別也可讓您使用其他用戶端驗證程式庫所撰寫的配接器會在處理 JSON 資料和呼叫其他程式庫。
+模型驗證程式提供者類別會將驗證中繼資料以 JSON 序列化資料的形式公開給瀏覽器，以供用戶端驗證程式庫使用。 ASP.NET MVC 2 包含用戶端驗證程式庫和介面卡，可支援先前所述的 DataAnnotations 命名空間驗證屬性。 提供者類別也可讓您使用其他用戶端驗證程式庫，方法是撰寫可處理 JSON 資料和呼叫替代程式庫的介面卡。
 
-### <a id="_TOC3_10"></a>  適用於 Visual Studio 2010 的新程式碼片段
+### <a name="new-code-snippets-for-visual-studio-2010"></a><a id="_TOC3_10"></a>  Visual Studio 2010 的新程式碼片段
 
-使用 Visual Studio 2010 會安裝 ASP.NET MVC 2 的 HTML 程式碼片段的一組。 若要檢視清單中的這些程式碼片段，在 [工具] 功能表中，選取 [程式碼的程式碼片段管理員]。 針對語言，選取 HTML，並針對位置，選取 ASP.NET MVC 2。 如需如何使用程式碼片段的詳細資訊，請參閱 Visual Studio 文件。
+ASP.NET MVC 2 的一組 HTML 程式碼片段會隨 Visual Studio 2010 安裝。 若要查看這些程式碼片段的清單，請選取 [工具] 功能表中的 [程式碼片段管理員]。 針對 [語言] 選取 [HTML]，並針對 [位置] 選取 [ASP.NET MVC 2]。 如需有關如何使用程式碼片段的詳細資訊，請參閱 Visual Studio 檔。
 
-### <a id="_TOC3_11"></a>  新的 RequireHttpsAttribute 動作篩選條件
+### <a name="new-requirehttpsattribute-action-filter"></a><a id="_TOC3_11"></a>  新增 RequireHttpsAttribute 動作篩選
 
-ASP.NET MVC 2 包含新的 RequireHttpsAttribute 類別，可以套用至動作方法和控制器。 根據預設，篩選條件會將非 SSL HTTP 要求重新導向啟用 SSL (HTTPS) 對等項目。
+ASP.NET MVC 2 包含新的 RequireHttpsAttribute 類別，可套用至動作方法和控制器。 根據預設，篩選器會將非 SSL (HTTP) 要求重新導向至啟用 SSL 的 (HTTPS) 對等專案。
 
-### <a id="_TOC3_12"></a>  覆寫的 HTTP 方法的動詞命令
+### <a name="overriding-the-http-method-verb"></a><a id="_TOC3_12"></a>  覆寫 HTTP 方法動詞
 
-您可以使用 REST 架構樣式，以建置網站，當 HTTP 動詞命令用來判斷要針對資源執行哪些動作。 REST 要求該應用程式支援各種常見的 HTTP 動詞命令，其中包括 GET、 PUT、 POST 和 DELETE。
+當您使用 REST 架構樣式來建立網站時，會使用 HTTP 指令動詞來判斷要對資源執行的動作。 REST 要求應用程式支援完整範圍的一般 HTTP 動詞命令，包括 GET、PUT、POST 和 DELETE。
 
-ASP.NET MVC 2 包含新的屬性，您可以套用至動作方法和該功能的精簡語法。 這些屬性可讓 ASP.NET MVC 到選取的 HTTP 動詞命令為基礎的動作方法。 在下列範例中，POST 要求會呼叫第一個動作方法，PUT 要求會呼叫第二個動作方法。
+ASP.NET MVC 2 包含新的屬性，您可以將這些屬性套用至動作方法和該功能精簡語法。 這些屬性可讓 ASP.NET MVC 根據 HTTP 指令動詞選取動作方法。 在下列範例中，POST 要求會呼叫第一個動作方法，而 PUT 要求會呼叫第二個動作方法。
 
 [!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample11.cs)]
 
-在舊版的 ASP.NET MVC 中，這些動作方法所需更詳細的語法，如下列範例所示：
+在舊版的 ASP.NET MVC 中，這些動作方法需要更詳細的語法，如下列範例所示：
 
 [!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample12.cs)]
 
-瀏覽器都支援只有 GET 和 POST HTTP 動詞命令，因為它不可能要張貼到需要不同的動詞命令的動作。 因此它是不可能原本就支援符合 rest 限制的所有要求。
+因為瀏覽器僅支援 GET 和 POST HTTP 動詞命令，所以不可能張貼到需要不同動詞的動作。 因此，您無法以原生方式支援所有的 RESTful 要求。
 
-不過，支援的 RESTful POST 作業期間，ASP.NET MVC 2 的要求會引進一個新的 HttpMethodOverride HTML 協助程式方法。 這個方法會呈現隱藏的 input 項目，會導致表單有效地模擬任何 HTTP 方法。 例如，使用 HttpMethodOverride HTML 協助程式方法，就可以出現的表單提交是 PUT 或 DELETE 要求。 HttpMethodOverride 的行為會影響下列屬性：
+不過，若要在 POST 作業期間支援 RESTful 要求，ASP.NET MVC 2 引進了新的 HttpMethodOverride HTML helper 方法。 這個方法會轉譯隱藏的輸入專案，讓表單有效地模擬任何 HTTP 方法。 例如，藉由使用 HttpMethodOverride HTML helper 方法，您可以將表單提交顯示為 PUT 或 DELETE 要求。 HttpMethodOverride 的行為會影響下列屬性：
 
 - HttpPostAttribute
 - HttpPutAttribute
@@ -185,122 +184,121 @@ ASP.NET MVC 2 包含新的屬性，您可以套用至動作方法和該功能的
 - HttpDeleteAttribute
 - AcceptVerbsAttribute
 
-隱藏的 input 項目有 X-HTTP-方法-覆寫其名稱和其值設為 HTTP 指令動詞，來模擬。 覆寫值也可以指定在 HTTP 標頭或查詢字串值做為名稱/值配對。
+隱藏的輸入專案的名稱為 X-HTTP-方法-覆寫，且其值設定為要模擬的 HTTP 動詞。 您也可以在 HTTP 標頭中指定覆寫值，或以名稱/值組的形式在查詢字串值中指定覆寫值。
 
-覆寫僅適用於當實際的要求是 POST 要求。 使用任何其他 HTTP 動詞命令的要求，將會忽略覆寫值。
+只有當真正的要求是 POST 要求時，才能使用覆寫。 使用任何其他 HTTP 動詞命令的要求將會忽略覆寫值。
 
-### <a id="_TOC3_13"></a>  樣板化 Helper 的新 HiddenInputAttribute 類別
+### <a name="new-hiddeninputattribute-class-for-templated-helpers"></a><a id="_TOC3_13"></a>  樣板化 helper 的新 HiddenInputAttribute 類別
 
-您可以將新的 HiddenInputAttribute 屬性套用至模型屬性，表示顯示在編輯器範本中的模型時，是否應該呈現隱藏的 input 項目中。 （此屬性設定 HiddenInput 隱含 UIHint 值）。 屬性的 DisplayValue 屬性可讓您指定的值是否會顯示在編輯器中，並顯示模式。 當 DisplayValue 設定為 false 時，不會顯示，甚至不會正常括住欄位的 HTML 標記。 DisplayValue 的預設值為 true。
+您可以將新的 HiddenInputAttribute 屬性套用至模型屬性，以指出在編輯器範本中顯示模型時是否應該轉譯隱藏的輸入元素。  (屬性會設定 HiddenInput) 的隱含 UIHint 值。 屬性的 DisplayValue 屬性可讓您指定值是否顯示在編輯器和顯示模式中。 當 DisplayValue 設定為 false 時，不會顯示任何內容，甚至是通常會在欄位周圍的 HTML 標籤。 DisplayValue 的預設值為 true。
 
-在下列情況下，您可以使用 HiddenInputAttribute 屬性：
+您可以在下列案例中使用 HiddenInputAttribute 屬性：
 
-- 當檢視可讓使用者編輯物件的識別碼，而且顯示的值，以及提供隱藏的 input 的元素，其中包含舊的識別碼，以便將它傳遞回控制器所需。
-- 檢視可讓使用者編輯應該永遠不會顯示，例如時間戳記屬性的二進位屬性。 在此情況下，值和周圍的 HTML 標記 （例如標籤和值） 不會顯示。
+- 當某個視圖可讓使用者編輯物件的識別碼時，必須顯示此值以及提供隱藏的輸入專案（包含舊識別碼），以便將它傳回給控制器。
+- 當某個視圖可讓使用者編輯永遠不會顯示的二進位屬性，例如 timestamp 屬性。 在此情況下，不會顯示值和周圍的 HTML 標籤 (例如標籤和值) 。
 
-下列範例示範如何使用 HiddenInputAttribute 類別。
+下列範例顯示如何使用 HiddenInputAttribute 類別。
 
 [!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample13.cs)]
 
-當屬性設定為 true （或未指定任何參數），會發生下列情況：
+當屬性設定為 true (或未) 指定參數時，就會發生下列情況：
 
-- 在顯示範本中，標籤會轉譯，並會向使用者顯示的值。
-- 在編輯器範本中，標籤會轉譯，而且在隱藏的 input 項目中呈現的值。
+- 在 [顯示範本] 中，會轉譯標籤，並向使用者顯示值。
+- 在編輯器範本中，會轉譯標籤，並在隱藏的輸入元素中轉譯值。
 
-當屬性設定為 false，則發生下列情況：
+當屬性設定為 false 時，會發生下列情況：
 
-- 顯示範本中不會呈現該欄位。
-- 編輯器範本中沒有標籤會轉譯，而且在隱藏的 input 項目中呈現的值。
+- 在 [顯示範本] 中，不會針對該欄位轉譯任何內容。
+- 在編輯器範本中，不會轉譯任何標籤，而是在隱藏的輸入元素中轉譯值。
 
-### <a id="_TOC3_14"></a>  Html.ValidationSummary 協助程式方法可以顯示模型層級錯誤
+### <a name="htmlvalidationsummary-helper-method-can-display-model-level-errors"></a><a id="_TOC3_14"></a>  ValidationSummary Helper 方法可顯示模型層級錯誤
 
-而不是一律顯示所有驗證錯誤，Html.ValidationSummary helper 方法會具有新的選項，以只顯示模型層級錯誤。 這可讓模型層級的錯誤，要在驗證摘要中顯示和顯示每個欄位旁邊的欄位特定錯誤。
+ValidationSummary helper 方法的新選項只顯示模型層級錯誤，而不是一律顯示所有驗證錯誤。 這可讓模型層級的錯誤顯示在驗證摘要中，並在每個欄位旁顯示欄位特定的錯誤。
 
-### <a id="_TOC3_15"></a>  在 Visual Studio 產生程式碼特定的 T4 範本至.NET framework 目標版本
+### <a name="t4-templates-in-visual-studio-generate-code-that-is-specific-to-the-target-version-of-the-net-framework"></a><a id="_TOC3_15"></a>  Visual Studio 中的 T4 範本會產生特定于目標版本的程式碼 .NET Framework
 
-新的屬性是使用 T4 檔案從指定的應用程式所使用的.NET framework 版本的 ASP.NET MVC T4 主機。 這可讓 T4 範本產生程式碼與.NET Framework 的版本特定的標記。 在 Visual Studio 2008 中，這個值一律是.NET 3.5。 在 Visual Studio 2010 中，值會是.NET 3.5 或.NET 4。
+ASP.NET MVC T4 主機中的 T4 檔案可使用新的屬性，指定應用程式所使用的 .NET Framework 版本。 這可讓 T4 範本產生 .NET Framework 版本專用的程式碼和標記。 在 Visual Studio 2008 中，此值一律為 .NET 3.5。 在 Visual Studio 2010 中，此值為 .NET 3.5 或 .NET 4。
 
-## <a id="_TOC4"></a>  API 增強功能
+## <a name="api-improvements"></a><a id="_TOC4"></a>  API 改進
 
-本章節描述現有的 ASP.NET MVC 型別和成員的變更。
+本節描述現有 ASP.NET MVC 類型和成員的變更。
 
-- 新增控制器類別中的受保護的虛擬 CreateActionInvoker 方法。 這個方法會叫用控制器的 ActionInvoker 屬性，並允許叫用者延遲具現化如果已經不設定了任何啟動程式。
-- 新增受保護的虛擬 HandleUnauthorizedRequest 方法 AuthorizeAttribute 類別中。 這可讓衍生自 AuthorizeAttribute 授權失敗時，控制行為的篩選條件。
-- ValueProviderDictionary 類別中加入一個 Add （字串、 物件索引鍵值） 方法。 這可讓您針對 ValueProviderDictionary，使用字典初始設定式語法，如下列範例所示：
+- 在控制器類別中新增受保護的虛擬 CreateActionInvoker 方法。 此方法是由控制器的 ActionInvoker 屬性所叫用，如果尚未設定任何啟動程式，則可讓啟動程式的延遲具現化。
+- 在 AuthorizeAttribute 類別中新增受保護的虛擬 HandleUnauthorizedRequest 方法。 這會啟用衍生自 AuthorizeAttribute 的篩選器，以控制授權失敗時的行為。
+- 在 ValueProviderDictionary 類別中加入新增 (字串索引鍵、物件值) 方法。 這可讓您使用 ValueProviderDictionary 的字典初始化運算式語法，如下列範例所示：
 
 [!code-csharp[Main](what-is-new-in-aspnet-mvc/samples/sample14.cs)]
 
-- 新增 get\_物件 Sys.Mvc.AjaxContext 類別中的方法。 這是 JavaScript 方法類似於 get\_取得資料的方式，但如果回應的內容類型為 application/json，\_物件傳回的 JSON 物件。
-- AuthorizationContext 類別中新增與 ActionDescriptor 屬性。
-- 新增 UrlParameter.Optional 語彙基元可用來解決問題，到包含 ID 屬性，屬性不存在時的模型繫結時，在表單 post。 如需詳細資訊，請參閱文章[ASP.NET MVC 2 選擇性 URL 參數](http://haacked.com/archive/2010/02/12/asp-net-mvc-2-optional-url-parameters.aspx)Phil Haack 的部落格上。
+- \_在 Sys. AjaxCoNtext 類別中加入 get 物件方法。 這是類似于 get data 方法的 JavaScript 方法 \_ ，但如果回應的內容類型為 application/json，get 物件就會傳回 \_ json 物件。
+- 在 AuthorizationCoNtext 類別中新增 ActionDescriptor 屬性。
+- 加入 UrlParameter。選擇性標記，可用來解決當表單貼文中沒有屬性時，系結至包含 ID 屬性的模型時，所發生的問題。 如需詳細資訊，請參閱 Phil Haack 的 blog 上的專案 [ASP.NET MVC 2 選擇性 URL 參數](http://haacked.com/archive/2010/02/12/asp-net-mvc-2-optional-url-parameters.aspx) 。
 
-## <a id="_TOC5"></a>  重大變更
+## <a name="breaking-changes"></a><a id="_TOC5"></a>  重大變更
 
-下列變更可能會在現有的 ASP.NET MVC 1.0 應用程式中造成錯誤。
+下列變更可能會導致現有的 ASP.NET MVC 1.0 應用程式發生錯誤。
 
-#### <a name="change-in-property-validation-behavior-for-classes-that-implement-idataerrorinfo"></a>在類別可實作 IDataErrorInfo 屬性驗證行為變更
+#### <a name="change-in-property-validation-behavior-for-classes-that-implement-idataerrorinfo"></a>執行 IDataErrorInfo 之類別的屬性驗證行為變更
 
-對於使用 IDataErrorInfo 來執行驗證的模型物件，會驗證每個屬性，不論是否已設定新的值。 在 ASP.NET MVC 1.0 中，已驗證已設定的新值的屬性。 在 ASP.NET MVC 2 中，只有當所有的屬性驗證成功時，才呼叫 IDataErrorInfo 的錯誤屬性。
+針對使用 IDataErrorInfo 來執行驗證的模型物件，不論是否已設定新值，都會驗證每個屬性。 在 ASP.NET MVC 1.0 中，只會驗證具有新值集的屬性。 在 ASP.NET MVC 2 中，只有在所有屬性驗證程式都成功時，才會呼叫 IDataErrorInfo 的 Error 屬性。
 
-#### <a name="iis-script-mapping-script-is-no-longer-available-in-the-installer"></a>IIS 指令碼對應指令碼已無法再使用安裝程式中
+#### <a name="iis-script-mapping-script-is-no-longer-available-in-the-installer"></a>安裝程式中已不再提供 IIS 腳本對應腳本
 
-IIS 指令碼對應指令碼是用來在傳統模式中針對 IIS 6 和 IIS 7 設定指令碼對應的命令列指令碼。 如果您使用 Visual Studio 程式開發伺服器，或如果您使用 IIS 7 整合模式中，就不需要指令碼對應指令碼。 指令碼可在個別不支援下載[ASP.NET WebStack](https://github.com/aspnet/AspNetWebStack)。
+IIS 腳本對應腳本是命令列腳本，用來為 IIS 6 和傳統模式的 IIS 7 設定腳本對應。 如果您使用 Visual Studio 程式開發伺服器或在整合模式中使用 IIS 7，則不需要腳本對應腳本。 這些腳本在 [ASP.NET WebStack](https://github.com/aspnet/AspNetWebStack)上可作為個別不支援的下載。
 
-#### <a name="the-htmlsubstitute-helper-method-in-mvc-futures-is-no-longer-available"></a>在 MVC Futures Html.Substitute 協助程式方法不再提供
+#### <a name="the-htmlsubstitute-helper-method-in-mvc-futures-is-no-longer-available"></a>無法再使用 MVC 中的 Html 替代 helper 方法
 
-由於在 MVC 檢視引擎的轉譯行為的變更，Html.Substitute helper 方法會無法運作，並已移除。
+由於 MVC 視圖引擎轉譯行為的變更，因此，Html. 替代 helper 方法無法運作且已移除。
 
-#### <a name="the-ivalueprovider-interface-replaces-all-uses-of-idictionary"></a>IValueProvider 介面會取代所有使用 IDictionary
+#### <a name="the-ivalueprovider-interface-replaces-all-uses-of-idictionary"></a>IValueProvider 介面會取代 IDictionary 的所有用途
 
-現在接受 IDictionary MVC 1.0 中的每個屬性或方法引數會接受 IValueProvider。 這項變更會影響僅包含自訂值提供者或自訂模型繫結器的應用程式。 屬性和方法，會受到這項變更的範例包括下列各項：
+在 MVC 1.0 中接受 IDictionary 的每個屬性或方法引數現在都接受 IValueProvider。 這種變更只會影響包含自訂值提供者或自訂模型系結器的應用程式。 受此變更影響的屬性和方法的範例包括下列各項：
 
-- ValueProvider ControllerBase 和 ModelBindingContext 類別屬性。
-- 控制器類別 TryUpdateModel 方法。
+- ControllerBase 和 ModelBindingCoNtext 類別的 ValueProvider 屬性。
+- Controller 類別的 TryUpdateModel 方法。
 
-#### <a name="new-css-classes-were-added-in-the-sitecss-file"></a>Site.css 檔案中加入新的 CSS 類別
+#### <a name="new-css-classes-were-added-in-the-sitecss-file"></a>已在網站 .css 檔案中新增 CSS 類別
 
-Site.css 檔案中的 ASP.NET MVC 專案範本已更新為包含新的樣式和樣板化 helper 的驗證功能所使用。
+ASP.NET MVC 專案範本中的網站 .css 檔案已更新，可包含驗證功能和樣板化協助程式所使用的新樣式。
 
-#### <a name="helpers-now-return-an-mvchtmlstring-object"></a>協助程式立即傳回 MvcHtmlString 物件
+#### <a name="helpers-now-return-an-mvchtmlstring-object"></a>Helper 現在會傳回 MvcHtmlString 物件
 
-若要利用新的 HTML 編碼運算式語法的 ASP.NET 4 中，HTML helper 的傳回型別是現在 MvcHtmlString 而非字串。 如果您使用 ASP.NET MVC 2 和新的協助程式在 ASP.NET 3.5 版時，您將無法利用 HTML 編碼的語法。只有當您在 ASP.NET 4 執行 ASP.NET MVC 2 時，才使用新的語法。
+為了充分利用 ASP.NET 4 中的新 HTML 編碼運算式語法，HTML 協助程式的傳回型別現在是 MvcHtmlString，而不是字串。 如果您使用 ASP.NET MVC 2 和 ASP.NET 3.5 上的新協助程式，您將無法利用 HTML 編碼語法;只有當您在 ASP.NET 4 上執行 ASP.NET MVC 2 時，才可使用新的語法。
 
-#### <a name="jsonresult-now-responds-only-to-http-post-requests"></a>JsonResult 現在只回應 HTTP POST 要求
+#### <a name="jsonresult-now-responds-only-to-http-post-requests"></a>JsonResult 現在只會回應 HTTP POST 要求
 
-若要減輕劫持攻擊，根據預設，有資訊洩漏的可能性的 JSON JsonResult 類別現在只回應 HTTP POST 要求。 取得 Ajax 呼叫動作方法會傳回 JsonResult 物件應該要改為使用 POST 變更。 如有必要，您可以設定 JsonResult 新 JsonRequestBehavior 屬性來覆寫此行為。 如需有關潛在惡意探索的詳細資訊，請參閱部落格文章[JSON 劫持](http://haacked.com/archive/2009/06/25/json-hijacking.aspx)Phil Haack 的部落格上。
+為了減輕可能洩漏資訊的 JSON 劫持攻擊，JsonResult 類別預設只會回應 HTTP POST 要求。 傳回 JsonResult 物件之動作方法的 Ajax GET 呼叫，應改為使用 POST。 如有必要，您可以藉由設定 JsonResult 的新 JsonRequestBehavior 屬性來覆寫此行為。 如需有關潛在惡意探索的詳細資訊，請參閱 Phil Haack 的 blog 上的 blog 文章 [JSON 劫持](http://haacked.com/archive/2009/06/25/json-hijacking.aspx) 。
 
-#### <a name="model-and-modeltype-property-setters-on-modelbindingcontext-are-obsolete"></a>模型和模型類型的屬性 setter ModelBindingContext 上已過時
+#### <a name="model-and-modeltype-property-setters-on-modelbindingcontext-are-obsolete"></a>ModelBindingCoNtext 上的模型和 ModelType 屬性 setter 已淘汰
 
-已新增到 ModelBindingContext 類別的新的可設定 ModelMetadata 屬性。 新的屬性會封裝模型和模型類型的屬性。 雖然模型和模型類型的屬性已經過時，回溯相容性的屬性 getter 仍然運作;它們會委派至 ModelMetadata 屬性來擷取值。
+新的可設定 ModelMetadata 屬性已新增至 ModelBindingCoNtext 類別。 新屬性會封裝模型和 ModelType 屬性。 雖然模型和 ModelType 屬性已過時，但為了回溯相容性，屬性 getter 仍可運作;它們會委派給 ModelMetadata 屬性以取得值。
 
-#### <a name="changes-to-the-defaultcontrollerfactory-class-break-custom-controller-factories-that-derive-from-it"></a>DefaultControllerFactory 類別的變更會中斷從它衍生的自訂控制器 factory
+#### <a name="changes-to-the-defaultcontrollerfactory-class-break-custom-controller-factories-that-derive-from-it"></a>DefaultControllerFactory 類別的變更會中斷從其衍生的自訂控制器 factory
 
-藉由移除 RequestContext 屬性，已修正 DefaultControllerFactory 類別。 取代這個屬性，要求內容執行個體傳遞給受保護的虛擬 GetControllerInstance 和 GetControllerType 方法。 這項變更會影響從 DefaultControllerFactory 衍生的自訂控制器 factory。
+DefaultControllerFactory 類別是藉由移除 RequestCoNtext 屬性來修正。 為了取代這個屬性，要求內容實例會傳遞至受保護的虛擬 GetControllerInstance 和 GetControllerType 方法。 此變更會影響衍生自 DefaultControllerFactory 的自訂控制器 factory。
 
-自訂的控制器 factory 通常用來提供相依性插入，ASP.NET mvc 應用程式。 若要更新自訂的控制器 factory，以支援 ASP.NET MVC 2，變更方法簽章或簽章，以符合新的簽章，並使用要求的內容參數而非屬性。
+自訂控制器工廠通常用來提供 ASP.NET MVC 應用程式的相依性插入。 若要更新自訂控制器 factory 以支援 ASP.NET MVC 2，請將方法簽章或簽章變更為符合新的簽章，並使用要求內容參數，而非屬性。
 
-#### <a name="area-is-a-now-a-reserved-route-value-key"></a>「 區域 」 是目前保留的路由值索引鍵
+#### <a name="area-is-a-now-a-reserved-route-value-key"></a>「Area」現在是保留的路由值索引鍵
 
-字串 「 區域 」 中的路由值現在會有在 ASP.NET MVC 中，特殊的意義相同的方式，「 控制器 」 和 「 動作 」。 其中一個含義為，如果路由值字典，其中包含 「 區域 」 提供 HTML 協助程式，協助程式將不會再附加 「 區域 」 的查詢字串中。
+路由值中的字串 "area" 現在在 ASP.NET MVC 中具有特殊意義，方法與「控制器」和「動作」相同。 其中一種方式是，如果 HTML 協助程式是以包含「區域」的路由值字典提供，則協助專家將不再于查詢字串中附加「區域」。
 
-如果您使用的 「 區域 」 功能，請確定您的路由 URL 的一部分使用 {區域}。
+如果您使用區域功能，請務必不要使用 {area} 做為路由 URL 的一部分。
 
-
-## <a id="_TOC6"></a>  免責聲明
+## <a name="disclaimer"></a><a id="_TOC6"></a>  免責 聲明
 
 這是一份初稿，內容在本文所述的軟體於正式商業發行前都可能有所更動。
 
-本文件中的資訊表示直到文件發行日前 Microsoft Corporation 針對問題的看法。 Microsoft 必須因應不斷變化的市場狀況，因此本文件不代表 Microsoft 的保證，且 Microsoft 不保證這些資訊在文件發行後的正確性。
+本文件所含的資訊代表 Microsoft Corporation 在發行日當下對問題的看法。 由於 Microsoft 必須因應不斷變化的市場狀況，因此不應將此解讀為 Microsoft 方面所作出的承諾，且 Microsoft 也無法保證在發行日之後所提出任何資訊的正確性。
 
 本技術白皮書僅供參考。 MICROSOFT 對本文件中的資訊不提供任何明示、暗示或法定擔保。
 
-承諾遵守所有適用的著作權法是使用者的責任。 著作權法沒有針對某種權利加以限制，但在未獲得 Microsoft Corporation 書面同意的情況下，本文件的任何部分不得複製、以檢索系統存放或擷取、以任何形式或方法傳送 (電子、機械、影像複製、錄音或其他任何方法)、或基於任何其他不良意圖。
+遵守所有適用之著作權法係使用者的責任。 在不限制任何依著作權本得享有之權利，未經 Microsoft Corporation 書面許可， 貴用戶不得為任何目的使用任何形式或方法 (電子形式、機械形式、影印、記錄或其他方式) 複製或傳送本文件的任何部份，也不得將本文件的任何部份儲存或放入檢索系統 (a retrieval system)。
 
-本文件所提及的主要事務，Microsoft 得擁有專利、專利應用程式、商標、著作權或其他智慧財產權。 除了 Microsoft 於授權合約書中書面提供的之外，本文件所述內容並未賦予您這些專利、商標、著作權、或其他智慧財產的任何授權或使用權利。
+在本文件所提述之內容中，可能包括 Microsoft 的專利、申請專利案件、商標、著作權，或其他智慧財產權等。 除非於 Microsoft 提出的任何書面授權條約中明確規定者外，提供本文件並不表示賦予台端上述專利、商標、著作權或其他智慧財產權等之任何授權。
 
-除非另有說明，範例公司、 組織、 產品、 網域名稱、 電子郵件地址、 標誌、 人物、 地點及事件本文所述之屬虛構，以及與任何真實公司、 組織、 產品、 網域名稱、 電子郵件沒有關聯地址、 標誌、 人員、 位置或事件是純屬巧合。
+除非另有說明，否則此處所描述的範例公司、組織、產品、功能變數名稱、電子郵件地址、標誌、人員、地點及事件均屬虛構，且不會與任何真實的公司、組織、產品、功能變數名稱、電子郵件地址、標誌、人員、地點或事件相關。
 
-© 2010 Microsoft Corporation. 著作權所有，並保留一切權利。
+© 2010 Microsoft Corporation。 著作權所有，並保留一切權利。
 
 Microsoft 和 Windows 是 Microsoft Corporation 在美國及/或其他國家/地區的註冊商標或商標。
 
