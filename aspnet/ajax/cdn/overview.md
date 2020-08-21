@@ -8,58 +8,58 @@ ms.date: 10/14/2017
 ms.assetid: 8935bf14-ca6d-4a4e-9dbe-b96ce74cef49
 msc.legacyurl: /ajax/cdn
 msc.type: content
-ms.openlocfilehash: 58e2d62da2181108f34bbf3e1e948977241e1dee
-ms.sourcegitcommit: b3c0e67bb231dbb0db9e8dfccd51cf715481edcc
+ms.openlocfilehash: 9eebe0e52af2a0fca967a51afb58c7db174d9fdb
+ms.sourcegitcommit: feb88edfb01b32f6fc9488f0f0ddb3c5b34e6ff0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88161353"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88702916"
 ---
 # <a name="microsoft-ajax-content-delivery-network"></a>Microsoft Ajax 內容傳遞網路
 
 > [!WARNING]
-> 生產應用程式不應該對 CDN 資產採取硬式相依性。 應用程式應該測試所參考的 CDN 資產，並在 CDN 無法使用時，使用 fallback 資產。
+> 實際執行應用程式不應對 CDN 資產進行硬式相依性。 應用程式應該針對參考的 CDN 資產進行測試，並在無法使用 CDN 時使用退回資產。
 >
-> Microsoft Ajax CDN 除了使用 Azure CDN 以外，不提供任何 SLA。
+> Microsoft Ajax CDN 在使用 Azure CDN 之前並沒有任何 SLA。
 >
-> 使用[此 GitHub 問題](https://github.com/dotnet/AspNetDocs/issues/116)報告 MICROSOFT Ajax CDN 的問題。
+> 使用 [此 GitHub 問題](https://github.com/dotnet/AspNetDocs/issues/116) 來回報 MICROSOFT Ajax CDN 的問題。
 
 ## <a name="table-of-contents"></a>目錄
 
 **[ajax.microsoft.com 已重新命名為 ajax.aspnetcdn.com](#ajaxmicrosoftcom_renamed_to_ajaxaspnetcdncom_18)**  
-**[Visual Studio vsdoc 支援](#Visual_Studio_vsdoc_Support_19)**  
+**[Visual Studio。 vsdoc 支援人員](#Visual_Studio_vsdoc_Support_19)**  
 **[從 CDN 使用 ASP.NET Ajax](#Using_ASPNET_Ajax_from_the_CDN_20)**  
 **[使用來自 CDN 的 jQuery](#Using_jQuery_from_the_CDN_21)**  
-**[從 CDN 使用 jQuery UI](#Using_jQuery_UI_from_the_CDN_22)**  
+**[使用來自 CDN 的 jQuery UI](#Using_jQuery_UI_from_the_CDN_22)**  
 **[CDN 上的協力廠商檔案](#Third-Party_Files_on_the_CDN_23)**  
   
  [CDN 上的 jQuery 版本](#jQuery_Releases_on_the_CDN_0)  
- [在 CDN 上的 jQuery 遷移版本](#jQuery_Migrate_Releases_on_the_CDN_1)  
+ [CDN 上的 jQuery 遷移版本](#jQuery_Migrate_Releases_on_the_CDN_1)  
  [CDN 上的 jQuery UI 版本](#jQuery_UI_Releases_on_the_CDN_2)  
  [CDN 上的 jQuery 驗證版本](#jQuery_Validation_Releases_on_the_CDN_3)  
  [CDN 上的 jQuery Mobile 版本](#jQuery_Mobile_Releases_on_the_CDN_4)  
  [CDN 上的 jQuery 範本版本](#jQuery_Templates_Releases_on_the_CDN_5)  
- [CDN 上的 jQuery 週期版本](#jQuery_Cycle_Releases_on_the_CDN_6)  
+ [CDN 上的 jQuery 迴圈版本](#jQuery_Cycle_Releases_on_the_CDN_6)  
  [CDN 上的 jQuery Datatable 版本](#jQuery_DataTables_Releases_on_the_CDN_7)  
  [CDN 上的 Modernizr 版本](#Modernizr_Releases_on_the_CDN_8)  
  [CDN 上的 JSHint 版本](#JSHint_Releases_on_the_CDN_10)  
- [CDN 上的挖釋版本](#Knockout_Releases_on_the_CDN_11)  
+ [CDN 上的挖對版本](#Knockout_Releases_on_the_CDN_11)  
  [CDN 上的全球化版本](#Globalize_Releases_on_the_CDN_12)  
  [在 CDN 上回應版本](#Respond_Releases_on_the_CDN_13)  
  [CDN 上的啟動程式版本](#Bootstrap_Releases_on_the_CDN_14)  
  [CDN 上的啟動程式 TouchCarousel 版本](#BootstrapTouchCarousel_Releases_on_the_CDN_18)  
- [CDN 上的Hammer.js 版本](#Hammerjs_Releases_on_the_CDN_19)  
- [在 CDN 上 ASP.NET Web Forms 和 Ajax 版本](#ASPNET_Web_Forms_and_Ajax_Releases_on_the_CDN_15)  
- [在 CDN 上 ASP.NET MVC 版本](#ASPNET_MVC_Releases_on_the_CDN_16)  
+ [ CDN 上的Hammer.js 版本](#Hammerjs_Releases_on_the_CDN_19)  
+ [CDN 上的 ASP.NET Web Forms 和 Ajax 版本](#ASPNET_Web_Forms_and_Ajax_Releases_on_the_CDN_15)  
+ [ASP.NET CDN 上的 MVC 版本](#ASPNET_MVC_Releases_on_the_CDN_16)  
  [CDN 上的 ASP.NET SignalR 版本](#ASPNET_SignalR_Releases_on_the_CDN_17)
 
-Microsoft Ajax 內容傳遞網路 (CDN) 裝載熱門的協力廠商 JavaScript 程式庫，例如 jQuery，並可讓您輕鬆地將其新增至您的 Web 應用程式。 例如，您可以開始使用在此 CDN 上裝載的 jQuery，只要將 &lt; 腳本標記新增 &gt; 至指向 ajax.aspnetcdn.com 的頁面即可。
+Microsoft Ajax 內容傳遞網路 (CDN) 裝載受歡迎的協力廠商 JavaScript 程式庫（例如 jQuery），並可讓您輕鬆地將其新增至您的 Web 應用程式。 例如，您只要將 &lt; 腳本 &gt; 標記新增至指向 ajax.aspnetcdn.com 的頁面，就可以開始使用裝載于此 CDN 的 jQuery。
 
-藉由利用 CDN，您可以大幅提升 Ajax 應用程式的效能。 CDN 的內容會在位於世界各地的伺服器上進行快取。 此外，CDN 可讓瀏覽器針對位於不同網域的網站重複使用已快取的協力廠商 JavaScript 檔案。
+藉由充分利用 CDN，您可以大幅改善 Ajax 應用程式的效能。 CDN 的內容會快取在位於世界各地的伺服器上。 此外，CDN 還可讓瀏覽器針對位於不同網域的網站重複使用快取的協力廠商 JavaScript 檔案。
 
-如果您需要使用安全通訊端層來服務網頁，CDN 支援 SSL (HTTPS) 。
+如果您需要使用安全通訊端層來提供網頁，則 CDN 支援 SSL (HTTPS) 。
 
-CDN 會裝載下列協力廠商的腳本程式庫，這些程式庫已上傳，並由這些程式庫的擁有者授權給您：
+CDN 會裝載下列程式庫擁有者的下列協力廠商腳本程式庫，並由這些程式庫授權給您：
 
 - jQuery (www.jquery.com) 
 - jQuery UI (www.jqueryui.com) 
@@ -68,41 +68,41 @@ CDN 會裝載下列協力廠商的腳本程式庫，這些程式庫已上傳，�
 - jQuery 迴圈 (www.malsup.com/jquery/cycle/) 
 - jQuery Datatable (http://datatables.net/)
 
-Microsoft Ajax CDN 也包含下列已由 Microsoft 上傳的程式庫：
+Microsoft Ajax CDN 也包含下列程式庫，這些程式庫已由 Microsoft 上傳：
 
 - ASP.NET Ajax
 - ASP.NET MVC JavaScript 檔案
 - ASP.NET SignalR JavaScript 檔案
 
-Microsoft 不會宣告此 CDN 上主控之任何協力廠商程式庫的擁有權。 程式庫的著作權擁有者會將這些程式庫授權給您。 您可能必須下載並使用這類程式庫的任何權利，僅由個別著作權擁有者授與。 因為這些不是 Microsoft 程式庫，所以 Microsoft 不提供任何擔保或智慧財產權授權 (包括此 CDN 上所裝載之協力廠商程式庫的專利許可權) 。
+Microsoft 不會宣告裝載于此 CDN 上任何協力廠商程式庫的擁有權。 程式庫的著作權擁有者會將這些程式庫授權給您。 您可能必須下載並使用這類程式庫的任何權利，都只由各自的著作權擁有者授與。 因為這些不是 Microsoft 程式庫，所以 Microsoft 不提供任何擔保或智慧財產權 (，包括此 CDN 上裝載的協力廠商程式庫沒有默示的專利權利) 。
 
-如果您想要提交您的 JavaScript 程式庫，而您的程式庫是其中一個最熱門的 JavaScript 程式庫 (如 http://trends.builtwith.com) () 熱門的程式庫，或 (b) 有助於在 ASP.NET 上使用，請聯絡 AjaxCDNSubmission@Microsoft.com 。
+如果您想要提交 JavaScript 程式庫，而且您的程式庫是這些程式庫的其中一個最上層 JavaScript 程式庫 (http://trends.builtwith.com) () 熱門的程式庫，或 (b) 有助於在 ASP.NET 上使用，請聯絡 AjaxCDNSubmission@Microsoft.com 。
 
 <a id="ajaxmicrosoftcom_renamed_to_ajaxaspnetcdncom_18"></a>
 
 ## <a name="ajaxmicrosoftcom-renamed-to-ajaxaspnetcdncom"></a>ajax.microsoft.com 已重新命名為 ajax.aspnetcdn.com
 
-用來使用 microsoft.com 功能變數名稱的 CDN，已變更為使用 aspnetcdn.com 功能變數名稱。 這項變更是為了提升效能，因為當瀏覽器參考 microsoft.com 網域時，它會在每個要求的網路上，傳送來自該網域的任何 cookie。 藉由重新命名為 microsoft.com 效能以外的功能變數名稱，最多可增加25%。 請注意，ajax.microsoft.com 會繼續運作，但建議使用 ajax.aspnetcdn.com。
+用來使用 microsoft.com 功能變數名稱且已變更為使用 aspnetcdn.com 功能變數名稱的 CDN。 這項變更是為了提高效能，因為當瀏覽器參考 microsoft.com 網域時，會在每個要求的網路上傳送來自該網域的任何 cookie。 藉由重新命名為 microsoft.com 效能以外的功能變數名稱，最多可增加至25%。 注意 ajax.microsoft.com 將會繼續運作，但建議使用 ajax.aspnetcdn.com。
 
-- 舊格式：https://ajax.microsoft.com/ajax/jQuery/jquery-1.8.0.js
-- 新格式：https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js
+- 舊格式： https://ajax.microsoft.com/ajax/jQuery/jquery-1.8.0.js
+- 新格式： https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js
 
 <a id="Visual_Studio_vsdoc_Support_19"></a>
 
-## <a name="visual-studio-vsdoc-support"></a>Visual Studio vsdoc 支援
+## <a name="visual-studio-vsdoc-support"></a>Visual Studio。 vsdoc 支援人員
 
-若要搭配使用 vsdoc 檔案與 Visual Studio 2008，您必須確定已安裝 VS 2008 SP1 和 vsdoc 檔案的修復程式。 您可以從這裡取得這些資訊：
+若要適當地使用 vsdoc 檔案搭配 Visual Studio 2008，您必須確定已安裝 VS 2008 SP1 和 vsdoc 檔案的修正程式。 您可以從這裡取得這些內容：
 
 - [下載 Visual Studio 2008 SP1](https://www.microsoft.com/downloads/en/details.aspx?FamilyId=FBEE1648-7106-44A7-9649-6D9F6D58056E&amp;displaylang=en "下載 Visual Studio 2008 SP1")
-- [下載 Visual Studio 2008 SP1 的 vsdoc 修補程式](https://code.msdn.microsoft.com/KB958502/Release/ProjectReleases.aspx?ReleaseId=1736 "下載 Visual Studio 2008 SP1 的 vsdoc 修補程式")
+- [Vsdoc Visual Studio 2008 SP1 的修正程式](https://code.msdn.microsoft.com/KB958502/Release/ProjectReleases.aspx?ReleaseId=1736 "Vsdoc Visual Studio 2008 SP1 的修正程式")
 
-Visual Studio 2010 支援 vsdoc 檔案，而不需要任何額外的修補程式。
+Visual Studio 2010 支援不含任何額外修補程式的 vsdoc 檔案。
 
 <a id="Using_ASPNET_Ajax_from_the_CDN_20"></a>
 
 ## <a name="using-aspnet-ajax-from-the-cdn"></a>從 CDN 使用 ASP.NET Ajax
 
-使用 ASP.NET 4 時，您可以將 ASP.NET framework 腳本的所有要求重新導向至 CDN。 從 CDN （而不是本機 web 伺服器）抓取腳本，可以大幅提升公用 ASP.NET 網站的效能。
+使用 ASP.NET 4 時，您可以將 ASP.NET framework 腳本的所有要求重新導向至 CDN。 從 CDN （而不是您的本機網頁伺服器）抓取腳本，可以大幅提升公用 ASP.NET 網站的效能。
 
 使用 ScriptManager EnableCDN 屬性將所有 ASP.NET framework 腳本要求重新導向至 Microsoft Ajax CDN：
 
@@ -112,7 +112,7 @@ Visual Studio 2010 支援 vsdoc 檔案，而不需要任何額外的修補程式
 
 ## <a name="using-jquery-from-the-cdn"></a>使用來自 CDN 的 jQuery
 
-您可以在 Web 應用程式中使用裝載于 CDN 上的 jQuery 腳本，方法是將下列腳本元素新增至頁面：
+您可以藉由將下列腳本專案加入至頁面，在 Web 應用程式中使用裝載在 CDN 上的 jQuery 腳本：
 
 [!code-html[Main](overview/samples/sample2.html)]
 
@@ -120,49 +120,49 @@ CDN 也包含 jQuery 腳本的縮減版本，您可以使用下列元素來取�
 
 [!code-html[Main](overview/samples/sample3.html)]
 
-若要允許您的頁面從您自己網站上的本機路徑載入 jQuery （如果 CDN 無法使用的話），請在參考 CDN 的元素之後立即新增下列元素：
+若要允許您的頁面在 CDN 無法使用時，從您自己的網站上的本機路徑載入 jQuery，請在參考 CDN 的元素之後立即新增下列元素：
 
 [!code-html[Main](overview/samples/sample4.html)]
 
-下列範例頁面會使用 (的 jQuery 程式庫 CDN 版本，並回到本機複本) ，以在按一下按鈕時顯示 div 元素的內容。
+下列範例頁面會使用 (的) 的 jQuery 程式庫版本，並切換回本機複本，在按一下按鈕時顯示 div 元素的內容。
 
 [!code-html[Main](overview/samples/sample5.html)]
 
-您可以造訪[jquery](http://jquery.com/)網站，深入瞭解 jquery 並下載 jquery 的本機複本。
+您可以造訪 [jquery](http://jquery.com/) 網站，深入瞭解 jquery 並下載 jquery 的本機複本。
 
 <a id="Using_jQuery_UI_from_the_CDN_22"></a>
 
-## <a name="using-jquery-ui-from-the-cdn"></a>從 CDN 使用 jQuery UI
+## <a name="using-jquery-ui-from-the-cdn"></a>使用來自 CDN 的 jQuery UI
 
-CDN 也會主控 jQuery UI 程式庫。 JQuery UI 程式庫包含一組豐富的 widget 和效果，可供您在 ASP.NET 應用程式中使用。 例如，下列頁面說明如何在 ASP.NET Web Forms 應用程式的內容中使用 jQuery UI Datepicker，以顯示快顯行事曆：
+CDN 也會裝載 jQuery UI 程式庫。 JQuery UI 程式庫包含一組豐富的小工具和效果，可供您在 ASP.NET 應用程式中使用。 例如，下列頁面說明如何使用 ASP.NET Web Forms 應用程式內容中的 jQuery UI Datepicker 來顯示彈出日曆：
 
 [!code-aspx[Main](overview/samples/sample6.aspx)]
 
-當您使用鍵盤將焦點移到文字方塊時，會顯示行事曆：
+當您使用鍵盤將焦點移至文字方塊時，會顯示行事曆：
 
 ![使用 Datepicker 建立的快顯行事曆](overview/_static/image1.png)
 
 請注意，您必須在上述程式碼中包含來自 CDN 的三個檔案：
 
-- Jquery UI 程式庫 &mdash; 相依于 jquery 程式庫。 您必須先將 jQuery 程式庫加入至頁面，然後再新增 jQuery UI 程式庫。
-- JQuery ui 程式庫 &mdash; JQUERY ui 程式庫包含所有 JQUERY ui 效果和 widget，例如上列頁面中使用的 Datepicker 小工具。
-- JQuery UI 主題 &mdash; JQUERY ui 支援不同的主題。 上一頁包含用來匯入 Redmond 主題的 CSS 檔案連結。
+- Jquery UI 程式庫的 jquery 程式庫 &mdash; 相依于 jquery 程式庫。 您必須先將 jQuery 程式庫加入至頁面，然後再新增 jQuery UI 程式庫。
+- JQuery ui 程式庫中的 jquery ui 程式庫 &mdash; 包含所有 JQUERY ui 效果和小工具，例如上一頁中使用的 Datepicker 小工具。
+- Jquery ui 主題 &mdash; ： JQUERY ui 支援不同的主題。 上述頁面包含 CSS 檔案的連結，以匯入 Redmond 主題。
 
-所有標準 jQuery UI 主題都裝載在 CDN 上。 [請造訪此頁面](jquery-ui/cdnjqueryui1910.md "Microsoft Ajax CDN 上的 jQuery UI 1.8.10")，以查看每個主題的縮圖。
+所有標準 jQuery UI 主題都裝載在 CDN 上。 流覽[此頁面](jquery-ui/cdnjqueryui1910.md "Microsoft Ajax CDN 上的 jQuery UI 1.8.10")以查看每個主題的縮圖。
 
-若要深入瞭解 jQuery UI 程式庫，請造訪官方[JQUERY ui 網站](http://jQueryUI.com "jQuery UI 網站")。
+若要深入瞭解 jQuery UI 程式庫，請造訪官方 [JQUERY ui 網站](http://jQueryUI.com "jQuery UI 網站")。
 
 <a id="Third-Party_Files_on_the_CDN_23"></a>
 
 ## <a name="third-party-files-on-the-cdn"></a>CDN 上的協力廠商檔案
 
-CDN 會裝載一些最受歡迎的協力廠商 JavaScript 程式庫。 Microsoft 不會宣告此 CDN 上主控之任何協力廠商程式庫的擁有權。 程式庫的著作權擁有者會將這些程式庫授權給您。 您可能必須下載並使用這類程式庫的任何權利，僅由個別著作權擁有者授與。 因為這些不是 Microsoft 程式庫，所以 Microsoft 不提供任何擔保或智慧財產權授權 (包括此 CDN 上所裝載之協力廠商程式庫的專利許可權) 。
+CDN 裝載一些最受歡迎的協力廠商 JavaScript 程式庫。 Microsoft 不會宣告裝載于此 CDN 上任何協力廠商程式庫的擁有權。 程式庫的著作權擁有者會將這些程式庫授權給您。 您可能必須下載並使用這類程式庫的任何權利，都只由各自的著作權擁有者授與。 因為這些不是 Microsoft 程式庫，所以 Microsoft 不提供任何擔保或智慧財產權 (，包括此 CDN 上裝載的協力廠商程式庫沒有默示的專利權利) 。
 
 <a id="jQuery_Releases_on_the_CDN_0"></a>
 
 ### <a name="jquery-releases-on-the-cdn"></a>CDN 上的 jQuery 版本
 
-下列的 jQuery 版本裝載于 CDN 上：
+下列的 jQuery 版本裝載于 CDN：
 
 #### <a name="jquery-version-351"></a>jQuery 版本3.5。1
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.js
@@ -295,7 +295,7 @@ CDN 會裝載一些最受歡迎的協力廠商 JavaScript 程式庫。 Microsoft
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.2.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.2.min.js
 
-#### <a name="jquery-version-211"></a>jQuery 版本2.1。1
+#### <a name="jquery-version-211"></a>jQuery 2.1.1 版
 
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js
@@ -336,7 +336,7 @@ CDN 會裝載一些最受歡迎的協力廠商 JavaScript 程式庫。 Microsoft
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0-vsdoc.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.min.map
 
-#### <a name="jquery-version-1124"></a>jQuery 版本1.12。4
+#### <a name="jquery-version-1124"></a>jQuery 版本 >1.12。4
 
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js
@@ -398,7 +398,7 @@ CDN 會裝載一些最受歡迎的協力廠商 JavaScript 程式庫。 Microsoft
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2-vsdoc.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.map
 
-#### <a name="jquery-version-1101"></a>jQuery 版本1.10.1 版
+#### <a name="jquery-version-1101"></a>jQuery 版本1.10。1
 
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js
@@ -450,7 +450,7 @@ CDN 會裝載一些最受歡迎的協力廠商 JavaScript 程式庫。 Microsoft
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0-vsdoc.js
 
-#### <a name="jquery-version-172"></a>jQuery 版本1.7。2
+#### <a name="jquery-version-172"></a>jQuery 版本1.7.2 版
 
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js
@@ -467,13 +467,13 @@ CDN 會裝載一些最受歡迎的協力廠商 JavaScript 程式庫。 Microsoft
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7-vsdoc.js
 
-#### <a name="jquery-version-164"></a>jQuery 版本1.6。4
+#### <a name="jquery-version-164"></a>jQuery 版本1.6.4 版
 
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.4.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.4.min.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.4-vsdoc.js
 
-#### <a name="jquery-version-163"></a>jQuery 版本1.6。3
+#### <a name="jquery-version-163"></a>jQuery 版本1.6.3 版
 
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.3.min.js
@@ -527,7 +527,7 @@ CDN 會裝載一些最受歡迎的協力廠商 JavaScript 程式庫。 Microsoft
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.3.min.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.3-vsdoc.js
 
-#### <a name="jquery-version-142"></a>jQuery 版本1.4。2
+#### <a name="jquery-version-142"></a>jQuery 1.4.2 版
 
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.2.js
 - https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.2.min.js
@@ -553,9 +553,9 @@ CDN 會裝載一些最受歡迎的協力廠商 JavaScript 程式庫。 Microsoft
 
 <a id="jQuery_Migrate_Releases_on_the_CDN_1"></a>
 
-### <a name="jquery-migrate-releases-on-the-cdn"></a>在 CDN 上的 jQuery 遷移版本
+### <a name="jquery-migrate-releases-on-the-cdn"></a>CDN 上的 jQuery 遷移版本
 
-下列 jQuery 遷移版本裝載于 CDN 上：
+下列的 jQuery 遷移版本裝載于 CDN：
 
 #### <a name="jquery-migrate-version-300"></a>jQuery 遷移版本3.0。0
 
@@ -591,7 +591,7 @@ jQuery 遷移版本1.2。0
 
 ### <a name="jquery-ui-releases-on-the-cdn"></a>CDN 上的 jQuery UI 版本
 
-下列的 jQuery UI 程式庫版本裝載于此 CDN 上。 按一下每個連結，以查看實際的檔案清單。
+下列的 jQuery UI 程式庫版本裝載于此 CDN 上。 按一下每個連結以查看實際的檔案清單。
 
 - [jQuery UI 1.12。1](jquery-ui/cdnjqueryui1121.md "Microsoft Ajax CDN 上的 jQuery UI 1.12.1")
 - [jQuery UI 1.12。0](jquery-ui/cdnjqueryui1120.md "Microsoft Ajax CDN 上的 jQuery UI 1.12.0")
@@ -603,7 +603,7 @@ jQuery 遷移版本1.2。0
 - [jQuery UI 1.10。4](jquery-ui/cdnjqueryui1104.md "Microsoft Ajax CDN 上的 jQuery UI 1.10.4")
 - [jQuery UI 1.10。3](jquery-ui/cdnjqueryui1103.md "Microsoft Ajax CDN 上的 jQuery UI 1.10.3")
 - [jQuery UI 1.10。2](jquery-ui/cdnjqueryui1102.md "Microsoft Ajax CDN 上的 jQuery UI 1.10.2")
-- [jQuery UI 1.10.1 版](jquery-ui/cdnjqueryui1101.md "Microsoft Ajax CDN 上的 jQuery UI 1.10.1")
+- [jQuery UI 1.10。1](jquery-ui/cdnjqueryui1101.md "Microsoft Ajax CDN 上的 jQuery UI 1.10.1")
 - [jQuery UI 1.10。0](jquery-ui/cdnjqueryui1100.md "Microsoft Ajax CDN 上的 jQuery UI 1.10.0")
 - [jQuery UI 1.9。2](jquery-ui/cdnjqueryui192.md "Microsoft Ajax CDN 上的 jQuery UI 1.9.2")
 - [jQuery UI 1.9。1](jquery-ui/cdnjqueryui191.md "Microsoft Ajax CDN 上的 jQuery UI 1.9.1")
@@ -633,14 +633,14 @@ jQuery 遷移版本1.2。0
 
 ### <a name="jquery-validation-releases-on-the-cdn"></a>CDN 上的 jQuery 驗證版本
 
-下列的[JQuery 驗證](https://jqueryvalidation.org/ "jQuery 驗證外掛程式")外掛程式版本裝載于此 CDN 上。 按一下每個連結，以查看實際的檔案清單。
+下列的 [JQuery 驗證](https://jqueryvalidation.org/ "jQuery 驗證外掛程式") 外掛程式版本裝載于此 CDN。 按一下每個連結以查看實際的檔案清單。
 
 - [jQuery 驗證1.19。2](jquery-validate/cdnjqueryvalidate1192.md "jQuery 驗證1.19。2")
 - [jQuery 驗證1.19。1](jquery-validate/cdnjqueryvalidate1191.md "jQuery 驗證1.19。1")
 - [jQuery 驗證1.19。0](jquery-validate/cdnjqueryvalidate1190.md "jQuery 驗證1.19。0")
 - [jQuery 驗證1.17.0 或](jquery-validate/cdnjqueryvalidate1170.md "jQuery 驗證1.17.0 或")
 - [jQuery 驗證1.16。0](jquery-validate/cdnjqueryvalidate1160.md "jQuery 驗證 1.16.0")
-- [jQuery 驗證 busybox-1.15.1-20.el6.x86 64.rpm](jquery-validate/cdnjqueryvalidate1151.md "jQuery 驗證 1.15.1")
+- [jQuery 驗證1.15。1](jquery-validate/cdnjqueryvalidate1151.md "jQuery 驗證 1.15.1")
 - [jQuery 驗證1.15。0](jquery-validate/cdnjqueryvalidate1150.md "jQuery 驗證 1.15.0")
 - [jQuery 驗證1.14。0](jquery-validate/cdnjqueryvalidate1140.md "jQuery 驗證 1.14.0")
 - [jQuery 驗證1.13。1](jquery-validate/cdnjqueryvalidate1131.md "jQuery 驗證 1.13.1")
@@ -660,7 +660,7 @@ jQuery 遷移版本1.2。0
 
 ### <a name="jquery-mobile-releases-on-the-cdn"></a>CDN 上的 jQuery Mobile 版本
 
-下列的 jQuery Mobile 程式庫版本裝載于此 CDN 上。 按一下每個連結，以查看實際的檔案清單。
+下列版本的 jQuery Mobile 程式庫會裝載于此 CDN 上。 按一下每個連結以查看實際的檔案清單。
 
 - [jQuery Mobile 1.4。5](jquery-mobile/cdnjquerymobile145.md "Microsoft Ajax CDN 上的 jQuery Mobile 1.4.5")
 - [jQuery Mobile 1.4。2](jquery-mobile/cdnjquerymobile142.md "Microsoft Ajax CDN 上的 jQuery Mobile 1.4.2")
@@ -684,15 +684,15 @@ jQuery 遷移版本1.2。0
 
 ### <a name="jquery-templates-releases-on-the-cdn"></a>CDN 上的 jQuery 範本版本
 
-下列的 jQuery 範本外掛程式版本裝載于此 CDN 上。 按一下每個連結，以查看實際的檔案清單。
+下列的 jQuery 範本外掛程式版本裝載于此 CDN。 按一下每個連結以查看實際的檔案清單。
 
 - [jQuery 範本搶鮮版 (Beta) 1](jquery-templates/cdnjquerytemplatesbeta1.md "jQuery 範本搶鮮版 (Beta) 1")
 
 <a id="jQuery_Cycle_Releases_on_the_CDN_6"></a>
 
-### <a name="jquery-cycle-releases-on-the-cdn"></a>CDN 上的 jQuery 週期版本
+### <a name="jquery-cycle-releases-on-the-cdn"></a>CDN 上的 jQuery 迴圈版本
 
-下列 jQuery 迴圈外掛程式版本裝載于此 CDN 上。 按一下每個連結，以查看實際的檔案清單。
+下列的 jQuery 迴圈外掛程式版本裝載于此 CDN。 按一下每個連結以查看實際的檔案清單。
 
 - [jQuery 循環 2.99](jquery-cycle/cdnjquerycycle299.md "jQuery 循環 2.99")
 - [jQuery 循環 2.94](jquery-cycle/cdnjquerycycle294.md "jQuery 循環 2.94")
@@ -702,7 +702,7 @@ jQuery 遷移版本1.2。0
 
 ### <a name="jquery-datatables-releases-on-the-cdn"></a>CDN 上的 jQuery Datatable 版本
 
-下列的 jQuery Datatable 外掛程式版本裝載于此 CDN 上。 按一下每個連結，以查看實際的檔案清單。
+下列的 jQuery Datatable 外掛程式版本裝載于此 CDN。 按一下每個連結以查看實際的檔案清單。
 
 - [jQuery DataTables 1.10.5](jquery-datatables/cdnjquerydatatables105.md "jQuery DataTables 1.10.5")
 - [jQuery DataTables 1.10.4](jquery-datatables/cdnjquerydatatables104.md "jQuery DataTables 1.10.4")
@@ -717,7 +717,7 @@ jQuery 遷移版本1.2。0
 
 ### <a name="modernizr-releases-on-the-cdn"></a>CDN 上的 Modernizr 版本
 
-下列版本的[Modernizr](http://www.modernizr.com "Modernizr")裝載于 CDN 上：
+以下是在 CDN 上裝載的 [Modernizr](http://www.modernizr.com "Modernizr") 版本：
 
 - https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-3.5.0.js
 - https://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js
@@ -731,15 +731,15 @@ jQuery 遷移版本1.2。0
 
 ### <a name="jshint-releases-on-the-cdn"></a>CDN 上的 JSHint 版本
 
-下列版本的[JSHint](http://www.jshint.com "JSHint")裝載于 CDN 上：
+以下是在 CDN 上裝載的 [JSHint](http://www.jshint.com "JSHint") 版本：
 
 - https://ajax.aspnetcdn.com/ajax/jshint/r07/jshint.js
 
 <a id="Knockout_Releases_on_the_CDN_11"></a>
 
-### <a name="knockout-releases-on-the-cdn"></a>CDN 上的挖釋版本
+### <a name="knockout-releases-on-the-cdn"></a>CDN 上的挖對版本
 
-下列的[挖](http://www.knockoutjs.com "Knockout")的版本會裝載在 CDN 上：
+以下是在 CDN 上託管的 [挖](http://www.knockoutjs.com "淘汰賽") 釋版本：
 
 - https://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js
 - https://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.debug.js
@@ -766,7 +766,7 @@ jQuery 遷移版本1.2。0
 
 ### <a name="globalize-releases-on-the-cdn"></a>CDN 上的全球化版本
 
-下列[全球](https://github.com/jquery/globalize "全球化")化版本裝載于 CDN 上：
+以下是在 CDN 上裝載的 [全球](https://github.com/jquery/globalize "全球化") 化版本：
 
 #### <a name="globalize-version-100"></a>全球化1.0.0 版
 
@@ -788,13 +788,13 @@ jQuery 遷移版本1.2。0
     - 所有文化特性
 - https://ajax.aspnetcdn.com/ajax/globalize/0.1.1/cultures/globalize.culture.{culture-code}.js
 
-    - 將 "{culture-code}" 取代為所需的文化特性代碼，例如 globalize.culture.en-GB.js= = CDN 上的 Microsoft 檔案 = = Microsoft 上傳了這些程式庫。
+    - 以所需的文化特性代碼取代 "{culture-code}"，例如 globalize.culture.en-GB.js= = CDN 上的 Microsoft 檔案 = = 這些程式庫已由 Microsoft 上傳。
 
 <a id="Respond_Releases_on_the_CDN_13"></a>
 
 ### <a name="respond-releases-on-the-cdn"></a>在 CDN 上回應版本
 
-下列的[回應](https://github.com/scottjehl/Respond "回應")版本裝載于 CDN 上：
+以下是裝載在 CDN 上的 [回應](https://github.com/scottjehl/Respond "回應") 版本：
 
 #### <a name="respond-version-142"></a>回應版本1.4。2
 
@@ -829,7 +829,22 @@ jQuery 遷移版本1.2。0
 
 ### <a name="bootstrap-releases-on-the-cdn"></a>CDN 上的啟動程式版本
 
-下列版本的[getbootstrap.com](http://getbootstrap.com "getbootstrap.com")啟動程式裝載于 CDN：
+以下是裝載在 CDN 上的 [getbootstrap.com](http://getbootstrap.com "getbootstrap.com") 啟動程式版本：
+
+#### <a name="bootstrap-version-452"></a>啟動程式版本4.5。2
+
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/bootstrap.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/bootstrap.min.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/bootstrap.bundle.js
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-grid.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-grid.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-grid.css.map
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-reboot.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-reboot.min.css
+- https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap-reboot.css.map
 
 #### <a name="bootstrap-version-450"></a>啟動程式版本4.5。0
 
@@ -1171,7 +1186,7 @@ jQuery 遷移版本1.2。0
 - https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/img/glyphicons-halflings.png
 - https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.2/img/glyphicons-halflings-white.png
 
-#### <a name="bootstrap-version-231"></a>啟動程式2.3.1 版
+#### <a name="bootstrap-version-231"></a>啟動程式版本2.3。1
 
 - https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/bootstrap.js
 - https://ajax.aspnetcdn.com/ajax/bootstrap/2.3.1/bootstrap.min.js
@@ -1186,7 +1201,7 @@ jQuery 遷移版本1.2。0
 
 ### <a name="bootstrap-touchcarousel-releases-on-the-cdn"></a>CDN 上的啟動程式 TouchCarousel 版本
 
-下列的啟動載入器 [https://github.com/ixisio/bootstrap-touch-carousel](https://github.com/ixisio/bootstrap-touch-carousel "HTTPs://github.com/ixisio/bootstrap-touch-carousel") TouchCarousel 版本版本裝載于 CDN：
+以下 [https://github.com/ixisio/bootstrap-touch-carousel](https://github.com/ixisio/bootstrap-touch-carousel "HTTPs://github.com/ixisio/bootstrap-touch-carousel") 是裝載在 CDN 上的啟動載入器 TouchCarousel 版本：
 
 #### <a name="bootstrap-touchcarousel-version-080"></a>啟動程式 TouchCarousel 版本0.8.0 版
 
@@ -1197,7 +1212,7 @@ jQuery 遷移版本1.2。0
 
 ### <a name="hammerjs-releases-on-the-cdn"></a>CDN 上的 Hammer.js 版本
 
-下列版本的 [http://hammerjs.github.io/](http://hammerjs.github.io/ "HTTP://hammerjs.github.io/") Hammer.js 版本裝載于 CDN 上：
+以下 [http://hammerjs.github.io/](http://hammerjs.github.io/ "HTTP://hammerjs.github.io/") 是裝載在 CDN 上的 Hammer.js 版本版本：
 
 #### <a name="hammerjs-version-204"></a>Hammer.js 版本2.0.4 版
 
@@ -1207,9 +1222,9 @@ jQuery 遷移版本1.2。0
 
 <a id="ASPNET_Web_Forms_and_Ajax_Releases_on_the_CDN_15"></a>
 
-### <a name="aspnet-web-forms-and-ajax-releases-on-the-cdn"></a>在 CDN 上 ASP.NET Web Forms 和 Ajax 版本
+### <a name="aspnet-web-forms-and-ajax-releases-on-the-cdn"></a>CDN 上的 ASP.NET Web Forms 和 Ajax 版本
 
-下列版本的 ASP.NET Ajax 程式庫會裝載于 CDN 上。 按一下每個連結，以查看實際的檔案清單。
+下列版本的 ASP.NET Ajax 程式庫會裝載在 CDN 上。 按一下每個連結以查看實際的檔案清單。
 
 - [ASP.NET Web Forms 和 Ajax 版本4.5。2](cdnajax452.md "ASP.NET Web Forms 與 Ajax 4.5.2")
 - [ASP.NET Web Forms 和 Ajax 第4版](cdnajax4.md "ASP.NET Web Forms 與 Ajax 4")
@@ -1217,9 +1232,9 @@ jQuery 遷移版本1.2。0
 
 <a id="ASPNET_MVC_Releases_on_the_CDN_16"></a>
 
-### <a name="aspnet-mvc-releases-on-the-cdn"></a>在 CDN 上 ASP.NET MVC 版本
+### <a name="aspnet-mvc-releases-on-the-cdn"></a>ASP.NET CDN 上的 MVC 版本
 
-下列 ASP.NET MVC JavaScript 檔案裝載于此 CDN 上：
+下列 ASP.NET MVC JavaScript 檔案裝載于此 CDN：
 
 #### <a name="aspnet-mvc-523"></a>ASP.NET MVC 5.2。3
 
@@ -1268,7 +1283,7 @@ jQuery 遷移版本1.2。0
 
 ### <a name="aspnet-signalr-releases-on-the-cdn"></a>CDN 上的 ASP.NET SignalR 版本
 
-下列 ASP.NET SignalR JavaScript 檔案裝載于此 CDN 上：
+下列 ASP.NET SignalR JavaScript 檔案會裝載于此 CDN：
 
 #### <a name="aspnet-signalr-222"></a>ASP.NET SignalR 2.2。2
 
@@ -1335,4 +1350,4 @@ jQuery 遷移版本1.2。0
 - https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.0.1.min.js
 - https://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-1.0.1.js
 
-如需 CDN 使用規定的相關資訊，請參閱[Microsoft AJAX CDN 使用](https://www.asp.net/terms-of-use "Microsoft Ajax CDN 使用規定")規定。
+如需有關 CDN 使用條款的詳細資訊，請參閱 [Microsoft AJAX CDN 使用](https://www.asp.net/terms-of-use "Microsoft Ajax CDN 使用規定")規定。
