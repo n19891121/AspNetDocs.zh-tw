@@ -9,12 +9,12 @@ ms.topic: tutorial
 ms.assetid: f35a9b0c-49ef-4cde-b06d-19d1543feb0b
 msc.legacyurl: /mvc/overview/getting-started/getting-started-with-ef-using-mvc/advanced-entity-framework-scenarios-for-an-mvc-web-application
 msc.type: authoredcontent
-ms.openlocfilehash: d7cc83a5b78a60f575f5c3065079679189296a0c
-ms.sourcegitcommit: c9d9210e0d16fbb3829b7688cfb832dc263c79cc
+ms.openlocfilehash: 2bfa4401c73b56be87502ffbb189abab3c59c226
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "86188672"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89044996"
 ---
 # <a name="tutorial-learn-about-advanced-ef-scenarios-for-an-mvc-5-web-app"></a>教學課程：瞭解 MVC 5 Web 應用程式的 advanced EF 案例
 
@@ -130,7 +130,7 @@ Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資�
 
 現在在語句 (F9 上設定中斷點， `return` 並) 該行上的游標。 按下 **F5** 以在偵測模式中執行專案，然後選取 [課程索引] 頁面。 當程式碼到達中斷點時，檢查 `sql` 變數。 您會看到傳送給 SQL Server 的查詢。 這是簡單的 `Select` 語句。
 
-[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample7.json)]
+[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample7.sql)]
 
 按一下放大鏡以查看 **文字視覺化**中的查詢。
 

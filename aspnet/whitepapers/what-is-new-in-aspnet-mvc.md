@@ -8,12 +8,12 @@ ms.date: 04/20/2010
 ms.assetid: 69a8d6f8-4b10-4602-8822-2d6c05fc432b
 msc.legacyurl: /whitepapers/what-is-new-in-aspnet-mvc
 msc.type: content
-ms.openlocfilehash: 1a0a29241d8afecd295b11013b27621b21c9ed52
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: ecc840c33714aa04bebcd9e413cb548eca8cc058
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "86162697"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045035"
 ---
 # <a name="whats-new-in-aspnet-mvc-2"></a>ASP.NET MVC 2 的新功能
 
@@ -90,7 +90,7 @@ ASP.NET MVC 2 現在允許控制器以非同步方式處理要求。 這可能�
 
 ComponentModel. DefaultValueAttribute 類別允許將引數參數的預設值提供給動作方法。 例如，假設已定義下列預設路由：
 
-[!code-json[Main](what-is-new-in-aspnet-mvc/samples/sample3.json)]
+[!code-json[Main](what-is-new-in-aspnet-mvc/samples/sample3.txt)]
 
 也假設已定義下列控制器和動作方法：
 

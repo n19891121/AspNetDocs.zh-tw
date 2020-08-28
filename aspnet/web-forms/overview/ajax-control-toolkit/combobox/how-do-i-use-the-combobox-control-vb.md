@@ -1,155 +1,155 @@
 ---
 uid: web-forms/overview/ajax-control-toolkit/combobox/how-do-i-use-the-combobox-control-vb
-title: 如何使用組合盒控件? (VB) |微軟文件
+title: 如何? 使用 ComboBox 控制項？  (VB) |Microsoft Docs
 author: rick-anderson
-description: ComboBox 是一ASP.NET AJAX 控制項,它將TextBox的靈活性與使用者可以選擇的選項清單相結合。
+description: ComboBox 是 ASP.NET 的 AJAX 控制項，結合 TextBox 的彈性與使用者可以選擇的選項清單。
 ms.author: riande
 ms.date: 05/12/2009
 ms.assetid: e887e7b2-a6e7-4a28-a134-ba334494badb
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/combobox/how-do-i-use-the-combobox-control-vb
 msc.type: authoredcontent
-ms.openlocfilehash: 237e3ef864238c11fc1fb49239c3f6fa3f75537d
-ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
+ms.openlocfilehash: a139f00fc2962c159eabed6c1dc2cbb78c94c564
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "81543063"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89044619"
 ---
-# <a name="how-do-i-use-the-combobox-control-vb"></a>如何使用組合盒控件? (VB)
+# <a name="how-do-i-use-the-combobox-control-vb"></a>如何? 使用 ComboBox 控制項？ (VB)
 
-由[微軟](https://github.com/microsoft)
+由 [Microsoft](https://github.com/microsoft)
 
-> ComboBox 是一ASP.NET AJAX 控制項,它將TextBox的靈活性與使用者可以選擇的選項清單相結合。
+> ComboBox 是 ASP.NET 的 AJAX 控制項，結合 TextBox 的彈性與使用者可以選擇的選項清單。
 
-本教學的目的是解釋 AJAX 控制工具組組合盒控制件。 組合框的工作方式類似於標準ASP.NET下拉清單控制項和文字框控制元件之間的組合。 您可以從預先存在的項目清單中選擇,也可以輸入新專案。
+本教學課程的目的是要說明 AJAX 控制項工具組 ComboBox 控制項。 ComboBox 的運作方式就像是標準 ASP.NET DropDownList 控制項和 TextBox 控制項之間的組合。 您可以從預先存在的專案清單中選取，或輸入新的專案。
 
-組合盒類似於自動完成控制器擴充器,但控制項在不同的方案中使用。 自動完成擴展程序查詢 Web 服務以獲取匹配的條目。 相反,組合框控制項使用一組項進行初始化。 使用 AutoComplete 擴充程式在使用大量資料(數百萬個汽車零件)時有意義,而使用 ComboBox 控制件在使用一小組數據(數十個汽車部件)時是有意義的。
+下拉式方塊類似于「自動完成控制項」擴充項，但控制項用於不同的案例。 自動完成擴充項會查詢 web 服務來取得相符的專案。 相反地，ComboBox 控制項會以一組專案初始化。 當您使用大型 (資料集來處理大量資料時，使用 [自動完成擴充項] 是很合理的) 當您在處理一小部分的資料 (數十個汽車零件) 時，使用 ComboBox 控制項就很有意義。
 
-## <a name="selecting-from-a-static-list-of-items"></a>從靜態項目清單中選擇
+## <a name="selecting-from-a-static-list-of-items"></a>從靜態專案清單中選取
 
-讓我們從使用組合框控件的簡單示例開始。 假設您要在下拉清單中顯示項目的靜態清單。 但是,您希望保留清單未完成的可能性。 您希望允許使用者在清單中輸入自定義值。
+讓我們從使用 ComboBox 控制項的簡單範例開始。 假設您想要在下拉式清單中顯示靜態的專案清單。 不過，您想要保持開啟清單未完成的可能性。 您想要允許使用者在清單中輸入自訂值。
 
-我們將創建一個新的ASP.NET Web 窗體頁,並在該頁中使用 ComboBox 控件。 將新的ASP.NET頁添加到專案中並切換到"設計"視圖。
+我們會建立新的 ASP.NET Web Forms 頁面，並在頁面中使用 ComboBox 控制項。 將新的 ASP.NET 網頁新增至您的專案，並切換至設計檢視。
 
-如果要在頁面中使用 ComboBox 控制項,則必須向頁面添加文本管理器控制項。 將文稿管理器控制項從 AJAX 延伸選項卡下方拖曳到設計器表面。 應在頁面頂部添加腳本管理器控件;但是,在頁面頂部,應添加腳本管理器控件。可以將其添加到打開的伺服器端&lt;窗&gt;體 標記的下方。
+如果您想要在頁面中使用 ComboBox 控制項，則必須將 ScriptManager 控制項加入頁面中。 將 ScriptManager 控制項從 [AJAX 擴充功能] 索引標籤底下拖曳至設計工具介面上。 您應在頁面頂端新增 ScriptManager 控制項;您可以緊接在開頭的伺服器端 &lt; 表單標記下方加入它 &gt; 。
 
-接下來,將組合框控件拖到頁面上。 您可以在工具箱中找到與其他 AJAX 控制工具套件控制器和控制擴展器一起的 ComboBox 控制件(見圖 1)。
+接下來，將 ComboBox 控制項拖曳至頁面上。 您可以使用其他 AJAX 控制項工具組控制項和控制項擴充項，在 [工具箱] 中找到 ComboBox 控制項 (查看圖 1) 。
 
 [![建立名片的簡單表單](how-do-i-use-the-combobox-control-vb/_static/image1.jpg)](how-do-i-use-the-combobox-control-vb/_static/image1.png)
 
-**圖 01**: 從工具匣中選擇群組([按下以檢視全尺寸影像](how-do-i-use-the-combobox-control-vb/_static/image2.png))
+**圖 01**：從 [工具箱] 選取 ComboBox 控制項 ([按一下以查看完整大小的影像](how-do-i-use-the-combobox-control-vb/_static/image2.png)) 
 
-我們將使用組合框控件來顯示靜態選項清單。 用戶可以從三個選項清單中為其食物選擇特定級別的辣度(參見圖 2)。
+我們將使用 ComboBox 控制項來顯示靜態的選項清單。 使用者可以從下列三個選項的清單中選取特定的 spiciness 層級： [輕度]、[中] 和 [經常性 (]，請參閱 [圖 2]) 。
 
-[![從靜態項目清單中選擇](how-do-i-use-the-combobox-control-vb/_static/image2.jpg)](how-do-i-use-the-combobox-control-vb/_static/image3.png)
+[![從靜態專案清單中選取](how-do-i-use-the-combobox-control-vb/_static/image2.jpg)](how-do-i-use-the-combobox-control-vb/_static/image3.png)
 
-**圖 02**:從靜態項目清單中選擇([按下以檢視全尺寸影像](how-do-i-use-the-combobox-control-vb/_static/image4.png))
+**圖 02**：從靜態專案清單中選取 ([按一下以查看完整大小的影像](how-do-i-use-the-combobox-control-vb/_static/image4.png)) 
 
-有兩種方法可以將這些選項添加到 ComboBox 控制件。 首先,在"設計"檢視中將滑鼠懸停在控制項上並打開專案編輯器時,請選擇"編輯選項"任務選項(參見圖 3)。
+有兩種方式可以將這些選項新增至 ComboBox 控制項。 首先，當您將滑鼠停留在設計檢視中的控制項上方並開啟專案編輯器時，請選取 [編輯選項] 工作選項 (請參閱 [圖 3]) 。
 
-[![編輯組合框項目](how-do-i-use-the-combobox-control-vb/_static/image3.jpg)](how-do-i-use-the-combobox-control-vb/_static/image5.png)
+[![編輯 ComboBox 專案](how-do-i-use-the-combobox-control-vb/_static/image3.jpg)](how-do-i-use-the-combobox-control-vb/_static/image5.png)
 
-**圖 03**: 編輯組合盒項目([按下以檢視全尺寸影像](how-do-i-use-the-combobox-control-vb/_static/image6.png))
+**圖 03**：編輯 ComboBox 專案 ([按一下以查看完整大小的影像](how-do-i-use-the-combobox-control-vb/_static/image6.png)) 
 
-第二個選項是在源檢視中的開盤和關閉&lt;asp:ComboBox&gt;標記之間添加專案清單。 清單 1 中的頁面包含包含專案清單的更新的 ComboBox。
+第二個選項是在來源視圖的開頭和結尾 &lt; asp： ComboBox 標記之間加入專案清單 &gt; 。 [清單 1] 中的頁面包含已更新專案清單的 [已更新] ComboBox。
 
-**清單 1 - 靜態.aspx**
+**清單 1-靜態 .aspx**
 
 [!code-aspx[Main](how-do-i-use-the-combobox-control-vb/samples/sample1.aspx)]
 
-在清單 1 中開啟頁面時,您可以從組合框中選擇一個預先存在的選項。 換句話說,組合框的工作方式與下拉清單控件類似。
+當您開啟 [清單 1] 中的頁面時，可以從下拉式方塊中選取其中一個預先存在的選項。 換句話說，ComboBox 的運作方式就像是 DropDownList 控制項一樣。
 
-但是,您還可以選擇輸入不在現有清單中的新選項(例如,超級辣)。 因此,組合框也像文本框控件一樣工作。
+不過，您也可以選擇輸入新的選擇 (例如，不在現有清單中的 Super Spicy) 。 因此，ComboBox 也可以像 TextBox 控制項一樣運作。
 
-無論您選擇預先存在的項目還是輸入自定義專案,在提交表單時,您的選擇都會顯示在標籤控制項中。 提交表單時,btnSubmit\_單擊處理程式將執行並更新標籤(參見圖 4)。
+無論您是否選擇預先存在的專案，或輸入自訂專案，當您提交表單時，您的選擇都會出現在標籤控制項中。 當您提交表單時，btnSubmit \_ Click 處理常式會執行並更新標籤 (請參閱 [圖 4]) 。
 
-[![顯示選取的項目](how-do-i-use-the-combobox-control-vb/_static/image4.jpg)](how-do-i-use-the-combobox-control-vb/_static/image7.png)
+[![顯示選取的專案](how-do-i-use-the-combobox-control-vb/_static/image4.jpg)](how-do-i-use-the-combobox-control-vb/_static/image7.png)
 
-**圖 04**:顯示選取的項目([按下以檢視全尺寸影像](how-do-i-use-the-combobox-control-vb/_static/image8.png))
+**圖 04**：顯示選取的專案 ([按一下以查看完整大小的影像](how-do-i-use-the-combobox-control-vb/_static/image8.png)) 
 
-ComboBox 支援與提交表單後檢索選取的下拉清單控制件相同的屬性:
+ComboBox 支援與 DropDownList 控制項相同的屬性，以便在提交表單之後，用來抓取選取的專案：
 
-- 選定項目.文字 - 顯示選取的項目的文字屬性的值。
-- 選定項目.值 - 顯示選取項目的值屬性的值或顯示鍵入到組合盒中的文字。
-- 選取值 - 與選擇的項目相同。除非此屬性允許您指定預設(初始)選定專案。
+- SelectedItem：顯示所選取專案的 Text 屬性值。
+- SelectedItem：顯示所選取專案的 Value 屬性值，或顯示在下拉式方塊中輸入的文字。
+- SelectedValue 與 SelectedItem 相同，不同之處在于此屬性可讓您指定預設 (初始) 選取的專案。
 
-如果在組合框中鍵入自定義選項,則自定義選項將分配給"選定專案.文本"和"選定專案"值屬性。
+如果您在下拉式方塊中輸入自訂選擇，則會將自訂選項同時指派給 SelectedItem 和 SelectedItem 屬性。
 
-## <a name="selecting-the-list-of-items-from-the-database"></a>從資料庫中選擇項目清單
+## <a name="selecting-the-list-of-items-from-the-database"></a>從資料庫中選取專案清單
 
-您可以檢索 ComboBox 從資料庫中顯示的專案清單。 例如,您可以將組合盒綁定到 SqlDataSource 控制項、ObjectDataSource 控制項、LinqDataSource 或實體資料來源。
+您可以從資料庫中取出下拉式方塊所顯示的專案清單。 例如，您可以將 ComboBox 系結至 SqlDataSource 控制項、ObjectDataSource 控制項、LinqDataSource 或 EntityDataSource。
 
-假設您要在組合盒中顯示電影清單。 您希望從「影片」資料庫表中檢索影片清單。 請遵循下列步驟：
+假設您想要在下拉式方塊中顯示電影清單。 您想要從電影資料庫資料表中取出電影清單。 請遵循下列步驟：
 
-1. 建立名為「電影.aspx」的頁面
-2. 通過將文稿管理器從工具箱中的 AJAX 擴展選項卡下拖動到頁面,將文本管理器控制項添加到頁面。
-3. 通過將組合框拖到頁面上,將組合框控件添加到頁面。
-4. 在"設計"檢視中,將滑鼠懸停在 ComboBox 控件上,然後選擇 **「選擇資料源**任務」選項(參見圖 5)。 啟動數據源配置嚮導。
-5. 在**選擇資料來源**「步驟中,選擇」&lt;新的資料來源&gt;選項。
-6. 在 **「選擇資料源類型」步驟中**,選擇「資料庫」。
-7. 在 **「選擇數據連接**」步驟中,選擇資料庫(例如,MoviesDB.mdf)。
-8. 在 **「將連接字串儲存到應用程式設定檔」步驟中**,選擇儲存連接字串的選項。
-9. 在 **「設定選擇語句」** 步驟中,選擇「影片」資料庫表並選擇所有列。
-10. 在 **「測試查詢**」步驟中,按下「完成」按鈕。
-11. 回到 **「選擇資料來源**」步驟中,選擇要顯示的欄位的標題列和資料欄位的「Id」欄(參見圖)。
-12. 按下「確定」按鈕關閉精靈。
+1. 建立名為 default.aspx 的頁面
+2. 將 ScriptManager 控制項從 [工具箱] 中的 [AJAX 擴充功能] 索引標籤拖曳到頁面上，以將 ScriptManager 控制項加入頁面中。
+3. 將 combobox 拖曳至頁面上，以將 ComboBox 控制項加入頁面中。
+4. 在設計檢視中，將滑鼠停留在 ComboBox 控制項上方，然後選取 [ **選擇資料來源** ] 工作選項 (請參閱 [圖 5]) 。 [資料來源設定] 設定為 [已啟動]。
+5. 在 [ **選擇資料來源** ] 步驟中，選取 [ &lt; 新增資料來源] &gt; 選項。
+6. 在 [ **選擇資料來源類型** ] 步驟中，選取 [資料庫]。
+7. 在 [ **選擇您的資料連線** ] 步驟中，選取您的資料庫 (例如，MoviesDB .mdf) 。
+8. 在 [ **將連接字串儲存到應用程式佈建檔** ] 步驟中，選取儲存連接字串的選項。
+9. 在 [ **設定 Select 語句** ] 步驟中，選取 [電影資料庫] 資料表，然後選取所有資料行。
+10. 在 [ **測試查詢** ] 步驟中，按一下 [完成] 按鈕。
+11. 回到 [ **選擇資料來源** ] 步驟中，選取要顯示之欄位的 [標題] 資料行，並選取 [資料] 欄位的 [識別碼] 資料行 (查看 [圖) ]。
+12. 按一下 [確定] 按鈕以關閉嚮導。
 
 [![選擇資料來源](how-do-i-use-the-combobox-control-vb/_static/image5.jpg)](how-do-i-use-the-combobox-control-vb/_static/image9.png)
 
-**圖 05**: 選擇資料來源([按下以檢視全尺寸影像](how-do-i-use-the-combobox-control-vb/_static/image10.png))
+**圖 05**：選擇資料來源 ([按一下以查看完整大小的影像](how-do-i-use-the-combobox-control-vb/_static/image10.png)) 
 
-[![選擇資料文字與值欄位](how-do-i-use-the-combobox-control-vb/_static/image6.jpg)](how-do-i-use-the-combobox-control-vb/_static/image11.png)
+[![選擇資料文字和值欄位](how-do-i-use-the-combobox-control-vb/_static/image6.jpg)](how-do-i-use-the-combobox-control-vb/_static/image11.png)
 
-**圖 06**:選擇資料文字與值欄位([按下以檢視全尺寸影像](how-do-i-use-the-combobox-control-vb/_static/image12.png))
+**圖 06**：選擇資料文字和值欄位 ([按一下以查看完整大小的影像](how-do-i-use-the-combobox-control-vb/_static/image12.png)) 
 
-完成上述步驟后,組合Box將綁定到SqlDataSource控制項,該控制項表示「電影」資料庫表中的影片。 頁面的源類似於清單 2(我稍微清理了格式)。
+完成上述步驟後，ComboBox 會系結至代表電影資料庫資料表中電影的 SqlDataSource 控制項。 頁面的來源看起來像 [清單 2] (我將格式化稍微) 。
 
-**清單 2 - 電影.aspx**
+**清單 2-default.aspx**
 
 [!code-aspx[Main](how-do-i-use-the-combobox-control-vb/samples/sample2.aspx)]
 
-請注意,ComboBox 控制件具有指向 SqlDataSource 控制件的 DataSourceID 屬性。 在瀏覽器中打開頁面時,將顯示資料庫中的影片清單(參見圖 7)。 您可以透過在組合盒中鍵入影片從清單中選取影片或輸入新影片。
+請注意，ComboBox 控制項有指向 SqlDataSource 控制項的 DataSourceID 屬性。 當您在瀏覽器中開啟頁面時，會顯示資料庫中的電影清單 (請參閱 [圖 7]) 。 您可以從清單中挑選電影，或在下拉式方塊中輸入電影來輸入新的電影。
 
 [![顯示電影清單](how-do-i-use-the-combobox-control-vb/_static/image7.jpg)](how-do-i-use-the-combobox-control-vb/_static/image13.png)
 
-**圖 07**: 顯示電影列表([按下以檢視全尺寸影像](how-do-i-use-the-combobox-control-vb/_static/image14.png))
+**圖 07**：顯示電影清單 ([按一下以觀看完整大小的影像](how-do-i-use-the-combobox-control-vb/_static/image14.png)) 
 
-## <a name="setting-the-dropdownstyle"></a>設定下拉式式
+## <a name="setting-the-dropdownstyle"></a>設定 DropDownStyle
 
-您可以使用組合盒下拉列表樣式屬性更改組合框的行為。 此屬性接受可能存在的值:
+您可以使用 ComboBox DropDownStyle 屬性來變更 ComboBox 的行為。 這個屬性會接受可能的值：
 
-- 下拉 - (預設值) 當您按下箭頭並且可以輸入自訂值時,組合框將顯示下拉清單。
-- 簡單 - 組合框會自動顯示下拉清單,您可以輸入自訂值。
-- 下拉清單 - 組合框的工作方式與下拉清單控制項類似。
+- 下拉式 (預設值) 當您按一下箭號時，下拉式清單會顯示下拉式清單，而您可以輸入自訂值。
+- 簡單-下拉式方塊會自動顯示下拉式清單，而您可以輸入自訂值。
+- DropDownList-下拉式方塊的運作方式就像 DropDownList 控制項一樣。
 
-下拉清單和「簡單」之間的不同是顯示項目清單時。 在 Simple 的情況下,當您將焦點移動到組合框時,將立即顯示清單。 在下拉清單的情況下,必須按一下箭頭才能看到專案清單。
+下拉式清單和簡單的不同之處是顯示專案清單。 在簡單的情況下，當您將焦點移至下拉式方塊時，清單會立即顯示。 在下拉式清單中，您必須按一下箭號以查看專案清單。
 
-"下拉清單"值使組合盒控制項的工作方式與標準的下拉清單控制項類似。 然而,這裡有一個重要的區別。 較舊版本的 Internet Explorer 顯示具有無限 z 索引的下拉清單控制項,因此該控制項將顯示在放置在其前面的任何控制項的前面。 由於組合&lt;框呈現 HTML&gt;div&lt;標籤&gt;而不是 HTML 選擇 標記,因此組合框正確尊重 z 排序。
+DropDownList 值會使 ComboBox 控制項如同標準 DropDownList 控制項一樣運作。 不過，這裡有一個重要的差異。 舊版 Internet Explorer 會顯示具有無限 z 索引的 DropDownList 控制項，讓控制項出現在其前方的任何控制項前面。 因為 ComboBox 會轉譯 HTML &lt; div &gt; 標記而非 html 選取標記，所以下拉式方塊會 &lt; &gt; 正確地遵循 z 順序。
 
-## <a name="setting-the-autocompletemode"></a>設定自動完成模式
+## <a name="setting-the-autocompletemode"></a>設定 Autocompletemode.none
 
-您可以使用 ComboBox 自動完成模式屬性來指定當有人在組合框中鍵入文本時會發生什麼情況。 此屬性接受以下可能的值:
+您可以使用 ComboBox Autocompletemode.none 屬性來指定當有人將文字輸入 ComboBox 時，會發生什麼事。 這個屬性會接受下列可能的值：
 
-- 無 - (默認值) 組合框不提供任何自動完成行為。
-- 建議 - 組合框顯示清單,並突出顯示清單中的匹配項(參見圖 8)。
-- 附加 - 組合框不顯示清單,它將匹配項從清單中追加到已鍵入的內容(參見圖 9)。
-- 建議應用 - 組合框都會顯示清單並將匹配項從清單中追加到已鍵入的內容上(參見圖 10)。
+- None- (預設值) ComboBox 不提供任何自動完成行為。
+- 建議-下拉式方塊會顯示清單，並反白顯示清單中的相符專案 (請參閱 [圖 8]) 。
+- 附加-下拉式方塊不會顯示清單，而會將相符的專案從清單附加到您輸入的內容 (請參閱 [圖 9]) 。
+- SuggestAppend-下拉式方塊會顯示清單，並將清單中的相符專案附加到您輸入的內容 (請參閱 [圖 10]) 。
 
-[![組合盒提出建議](how-do-i-use-the-combobox-control-vb/_static/image8.jpg)](how-do-i-use-the-combobox-control-vb/_static/image15.png)
+[![ComboBox 會提出建議](how-do-i-use-the-combobox-control-vb/_static/image8.jpg)](how-do-i-use-the-combobox-control-vb/_static/image15.png)
 
-**圖 08**: 組合框提出建議([按下以檢視全尺寸影像](how-do-i-use-the-combobox-control-vb/_static/image16.png))
+**圖 08**：下拉式方塊提出建議 ([按一下以查看完整大小的影像](how-do-i-use-the-combobox-control-vb/_static/image16.png)) 
 
-[![組合盒附加符合文字](how-do-i-use-the-combobox-control-vb/_static/image9.jpg)](how-do-i-use-the-combobox-control-vb/_static/image17.png)
+[![ComboBox 附加符合的文字](how-do-i-use-the-combobox-control-vb/_static/image9.jpg)](how-do-i-use-the-combobox-control-vb/_static/image17.png)
 
-**圖 09**: 組合盒中的文字([按下以檢視全尺寸影像](how-do-i-use-the-combobox-control-vb/_static/image18.png))
+**圖 09**： ComboBox 附加相符的文字 ([按一下以查看完整大小的影像](how-do-i-use-the-combobox-control-vb/_static/image18.png)) 
 
-[![組合框建議與新增](how-do-i-use-the-combobox-control-vb/_static/image10.jpg)](how-do-i-use-the-combobox-control-vb/_static/image19.png)
+[![ComboBox 建議和附加](how-do-i-use-the-combobox-control-vb/_static/image10.jpg)](how-do-i-use-the-combobox-control-vb/_static/image19.png)
 
-**圖10**: 組合框建議與新增([按下以檢視全尺寸影像](how-do-i-use-the-combobox-control-vb/_static/image20.png))
+**圖 10**： ComboBox 建議和附加 ([按一下以查看完整大小的影像](how-do-i-use-the-combobox-control-vb/_static/image20.png)) 
 
-## <a name="summary"></a>總結
+## <a name="summary"></a>摘要
 
-在本教學中,您學習了如何使用 ComboBox 控件來顯示一組固定的專案。 我們將組合框控件綁定到靜態項集和資料庫表。 最後,您學習了如何通過設置其下拉風格和自動完成模式屬性來修改組合盒的行為。
+在本教學課程中，您已瞭解如何使用 ComboBox 控制項來顯示一組固定的專案。 我們將 ComboBox 控制項系結至一組靜態專案和資料庫資料表。 最後，您已瞭解如何藉由設定 DropDownStyle 和 Autocompletemode.none 屬性來修改 ComboBox 的行為。
 
 > [!div class="step-by-step"]
-> [上一步](how-do-i-use-the-combobox-control-cs.md)
+> [[上一步]](how-do-i-use-the-combobox-control-cs.md)

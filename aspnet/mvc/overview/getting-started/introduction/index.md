@@ -1,6 +1,6 @@
 ---
 uid: mvc/overview/getting-started/introduction/index
-title: ASP.NET MVC 5 的消費者入門 |Microsoft Docs
+title: 使用 ASP.NET MVC 5 的消費者入門 |Microsoft Docs
 author: rick-anderson
 description: ASP.NET MVC 5 簡介
 ms.author: riande
@@ -8,22 +8,22 @@ ms.date: 06/10/2013
 ms.assetid: 9afe7454-f1bd-4e81-8ecf-12fe54d080c1
 msc.legacyurl: /mvc/overview/getting-started/introduction
 msc.type: chapter
-ms.openlocfilehash: ca751a5b0eb43b9fa2ad26493b4a627bb964332f
-ms.sourcegitcommit: e7e91932a6e91a63e2e46417626f39d6b244a3ab
+ms.openlocfilehash: 9dc77b4a5b9d9e2e528428c3c4f440ae120756c9
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78582513"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045320"
 ---
 # <a name="getting-started-with-aspnet-mvc-5"></a>開始使用 ASP.NET MVC 5
 
 > ASP.NET MVC 5 簡介
 
-[!INCLUDE [consider RP](../../../../includes/razor.md)]
+[!INCLUDE [consider RP](~/includes/razor.md)]
 
-下列教學課程系列涵蓋位於[GitHub](https://github.com/dotnet/AspNetDocs/tree/master/aspnet/mvc/overview/getting-started/introduction/sample/MvcMovie/MvcMovie)上的 ASP.NET MVC： Source
+下列教學課程系列涵蓋 ASP.NET MVC：來源位於 [GitHub](https://github.com/dotnet/AspNetDocs/tree/master/aspnet/mvc/overview/getting-started/introduction/sample/MvcMovie/MvcMovie)
 
-- [使用者入門](getting-started.md)
+- [快速入門](getting-started.md)
 - [新增控制器](adding-a-controller.md)
 - [新增檢視](adding-a-view.md)
 - [新增模型](adding-a-model.md)

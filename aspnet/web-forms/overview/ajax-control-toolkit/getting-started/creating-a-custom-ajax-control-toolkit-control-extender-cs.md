@@ -1,218 +1,218 @@
 ---
 uid: web-forms/overview/ajax-control-toolkit/getting-started/creating-a-custom-ajax-control-toolkit-control-extender-cs
-title: 建立自訂 AJAX 控制工具套件控制延伸器 (C#) |微軟文件
+title: '建立自訂的 AJAX 控制項工具組控制項擴充項 (c # ) |Microsoft Docs'
 author: rick-anderson
-description: 自訂擴充程式使您能夠自訂和擴展ASP.NET控件的功能,而無需創建新類。
+description: 自訂擴充項可讓您自訂和擴充 ASP.NET 控制項的功能，而不需要建立新的類別。
 ms.author: riande
 ms.date: 05/12/2009
 ms.assetid: 96b56eca-a892-45a4-96b4-67e61178650a
 msc.legacyurl: /web-forms/overview/ajax-control-toolkit/getting-started/creating-a-custom-ajax-control-toolkit-control-extender-cs
 msc.type: authoredcontent
-ms.openlocfilehash: 5ac7bf71227459ab4b1e87489e1faab6dc41545b
-ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
+ms.openlocfilehash: 2522f22c80ebd34cd5adbb0ada51fd7755029426
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "81543024"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89044660"
 ---
 # <a name="creating-a-custom-ajax-control-toolkit-control-extender-c"></a>建立自訂的 AJAX Control Toolkit 控制項擴充項 (C#)
 
-由[微軟](https://github.com/microsoft)
+由 [Microsoft](https://github.com/microsoft)
 
-> 自訂擴充程式使您能夠自訂和擴展ASP.NET控件的功能,而無需創建新類。
+> 自訂擴充項可讓您自訂和擴充 ASP.NET 控制項的功能，而不需要建立新的類別。
 
-在本教學中,您將瞭解如何創建自定義 AJAX 控制件工具套件控制元件延伸器。 我們創建一個簡單但有用的新擴展器,當您在 TextBox 中鍵入文本時,將按鈕的狀態從禁用更改為啟用。 閱讀本教程後,您將能夠使用自己的控制元件擴展器擴展ASP.NET AJAX 工具組。
+在本教學課程中，您將瞭解如何建立自訂的 AJAX 控制項工具組控制項擴充項。 我們會建立一個簡單但有用的新擴充項，在您將文字輸入文字方塊時，將按鈕的狀態從停用變更為啟用。 閱讀本教學課程之後，您將能夠使用自己的控制項擴充項來擴充 ASP.NET AJAX 工具組。
 
-您可以使用視覺化工作室或可視化 Web 開發人員建立自訂控制元件擴展器(請確保您具有最新版本的視覺化 Web 開發人員)。
+您可以使用 Visual Studio 或 Visual Web Developer 來建立自訂控制項擴充項 (確定您有最新版本的 Visual Web Developer) 。
 
-## <a name="overview-of-the-disabledbutton-extender"></a>關閉按鈕延伸器概述
+## <a name="overview-of-the-disabledbutton-extender"></a>DisabledButton 擴充項的總覽
 
-我們的新控制擴展器被命名為禁用按鈕擴展器。 新增延伸器將有三個屬性:
+我們的新控制項擴充項會命名為 DisabledButton 擴充項。 此擴充項會有三個屬性：
 
-- 目標控制ID - 控制元件擴展的文字框。
-- 目標ButtonIID - 已關閉或啟用的按鈕。
-- 關閉文字 - 最初顯示在按鈕中的文字。 開始鍵入時,按鈕將顯示按鈕文本屬性的值。
+- TargetControlID-控制項所擴充的 TextBox。
+- TargetButtonIID-已停用或已啟用的按鈕。
+- DisabledText-一開始在按鈕中顯示的文字。 當您開始輸入時，按鈕會顯示按鈕 Text 屬性的值。
 
-將「禁用按鈕擴展器」掛到文字框和按鈕控制件。 鍵入任何文字之前,將禁用「按鈕」,文本框和按鈕如下所示:
+您將 DisabledButton 擴充項鍊接至 TextBox 和 Button 控制項。 輸入任何文字之前，按鈕會停用，且 TextBox 和 Button 看起來像這樣：
 
 [![](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image2.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image1.png)
 
-([按下以檢視全尺寸影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image3.png))
+ ([按一下以查看完整大小的影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image3.png)) 
 
-開始鍵入文字後,將啟用「按鈕」,文字框和按鈕如下所示:
+當您開始輸入文字之後，按鈕就會啟用，而且 TextBox 和 Button 看起來像這樣：
 
 [![](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image5.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image4.png)
 
-([按下以檢視全尺寸影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image6.png))
+ ([按一下以查看完整大小的影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image6.png)) 
 
-要建立我們的控制器擴充器,我們需要建立以下三個檔案:
+若要建立控制項擴充項，我們需要建立下列三個檔案：
 
-- DisabledButtonExtender.cs - 此檔案是伺服器端控制類,用於管理創建擴展器,並允許您在設計時設置屬性。 它還定義可以在擴展器上設置的屬性。 這些屬性可透過代碼和設計時間存取,並匹配在禁用ButtonBehavior.js檔中定義的屬性。
-- 關閉ButtonBehavior.js -- 此檔案是您將添加所有用戶端文本邏輯的位置。
-- DisabledButtonDesigner.cs - 此類啟用設計時功能。 如果希望控件擴展器與可視化工作室/可視化 Web 開發人員設計器正確工作,則需要此類。
+- DisabledButtonExtender.cs-此檔案是伺服器端控制項類別，可管理您的擴充項建立，並可讓您在設計階段設定屬性。 它也會定義可在擴充項上設定的屬性。 這些屬性可透過程式碼和在設計階段存取，並符合 DisableButtonBehavior.js 檔中定義的屬性。
+- DisabledButtonBehavior.js--這個檔案是您將加入所有用戶端腳本邏輯的位置。
+- DisabledButtonDesigner.cs-這個類別可啟用設計階段功能。 如果您想要讓控制項擴充項正確地使用 Visual Studio/Visual Web Developer Designer，您需要這個類別。
 
-因此,控制項裝置擴展器由伺服器端控制、用戶端行為和伺服器端設計器類組成。 您將在以下部分瞭解如何建立所有三個這些檔。
+因此，控制項擴充項是由伺服器端控制項、用戶端行為，以及伺服器端設計工具類別所組成。 您將在下列各節中瞭解如何建立這三個檔案。
 
-## <a name="creating-the-custom-extender-website-and-project"></a>建立自訂延伸器網站和專案
+## <a name="creating-the-custom-extender-website-and-project"></a>建立自訂擴充項網站和專案
 
-第一步是在可視化工作室/可視化 Web 開發人員中創建類庫專案和網站。 我們將在類庫項目中創建自定義擴展器,並在網站中測試自定義擴展器。
+第一個步驟是在 Visual Studio/Visual Web Developer 中建立類別庫專案和網站。 我們將在類別庫專案中建立自訂擴充項，並在網站中測試自訂擴充項。
 
-讓我們從網站開始。 依以下步驟建立網站:
+讓我們從網站開始。 遵循下列步驟來建立網站：
 
-1. 選擇選單選項 **「檔案,新建網站**」。
-2. 選擇**ASP.NET 網站**樣本。
-3. 命名新的*網站網站1。*
-4. 按一下 [確定]**** 按鈕。
+1. 選取功能表選項 [檔案] **、[新增網站**]。
+2. 選取 [ **ASP.NET] 網站** 範本。
+3. 將新網站命名為 *Website1*。
+4. 按一下 [確定] 按鈕。
 
-接下來,我們需要創建包含控制項擴展器代碼的類庫專案:
+接下來，我們需要建立將包含控制項擴充項程式碼的類別庫專案：
 
-1. 選擇選單選項 **「檔、添加、新專案**」。
-2. 選擇**類庫**範本。
-3. 使用名稱 **「自訂擴充器**」為新類庫命名。
-4. 按一下 [確定]**** 按鈕。
+1. 選取功能表選項 [檔案] **、[加入]、[新增專案**]。
+2. 選取 [ **類別庫** ] 範本。
+3. 以名稱 **CustomExtenders**命名新的類別庫。
+4. 按一下 [確定] 按鈕。
 
-完成這些步驟後,解決方案資源管理器視窗應類似於圖 1。
+完成這些步驟之後，您的方案總管視窗看起來應該如圖1所示。
 
-[![網站和類別庫專案的解決方案](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image8.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image7.png)
+[![具有網站和類別庫專案的解決方案](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image8.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image7.png)
 
-**圖01:** 包含網站和類別庫專案的解決方案([按下以檢視全尺寸影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image9.png))
+**圖 01**：包含網站和類別庫專案的方案 ([按一下以查看完整大小的影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image9.png)) 
 
-接下來,您需要向類庫專案添加所有必要的程式集引用:
+接下來，您必須將所有必要的元件參考加入至類別庫專案：
 
-1. 右鍵按下「自訂擴展器」專案並選擇功能表選項 **「新增參考**」 。
+1. 以滑鼠右鍵按一下 [CustomExtenders] 專案，然後選取 [ **加入參考**] 功能表選項。
 2. 選取 [.NET] 索引標籤。
 3. 加入下列組件的參考：
 
     1. System.Web.dll
     2. System.Web.Extensions.dll
     3. System.Design.dll
-    4. 系統.Web.延伸.設計.dll
+    4. System.Web.Extensions.Design.dll
 4. 選取 [瀏覽] 索引標籤。
-5. 添加對 AjaxControlToolkit.dll 程式集的引用。 此程式集位於下載 AJAX 控制工具套件的資料夾中。
+5. 加入 AjaxControlToolkit.dll 元件的參考。 這個元件位於您下載 AJAX 控制項工具組的資料夾中。
 
-完成這些步驟后,類庫專案參考資料夾應類似於圖 2。
+完成這些步驟之後，您的類別庫專案參考資料夾看起來應該如圖2所示。
 
-[![具有所需參考的參考資料夾](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image11.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image10.png)
+[![具有必要參考的參考資料夾](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image11.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image10.png)
 
-**圖 02**:參考需要參考的資料夾([按下以檢視全尺寸影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image12.png))
+**圖 02**：參考具有必要參考的資料夾 ([按一下以查看完整大小的影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image12.png)) 
 
-## <a name="creating-the-custom-control-extender"></a>建立自訂控制器
+## <a name="creating-the-custom-control-extender"></a>建立自訂控制項擴充項
 
-現在,我們已經有了類庫,我們可以開始構建擴展器控件。 讓我們從自定義擴展器控件類的裸骨開始(參見清單 1)。
+既然我們有了類別庫，就可以開始建立我們的擴充項控制項。 讓我們從自訂擴充項控制項類別的裸機開始 (請參閱 [清單 1]) 。
 
-**清單 1 - MyCustomExtender.cs**
+**清單 1-MyCustomExtender.cs**
 
 [!code-csharp[Main](creating-a-custom-ajax-control-toolkit-control-extender-cs/samples/sample1.cs)]
 
-關於清單1中的控件擴展器類,您注意到幾件事。 首先,請注意,類從基擴展器控制庫類繼承。 所有 AJAX 控制工具套件擴展器控制項都源自此基類。 例如,基類包括作為每個控制元件擴展器的必需屬性的 TargetID 屬性。
+您會在 [清單 1] 中看到關於控制項擴充項類別的幾件事。 首先，請注意，此類別繼承自基底 ExtenderControlBase 類別。 所有 AJAX 控制項工具組的擴充性控制項都是衍生自這個基類。 例如，基類包含 TargetID 屬性，這是每個控制項擴充項的必要屬性。
 
-接下來,請注意,該類包含以下與用戶端腳本相關的兩個屬性:
+接下來，請注意類別包含下列兩個與用戶端腳本相關的屬性：
 
-- Web 資源 - 使檔案作為嵌入資源包含在程式集中。
-- 用戶端文稿資源 - 導致從程式集檢索腳本資源。
+- WebResource-導致檔案以內嵌資源的形式包含在元件中。
+- ClientScriptResource：讓腳本資源從元件中取出。
 
-WebResource 屬性用於在編譯自定義擴展器時將 MyControlBehavior.js JavaScript 檔嵌入到程式集中。 當在網頁中使用自定義擴展器時,用戶端腳本資源屬性用於從程式集中檢索 MyControlBehavior.js 文稿。
+WebResource 屬性是用來在編譯自訂擴充項時，將 MyControlBehavior.js 的 JavaScript 檔案內嵌至元件。 當自訂擴充項用於網頁時，ClientScriptResource 屬性會用來從元件中取出 MyControlBehavior.js 腳本。
 
-為了使 Web 資源和用戶端文本資源屬性正常工作,必須將 JavaScript 檔案編譯為嵌入式資源。 在解決方案資源管理器視窗中選擇檔,打開屬性表,並將值 *「嵌入資源」* 分配給 **「生成操作」** 屬性。
+為了讓 WebResource 和 ClientScriptResource 屬性能夠運作，您必須將 JavaScript 檔案編譯為內嵌資源。 在 [方案總管] 視窗中選取檔案，開啟屬性工作表，然後將值 *內嵌資源* 指派給 [ **組建動作** ] 屬性。
 
-請注意,控制器還包括一個 TargetControlType 屬性。 此屬性用於指定由控制器擴展器擴展的控制項類型。 在清單 1 中,控制器用於擴展 TextBox。
+請注意，控制項擴充項也包含 TargetControlType 屬性。 這個屬性是用來指定控制項擴充項所擴充的控制項型別。 在 [清單 1] 的案例中，會使用控制項擴充項來擴充 TextBox。
 
-最後,請注意,自定義擴展器包含名為 MyProperty 的屬性。 屬性使用擴展器控制屬性屬性進行標記。 GetPropertyValue() 和 SetPropertyValue() 方法用於將屬性值從伺服器端控制元件擴展器傳遞到客戶端行為。
+最後，請注意，自訂擴充項包含名為 MyProperty 的屬性。 屬性會以 ExtenderControlProperty 屬性標記。 GetPropertyValue ( # A1 和 SetPropertyValue ( # A3 方法可用來將屬性值從伺服器端控制項擴充項傳遞至用戶端行為。
 
-讓我們繼續實現我們的禁用按鈕擴展器的代碼。 此擴展器的代碼可在清單 2 中找到。
+讓我們繼續執行 DisabledButton 擴充項的程式碼。 此擴充項的程式碼可在 [清單 2] 中找到。
 
-**清單2 - DisabledButtonExtender.cs**
+**清單 2-DisabledButtonExtender.cs**
 
 [!code-csharp[Main](creating-a-custom-ajax-control-toolkit-control-extender-cs/samples/sample2.cs)]
 
-清單2中的"禁用按鈕擴展器"具有兩個屬性,分別命名為TargetButtonID和"禁用文本"。 應用於 TargetButtonID 屬性的 IDReference 屬性可防止您將 Button 控制項 ID 以外的任何內容分配給此屬性。
+[清單 2] 中的 DisabledButton 擴充項具有兩個名為 TargetButtonID 和 DisabledText 的屬性。 套用至 TargetButtonID 屬性的 IDReferenceProperty 可防止您將 Button 控制項的 ID 以外的任何內容指派給這個屬性。
 
-WebResource 和 ClientScriptResource 屬性將位於名為"禁用ButtonBehavior.js"的檔案中的客戶端行為與此擴展器相關聯。 我們將在下一節中討論此 JavaScript 檔。
+WebResource 和 ClientScriptResource 屬性會將位於名為 DisabledButtonBehavior.js 之檔案中的用戶端行為與此擴充項產生關聯。 我們將在下一節討論這個 JavaScript 檔案。
 
-## <a name="creating-the-custom-extender-behavior"></a>建立自訂延伸程式行為
+## <a name="creating-the-custom-extender-behavior"></a>建立自訂擴充項行為
 
-控件擴展器的用戶端元件稱為行為。 關閉和啟用按鈕的實際邏輯包含在"禁用按鈕"行為中。 該行為的 JavaScript 代碼包含在清單 3 中。
+控制項擴充項的用戶端元件稱為行為。 停用和啟用按鈕的實際邏輯都包含在 DisabledButton 行為中。 此行為的 JavaScript 程式碼會包含在 [清單 3] 中。
 
-**清單 3 - 停用Button.js**
+**清單 3-DisabledButton.js**
 
 [!code-javascript[Main](creating-a-custom-ajax-control-toolkit-control-extender-cs/samples/sample3.js)]
 
-清單3中的 JavaScript 檔包含名為"禁用Button行為"的用戶端類。 此類,與其伺服器端孿生一樣,包括名為 TargetButtonID 和禁用文本的兩個屬性,您\_可以使用 GetTargetButtonID/設置\_TargetButtonID\_進行訪問,並獲得\_禁用文本/集 禁用文本。
+[清單 3] 中的 JavaScript 檔案包含名為 DisabledButtonBehavior 的用戶端類別。 這個類別（例如其伺服器端對應項）包含兩個名為 TargetButtonID 和 DisabledText 的屬性，您可以使用 get \_ TargetButtonID/set \_ TargetButtonID 和 get \_ DisabledText/set DisabledText 來存取這些屬性 \_ 。
 
-初始化() 方法將鍵up事件處理程式與行為的目標元素關聯。 每次在與此行為關聯的 TextBox 中鍵入字母時,鍵 up 處理程序都會執行。 鍵up 處理程式啟用或禁用按鈕,具體取決於與該行為關聯的 TextBox 是否包含任何文本。
+Initialize ( # A1 方法會將 keyup 事件處理常式與行為的目標元素產生關聯。 每次您在與此行為相關聯的文字方塊中輸入字母時，就會執行 keyup 處理常式。 Keyup 處理常式會根據與行為相關聯的文字方塊是否包含任何文字，來啟用或停用按鈕。
 
-請記住,您必須將清單 3 中的 JavaScript 檔編譯為嵌入式資源。 在解決方案資源管理器視窗中選擇檔,打開屬性表,並將值 *「嵌入資源」* 分配給**生成操作**屬性(參見圖 3)。 此選項在可視化工作室和可視化 Web 開發人員中都可用。
+請記住，您必須在 [清單 3] 中將 JavaScript 檔案編譯為內嵌資源。 在 [方案總管] 視窗中選取檔案，開啟屬性工作表，並將 [ *內嵌資源* ] 值指派給 [ **組建動作** ] 屬性 (請參閱 [圖 3]) 。 Visual Studio 和 Visual Web Developer 都有提供這個選項。
 
-[![將 JavaScript 檔案加入為嵌入式資源](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image14.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image13.png)
+[![將 JavaScript 檔案新增為內嵌資源](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image14.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image13.png)
 
-**圖 03**: 將 JavaScript 檔案加入為嵌入式資源([按下以檢視全尺寸影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image15.png))
+**圖 03**：將 JavaScript 檔案新增為內嵌資源 ([按一下以查看完整大小的影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image15.png)) 
 
-## <a name="creating-the-custom-extender-designer"></a>建立自訂延伸程式設計器
+## <a name="creating-the-custom-extender-designer"></a>建立自訂擴充項設計工具
 
-我們需要創建最後一個類來完成擴展器。 我們需要在清單4中創建設計器類。 此類是使擴展器在可視化工作室/可視化 Web 開發人員設計器中正確運行所必需的。
+最後一個類別需要建立，才能完成我們的擴充項。 我們需要建立 [清單 4] 中的設計工具類別。 此類別是讓擴充項使用 Visual Studio/Visual Web Developer Designer 正確運作的必要類別。
 
-**清單4 - DisabledButtonDesigner.cs**
+**清單 4-DisabledButtonDesigner.cs**
 
 [!code-csharp[Main](creating-a-custom-ajax-control-toolkit-control-extender-cs/samples/sample4.cs)]
 
-將清單 4 中的設計器與「已禁用Button擴展器」與「設計器」屬性相關聯。您需要將 Designer 屬性應用於禁用Button擴展器類,如下所示:
+您可以使用設計工具屬性，將 [清單 4] 中的設計工具與 DisabledButton 擴充項產生關聯。您必須將設計工具屬性套用至 DisabledButtonExtender 類別，如下所示：
 
 [!code-csharp[Main](creating-a-custom-ajax-control-toolkit-control-extender-cs/samples/sample5.cs)]
 
-## <a name="using-the-custom-extender"></a>使用自訂延伸器
+## <a name="using-the-custom-extender"></a>使用自訂擴充項
 
-現在,我們已經完成了創建禁用按鈕控件擴展器,是時候在我們的ASP.NET網站使用它了。 首先,我們需要將自定義擴展器添加到工具箱中。 請遵循下列步驟：
+既然我們已完成建立 DisabledButton 控制項擴充項，現在就可以在我們的 ASP.NET 網站中使用它。 首先，我們需要將自訂擴充項加入至 [工具箱]。 請遵循下列步驟：
 
-1. 通過按兩下解決方案資源管理器視窗中的頁面打開ASP.NET頁。
-2. 右鍵按一下工具箱並選擇選單選項 **「選擇專案**」。
-3. 在「選擇工具箱項目」對話框中,流覽到「自訂擴展器.dll」程式集。
-4. 按下「**確定」** 按鈕關閉對話方塊。
+1. 按兩下方案總管視窗中的頁面，即可開啟 ASP.NET 網頁。
+2. 以滑鼠右鍵按一下 [工具箱]，然後選取功能表選項 [ **選擇專案**]。
+3. 在 [選擇工具箱專案] 對話方塊中，流覽至 CustomExtenders.dll 元件。
+4. 按一下 [ **確定** ] 按鈕以關閉對話方塊。
 
-完成這些步驟後,禁用 Button 控件擴展器應顯示在工具箱中(參見圖 4)。
+完成這些步驟之後，[DisabledButton] 控制項擴充項應該會出現在 [工具箱] 中 (請參閱 [圖 4]) 。
 
-[![工具箱中的關閉按鈕](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image17.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image16.png)
+[![工具箱中的 DisabledButton](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image17.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image16.png)
 
-**圖 04**: 工具殼中的關閉按鈕([按下以檢視全尺寸影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image18.png))
+**圖 04**：在 [工具箱] 中 DisabledButton ([按一下以查看完整大小的影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image18.png)) 
 
-接下來,我們需要創建一個新的ASP.NET頁。 請遵循下列步驟：
+接下來，我們需要建立新的 ASP.NET 網頁。 請遵循下列步驟：
 
-1. 創建新ASP.NET頁面名為"顯示禁用按鈕.aspx"。
-2. 將腳本管理器拖到頁面上。
-3. 將文字框控件拖到頁面上。
-4. 將「按鈕」控制器拖到頁面上。
-5. 在"屬性"視窗中,將按鈕ID屬性更改為值<em>btnSave,</em>將文本屬性更改為*\*值"儲存*"。
+1. 建立新的 ASP.NET 網頁，名為 ShowDisabledButton .aspx。
+2. 將 ScriptManager 拖曳到頁面上。
+3. 將 TextBox 控制項拖曳至頁面上。
+4. 將按鈕控制項拖曳至頁面上。
+5. 在 [屬性視窗中，將 [按鈕識別碼] 屬性變更為 [值<em>btnSave</em> ]，並將 [Text] 屬性變更為 [*儲存 \* *]。
 
-我們創建了一個包含標準ASP.NET文本框和按鈕控制項的頁面。
+我們建立了具有標準 ASP.NET TextBox 和 Button 控制項的頁面。
 
-接下來,我們需要使用關閉按鈕延伸器延伸 TextBox 控制件:
+接下來，我們需要使用 DisabledButton 擴充項來擴充 TextBox 控制項：
 
-1. 選擇 **「新增延伸器**」工作選項以開啟延伸程式精靈對話框(參見圖 5)。 請注意,該對話框包括我們的自定義禁用按鈕擴展器。
-2. 選擇"停用按鈕擴展器",然後按下 **「確定**」按鈕。
+1. 選取 [ **加入** 擴充項工作] 選項以開啟 [擴充項 Wizard] 對話方塊 (參閱 [圖 5]) 。 請注意，此對話方塊包含我們的自訂 DisabledButton 擴充項。
+2. 選取 DisabledButton 擴充項，然後按一下 [ **確定]** 按鈕。
 
-[![擴充器精靈對話框](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image20.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image19.png)
+[![[擴充項 Wizard] 對話方塊](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image20.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image19.png)
 
-**圖 05**: 擴充器精靈對話框([按下以檢視全尺寸影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image21.png))
+**圖 05**：擴充項 Wizard 對話方塊 ([按一下以查看完整大小的影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image21.png)) 
 
-最後,我們可以設置禁用按鈕擴展器的屬性。 您可以透過修改 TextBox 控制檔屬性來變更關閉Button延伸器的屬性:
+最後，我們可以設定 DisabledButton 擴充項的屬性。 您可以藉由修改 TextBox 控制項的屬性來修改 DisabledButton 擴充項的屬性：
 
-1. 選擇設計器中的文字框。
-2. 在"屬性"視窗中,展開擴展器節點(參見圖 6)。
-3. 將「*儲存到*關閉文字」 屬性的值和值*btnSave*分配給 TargetButtonID 屬性。
+1. 選取設計工具中的文字方塊。
+2. 在屬性視窗中，展開 [擴充項] 節點 (請參閱圖 6) 。
+3. 將值 *Save* 指派給 DisabledText 屬性，並將值 *BtnSave* 指派給 TargetButtonID 屬性。
 
-[![設定延伸器屬性](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image23.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image22.png)
+[![設定擴充項屬性](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image23.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image22.png)
 
-**圖 06**:設定延伸器屬性([按下以檢視全尺寸影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image24.png))
+**圖 06**：設定擴充項屬性 ([按一下以查看完整大小的影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image24.png)) 
 
-當您運行頁面(通過點擊 F5)時,按鈕控制項最初被禁用。 一旦您開始將文字輸入到 TextBox 中,按鈕控制件即啟用(參見圖 7)。
+當您按下 F5)  (執行頁面時，按鈕控制項會一開始停用。 一旦您開始在文字方塊中輸入文字，就會啟用按鈕控制項 (請參閱 [圖 7]) 。
 
-[![關閉按鈕延伸器正在操作中](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image26.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image25.png)
+[![作用中的 DisabledButton 擴充項](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image26.png)](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image25.png)
 
-**圖 07**: 關閉按鈕延伸器在操作中([按下以檢視全尺寸影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image27.png))
+**圖 07**： DisabledButton 擴充項的作用 ([按一下以查看完整大小的影像](creating-a-custom-ajax-control-toolkit-control-extender-cs/_static/image27.png)) 
 
 ## <a name="summary"></a>總結
 
-本教學的目的是說明如何使用自定義擴展器控制項擴展 AJAX 控制項工具組。 在本教學中,我們創建了一個簡單的禁用按鈕控制元件擴展器。 我們通過創建禁用Button擴展器類、禁用Button行為 JavaScript 行為和禁用ButtonDesigner類實現了此擴展程式。 每當創建自定義控制器時,都會遵循一組類似的步驟。
+本教學課程的目的是要說明如何使用自訂擴充項控制項來擴充 AJAX 控制項工具組。 在本教學課程中，我們建立了簡單的 DisabledButton 控制項擴充項。 我們藉由建立 DisabledButtonExtender 類別、DisabledButtonBehavior JavaScript 行為和 DisabledButtonDesigner 類別，來實作為擴充項。 當您建立自訂控制項擴充項時，您可以遵循一組類似的步驟。
 
 > [!div class="step-by-step"]
-> [前一個](using-ajax-control-toolkit-controls-and-control-extenders-cs.md)
-> [下一個](get-started-with-the-ajax-control-toolkit-vb.md)
+> [上一個](using-ajax-control-toolkit-controls-and-control-extenders-cs.md) 
+> [下一步](get-started-with-the-ajax-control-toolkit-vb.md)

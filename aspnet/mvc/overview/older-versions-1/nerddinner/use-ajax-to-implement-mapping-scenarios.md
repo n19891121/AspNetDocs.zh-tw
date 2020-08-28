@@ -1,194 +1,194 @@
 ---
 uid: mvc/overview/older-versions-1/nerddinner/use-ajax-to-implement-mapping-scenarios
-title: 使用 AJAX 實現映射機制 :微軟文件
+title: 使用 AJAX 來執行對應案例 |Microsoft Docs
 author: rick-anderson
-description: 步驟 11 展示如何將 AJAX 映射支援整合到我們的 NerdDinner 應用程式中,使正在建立、編輯或查看晚餐的使用者能夠查看 l...
+description: 步驟11顯示如何將 AJAX 對應支援整合到我們的 NerdDinner 應用程式，讓正在建立、編輯或查看 dinners 的使用者查看 .。。
 ms.author: riande
 ms.date: 07/27/2010
 ms.assetid: f731990a-0a81-4d62-81df-87d676cdedd6
 msc.legacyurl: /mvc/overview/older-versions-1/nerddinner/use-ajax-to-implement-mapping-scenarios
 msc.type: authoredcontent
-ms.openlocfilehash: f2e2640eb421d5ee8006915f46cbe1090b8d21ad
-ms.sourcegitcommit: 022f79dbc1350e0c6ffaa1e7e7c6e850cdabf9af
+ms.openlocfilehash: 03b3a27d4b761d0417160b95cc6f39a345385065
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "81542582"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89044320"
 ---
 # <a name="use-ajax-to-implement-mapping-scenarios"></a>使用 AJAX 實作對應實例
 
-由[微軟](https://github.com/microsoft)
+由 [Microsoft](https://github.com/microsoft)
 
 [下載 PDF](http://aspnetmvcbook.s3.amazonaws.com/aspnetmvc-nerdinner_v1.pdf)
 
-> 這是一個免費的[「NerdDinner」應用程式教程](introducing-the-nerddinner-tutorial.md)的第11步,該教學示範如何使用mVC 1構建小型但完整的Web應用程式ASP.NET。
+> 這是免費「 [NerdDinner」應用程式教學](introducing-the-nerddinner-tutorial.md) 課程的步驟11，逐步解說如何使用 ASP.NET MVC 1 建立小型但完整的 web 應用程式。
 > 
-> 步驟 11 展示如何將 AJAX 映射支援整合到我們的 NerdDinner 應用程式中,使正在創建、編輯或查看晚餐的用戶能夠以圖形方式查看晚餐的位置。
+> 步驟11顯示如何將 AJAX 對應支援整合到我們的 NerdDinner 應用程式，讓建立、編輯或觀賞 dinners 的使用者以圖形方式查看晚餐的位置。
 > 
-> 如果您使用的是ASP.NET MVC 3,我們建議您按照[MVC 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md)或[MVC 音樂商店](../../older-versions/mvc-music-store/mvc-music-store-part-1.md)教程進行操作。
+> 如果您使用的是 ASP.NET MVC 3，建議您遵循 [mvc 3](../../older-versions/getting-started-with-aspnet-mvc3/cs/intro-to-aspnet-mvc-3.md) 或 [mvc 音樂商店](../../older-versions/mvc-music-store/mvc-music-store-part-1.md) 教學課程的消費者入門。
 
-## <a name="nerddinner-step-11-integrating-an-ajax-map"></a>神經晚餐第11步:集成AJAX地圖
+## <a name="nerddinner-step-11-integrating-an-ajax-map"></a>NerdDinner 步驟11：整合 AJAX 地圖
 
-現在,我們將通過集成 AJAX 映射支援,使我們的應用程式在視覺上更加精彩。 這將使創建、編輯或查看晚餐的用戶能夠以圖形方式查看晚餐的位置。
+我們現在藉由整合 AJAX 對應支援，讓應用程式更具視覺效果。 這可讓正在建立、編輯或查看 dinners 的使用者以圖形方式查看晚餐的位置。
 
-### <a name="creating-a-map-partial-view"></a>建立地圖部分檢視
+### <a name="creating-a-map-partial-view"></a>建立地圖部分視圖
 
-我們將在應用程式中的幾個位置使用映射功能。 為了保持我們的代碼 DRY,我們將將通用映射功能封裝在單個部分範本中,我們可以在多個控制器操作和視圖中重複使用。 我們將此部分檢視命名為"map.ascx",並在[Views_Dinners] 目錄中創建它。
+我們將在應用程式內的數個地方使用對應功能。 為了讓我們的程式碼更好，我們會將常見的地圖功能封裝在單一部分範本中，以便在多個控制器動作和 views 之間重複使用。 我們會將這個部分 view 命名為 "map .ascx"，並在 \Views\Dinners 目錄中建立它。
 
-我們可以通過右鍵單擊「視圖\Dinners」目錄並選擇「添加視圖&gt;」功能表命令來創建 map.ascx 部分內容。 我們將檢視命名為「Map.ascx」,將其作為部分檢視選中,並指示我們將通過一個強類型「Dinner」模型類:
+只要以滑鼠右鍵按一下 \Views\Dinners 目錄，然後選擇 [加入視圖] 功能表命令，就可以建立對應的 .ascx 部分 &gt; 。 我們會將 view 命名為「對應 .ascx」、將它視為部分視圖，並指出我們要將它傳遞給它一個強型別「晚餐」模型類別：
 
 ![](use-ajax-to-implement-mapping-scenarios/_static/image1.png)
 
-當我們按下「添加」按鈕時,將創建部分範本。 然後,我們將更新 Map.ascx 檔,以包含以下內容:
+當我們按一下 [新增] 按鈕時，將會建立部分範本。 接著，我們會更新對應的 .ascx 檔案，使其具有下列內容：
 
 [!code-aspx[Main](use-ajax-to-implement-mapping-scenarios/samples/sample1.aspx)]
 
-第一&lt;個&gt;腳本引用指向 Microsoft 虛擬地球 6.2 映射庫。 第二&lt;&gt;個 文稿引用指向我們即將創建的 map.js 檔,該檔將封裝我們常見的 Javascript 映射邏輯。 div &lt;id="theMap"&gt;元素是虛擬地球將用來承載地圖的 HTML 容器。
+第一個 &lt; 腳本 &gt; 參考會指向 Microsoft 虛擬地球6.2 對應程式庫。 第二個 &lt; 腳本 &gt; 參考會指向稍後將建立的 map.js 檔案，以封裝我們的常見 JAVAscript 對應邏輯。 &lt;Div id = "theMap" &gt; 元素是虛擬地球將用來裝載地圖的 HTML 容器。
 
-然後,我們有一個&lt;嵌入&gt;式 腳本塊,其中包含特定於此視圖的兩個 JavaScript 函數。 第一個函數使用 jQuery 來連接在頁面準備好運行用戶端文本時執行的函數。 它調用 LoadMap() 説明器函數,我們將在 Map.js 文本檔中定義該函數以載入虛擬地球地圖控制項。 第二個函數是回調事件處理程式,該處理程式向標識位置的地圖添加引腳。
+接著，我們會有一個內嵌 &lt; &gt; 的腳本區塊，其中包含這個視圖專屬的兩個 JavaScript 函式。 第一個函式會使用 jQuery 來連接在頁面準備執行用戶端腳本時所執行的函式。 它會呼叫 LoadMap ( # A1 helper 函式，我們會在 Map.js 腳本檔中定義，以載入虛擬地球地圖控制項。 第二個函式是回呼事件處理常式，會將釘選新增至識別位置的地圖。
 
-請注意,如何在用戶端腳本塊中使用伺服器端&lt;%+%&gt;塊來嵌入要映射到 JAVAScript 的 Dinner 的緯度和經度。 這是一種有用的技術來輸出用戶端文本可以使用的動態值(無需單獨的 AJAX 調用伺服器即可檢索值 , 使其更快)。 &lt;當檢視在伺服器上&gt;呈現時,%= % 塊將執行 ,因此 HTML 的輸出將最終使用嵌入的 JavaScript 值(例如:var 緯度 = 47.64312;)。
+請注意，我們如何在 &lt; 用戶端腳本區塊內使用伺服器端% =% &gt; 區塊，以將我們想要對應的晚餐的緯度和經度內嵌至 JavaScript。 這是一項實用的技巧，可輸出用戶端腳本所能使用的動態值 (而不需要對伺服器進行個別的 AJAX 回呼來取得值，這可讓您更快速地) 。 當您在 &lt; &gt; 伺服器上轉譯視圖時，將會執行% =% 區塊，因此 HTML 的輸出最後會是內嵌的 JavaScript 值 (例如： var 緯度 = 47.64312; ) 。
 
-### <a name="creating-a-mapjs-utility-library"></a>建立 Map.js 公用程式庫
+### <a name="creating-a-mapjs-utility-library"></a>建立 Map.js 公用程式程式庫
 
-現在,讓我們創建 Map.js 檔,可用於封裝地圖的 JavaScript 功能(並實現上面的 LoadMap 和 LoadPin 方法)。 我們可以通過右鍵單擊專案中的 #Scripts 目錄來執行此操作,然後選擇「&gt;添加新 專案」功能表命令,選擇 JScript 項,並將其命名為"Map.js"。
+現在，讓我們建立 Map.js 檔案，以用來封裝對應 (的 JavaScript 功能，並執行上述) 的 LoadMap 和 LoadPin 方法。 若要這麼做，請以滑鼠右鍵按一下專案中的 [\Scripts] 目錄，然後選擇 [加入 &gt; 新專案] 功能表命令，選取 [JScript] 專案，並將其命名為 "Map.js"。
 
-下面是我們將添加到 Map.js 檔的 JavaScript 代碼,該代碼將與虛擬地球互動以顯示我們的地圖,並為其添加位置圖釘以進行晚餐:
+以下是我們將在 Map.js 檔案中新增的 JavaScript 程式碼，以與虛擬地球互動以顯示我們的地圖，並為我們的 dinners 新增位置圖釘：
 
 [!code-javascript[Main](use-ajax-to-implement-mapping-scenarios/samples/sample2.js)]
 
-### <a name="integrating-the-map-with-create-and-edit-forms"></a>將地圖與建立及編輯表單整合
+### <a name="integrating-the-map-with-create-and-edit-forms"></a>整合地圖與建立和編輯表單
 
-現在,我們將 Map 支援與現有的創建和編輯方案集成。 好消息是,這是很容易做到的,並且不需要我們更改任何控制器代碼。 由於我們的「創建」和「編輯」視圖共用一個通用的「DinnerForm」部分視圖來實現晚餐表單 UI,因此我們可以在一個位置添加地圖,並同時使用我們的「創建」 和「編輯」 方案。
+我們現在會將地圖支援與現有的建立和編輯案例整合。 好消息是，這相當簡單，而且不需要我們變更任何控制器程式碼。 由於我們的 [建立] 和 [編輯] 視圖會共用常見的「DinnerForm」部分視圖來實行晚餐表單 UI，因此我們可以在一個位置新增地圖，並讓我們的建立和編輯案例都使用它。
 
-我們只需要打開 [Views_Dinners_DinnerForm.ascx 部分視圖]並更新它,以包括我們的新地圖部分。 下面是添加地圖後更新的 DinnerForm 的外觀(注意:為了簡潔起見,下面代碼段省略了 HTML 表單元素):
+我們只需要開啟 \Views\Dinners\DinnerForm.ascx 部分視圖，並加以更新，以包含新的地圖部分。 以下是在新增對應之後，更新的 DinnerForm 會顯示的樣子 (注意：下列程式碼片段會省略 HTML 表單元素，以求簡潔) ：
 
 [!code-aspx[Main](use-ajax-to-implement-mapping-scenarios/samples/sample3.aspx)]
 
-上面的 DinnerForm 部分將類型為「DinnerFormViewModel」的物件作為其模型類型(因為它既需要 Dinner 物件,也需要 SelectList 來填充國家/地區的下拉清單)。 我們的地圖部分只需要一個類型「Dinner」的物件作為其模型類型,因此當我們渲染地圖部分時,我們只傳遞給 DinnerFormViewModel 的 Dinner 子屬性:
+上述 DinnerForm 部分會採用類型為 "DinnerFormViewModel" 的物件做為其模型類型 (因為它同時需要晚餐物件和 SelectList 來填入) 的國家/地區 dropdownlist。 我們的地圖部分只需要 "晚餐" 類型的物件作為其模型類型，因此當我們轉譯地圖部分時，我們只會將 DinnerFormViewModel 的晚餐子屬性傳遞給它：
 
 [!code-aspx[Main](use-ajax-to-implement-mapping-scenarios/samples/sample4.aspx)]
 
-我們添加到部分使用的 JavaScript 函數使用 jQuery 將「模糊」事件附加到「位址」HTML 文本框。 您可能聽說過當使用者按下或選項卡進入文本框時觸發的「焦點」 事件。 相反,當使用者退出文本框時,將觸發"模糊"事件。 上述事件處理程式在發生此情況時清除緯度和經度文本框值,然後繪製地圖上的新位址位置。 然後,我們在 map.js 檔中定義的回調事件處理程式將使用虛擬地球返回的值更新窗體上的經度和緯度文本框,具體取決於我們提供的位址。
+我們已新增至部分的 JavaScript 函式會使用 jQuery 將「模糊」事件附加至「位址」 HTML 文字方塊。 您可能聽過使用者在文字方塊中按一下或定位點時所引發的「焦點」事件。 相反的是當使用者離開 textbox 時引發的「模糊」事件。 上述事件處理常式會在發生這種情況時清除緯度和經度 textbox 的值，然後在地圖上繪製新的位址位置。 接著，我們在 map.js 檔案中定義的回呼事件處理常式，將會根據我們提供的位址，使用虛擬地球所傳回的值，更新表單上的經度和緯度文字方塊。
 
-現在,當我們再次運行我們的應用程式,然後單擊「主機晚餐」選項卡,我們將看到默認地圖顯示連同我們的標準晚餐表單元素:
+現在當我們再次執行應用程式，並按一下 [主機晚餐] 索引標籤時，就會看到預設的地圖與標準晚餐表單元素一起顯示：
 
 ![](use-ajax-to-implement-mapping-scenarios/_static/image2.png)
 
-當我們鍵入位址,然後選項卡離開時,地圖將動態更新以顯示位置,並且事件處理程式將用位置值填充緯度/經度文本框:
+當我們輸入位址，然後使用 tab 鍵移出時，地圖會動態更新以顯示位置，而我們的事件處理常式會將位置值填入緯度/經度文字方塊中：
 
 ![](use-ajax-to-implement-mapping-scenarios/_static/image3.png)
 
-如果我們保存新晚餐,然後再次打開它進行編輯,我們會發現在頁面載入時顯示地圖位置:
+如果我們儲存新晚餐，然後再次開啟以供編輯，我們會發現在頁面載入時，會顯示地圖位置：
 
 ![](use-ajax-to-implement-mapping-scenarios/_static/image4.png)
 
-每次更改位址欄位時,地圖和緯度/經度座標都將更新。
+每次變更 [位址] 欄位時，地圖和緯度/經度座標將會更新。
 
-現在,地圖顯示「晚餐」位置,我們還可以將「緯度和經度」窗體欄位從可見文本框更改為隱藏元素(因為每次輸入位址時,地圖都會自動更新它們)。 此,我們將從使用 Html.TextBox() HTML 說明程式切換到使用 Html.Hidden() 說明器方法:
+現在地圖顯示晚餐位置，我們也可以將 [緯度] 和 [經度] 表單欄位從 [可見的] 文字方塊改成隱藏元素 (因為地圖會在每次輸入位址) 時自動更新。 為此，我們將使用 Html ( # A1 HTML helper 來切換為使用 Html. Hidden ( # A3 helper 方法：
 
 [!code-aspx[Main](use-ajax-to-implement-mapping-scenarios/samples/sample5.aspx)]
 
-現在,我們的表單更加方便使用者,避免顯示原始緯度/經度(同時仍將其與資料庫中的每個晚餐一起存儲):
+現在我們的表單更容易使用，並避免顯示原始的緯度/經度 (但仍將它們儲存在資料庫) 中的每個晚餐：
 
 ![](use-ajax-to-implement-mapping-scenarios/_static/image5.png)
 
-### <a name="integrating-the-map-with-the-details-view"></a>將地圖與詳細資訊檢視整合
+### <a name="integrating-the-map-with-the-details-view"></a>將地圖與詳細資料檢視整合
 
-現在,我們已經將地圖與我們的創建和編輯方案集成,讓我們也將其與我們的詳細資訊方案集成。 我們只需要調用&lt;% Html.Render 部分("地圖");"&gt;詳細資訊"視圖中的百分比。
+既然我們已將地圖與我們的建立和編輯案例整合，讓我們也將它與我們的詳細資料案例整合。 我們只需要在 &lt; &gt; 詳細資料檢視中呼叫% Html. RenderPartial ( "map" ) ;%。
 
-下面是完整詳細資訊檢視的原始碼(具有地圖整合)的外觀:
+以下是對應整合)  (完整詳細資料檢視的原始程式碼如下所示：
 
 [!code-aspx[Main](use-ajax-to-implement-mapping-scenarios/samples/sample6.aspx)]
 
-現在,當用戶導航到 /Dinners/細節/[id] URL 時,他們將看到有關晚餐的詳細資訊、地圖上的晚餐位置(隨滑鼠懸停在地圖上的圖釘顯示晚餐的標題和位址),併為其提供指向 RSVP 的 AJAX 連結:
+現在，當使用者流覽至/Dinners/Details/[id] URL 時，他們會看到晚餐的詳細資料，地圖上的晚餐的位置 (完成時，會在滑鼠停留時顯示晚餐的標題和其) 的位址，並具有適用于其回復的 AJAX 連結：
 
 ![](use-ajax-to-implement-mapping-scenarios/_static/image6.png)
 
-### <a name="implementing-location-search-in-our-database-and-repository"></a>在資料庫與儲存庫中實現位置搜尋
+### <a name="implementing-location-search-in-our-database-and-repository"></a>在資料庫和儲存機制中執行位置搜尋
 
-為了完成我們的AJAX實現,讓我們向應用程式的主頁添加一個地圖,允許使用者以圖形方式搜索附近的晚餐。
+為了完成我們的 AJAX 程式，讓我們將地圖新增至應用程式的首頁，讓使用者以圖形方式搜尋附近的 dinners。
 
 ![](use-ajax-to-implement-mapping-scenarios/_static/image7.png)
 
-我們將首先在資料庫和數據存儲庫層中實施支援,以高效地執行基於位置的 Dinner 半徑搜索。 我們可以使用 SQL [2008 的新地理空間功能](https://www.microsoft.com/sqlserver/2008/en/us/spatial-data.aspx)來實現這一點,或者我們可以使用 Gary Dryden 在本文中討論的 SQL 函數方法:Rob [http://www.codeproject.com/KB/cs/distancebetweenlocations.aspx](http://www.codeproject.com/KB/cs/distancebetweenlocations.aspx) Conery 會在這裡寫關於使用 LINQ 到 SQL 的文章:[http://blog.wekeroad.com/2007/08/30/linq-and-geocoding/](http://blog.wekeroad.com/2007/08/30/linq-and-geocoding/)
+我們一開始會在資料庫和資料存放庫層中執行支援，以有效率地執行以位置為基礎的 radius 搜尋以進行 Dinners。 我們可以使用 [sql 2008 的新地理空間功能](https://www.microsoft.com/sqlserver/2008/en/us/spatial-data.aspx) 來執行這項操作，也可以使用 sql 函式方法來 Dryden 本文中所討論的專案， [http://www.codeproject.com/KB/cs/distancebetweenlocations.aspx](http://www.codeproject.com/KB/cs/distancebetweenlocations.aspx) 並使用與 LINQ to SQL 的 Conery 網友： [http://blog.wekeroad.com/2007/08/30/linq-and-geocoding/](http://blog.wekeroad.com/2007/08/30/linq-and-geocoding/)
 
-為了實現此技術,我們將在 Visual Studio 中打開「伺服器資源管理器」,選擇NerdDinner資料庫,然後右鍵單擊其下的「函數」子節點,然後選擇創建新的「Scalar 值函數」:
+為了執行這項技術，我們會在 Visual Studio 中開啟「伺服器總管」，選取 NerdDinner 資料庫，然後以滑鼠右鍵按一下其下的「函式」子節點，並選擇建立新的「純量值函式」：
 
 ![](use-ajax-to-implement-mapping-scenarios/_static/image8.png)
 
-然後,我們將粘貼到以下距離之間函數中:
+接著，我們會貼上下列 DistanceBetween 函數：
 
 [!code-sql[Main](use-ajax-to-implement-mapping-scenarios/samples/sample7.sql)]
 
-然後,我們將在 SQL Server 中創建一個新的表值函數,我們稱之為「最近的晚餐」:
+接著，我們會在 SQL Server 中建立新的資料表值函式，我們將會呼叫 "NearestDinners"：
 
 ![](use-ajax-to-implement-mapping-scenarios/_static/image9.png)
 
-此「最近的晚餐」表函數使用距離之間的幫助器功能返回我們提供它的自由經 100 英里內的所有晚餐:
+這個 "NearestDinners" 資料表函數會使用 DistanceBetween helper 函式，以傳回在100英里內的所有 Dinners，以及我們提供的緯度和經度：
 
 [!code-sql[Main](use-ajax-to-implement-mapping-scenarios/samples/sample8.sql)]
 
-要呼叫此函數,我們將首先透過按兩下我們的#Model目錄中的NerdDinner.dbml檔向SQL設計器打開LINQ:
+為了呼叫這個函式，我們會先按兩下 \Models 目錄中的 NerdDinner 檔案，以開啟 LINQ to SQL 設計工具：
 
 ![](use-ajax-to-implement-mapping-scenarios/_static/image10.png)
 
-然後,我們將最近 Dinner 和距離之間的函數拖動到 LINQ 到 SQL 設計器,這將導致它們作為 LINQ 上的方法添加到 SQL NerdDinnerDataContext 類:
+接著，我們會將 NearestDinners 和 DistanceBetween 函式拖曳至 LINQ to SQL 設計工具，這會在我們的 LINQ to SQL NerdDinnerDataCoNtext 類別中新增為方法：
 
 ![](use-ajax-to-implement-mapping-scenarios/_static/image11.png)
 
-然後,我們可以在我們的 DinnerRepository 類中公開「FindByLocation」查詢方法,該方法使用「最近 Dinner」功能返回即將在指定位置 100 英里範圍內的晚餐:
+接著，我們可以在 DinnerRepository 類別上公開 "FindByLocation" 查詢方法，該方法會使用 NearestDinner 函式來傳回在指定位置100英里內的即將到來 Dinners：
 
 [!code-csharp[Main](use-ajax-to-implement-mapping-scenarios/samples/sample9.cs)]
 
-### <a name="implementing-a-json-based-ajax-search-action-method"></a>實現基於JSON的AJAX搜尋操作方法
+### <a name="implementing-a-json-based-ajax-search-action-method"></a>執行以 JSON 為基礎的 AJAX 搜尋動作方法
 
-現在,我們將實現一個控制器操作方法,該方法利用新的 FindByLocation() 儲存庫方法返回可用於填充地圖的 Dinner 數據清單。 我們將讓此操作方法以 JSON(JavaScript 物件表示法)格式返回 Dinner 數據,以便可以輕鬆地在用戶端上使用 JAvaScript 對其進行操作。
+我們現在會採用控制器動作方法，以利用新的 FindByLocation ( # A1 儲存機制方法來傳回可用來填入地圖的晚餐資料清單。 我們會讓此動作方法傳回 JSON (中的晚餐資料 JavaScript 物件標記法) 格式，讓您可以在用戶端使用 JavaScript 輕鬆地操作。
 
-為了實現這一點,我們將通過右鍵單擊 \控制器目錄並選擇"添加控制&gt;器 "功能表命令創建新的"SearchController"類。 然後,我們將在新的 SearchController 類中實現「搜索ByLocation」操作方法,如下所示:
+為了執行此操作，我們將建立新的 "SearchController" 類別，方法是以滑鼠右鍵按一下 \Controllers 目錄，然後選擇 [加入 &gt; 控制器] 功能表命令。 接著，我們將在新的 SearchController 類別內執行 "SearchByLocation" 動作方法，如下所示：
 
 [!code-csharp[Main](use-ajax-to-implement-mapping-scenarios/samples/sample10.cs)]
 
-SearchController 的 SearchByLocation 操作方法在內部調用晚餐存儲庫上的 FindByLocation 方法,以獲取有關附近晚餐的清單。 但是,它不是將 Dinner 物件直接返回給用戶端,而是返回 JsonDinner 物件。 JsonDinner 類公開了 Dinner 屬性的子集(例如:出於安全原因,它不披露有 RSVP d 的晚餐人員的姓名)。 它還包括一個在晚餐上不存在的 RSVPCount 屬性,該屬性通過計算與特定晚餐關聯的 RSVP 物件數進行動態計算。
+SearchController 的 SearchByLocation 動作方法會在內部呼叫 DinnerRepository 上的 FindByLocation 方法，以取得鄰近 dinners 的清單。 但是，它會改為傳回 JsonDinner 物件，而不是直接將晚餐物件傳回給用戶端。 JsonDinner 類別會公開晚餐屬性的子集 (例如：基於安全性理由，不會洩漏晚餐) 的員工姓名。 它也包含在晚餐上不存在的 RSVPCount 屬性，而且是透過計算與特定晚餐相關聯的 RSVP 物件數目動態計算。
 
-然後,我們使用 Controller 基類上的 Json() 説明器方法使用基於 JSON 的線格式返回晚餐序列。 JSON 是一種標準文本格式,用於表示簡單的數據結構。 下面是從操作方法返回時由 JSON 格式為兩個 JsonDinner 物件的清單的範例:
+接著，我們會在控制器基類上使用 Json ( # A1 helper 方法，以使用以 JSON 為基礎的電傳格式傳回 dinners 序列。 JSON 是代表簡單資料結構的標準文字格式。 以下是兩個 JsonDinner 物件的 JSON 格式清單在從動作方法傳回時的樣子：
 
-[!code-json[Main](use-ajax-to-implement-mapping-scenarios/samples/sample11.json)]
+[!code-json[Main](use-ajax-to-implement-mapping-scenarios/samples/sample11.txt)]
 
-### <a name="calling-the-json-based-ajax-method-using-jquery"></a>使用 jQuery 呼叫基於 JSON 的 AJAX 方法
+### <a name="calling-the-json-based-ajax-method-using-jquery"></a>使用 jQuery 呼叫以 JSON 為基礎的 AJAX 方法
 
-現在,我們準備更新NerdDinner應用程式的主頁,以使用搜索控制器的搜索ByLocation操作方法。 為此,我們將打開 /Views/Home/Index.aspx 檢視範本並更新該範本,使其具有文本框、搜索按鈕、地圖和名為 dinnerList 的&lt;&gt;div 元素:
+我們現在已準備好更新 NerdDinner 應用程式的首頁，以使用 SearchController 的 SearchByLocation 動作方法。 為了達成此目的，我們將開啟/Views/Home/Index.aspx view 範本並加以更新，使其具有 textbox、搜尋按鈕、地圖，以及 &lt; &gt; 名為 dinnerList 的 div 元素：
 
 [!code-aspx[Main](use-ajax-to-implement-mapping-scenarios/samples/sample12.aspx)]
 
-然後,我們可以向頁面添加兩個 JavaScript 函數:
+接著，我們可以將兩個 JavaScript 函式新增至頁面：
 
 [!code-html[Main](use-ajax-to-implement-mapping-scenarios/samples/sample13.html)]
 
-當頁面首次載入時,第一個 JavaScript 函數載入地圖。 第二個 JavaScript 函數在搜索按鈕上連接了 JavaScript 單擊事件處理程式。 按下按鈕後,它將調用 FindDinnersGivenLocation() JavaScript 函數,我們將該函數添加到我們的 Map.js 檔中:
+第一個 JavaScript 函式會在頁面第一次載入時載入對應。 第二個 JavaScript 函式會在 [搜尋] 按鈕上，將 JavaScript click 事件處理常式上線。 按下按鈕時，會呼叫 FindDinnersGivenLocation ( # A1 JavaScript 函式，我們會將其新增至 Map.js 檔案：
 
 [!code-javascript[Main](use-ajax-to-implement-mapping-scenarios/samples/sample14.js)]
 
-此查找晚餐給定位置() 函數調用映射。在虛擬地球控制上查找()以將其居於輸入的位置。 當虛擬地球地圖服務返回時,地圖。Find() 方法調用回調UpdateMapDinners回調方法,我們將其作為最後參數傳遞。
+這個 FindDinnersGivenLocation ( # A1 函式呼叫 map。在虛擬地球控制項上尋找 ( # A3，以將其置入所輸入的位置。 當虛擬地球地圖服務傳回時，即為對應。Find ( # A1 方法會叫用 callbackUpdateMapDinners 回呼方法，並將其傳遞為最後的引數。
 
-回調UpdateMapDinners()方法是完成實際工作的地方。 它使用 jQuery 的 $.post() 説明器方法對我們的 SearchController 的 SearchByLocation() 操作方法執行 AJAX 調用 - 傳遞新居中地圖的緯度和經度。 它定義了一個內聯函數,將在 $.post() 説明器方法完成時調用,並且從 SearchByLocation() 操作方法返回的 JSON 格式的晚餐結果將使用名為"dinners"的變數傳遞它。 然後,它在每個返回的晚餐上做一個foron,並使用晚餐的緯度和經度和其他屬性在地圖上添加新的圖釘。 它還在地圖右側的 HTML 晚餐清單中添加了一個晚餐條目。 然後,它會為圖釘和 HTML 清單啟用懸停事件,以便在使用者懸停在它們上時顯示有關晚餐的詳細資訊:
+CallbackUpdateMapDinners ( # A1 方法是執行實際工作的地方。 它使用 jQuery 的 $. post ( # A1 helper 方法來對 SearchController 的 SearchByLocation ( # A3 動作方法執行 AJAX 呼叫，將其傳遞至新置中地圖的緯度和經度。 它定義了當 $. post ( # A1 helper 方法完成時所呼叫的內嵌函式，以及從 SearchByLocation ( # A3 動作方法傳回的 JSON 格式晚餐結果，將會使用名為 "dinners" 的變數來傳遞。 然後，它會對每個傳回的晚餐進行 foreach，然後使用晚餐的緯度和經度和其他屬性在地圖上新增新的釘選。 它也會將晚餐專案加入至地圖右邊的 dinners HTML 清單。 然後，它會將圖釘和 HTML 清單的暫留事件線線上，以便在使用者停留時顯示晚餐的詳細資料：
 
 [!code-html[Main](use-ajax-to-implement-mapping-scenarios/samples/sample15.html)]
 
-現在,當我們運行應用程式並訪問主頁時,我們將顯示一張地圖。 當我們輸入城市名稱時,地圖將顯示附近即將舉辦的晚宴:
+現在當我們執行應用程式並流覽首頁時，我們會看到地圖。 當我們輸入城市的名稱時，地圖將會顯示即將推出的 dinners：
 
 ![](use-ajax-to-implement-mapping-scenarios/_static/image12.png)
 
-懸停在晚餐上將顯示有關它的詳細資訊。
+將滑鼠停留在晚餐上方會顯示其詳細資料。
 
-按下氣泡中的晚餐標題或在 HTML 清單中的右側將引導我們前往晚宴 - 然後,我們可以選擇 RSVP 進行以下操作:
+按一下 [反升] 或 [HTML] 清單右邊的晚餐標題，就會將我們移至晚餐，讓我們可以選擇性地回復：
 
 ![](use-ajax-to-implement-mapping-scenarios/_static/image13.png)
 
 ### <a name="next-step"></a>後續步驟
 
-現在,我們已經實現了NerdDinner應用程式的所有應用程式功能。 現在,讓我們來看看如何實現自動單元測試。
+我們現在已實現 NerdDinner 應用程式的所有應用程式功能。 現在讓我們來看看如何啟用它的自動化單元測試。
 
 > [!div class="step-by-step"]
-> [前一個](use-ajax-to-deliver-dynamic-updates.md)
-> [下一個](enable-automated-unit-testing.md)
+> [上一個](use-ajax-to-deliver-dynamic-updates.md) 
+> [下一步](enable-automated-unit-testing.md)

@@ -8,12 +8,12 @@ ms.date: 07/30/2013
 ms.assetid: 64906a1d-f734-41cf-9615-ee95f8740996
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/advanced-entity-framework-scenarios-for-an-mvc-web-application
 msc.type: authoredcontent
-ms.openlocfilehash: f8f079f6d8ea663c6888456be422a2bae93a4b87
-ms.sourcegitcommit: c9d9210e0d16fbb3829b7688cfb832dc263c79cc
+ms.openlocfilehash: 85dd59016d904a9f654c438db977b5ae2c0187d2
+ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "86163437"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045048"
 ---
 # <a name="advanced-entity-framework-scenarios-for-an-mvc-web-application-10-of-10"></a>適用于 MVC Web 應用程式的 Advanced Entity Framework 案例 (10/10) 
 
@@ -191,7 +191,7 @@ Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資�
 
 現在在的 *GenericRepository.cs* 中設定中斷點 `return query.ToList();` ，並在方法的語句上設定中斷點 `return orderBy(query).ToList();` `Get` 。 在「偵測模式」中執行專案，然後選取 [課程索引] 頁面。 當程式碼到達中斷點時，檢查 `query` 變數。 您會看到傳送給 SQL Server 的查詢。 這是簡單的 `Select` 語句：
 
-[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample14.json)]
+[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample14.sql)]
 
 ![](advanced-entity-framework-scenarios-for-an-mvc-web-application/_static/image12.png)
 
@@ -219,7 +219,7 @@ Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資�
 
 這次第一個中斷點將是針對下拉式清單中的部門查詢。 略過該變數，並 `query` 在程式碼下一次到達中斷點時查看變數，以查看 `Course` 查詢現在的樣子。 您會看到如下所示的內容：
 
-[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample17.json)]
+[!code-json[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample17.sql)]
 
 您可以看到查詢現在是一項查詢，它會 `JOIN` 載入 `Department` 資料以及 `Course` 資料，並且包含 `WHERE` 子句。
 
