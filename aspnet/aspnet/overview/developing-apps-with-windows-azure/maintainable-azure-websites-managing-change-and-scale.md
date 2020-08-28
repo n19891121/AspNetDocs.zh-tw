@@ -558,7 +558,7 @@ ms.locfileid: "78624268"
     ![重新部署先前的認可](maintainable-azure-websites-managing-change-and-scale/_static/image55.png)
 
     <span data-ttu-id="916cd-478">*重新部署先前的認可*</span><span class="sxs-lookup"><span data-stu-id="916cd-478">*Redeploying the previous commit*</span></span>
-14. <span data-ttu-id="916cd-479">在系統提示您確認時，按一下 [Yes](是)。</span><span class="sxs-lookup"><span data-stu-id="916cd-479">When prompted to confirm, click **Yes**.</span></span>
+14. <span data-ttu-id="916cd-479">在系統提示您確認時，按一下 **[是]** 。</span><span class="sxs-lookup"><span data-stu-id="916cd-479">When prompted to confirm, click **Yes**.</span></span>
 
     ![確認重新部署](maintainable-azure-websites-managing-change-and-scale/_static/image56.png)
 15. <span data-ttu-id="916cd-481">當部署完成時，使用您的 web 應用程式切換回瀏覽器實例，然後按下**CTRL + F5**。</span><span class="sxs-lookup"><span data-stu-id="916cd-481">When the deployment completes, switch back to the browser instance with your web app and press **CTRL + F5**.</span></span>
