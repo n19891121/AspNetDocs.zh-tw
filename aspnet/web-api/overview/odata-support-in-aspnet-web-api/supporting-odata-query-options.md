@@ -13,7 +13,7 @@ ms.openlocfilehash: 96820fab7ac89885058962f44ded86cb0184ee97
 ms.sourcegitcommit: 4ed0b65ae32d9f35e42ee6296b877747e063df4d
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/05/2020
+ms.lasthandoff: 10/06/2020
 ms.locfileid: "86188609"
 ---
 # <a name="supporting-odata-query-options-in-aspnet-web-api-2"></a>ASP.NET Web API 2 中支援 OData 查詢選項
@@ -42,7 +42,7 @@ OData 規格會呼叫這些參數 *查詢選項*。 您可以針對專案中的�
 
 Web API 支援下列 OData 查詢選項：
 
-| 選項 | 描述 |
+| 選項 | 說明 |
 | --- | --- |
 | $expand | 展開內嵌相關的實體。 |
 | $filter | 根據布林值條件篩選結果。 |
