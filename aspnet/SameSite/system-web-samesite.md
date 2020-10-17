@@ -5,12 +5,12 @@ description: 瞭解如何在 ASP.NET 中使用 SameSite cookie
 ms.author: riande
 ms.date: 2/15/2019
 uid: samesite/system-web-samesite
-ms.openlocfilehash: 2a39663dcbfa97ae441edd9a9768172cafbaab03
-ms.sourcegitcommit: 09a34635ed0e74d6c2625f6a485c78f201c689ee
+ms.openlocfilehash: d50f157c6d92cb56cb6c59381af9139d1d3d1d3d
+ms.sourcegitcommit: a309ca7af61e59195beb745b501a1a9f06fcd493
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91763457"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92119359"
 ---
 # <a name="work-with-samesite-cookies-in-aspnet"></a>在 ASP.NET 中使用 SameSite cookie
 
@@ -115,7 +115,7 @@ Microsoft 不支援較低的 .NET 版本來撰寫相同的網站 cookie 屬性4.
 * 在修補程式的值之前 `None` ：
   * 完全不要發出屬性。
 * 修補之後：
-  * `None`其值表示「發出具有值的屬性」 `None` 。
+  * 的值 `None` 表示「發出屬性，其值為」 `None` 。
   * 的 `SameSite` 值 `(SameSiteMode)(-1)` 會導致不發出屬性。
 
 表單驗證和會話狀態 cookie 的預設 SameSite 值已從變更 `None` 為 `Lax` 。
@@ -163,7 +163,7 @@ Windows 的2019年11月19日更新，從2016標準版更新為2019標準的 .NET
 
 ## <a name="supporting-older-browsers"></a>支援較舊的瀏覽器
 
-2016 SameSite 標準規定必須將未知值視為 `SameSite=Strict` 值。 從較舊的瀏覽器存取的應用程式（支援 2016 SameSite 標準）在取得具有值的 SameSite 屬性時可能會中斷 `None` 。 如果 Web 應用程式想要支援較舊的瀏覽器，則必須執行瀏覽器偵測。 ASP.NET 不會執行瀏覽器偵測，因為使用者代理程式值會高度變動且經常變更。
+2016 SameSite 標準規定必須將未知值視為 `SameSite=Strict` 值。 從較舊的瀏覽器存取的應用程式（支援 2016 SameSite 標準）在取得具有值的 SameSite 屬性時可能會中斷 `None` 。 如果 Web 應用程式想要支援較舊的瀏覽器，則必須執行瀏覽器偵測。 ASP.NET 不會執行瀏覽器偵測，因為 User-Agents 值會高度變動且經常變更。
 
 Microsoft 解決問題的方法是協助您執行瀏覽器偵測元件，以 `sameSite=None` 從 cookie 中去除屬性（如果已知瀏覽器不支援的話）。 Google 的建議是發出雙重 cookie （一個具有新的屬性），另一個則沒有屬性。 不過，我們認為 Google 的建議有限。 有些瀏覽器，特別是行動瀏覽器對於網站的 cookie 數目或功能變數名稱可以傳送的限制極小。 傳送多個 cookie （尤其是像驗證 cookie 這樣的大型 cookie）很快就能達到行動瀏覽器的限制，而導致難以診斷和修正的應用程式失敗。 此外，架構中有很大的協力廠商程式碼和元件的生態系統，可能不會更新為使用雙重 cookie 方法。
 

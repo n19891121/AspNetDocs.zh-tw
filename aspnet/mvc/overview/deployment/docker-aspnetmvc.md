@@ -7,16 +7,16 @@ author: BillWagner
 ms.author: wiwagn
 ms.date: 12/14/2018
 ms.assetid: c9f1d52c-b4bd-4b5d-b7f9-8f9ceaf778c4
-ms.openlocfilehash: 1c5e6af79c87123891ddd4d30c60e3a427910e9d
-ms.sourcegitcommit: 09a34635ed0e74d6c2625f6a485c78f201c689ee
+ms.openlocfilehash: d706c07fdb7fea3d271cb61fde3a245187ea9e84
+ms.sourcegitcommit: a309ca7af61e59195beb745b501a1a9f06fcd493
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91763489"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92119372"
 ---
 # <a name="migrating-aspnet-mvc-applications-to-windows-containers"></a>將 ASP.NET MVC 應用程式遷移到 Windows 容器
 
-在 Windows 容器中執行現有的 .NET Framework 架構應用程式，不需要對您的應用程式進行任何變更。 若要在 Windows 容器中執行您的應用程式，您可以建立包含您應用程式的 Docker 映像，然後啟動該容器。 本主題說明如何才能擷取現有 [ASP.NET MVC 應用程式 (ASP.NET MVC application)](http://www.asp.net/mvc) 並部署到 Windows 容器中。
+在 Windows 容器中執行現有的 .NET Framework 架構應用程式，不需要對您的應用程式進行任何變更。 若要在 Windows 容器中執行您的應用程式，您可以建立包含您應用程式的 Docker 映像，然後啟動該容器。 本主題說明如何才能擷取現有 [ASP.NET MVC 應用程式 (ASP.NET MVC application)](https://dotnet.microsoft.com/apps/aspnet/mvc) 並部署到 Windows 容器中。
 
 您可以從現有的 ASP.NET MVC 應用程式開始，然後使用 Visual Studio 建置已發行的資產。 您可以使用 Docker，建立其中包含並會執行您應用程式的映像。 接著瀏覽到 Windows 容器中正在執行的網站，並確認應用程式可以正常運作。
 
@@ -93,7 +93,7 @@ COPY ./bin/Release/PublishOutput/ /inetpub/wwwroot
 docker build -t mvcrandomanswers .
 ```
 
-此命令會使用您 Dockerfile 中的指示來建立新的映射，並將 (-t 標記命名為 mvcrandomanswers) 映射。 這可能包括從 [Docker Hub](http://hub.docker.com) 提取基礎映像，然後將您的應用程式加入至該映像。
+此命令會使用您 Dockerfile 中的指示來建立新的映射，並將 (-t 標記命名為 mvcrandomanswers) 映射。 這可能包括從 [Docker Hub](https://hub.docker.com) 提取基礎映像，然後將您的應用程式加入至該映像。
 
 該命令完成之後，您可以執行 `docker images` 命令來了解新映像的相關資訊：
 
