@@ -40,6 +40,8 @@
               href: web-forms/overview/getting-started/creating-a-basic-web-forms-page.md
             - name: 在 Visual Studio 2013 中以程式碼編輯 ASP.NET Web Forms
               href: web-forms/overview/getting-started/code-editing-in-web-forms-pages.md
+            - name: 作法：使用事件
+              href: web-forms/overview/how-to-consume-events.md
             - name: 在 ASP.NET Web Forms 中使用 Page Inspector for Visual Studio 2012
               href: web-forms/overview/getting-started/using-page-inspector-in-a-visual-studio-11-beta-web-forms-project.md
             - name: Visual Studio 2012 實習實驗室
@@ -2510,29 +2512,29 @@
               items:
                 - name: 反覆項目
                   href: mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-application-cs.md
-                - name: 反覆項目
+                - name: 反覆運算
                   href: mvc/overview/older-versions-1/contact-manager/iteration-2-make-the-application-look-nice-cs.md
-                - name: 反覆項目
+                - name: 反覆運算
                   href: mvc/overview/older-versions-1/contact-manager/iteration-3-add-form-validation-cs.md
-                - name: 反覆項目
+                - name: 反覆運算
                   href: mvc/overview/older-versions-1/contact-manager/iteration-4-make-the-application-loosely-coupled-cs.md
-                - name: 反覆項目
+                - name: 反覆運算
                   href: mvc/overview/older-versions-1/contact-manager/iteration-5-create-unit-tests-cs.md
-                - name: 反覆項目
+                - name: 反覆運算
                   href: mvc/overview/older-versions-1/contact-manager/iteration-6-use-test-driven-development-cs.md
-                - name: 反覆項目
+                - name: 反覆運算
                   href: mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-cs.md
-                - name: 反覆項目
+                - name: 反覆運算
                   href: mvc/overview/older-versions-1/contact-manager/iteration-1-create-the-application-vb.md
-                - name: 反覆項目
+                - name: 反覆運算
                   href: mvc/overview/older-versions-1/contact-manager/iteration-2-make-the-application-look-nice-vb.md
-                - name: 反覆項目
+                - name: 反覆運算
                   href: mvc/overview/older-versions-1/contact-manager/iteration-3-add-form-validation-vb.md
-                - name: 反覆項目
+                - name: 反覆運算
                   href: mvc/overview/older-versions-1/contact-manager/iteration-4-make-the-application-loosely-coupled-vb.md
-                - name: 反覆項目
+                - name: 反覆運算
                   href: mvc/overview/older-versions-1/contact-manager/iteration-5-create-unit-tests-vb.md
-                - name: 反覆項目
+                - name: 反覆運算
                   href: mvc/overview/older-versions-1/contact-manager/iteration-6-use-test-driven-development-vb.md
                 - name: 反覆項目
                   href: mvc/overview/older-versions-1/contact-manager/iteration-7-add-ajax-functionality-vb.md
