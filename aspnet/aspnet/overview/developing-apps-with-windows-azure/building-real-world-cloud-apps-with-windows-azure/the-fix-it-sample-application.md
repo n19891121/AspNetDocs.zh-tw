@@ -1,6 +1,6 @@
 ---
 uid: aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/the-fix-it-sample-application
-title: 附錄：修正 It 範例應用程式 (使用 Azure) 建立真實世界的雲端應用程式 |Microsoft Docs
+title: 附錄： (使用 Azure) 建立 Real-World 雲端應用程式，以修正 It 範例應用程式 |Microsoft Docs
 author: MikeWasson
 description: 以 Azure 電子書建立真實世界的雲端應用程式，是以 Scott Guthrie 所開發的簡報為基礎。 它會解釋13個模式和實務，
 ms.author: riande
@@ -8,14 +8,14 @@ ms.date: 06/12/2014
 ms.assetid: 1bc333c5-f096-4ea7-b170-779accc21c1a
 msc.legacyurl: /aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/the-fix-it-sample-application
 msc.type: authoredcontent
-ms.openlocfilehash: 549d1513279190ae5abe87c59a48e1caa1cfa5f7
-ms.sourcegitcommit: feb88edfb01b32f6fc9488f0f0ddb3c5b34e6ff0
+ms.openlocfilehash: 53ae9633277b38f1d2c8a8bd43eaf0014da54c45
+ms.sourcegitcommit: 4b78855427f1397df0a7be3559e04ec94a78c308
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88702929"
+ms.lasthandoff: 11/25/2020
+ms.locfileid: "96151876"
 ---
-# <a name="appendix-the-fix-it-sample-application-building-real-world-cloud-apps-with-azure"></a>附錄：修正 It 範例應用程式 (使用 Azure) 建立真實世界的雲端應用程式
+# <a name="appendix-the-fix-it-sample-application-building-real-world-cloud-apps-with-azure"></a>附錄：使用 Azure)  (建立 Real-World 雲端應用程式的修正 It 範例應用程式
 
 [Mike Wasson](https://github.com/MikeWasson)、 [Rick Anderson](https://twitter.com/RickAndMSFT)、 [Tom Dykstra](https://github.com/tdykstra)
 
@@ -102,7 +102,7 @@ ASP.NET 會在使用者輸入文字方塊中輸入腳本，以防止惡意使用
 
 ### <a name="register-singletons-as-such-with-di"></a>以 DI 的形式註冊 singleton
 
-因為只 `PhotoService` 需要一個類別和類別的實例 `Logger` ，所以這些類別應該註冊為*DependenciesConfig.cs*中相依性[插入的單一實例](https://code.google.com/p/autofac/wiki/InstanceScope)：
+因為只 `PhotoService` 需要一個類別和類別的實例 `Logger` ，所以這些類別應該註冊為 *DependenciesConfig.cs* 中相依性 [插入的單一實例](https://code.google.com/p/autofac/wiki/InstanceScope)：
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample3.cs?highlight=1,3)]
 
@@ -180,7 +180,7 @@ ASP.NET 會在使用者輸入文字方塊中輸入腳本，以防止惡意使用
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample15.cs)]
 
-您只應使用 `async void` 最上層的事件處理常式。 如果您將方法定義為 `async void` ，呼叫端就**await**無法等候方法或攔截方法擲回的任何例外狀況。 如需詳細資訊，請參閱 [非同步程式設計中的最佳做法](https://msdn.microsoft.com/magazine/jj991977.aspx)。
+您只應使用 `async void` 最上層的事件處理常式。 如果您將方法定義為 `async void` ，呼叫端就 **await** 無法等候方法或攔截方法擲回的任何例外狀況。 如需詳細資訊，請參閱 [非同步程式設計中的最佳做法](https://msdn.microsoft.com/magazine/jj991977.aspx)。
 
 ### <a name="use-a-cancellation-token-to-break-from-worker-role-loop"></a>使用取消權杖從背景工作角色迴圈中斷
 
@@ -200,7 +200,7 @@ ASP.NET 會在使用者輸入文字方塊中輸入腳本，以防止惡意使用
 
 ### <a name="set-an-expiration-time-out-for-authentication-cookies"></a>針對驗證 cookie 設定到期時間-時
 
-根據預設，驗證 cookie 會在兩周內到期。 較短的時間更安全。 您可以在 *StartupAuth.cs*中變更此設定：
+根據預設，驗證 cookie 會在兩周內到期。 較短的時間更安全。 您可以在 *StartupAuth.cs* 中變更此設定：
 
 [!code-csharp[Main](the-fix-it-sample-application/samples/sample18.cs?highlight=4-5)]
 
@@ -219,7 +219,7 @@ ASP.NET 會在使用者輸入文字方塊中輸入腳本，以防止惡意使用
 2. 安裝 [適用于 Visual Studio 的 AZURE SDK for .net](https://azure.microsoft.com/downloads/)。
 3. 從 [MSDN 程式碼庫](https://code.msdn.microsoft.com/Fix-It-app-for-Building-cdd80df4)下載 .zip 檔案。
 4. 在檔案總管中，以滑鼠右鍵按一下 .zip 檔案，然後按一下 [屬性]，然後在屬性視窗按一下 [解除封鎖]。
-5. 解壓縮檔案。
+5. 將檔案解壓縮。
 6. 按兩下 .sln 檔案以啟動 Visual Studio。
 7. 從 [ **工具** ] 功能表中，按一下 [ **NuGet 封裝管理員**]，然後 **封裝管理員主控台**。
 8. 在封裝管理員主控台 (PMC) 中，按一下 [還原]。
@@ -233,7 +233,7 @@ ASP.NET 會在使用者輸入文字方塊中輸入腳本，以防止惡意使用
 
 1. 依照指示執行 [基底應用程式](#runbase)，然後關閉瀏覽器並關閉 Visual Studio。
 2. 以系統管理員許可權啟動 Visual Studio。  (您將使用 Azure 計算模擬器，而且需要系統管理員許可權。 ) 
-3. 在 Web 專案) 的*MyFixIt*專案中，于應用程式*Web.config*檔案 (，將值變更 `appSettings/UseQueues` 為 "true"：
+3. 在 Web 專案) 的 *MyFixIt* 專案中，于應用程式 *Web.config* 檔案 (，將值變更 `appSettings/UseQueues` 為 "true"：
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample19.cmd?highlight=3)]
 4. 如果 [Azure 儲存體模擬器](https://msdn.microsoft.com/library/windowsazure/hh403989.aspx) 仍未執行，請重新開機它。
@@ -242,7 +242,7 @@ ASP.NET 會在使用者輸入文字方塊中輸入腳本，以防止惡意使用
     使用 Visual Studio：
 
    1. 按 **F5** 執行 FixIt 專案。
-   2. 在**方案總管**中，以滑鼠右鍵按一下 MyFixItCloudService 專案，然後按一下 [ **Debug**  >  **開始新實例**]。
+   2. 在 **方案總管** 中，以滑鼠右鍵按一下 MyFixItCloudService 專案，然後按一下 [ **Debug**  >  **開始新實例**]。
 
     使用 Visual Studio 2013 Express for Web：
 
@@ -252,7 +252,7 @@ ASP.NET 會在使用者輸入文字方塊中輸入腳本，以防止惡意使用
    6. 按一下 [確定]。
    7. 按 **F5** 執行這兩個專案。
 
-      當您執行 MyFixItCloudService 專案時，Visual Studio 會啟動 Azure 計算模擬器。 根據您的防火牆設定，您可能需要允許模擬器通過防火牆。
+      當您執行 MyFixItCloudService 專案時，Visual Studio 啟動 Azure 計算模擬器。 根據您的防火牆設定，您可能需要允許模擬器通過防火牆。
 
 <a id="deploybase"></a>
 ## <a name="how-to-deploy-the-base-app-to-azure-app-service-web-apps-by-using-the-windows-powershell-scripts"></a>如何使用 Windows PowerShell 腳本將基礎應用程式部署至 Azure App Service Web Apps
@@ -279,7 +279,7 @@ ASP.NET 會在使用者輸入文字方塊中輸入腳本，以防止惡意使用
     [!code-console[Main](the-fix-it-sample-application/samples/sample21.cmd)]
 
     這些認證會在一段時間後過期，您必須重新執行 `Add-AzureAccount` Cmdlet。 在撰寫這本電子書的時候，認證到期前的時間限制為12個小時。
-5. 如果您有多個訂用帳戶，請使用 Select-azuresubscription Cmdlet 來指定您要在其中建立測試環境的訂用帳戶。
+5. 如果您有多個訂用帳戶，請使用 Select-AzureSubscription Cmdlet 來指定您要在其中建立測試環境的訂用帳戶。
 6. 使用和 Cmdlet 匯入相同 Azure 訂用帳戶的管理 `Get-AzurePublishSettingsFile` 憑證 `Import-AzurePublishSettingsFile` 。 這些 Cmdlet 的第一個會下載憑證檔案，第二個則是指定該檔案的位置，以便匯入該檔案。 > [!IMPORTANT]
    > 將下載的檔案保留在安全的位置，或在您完成時將其刪除，因為其中包含可用來管理 Azure 服務的憑證。
 
@@ -317,9 +317,9 @@ ASP.NET 會在使用者輸入文字方塊中輸入腳本，以防止惡意使用
 
     [!code-console[Main](the-fix-it-sample-application/samples/sample27.cmd)]
 
-    您可以使用 `Detailed` `Full` get-help Cmdlet 的、、 `Parameters` 和 `Examples` 參數來篩選傳回的說明。
+    您可以使用 `Detailed` `Full` Get-Help Cmdlet 的、、 `Parameters` 和 `Examples` 參數來篩選所傳回的說明。
 
-    如果腳本失敗或產生錯誤，例如 "AzureWebsite： Call Set-Select-azuresubscription and Select-azuresubscription first"，您可能還未完成 Azure PowerShell 的設定。
+    如果腳本失敗或產生錯誤，例如 "New-AzureWebsite： Call Set-AzureSubscription 和 Select-AzureSubscription first"，您可能尚未完成 Azure PowerShell 的設定。
 
     腳本完成後，您可以使用 Azure 管理入口網站查看已建立的資源，如「 [自動化所有專案](automate-everything.md) 」一章所示。
 10. 若要將 FixIt 專案部署到新的 Azure 環境，請使用 *AzureWebsite.ps1* 腳本。 例如：
@@ -341,7 +341,7 @@ ASP.NET 會在使用者輸入文字方塊中輸入腳本，以防止惡意使用
 
 ### <a name="internalerror-the-server-encountered-an-internal-error"></a>InternalError：伺服器發生內部錯誤。
 
-`New-AzureWebsite`當 azurewebsites.net 網域中的名稱不是唯一時，此 Cmdlet 會傳回內部錯誤。 若要解決此錯誤，請使用不同的名稱值，其位於 *New-AzureWebsiteEnv.ps1*的 name 參數中。
+`New-AzureWebsite`當 azurewebsites.net 網域中的名稱不是唯一時，此 Cmdlet 會傳回內部錯誤。 若要解決此錯誤，請使用不同的名稱值，其位於 *New-AzureWebsiteEnv.ps1* 的 name 參數中。
 
 [!code-console[Main](the-fix-it-sample-application/samples/sample30.cmd)]
 
