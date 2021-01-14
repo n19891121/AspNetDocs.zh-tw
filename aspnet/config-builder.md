@@ -6,12 +6,12 @@ description: 瞭解如何從外部來源 web.config 值以外的來源取得設�
 ms.author: riande
 ms.date: 7/17/2020
 msc.type: content
-ms.openlocfilehash: c5a3d86487cd75d20aebe822e81f9b42d363faa7
-ms.sourcegitcommit: d4e2a07eeb2cdf19f0bfbfab4a469970bc7e1c99
+ms.openlocfilehash: 04bc6bcc2d9d0be561f8b1f2d909d8c46d90ad81
+ms.sourcegitcommit: 1dd64aab844e52ed27819c4ae62167081a067134
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98105230"
+ms.lasthandoff: 01/14/2021
+ms.locfileid: "98206110"
 ---
 # <a name="configuration-builders-for-aspnet"></a>ASP.NET 的設定產生器 \(部分機器翻譯\)
 
@@ -217,7 +217,6 @@ ms.locfileid: "98105230"
     [mode|prefix|stripPrefix|tokenPattern]
     (vaultName="MyVaultName" |
      uri="https:/MyVaultName.vault.azure.net")
-    [connectionString="connection string"]
     [version="secrets version"]
     [preloadSecretNames="true"]
     type="Microsoft.Configuration.ConfigurationBuilders.AzureKeyVaultConfigBuilder,
@@ -229,7 +228,6 @@ ms.locfileid: "98105230"
 `vaultName` 需要 (保存庫的名稱或保存庫) 的 URI。 其他屬性則可控制要連接的保存庫，但只有在應用程式未在搭配使用的環境中執行時才需要 `Microsoft.Azure.Services.AppAuthentication` 。 Azure 服務驗證程式庫可讓您在可能的情況下，自動從執行環境中挑選連接資訊。 您可以藉由提供連接字串，覆寫自動挑選連接資訊。
 
 * `vaultName` -如果未提供，則為必要項 `uri` 。 在您的 Azure 訂用帳戶中，指定要從中讀取索引鍵/值組的保存庫名稱。
-* `connectionString`- [Azureservicetokenprovider 會](https://docs.microsoft.com/azure/key-vault/service-to-service-authentication#connection-string-support)可用的連接字串
 * `uri` -連接到具有指定值的其他 Key Vault 提供者 `uri` 。 如果未指定，Azure (`vaultName`) 是保存庫提供者。
 * `version` -Azure Key Vault 提供秘密的版本控制功能。 如果 `version` 指定了，產生器只會抓取符合此版本的秘密。
 * `preloadSecretNames` -根據預設，此產生器會在初始化時 querys 金鑰保存庫中的 **所有** 金鑰名稱。 若要防止讀取所有索引鍵值，請將這個屬性設定為 `false` 。 將此設定為 `false` 一次讀取一個秘密。 如果保存庫允許「取得」存取，而不是「列出」存取權，則一次讀取一個秘密會很有用。 **注意：** 使用 `Greedy` 模式時， `preloadSecretNames` 必須 `true` (預設值。 ) 
