@@ -8,20 +8,18 @@ ms.date: 07/30/2013
 ms.assetid: 64906a1d-f734-41cf-9615-ee95f8740996
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/advanced-entity-framework-scenarios-for-an-mvc-web-application
 msc.type: authoredcontent
-ms.openlocfilehash: 85dd59016d904a9f654c438db977b5ae2c0187d2
-ms.sourcegitcommit: 4e6d586faadbe4d9ef27122f86335ec9385134af
+ms.openlocfilehash: 4b49ae0bee2a5ceb41dbf040dc6ea7c8d2d0dea2
+ms.sourcegitcommit: b4cdcf246850751579e45da80c9780fe56330dd0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89045048"
+ms.lasthandoff: 02/09/2021
+ms.locfileid: "99985111"
 ---
 # <a name="advanced-entity-framework-scenarios-for-an-mvc-web-application-10-of-10"></a>適用于 MVC Web 應用程式的 Advanced Entity Framework 案例 (10/10) 
 
 由 [Tom Dykstra](https://github.com/tdykstra)
 
-[下載已完成的專案](https://code.msdn.microsoft.com/Getting-Started-with-dd0e2ed8)
-
-> Contoso 大學範例 web 應用程式示範如何使用 Entity Framework 5 Code First 和 Visual Studio 2012 來建立 ASP.NET MVC 4 應用程式。 如需教學課程系列的資訊，請參閱[本系列的第一個教學課程](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md)。 您可以從開頭開始進行教學課程系列，或 [下載此章節的入門專案](building-the-ef5-mvc4-chapter-downloads.md) ，從這裡開始。
+> Contoso 大學範例 web 應用程式示範如何使用 Entity Framework 5 Code First 和 Visual Studio 2012 來建立 ASP.NET MVC 4 應用程式。 如需教學課程系列的資訊，請參閱[本系列的第一個教學課程](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md)。
 > 
 > > [!NOTE] 
 > > 
@@ -47,7 +45,7 @@ ms.locfileid: "89045048"
 
 ## <a name="performing-raw-sql-queries"></a>執行原始 SQL 查詢
 
-Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資料庫的方法。 您有下列選項：
+Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資料庫的方法。 下列選項可供您選擇：
 
 - 針對傳回實體類型的查詢使用 `DbSet.SqlQuery` 方法。 傳回的物件必須是物件所預期的型別 `DbSet` ，而且除非您關閉追蹤功能，否則資料庫內容會自動追蹤這些物件。  (請參閱下一節中的 `AsNoTracking` 方法。 ) 
 - 針對傳回非 `Database.SqlQuery` 實體之類型的查詢，請使用方法。 即使您使用這個方法來擷取實體類型，資料庫內容也不會追蹤傳回的資料。
@@ -61,11 +59,11 @@ Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資�
 
 假設您希望 `GenericRepository` 類別提供額外的篩選和排序彈性，而不需要使用其他方法建立衍生類別。 達成此目標的其中一種方法是新增可接受 SQL 查詢的方法。 然後，您可以在控制器中指定想要的任何一種篩選或排序，例如 `Where` 相依于聯結或子查詢的子句。 在本節中，您將瞭解如何執行這類方法。
 
-藉 `GetWithRawSql` 由將下列程式碼新增至 *GenericRepository.cs*來建立方法：
+藉 `GetWithRawSql` 由將下列程式碼新增至 *GenericRepository.cs* 來建立方法：
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample1.cs)]
 
-在 *CourseController.cs*中，從方法呼叫新的方法 `Details` ，如下列範例所示：
+在 *CourseController.cs* 中，從方法呼叫新的方法 `Details` ，如下列範例所示：
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample2.cs)]
 
@@ -83,7 +81,7 @@ Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資�
 
 假設您想要撰寫程式碼，以直接在 SQL 中取出此資料，而不是使用 LINQ。 若要這樣做，您必須執行查詢來傳回實體物件以外的內容，這表示您需要使用 `Database.SqlQuery` 方法。
 
-在 *HomeController.cs*中，將方法中的 LINQ 語句取代為 `About` 下列程式碼：
+在 *HomeController.cs* 中，將方法中的 LINQ 語句取代為 `About` 下列程式碼：
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample4.cs)]
 
@@ -103,13 +101,13 @@ Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資�
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample5.cs)]
 
-在 *UnitOfWork.cs*中，將存放 `Course` 庫類型從變更 `GenericRepository<Course>` 為 `CourseRepository:`
+在 *UnitOfWork.cs* 中，將存放 `Course` 庫類型從變更 `GenericRepository<Course>` 為 `CourseRepository:`
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample6.cs)]
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample7.cs)]
 
-在 *CourseController.cs*中，新增 `UpdateCourseCredits` 方法：
+在 *CourseController.cs* 中，新增 `UpdateCourseCredits` 方法：
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample8.cs)]
 
@@ -123,19 +121,19 @@ Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資�
 
 ![Add_View_dialog_box_for_Update_Course_Credits](https://asp.net/media/2578203/Windows-Live-Writer_Advanced-Entity-Framework-Scenarios-for-_CEF8_Add_View_dialog_box_for_Update_Course_Credits.png)
 
-在 *Views\Course\UpdateCourseCredits.cshtml*中，將範本程式碼取代為下列程式碼：
+在 *Views\Course\UpdateCourseCredits.cshtml* 中，將範本程式碼取代為下列程式碼：
 
 [!code-cshtml[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample9.cshtml)]
 
-藉由選取 [課程] **** 索引標籤，然後將 "/UpdateCourseCredits" 新增至瀏覽器位址列中的 URL 結尾 (例如：`http://localhost:50205/Course/UpdateCourseCredits`)，以執行 `UpdateCourseCredits` 方法。 在文字方塊中輸入數目：
+藉由選取 [課程]  索引標籤，然後將 "/UpdateCourseCredits" 新增至瀏覽器位址列中的 URL 結尾 (例如：`http://localhost:50205/Course/UpdateCourseCredits`)，以執行 `UpdateCourseCredits` 方法。 在文字方塊中輸入數目：
 
 ![Update_Course_Credits_initial_page_with_2_entered](advanced-entity-framework-scenarios-for-an-mvc-web-application/_static/image7.png)
 
-按一下 [更新] 。 您會看到受影響的資料列數目：
+按一下 [更新]  。 您會看到受影響的資料列數目：
 
 ![Update_Course_Credits_rows_affected_page](advanced-entity-framework-scenarios-for-an-mvc-web-application/_static/image8.png)
 
-按一下 [回到清單]****，以查看課程與已修訂學分數的清單。
+按一下 [回到清單]，以查看課程與已修訂學分數的清單。
 
 ![Courses_Index_page_showing_revised_credits](advanced-entity-framework-scenarios-for-an-mvc-web-application/_static/image9.png)
 
@@ -152,7 +150,7 @@ Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資�
 
 在本節中，您將會執行商務邏輯，以說明這些案例的第二個。 具體來說，您將強制執行一個商務規則，指出講師不能是一個以上部門的系統管理員。
 
-在 *DepartmentController.cs*中，新增可從和方法呼叫的新方法 `Edit` ， `Create` 以確定沒有兩個部門具有相同的系統管理員：
+在 *DepartmentController.cs* 中，新增可從和方法呼叫的新方法 `Edit` ， `Create` 以確定沒有兩個部門具有相同的系統管理員：
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample10.cs)]
 
@@ -175,7 +173,7 @@ Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資�
 
 這個問題的解決方法之一，是讓內容不能追蹤驗證查詢所抓取的記憶體中部門實體。 這樣做並沒有任何缺點，因為您不會更新此實體，也不會以它在記憶體中快取的方式來讀取它。
 
-在 *DepartmentController.cs*中，于 `ValidateOneAdministratorAssignmentPerInstructor` 方法中指定 [無追蹤]，如下列所示：
+在 *DepartmentController.cs* 中，于 `ValidateOneAdministratorAssignmentPerInstructor` 方法中指定 [無追蹤]，如下列所示：
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample12.cs?highlight=4)]
 
@@ -185,7 +183,7 @@ Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資�
 
 有時能夠看到傳送至資料庫的實際 SQL 查詢很有幫助。 若要這樣做，您可以在偵錯工具中檢查查詢變數，或呼叫查詢的 `ToString` 方法。 若要試試看，您將會看到一個簡單的查詢，然後查看當您新增諸如立即載入、篩選和排序等選項時，會發生什麼事。
 
-在 *控制器/CourseController*中，以 `Index` 下列程式碼取代方法：
+在 *控制器/CourseController* 中，以 `Index` 下列程式碼取代方法：
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample13.cs?highlight=3)]
 
@@ -199,7 +197,7 @@ Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資�
 
 ![Copy_value_of_variable_in_debug_mode](https://asp.net/media/2578239/Windows-Live-Writer_Advanced-Entity-Framework-Scenarios-for-_CEF8_Copy_value_of_variable_in_debug_mode_0902a2b1-b799-47a6-9b4b-f266c79d83c1.png)
 
-現在您要將下拉式清單新增至課程索引頁面，讓使用者可以篩選特定部門。 您將依標題排序課程，並指定導覽屬性的積極式載入 `Department` 。 在 *CourseController.cs*中，以 `Index` 下列程式碼取代方法：
+現在您要將下拉式清單新增至課程索引頁面，讓使用者可以篩選特定部門。 您將依標題排序課程，並指定導覽屬性的積極式載入 `Department` 。 在 *CourseController.cs* 中，以 `Index` 下列程式碼取代方法：
 
 [!code-csharp[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample15.cs)]
 
@@ -209,7 +207,7 @@ Entity Framework Code First API 包含可讓您將 SQL 命令直接傳遞至資�
 
 針對存放 `Get` 庫的方法 `Course` ，程式碼會指定篩選運算式、排序次序，以及導覽屬性的積極式載入 `Department` 。 如果下拉式清單中沒有選取任何專案，則篩選運算式一律會傳回 `true` (也就是 `SelectedDepartment` null) 。
 
-在 *Views\Course\Index.cshtml*中，緊接在開頭 `table` 標記之前，加入下列程式碼以建立下拉式清單和 [提交] 按鈕：
+在 *Views\Course\Index.cshtml* 中，緊接在開頭 `table` 標記之前，加入下列程式碼以建立下拉式清單和 [提交] 按鈕：
 
 [!code-cshtml[Main](advanced-entity-framework-scenarios-for-an-mvc-web-application/samples/sample16.cshtml)]
 
@@ -291,7 +289,7 @@ Entity Framework 藉由比較實體的目前值與原始值，判斷實體如何
 
 等候幾秒鐘，然後重新整理頁面。
 
-### <a name="update-database-not-recognized"></a>更新-資料庫無法辨認
+### <a name="update-database-not-recognized"></a>無法辨識 Update-Database
 
 錯誤訊息：
 
@@ -325,7 +323,7 @@ Entity Framework 藉由比較實體的目前值與原始值，判斷實體如何
 
 錯誤訊息：
 
-*建立與 SQL Server 的連接時發生網路相關或實例特定的錯誤。找不到或無法存取伺服器。請驗證實例名稱是否正確，並將 SQL Server 設定為允許遠端連線。 (提供者： SQL 網路介面，錯誤： 26-尋找指定的伺服器/實例時發生錯誤) *
+*建立與 SQL Server 的連接時發生網路相關或實例特定的錯誤。找不到或無法存取伺服器。請驗證實例名稱是否正確，並將 SQL Server 設定為允許遠端連線。 (提供者： SQL 網路介面，錯誤： 26-尋找指定的伺服器/實例時發生錯誤)*
 
 解決方案：
 

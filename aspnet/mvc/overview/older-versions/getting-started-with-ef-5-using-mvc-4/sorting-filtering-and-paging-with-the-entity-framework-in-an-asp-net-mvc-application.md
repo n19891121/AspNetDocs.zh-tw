@@ -8,20 +8,18 @@ ms.date: 07/30/2013
 ms.assetid: 8af630e0-fffa-4110-9eca-c96e201b2724
 msc.legacyurl: /mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application
 msc.type: authoredcontent
-ms.openlocfilehash: 48938b378a741a0f1c351c2cb1d33b5140c6cf93
-ms.sourcegitcommit: 8d34fb54e790cfba2d64097afc8276da5b22283e
+ms.openlocfilehash: c387223ec99e50fc8505e59697093b5bb482c58b
+ms.sourcegitcommit: b4cdcf246850751579e45da80c9780fe56330dd0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/27/2020
-ms.locfileid: "85484398"
+ms.lasthandoff: 02/09/2021
+ms.locfileid: "99985631"
 ---
 # <a name="sorting-filtering-and-paging-with-the-entity-framework-in-an-aspnet-mvc-application-3-of-10"></a>使用 ASP.NET MVC 應用程式中的 Entity Framework 進行排序、篩選和分頁 (3/10) 
 
 由 [Tom Dykstra](https://github.com/tdykstra)
 
-[下載已完成的專案](https://code.msdn.microsoft.com/Getting-Started-with-dd0e2ed8)
-
-> Contoso 大學範例 web 應用程式示範如何使用 Entity Framework 5 Code First 和 Visual Studio 2012 來建立 ASP.NET MVC 4 應用程式。 如需教學課程系列的資訊，請參閱[本系列的第一個教學課程](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md)。 您可以從開頭開始進行教學課程系列，或 [下載此章節的入門專案](building-the-ef5-mvc4-chapter-downloads.md) ，從這裡開始。
+> Contoso 大學範例 web 應用程式示範如何使用 Entity Framework 5 Code First 和 Visual Studio 2012 來建立 ASP.NET MVC 4 應用程式。 如需教學課程系列的資訊，請參閱[本系列的第一個教學課程](creating-an-entity-framework-data-model-for-an-asp-net-mvc-application.md)。
 > 
 > > [!NOTE] 
 > > 
@@ -39,7 +37,7 @@ ms.locfileid: "85484398"
 
 ### <a name="add-sorting-functionality-to-the-index-method"></a>將排序功能加入至 Index 方法
 
-在 *Controllers\StudentController.cs*中，以 `Index` 下列程式碼取代方法：
+在 *Controllers\StudentController.cs* 中，以 `Index` 下列程式碼取代方法：
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample1.cs)]
 
@@ -64,7 +62,7 @@ ms.locfileid: "85484398"
 
 ### <a name="add-column-heading-hyperlinks-to-the-student-index-view"></a>將資料行標題超連結新增至學生索引視圖
 
-在 *Views\Student\Index.cshtml*中，以 `<tr>` 反 `<th>` 白顯示的程式碼取代標題資料列的和元素：
+在 *Views\Student\Index.cshtml* 中，以 `<tr>` 反 `<th>` 白顯示的程式碼取代標題資料列的和元素：
 
 [!code-cshtml[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample3.cshtml?highlight=5-15)]
 
@@ -84,7 +82,7 @@ ms.locfileid: "85484398"
 
 ### <a name="add-filtering-functionality-to-the-index-method"></a>將篩選功能新增至 Index 方法
 
-在 *Controllers\StudentController.cs*中，以 `Index` 下列程式碼取代方法 () 會反白顯示變更：
+在 *Controllers\StudentController.cs* 中，以 `Index` 下列程式碼取代方法 () 會反白顯示變更：
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample4.cs?highlight=1,7-11)]
 
@@ -95,7 +93,7 @@ ms.locfileid: "85484398"
 
 ### <a name="add-a-search-box-to-the-student-index-view"></a>將搜尋方塊新增至學生的 [索引] 檢視
 
-在 *Views\Student\Index.cshtml*中，于開頭標記之前加入醒目提示的程式碼，以便 `table` 建立標題、文字方塊和 **搜尋** 按鈕。
+在 *Views\Student\Index.cshtml* 中，于開頭標記之前加入醒目提示的程式碼，以便 `table` 建立標題、文字方塊和 **搜尋** 按鈕。
 
 [!code-cshtml[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample5.cshtml?highlight=5-10)]
 
@@ -113,7 +111,7 @@ ms.locfileid: "85484398"
 
 ### <a name="install-the-pagedlistmvc-nuget-package"></a>安裝 PagedList MVC NuGet 套件
 
-NuGet **PagedList** 套件會自動安裝 **PagedList** 套件作為相依性。 **PagedList**封裝會安裝 `PagedList` 和集合的集合型別和擴充方法 `IQueryable` `IEnumerable` 。 擴充方法會在或以外的集合中建立單一資料頁面 `PagedList` `IQueryable` `IEnumerable` ，而 `PagedList` 集合會提供數個可協助分頁的屬性和方法。 **PagedList**會安裝分頁協助程式，以顯示分頁按鈕。
+NuGet **PagedList** 套件會自動安裝 **PagedList** 套件作為相依性。 **PagedList** 封裝會安裝 `PagedList` 和集合的集合型別和擴充方法 `IQueryable` `IEnumerable` 。 擴充方法會在或以外的集合中建立單一資料頁面 `PagedList` `IQueryable` `IEnumerable` ，而 `PagedList` 集合會提供數個可協助分頁的屬性和方法。 **PagedList** 會安裝分頁協助程式，以顯示分頁按鈕。
 
 從 [ **工具** ] 功能表選取 [ **nuget 封裝管理員** ]，然後 **管理方案的 nuget 套件**。
 
@@ -127,7 +125,7 @@ NuGet **PagedList** 套件會自動安裝 **PagedList** 套件作為相依性。
 
 ### <a name="add-paging-functionality-to-the-index-method"></a>將分頁功能新增至 Index 方法
 
-在 *Controllers\StudentController.cs*中，加入 `using` `PagedList` 命名空間的語句：
+在 *Controllers\StudentController.cs* 中，加入 `using` `PagedList` 命名空間的語句：
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample6.cs)]
 
@@ -157,7 +155,7 @@ NuGet **PagedList** 套件會自動安裝 **PagedList** 套件作為相依性。
 
 ### <a name="add-paging-links-to-the-student-index-view"></a>將分頁連結新增至學生索引視圖
 
-在 *Views\Student\Index.cshtml*中，以下列程式碼取代現有的程式碼：
+在 *Views\Student\Index.cshtml* 中，以下列程式碼取代現有的程式碼：
 
 [!code-cshtml[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample12.cshtml?highlight=6,9,14-20,56-58)]
 
@@ -215,7 +213,7 @@ NuGet **PagedList** 套件會自動安裝 **PagedList** 套件作為相依性。
 
 ### <a name="modify-the-home-controller"></a>修改 Home 控制器
 
-在 *HomeController.cs*中，將下列 `using` 語句新增至檔案頂端：
+在 *HomeController.cs* 中，將下列 `using` 語句新增至檔案頂端：
 
 [!code-csharp[Main](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/samples/sample19.cs)]
 
@@ -249,7 +247,7 @@ LINQ 陳述式會依註冊日期將學生實體組成群組、計算每個群組
 
 ### <a name="using-code-first-migrations-to-deploy-the-database"></a>使用 Code First 移轉部署資料庫
 
-若要部署資料庫，您將會使用 Code First 移轉。 當您建立用來設定從 Visual Studio 部署之設定的發行設定檔時，您會選取標示為 [執行] 的核取方塊， ** (在應用程式啟動) 上執行 Code First 移轉 **。 這項設定會導致部署程式在目的地伺服器上自動設定應用程式 *Web.config* 檔，讓 Code First 使用 `MigrateDatabaseToLatestVersion` 初始化運算式類別。
+若要部署資料庫，您將會使用 Code First 移轉。 當您建立用來設定從 Visual Studio 部署之設定的發行設定檔時，您會選取標示為 [執行] 的核取方塊， **(在應用程式啟動) 上執行 Code First 移轉**。 這項設定會導致部署程式在目的地伺服器上自動設定應用程式 *Web.config* 檔，讓 Code First 使用 `MigrateDatabaseToLatestVersion` 初始化運算式類別。
 
 Visual Studio 在部署程式期間，不會對資料庫執行任何動作。 當部署的應用程式在部署之後第一次存取資料庫時，Code First 會自動建立資料庫，或將資料庫架構更新為最新版本。 如果應用程式是執行遷移 `Seed` 方法，則在建立資料庫或更新架構之後，便會執行此方法。
 
@@ -272,7 +270,7 @@ Windows Azure SQL Database 是以 SQL Server 技術為基礎的雲端式關係�
 
     ![在管理入口網站中使用資料庫連結建立](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image12.png)
 
-   **新網站-[自訂建立**嚮導] 隨即開啟。
+   **新網站-[自訂建立** 嚮導] 隨即開啟。
 3. 在嚮導的 [ **新增網站** ] 步驟中，于 [ **URL** ] 方塊中輸入字串，以作為應用程式的唯一 URL。 完整的 URL 將包含您在此處輸入的字串，加上您在文字方塊旁看到的尾碼。 圖例顯示「ConU」，但該 URL 可能會被採用，因此您必須選擇不同的 URL。
 
     ![在管理入口網站中使用資料庫連結建立](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image13.png)
@@ -286,7 +284,7 @@ Windows Azure SQL Database 是以 SQL Server 技術為基礎的雲端式關係�
 7. 按一下指向方塊底部右邊的箭號。 Wizard 會前進到 [ **資料庫設定** ] 步驟。
 8. 在 [ **名稱** ] 方塊中，輸入 *ContosoUniversityDB*。
 9. 在 [ **伺服器** ] 方塊中，選取 [ **新增 SQL Database 伺服器**]。 或者，如果您先前已建立伺服器，就可以從下拉式清單中選取該伺服器。
-10. 輸入系統管理員 **登入名稱** 和 **密碼**。 如果選取 [新增 SQL Database 伺服器]****，則不要在此處輸入現有的名稱和密碼，而是輸入新的名稱和密碼；您現在定義的名稱和密碼將供未來存取資料庫時使用。 如果您選取先前建立的伺服器，則會輸入該伺服器的認證。 在本教學課程中，您不會選取 [ ***Advanced*** ] 核取方塊。 ***Advanced***選項可讓您設定資料庫定[序](https://msdn.microsoft.com/library/aa174903(v=SQL.80).aspx)。
+10. 輸入系統管理員 **登入名稱** 和 **密碼**。 如果選取 [新增 SQL Database 伺服器]，則不要在此處輸入現有的名稱和密碼，而是輸入新的名稱和密碼；您現在定義的名稱和密碼將供未來存取資料庫時使用。 如果您選取先前建立的伺服器，則會輸入該伺服器的認證。 在本教學課程中，您不會選取 [ **_Advanced_*_] 核取方塊。_*_Advanced_** 選項可讓您設定資料庫定 [序](https://msdn.microsoft.com/library/aa174903(v=SQL.80).aspx)。
 11. 選擇您為網站選擇的相同 **區域** 。
 12. 按一下方塊右下角的核取記號，表示您已完成。   
   
@@ -300,19 +298,19 @@ Windows Azure SQL Database 是以 SQL Server 技術為基礎的雲端式關係�
 
 ## <a name="deploy-the-application-to-windows-azure"></a>將應用程式部署到 Windows Azure
 
-1. 在 Visual Studio 的 [方案總管]**** 中以滑鼠右鍵按一下專案，再選取內容功能表中的 [發佈]****。  
+1. 在 Visual Studio 的 [方案總管] 中以滑鼠右鍵按一下專案，再選取內容功能表中的 [發佈]。  
   
     ![專案內容功能表中的 [發行]](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image18.png)
-2. 在**發佈 Web** wizard 的 [**設定檔**] 索引標籤中，按一下 [匯**入**]。  
+2. 在 **發佈 Web** wizard 的 [**設定檔**] 索引標籤中，按一下 [匯 **入**]。  
   
     ![匯入發行設定](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image19.png)
 3. 如果您先前未在 Visual Studio 中新增 Windows Azure 訂用帳戶，請執行下列步驟。 在這些步驟中，您會新增訂用帳戶，以便 **從 Windows Azure** 網站匯入下的下拉式清單會包含您的網站。
 
-    a. 在 [匯 **入發行設定檔** ] 對話方塊中，按一下 [ **從 windows Azure**網站匯入]，然後按一下 [ **新增 windows azure 訂閱**]。
+    a. 在 [匯 **入發行設定檔** ] 對話方塊中，按一下 [ **從 windows Azure** 網站匯入]，然後按一下 [ **新增 windows azure 訂閱**]。
 
     ![新增 Windows Azure 訂用帳戶](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image20.png)
 
-    b. 在 [匯 **入 Windows Azure 訂閱** ] 對話方塊中，按一下 [ **下載訂閱**檔案]。
+    b. 在 [匯 **入 Windows Azure 訂閱** ] 對話方塊中，按一下 [ **下載訂閱** 檔案]。
 
     ![下載訂用帳戶檔案](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image21.png)
 
@@ -336,15 +334,15 @@ Windows Azure SQL Database 是以 SQL Server 技術為基礎的雲端式關係�
 5. 在 [ **連接** ] 索引標籤中，按一下 [ **驗證連接** ]，確認設定正確無誤。  
   
     ![驗證連接](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image26.png)
-6. 驗證連接之後，[ **驗證** 連線] 按鈕旁邊會顯示綠色核取記號。 按一下 [下一步]  。  
+6. 驗證連接之後，[ **驗證** 連線] 按鈕旁邊會顯示綠色核取記號。 按一下 [下一步] 。  
   
     ![已成功驗證連接](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image27.png)
 7. 開啟 [ **SchoolCoNtext** ] 底下的 [**遠端連線字串**] 下拉式清單，然後選取您所建立之資料庫的連接字串。
-8. 選取 [ **執行] Code First 移轉 (在應用程式啟動) 上執行 **。
-9. 取消核取 [ **在執行時間使用此連接字串** **UserCoNtext (DefaultConnection) **，因為此應用程式不會使用成員資格資料庫。   
+8. 選取 [ **執行] Code First 移轉 (在應用程式啟動) 上執行**。
+9. 取消核取 [ **在執行時間使用此連接字串** **UserCoNtext (DefaultConnection)**，因為此應用程式不會使用成員資格資料庫。   
   
     ![[設定] 索引標籤](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image28.png)
-10. 按一下 [下一步]  。
+10. 按一下 [下一步] 。
 11. 在 [ **預覽** ] 索引標籤中，按一下 [ **開始預覽**]。  
   
     ![[預覽] 索引標籤中的 [StartPreview] 按鈕](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image29.png)  
@@ -354,7 +352,7 @@ Windows Azure SQL Database 是以 SQL Server 技術為基礎的雲端式關係�
     ![StartPreview 檔輸出](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image30.png)
 12. 按一下 [發佈] 。  
     Visual Studio 開始將檔案複製到 Windows Azure 伺服器的程式。
-13. [輸出] **** 視窗會顯示已採取的部署動作，並報告部署作業已順利完成。  
+13. [輸出]  視窗會顯示已採取的部署動作，並報告部署作業已順利完成。  
   
     ![報告部署成功的輸出視窗](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image31.png)
 14. 部署成功後，預設瀏覽器會自動開啟至已部署網站的 URL。  
@@ -362,17 +360,17 @@ Windows Azure SQL Database 是以 SQL Server 技術為基礎的雲端式關係�
   
     ![Students_index_page_with_paging](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image32.png)
 
-此時您的 *SchoolCoNtext* 資料庫已在 Windows Azure SQL Database 中建立，因為您選取了 [ **執行] Code First 移轉 (會在應用程式啟動) 上 **執行。 已部署網站中的 *Web.config* 檔已變更，因此 [>migratedatabasetolatestversion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) 初始化運算式會在您第一次程式碼讀取或寫入資料庫中的資料時執行， (當您選取 [ **學生** ] 索引標籤時，會發生這種情況) ：
+此時您的 *SchoolCoNtext* 資料庫已在 Windows Azure SQL Database 中建立，因為您選取了 [ **執行] Code First 移轉 (會在應用程式啟動) 上** 執行。 已部署網站中的 *Web.config* 檔已變更，因此 [>migratedatabasetolatestversion](https://msdn.microsoft.com/library/hh829476(v=vs.103).aspx) 初始化運算式會在您第一次程式碼讀取或寫入資料庫中的資料時執行， (當您選取 [ **學生** ] 索引標籤時，會發生這種情況) ：
 
 ![](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image33.png)
 
-部署程式也會建立新的連接字串， * (SchoolCoNtext \_ DatabasePublish*) ，以便 Code First 移轉用來更新資料庫架構和植入資料庫。
+部署程式也會建立新的連接字串， *(SchoolCoNtext \_ DatabasePublish*) ，以便 Code First 移轉用來更新資料庫架構和植入資料庫。
 
 ![Database_Publish 連接字串](sorting-filtering-and-paging-with-the-entity-framework-in-an-asp-net-mvc-application/_static/image34.png)
 
-*DefaultConnection*連接字串適用于在本教學課程中未使用的成員資格資料庫 () 。 ContosoUniversity 資料庫的 *SchoolCoNtext* 連接字串。
+*DefaultConnection* 連接字串適用于在本教學課程中未使用的成員資格資料庫 () 。 ContosoUniversity 資料庫的 *SchoolCoNtext* 連接字串。
 
-您可以在 *ContosoUniversity\obj\Release\Package\PackageTmp\Web.config*的電腦上找到 Web.config 檔案的已部署版本。您可以使用 FTP 來存取已部署的 *Web.config* 檔案本身。 如需相關指示，請參閱 [使用 Visual Studio：部署程式碼更新 ASP.NET Web 部署](../../../../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md)。 遵循開頭為「若要使用 FTP 工具的指示，您需要三個專案： FTP URL、使用者名稱和密碼。」
+您可以在 *ContosoUniversity\obj\Release\Package\PackageTmp\Web.config* 的電腦上找到 Web.config 檔案的已部署版本。您可以使用 FTP 來存取已部署的 *Web.config* 檔案本身。 如需相關指示，請參閱 [使用 Visual Studio：部署程式碼更新 ASP.NET Web 部署](../../../../web-forms/overview/deployment/visual-studio-web-deployment/deploying-a-code-update.md)。 遵循開頭為「若要使用 FTP 工具的指示，您需要三個專案： FTP URL、使用者名稱和密碼。」
 
 > [!NOTE]
 > Web 應用程式不會執行安全性，因此尋找 URL 的任何人都可以變更資料。 如需如何保護網站的相關指示，請參閱 [使用成員資格、OAuth 和 SQL Database 將安全的 ASP.NET MVC 應用程式部署到 Windows Azure 網站](https://docs.microsoft.com/aspnet/core/security/authorization/secure-data)。 您可以使用 Windows Azure 管理入口網站或 Visual Studio 中的 **伺服器總管** ，防止其他人使用該網站來停止網站。
